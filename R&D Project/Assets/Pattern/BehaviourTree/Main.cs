@@ -5,32 +5,79 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+
+
 namespace Assets.Pattern.BehaviourTree
 {
     class Main : BehaviourTree
     {
         private void Awake()
         {
-            Node ttNode1 = new WaitAction(1.5f);
-            Node ttNode2 = new WaitAction(1.5f);
-            Node ttNode3 = new WaitAction(1.5f);
-            Node dNode = new DebugAction("Test");
-            Node dNode1 = new DebugAction("Test1111111");
-            Node dNode2 = new DebugAction("Test22222222");
-            Node rnNode = new RepeatNumDecorator(3);
-            Node sNode = new SequenceComposite();
-            (sNode as SequenceComposite).children.Add(dNode1);
-            (sNode as SequenceComposite).children.Add(ttNode1);
-            (sNode as SequenceComposite).children.Add(dNode2);
-            (sNode as SequenceComposite).children.Add(ttNode2);
-            (sNode as SequenceComposite).children.Add(dNode);
-            (sNode as SequenceComposite).children.Add(ttNode3);
-            (rnNode as RepeatNumDecorator).child = sNode;
+            #region RepeatUtillFail Test (테스트 완료)
+            /*
+            {
+                Node rufNode = new RepeatUntillFailDecorator();
+                Node tNode1 = new WaitAction(1f);
+                Node actionNode = new TenRunFailedAction();
+                Node sequenceNode = new SequenceComposite();
+
+                (rufNode as RepeatUntillFailDecorator).child = sequenceNode;
+
+                (sequenceNode as SequenceComposite).children.Add(tNode1);
+                (sequenceNode as SequenceComposite).children.Add(actionNode);
 
 
-            rootNode = rnNode;
+                rootNode = rufNode;
+            }
+            */
+            #endregion
+            #region Invert Test (테스트 완료)
+            //{
+            //    Node action1 = new SuccessReturnAction();
+            //    Node action2 = new SuccessReturnAction();
+            //    Node action3 = new SuccessReturnAction();
+            //    Node action4 = new SuccessReturnAction();
+            //    Node action5 = new SuccessReturnAction();
+            //    Node invert = new InvertDecorator();
+
+            //    (invert as InvertDecorator).child = action3;
+
+            //    Node sequence = new SequenceComposite();
+
+            //    (sequence as SequenceComposite).children.Add(action1);
+            //    (sequence as SequenceComposite).children.Add(action2);
+            //    (sequence as SequenceComposite).children.Add(invert);
+            //    (sequence as SequenceComposite).children.Add(action4);
+            //    (sequence as SequenceComposite).children.Add(action5);
+
+            //    rootNode = sequence;
+            //}
+            #endregion
+            #region Selector Test (테스트 완료)
+            //{
+            //    Node action1 = new SuccessReturnAction();
+            //    Node action2 = new SuccessReturnAction();
+            //    Node action3 = new SuccessReturnAction();
+            //    Node action4 = new SuccessReturnAction();
+            //    Node action5 = new SuccessReturnAction();
+
+            //    Node invert1 = new InvertDecorator(action1);
+            //    Node invert2 = new InvertDecorator(action2);
+            //    Node invert3 = new InvertDecorator(action3);
+
+            //    Node selector = new SelectorComposite();
+
+            //    (selector as SelectorComposite).children.Add(invert1);
+            //    (selector as SelectorComposite).children.Add(invert2);
+            //    (selector as SelectorComposite).children.Add(invert3);
+            //    (selector as SelectorComposite).children.Add(action4);
+            //    (selector as SelectorComposite).children.Add(action5);
+
+            //    rootNode = selector;
+            //}
+            #endregion
         }
-
+        
         private void Start()
         {
             base.Update();

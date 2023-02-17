@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Assets.Pattern.BehaviourTree
 {
-    // 다음 액션이 실패할때 까지 순차적으로 실행
-    public class SequenceComposite : CompositeNode
+
+    // 하위 노드에서 SUCCESS가 나올때 까지 DFS
+    public class SelectorComposite : CompositeNode
     {
         int current;
 
@@ -26,15 +27,17 @@ namespace Assets.Pattern.BehaviourTree
             {
                 case State.RUNNING:
                     return State.RUNNING;
-                case State.FAILURE:
-                    return State.FAILURE;
                 case State.SUCCESS:
-                    current++;
-                    break;
+                    return State.SUCCESS;
+                case State.FAILURE:
+                    {
+                        current++;
+                        break;
+                    }
             }
 
-            return current == children.Count ? State.SUCCESS : State.RUNNING;
+            return current == children.Count ? State.FAILURE : State.RUNNING;
         }
-
     }
+
 }
