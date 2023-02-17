@@ -5,32 +5,21 @@ using Assets.Pattern.BehaviourTree;
 
 namespace Assets.Pattern.BehaviourTree
 {
-    [CreateAssetMenu(fileName ="CreateBT",menuName ="CreateBT",order = int.MaxValue)]
-    public class BehaviourTree : ScriptableObject
+    public abstract class BehaviourTree : MonoBehaviour
     {
-        [SerializeReference] public Composite com;
-        //public Selector startSelector = new Selector();
+        [SerializeReference]
+        public Node rootNode;
+        public Node.State treeState = Node.State.RUNNING;
 
-        //private void Awake()
-        //{
-        //    startSelector.AddChild(new PrintAction());
-        //}
+        public Node.State Update()
+        {
+            if (rootNode.state == Node.State.RUNNING)
+            {
+                treeState = rootNode.Update();
+            }
 
-        //private void Start()
-        //{
-        //    Run();
-        //}
+            return treeState;
 
-        //public void Run()
-        //{
-        //    if (startSelector.Run())
-        //    {
-        //        print("성공");
-        //    }
-        //    else
-        //    {
-        //        print("실패");
-        //    }
-        //}
+        }
     }
 }
