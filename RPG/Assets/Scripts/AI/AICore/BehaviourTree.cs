@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Character;
 
 namespace RPG.AI
 {
-    public abstract class BehaviourTree : MonoBehaviour
+    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateBT",order = int.MinValue)]
+    public class BehaviourTree : ScriptableObject
     {
         public Node rootNode;
-        public NodeStats stats = NodeStats.UPDATE;
+        public NodeStats rootStats = NodeStats.UPDATE;
 
-        public void Update()
+        public Context context;
+
+        public void InitNode(Context context)
         {
-            if (rootNode != null && stats == NodeStats.UPDATE)
+            this.context = context;
+            if (rootNode != null)
             {
-                stats = rootNode.Update();
+                rootNode.Init(this.context);
+            }
+        }
+
+        public void Play()
+        {
+            if (rootNode != null && rootStats == NodeStats.UPDATE)
+            {
+                rootStats = rootNode.Update();
             }
         }
     }

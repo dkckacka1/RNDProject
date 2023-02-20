@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RPG.AI
 {
+    [CreateAssetMenu(fileName ="NewBT",menuName = "CreateComposite/Sequence", order = int.MinValue)]
     public class SequenceComposite : CompositeNode
     {
         int current;

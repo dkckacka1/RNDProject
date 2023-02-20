@@ -107,7 +107,6 @@ public class BattleManager : MonoBehaviour
         return (T)nearTarget;
     }
 
-    // TODO : 컨트롤러 LINQ로 가져온 후 가까운 T 리턴 함수 만들기
     //public T ReturnNearDistanceController2<T>(Transform transform) where T : Controller
     //{
     //    var list =
@@ -116,7 +115,11 @@ public class BattleManager : MonoBehaviour
     //        select controller;
     //}
 
-    //이 함수는 사용되지 않습니다.
+    /// <summary>
+    /// 이 함수는 오래된 함수입니다. 사용되지 않습니다.
+    /// </summary>
+    /// <param name="transform"></param>
+    /// <returns></returns>
     public EnemyController ReturnMinimumdistanceEnemy(Transform transform)
     {
         if (liveEnemys.Count == 0)

@@ -1,3 +1,4 @@
+using RPG.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace RPG.AI
         {
             this.child = child;
         }
+
+
 
         public override void OnStart()
         {

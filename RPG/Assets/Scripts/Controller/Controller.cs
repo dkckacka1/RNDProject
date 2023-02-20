@@ -6,11 +6,14 @@ using RPG.Move;
 using RPG.Fight;
 using RPG.Character;
 using System;
+using RPG.AI;
 
 namespace RPG.Control
 {
     public class Controller : MonoBehaviour
     {
+        public BehaviourTree AITree;
+
         public Controller target;
         public CombatStats combatStats = CombatStats.IDLE;
 
@@ -30,11 +33,16 @@ namespace RPG.Control
             movement = GetComponent<Movement>();
             attack = GetComponent<Attack>();
             stats = GetComponent<Stats>();
-        }
 
+            Context context = new Context();
+            context.InitContext(this.gameObject);
+            AITree.InitNode(context);
+        }
 
         private void Update()
         {
+            AITree.Play();
+            /*
             switch (combatStats)
             {
                 case CombatStats.IDLE:
@@ -80,6 +88,7 @@ namespace RPG.Control
                 case CombatStats.DEAD:
                     break;
             }
+            */
         }
 
         protected virtual void FindNextTarget()

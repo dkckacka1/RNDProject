@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace RPG.AI
 {
+    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateAction/DebugAction",order = int.MinValue)]
     public class DebugAction : ActionNode
     {
-        string str;
+        [SerializeReference] public string str;
 
         public DebugAction(string str)
         {

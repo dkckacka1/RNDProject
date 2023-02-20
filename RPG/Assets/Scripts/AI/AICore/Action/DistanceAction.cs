@@ -4,20 +4,17 @@ using UnityEngine;
 
 namespace RPG.AI
 {
+    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateAction/DistanceAction",order = int.MinValue)]
     public class DistanceAction : ActionNode
     {
-        float minimumDistance = 0f;
-        Transform myTransform ,targetTransform;
-
-        public DistanceAction(float minimumDistance, Transform mineTrasnfrom, Transform targetTransform)
-        {
-            this.minimumDistance = minimumDistance;
-            this.myTransform = mineTrasnfrom;
-            this.targetTransform = targetTransform;
-        }
+        public float minimumDistance = 0f;
+        public Transform myTransform ,targetTransform;
 
         public override void OnStart()
         {
+            minimumDistance = context.stats.attackRange;
+            myTransform = context.transform;
+            targetTransform = context.controller.target.transform;
         }
 
         public override void OnStop()
