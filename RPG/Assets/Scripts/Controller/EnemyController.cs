@@ -9,8 +9,9 @@ namespace RPG.Control
 
     public class EnemyController : Controller
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             BattleManager.GetInstance().liveEnemys.Add(this);
         }
     }

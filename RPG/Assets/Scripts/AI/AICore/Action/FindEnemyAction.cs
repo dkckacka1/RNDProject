@@ -7,12 +7,11 @@ namespace RPG.AI
 {
     public class FindEnemyAction : ActionNode
     {
-        public EnemyController enemy;
+        public Controller enemy;
 
         public override void OnStart()
         {
-            context.controller.target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(context.transform);
-            enemy = (EnemyController)context.controller.target;
+
         }
 
         public override void OnStop()
@@ -23,11 +22,17 @@ namespace RPG.AI
         {
             if (enemy == null)
             {
-                Debug.Log("없음!");
-                return NodeStats.FAILURE;
+                // 현재 타겟이 없음
+                context.controller.FindNextTarget();
+                enemy = context.controller.target;
+                if (enemy == null)
+                {
+                    // 새로 찾아도 없음
+                    return NodeStats.FAILURE;
+                }
             }
 
-            Debug.Log("에너미 찾기");
+            // 타겟이 있음
             return NodeStats.SUCCESS;
         }
     }

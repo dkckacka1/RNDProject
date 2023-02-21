@@ -13,18 +13,20 @@ namespace RPG.Character
 
         public Transform transform;
         public Rigidbody rigidbody;
+        public Animator animator;
 
         public Stats stats;
         public Movement movement;
         public Attack attack;
         public Controller controller;
 
-        public void InitContext(GameObject gameobject)
+        public Context(GameObject gameobject)
         {
             this.gameobject = gameobject;
 
             transform = gameobject.transform;
             rigidbody = gameobject.GetComponent<Rigidbody>();
+            animator = gameobject.GetComponent<Animator>();
 
             stats = gameobject.GetComponent<Stats>();
             movement = gameobject.GetComponent<Movement>();

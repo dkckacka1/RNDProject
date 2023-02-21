@@ -11,12 +11,10 @@ namespace RPG.AI
         public override void OnStart()
         {
             target = context.controller.target.transform;
-            context.controller.animator.SetBool("isMove", true);
         }
 
         public override void OnStop()
         {
-            context.controller.animator.SetBool("isMove", false);
         }
 
         public override NodeStats OnUpdate()

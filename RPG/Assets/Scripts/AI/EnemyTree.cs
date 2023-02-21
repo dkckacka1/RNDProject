@@ -6,6 +6,9 @@ namespace RPG.AI
 {
     public class EnemyTree : BehaviourTree
     {
+        public override void SetRootNode()
+        {
+        }
     }
 
 }

@@ -12,9 +12,11 @@ namespace RPG.AI
 
         public Context context;
 
-        public void InitNode(Context context)
+        public void InitNode()
         {
-            this.context = context;
+            context = new Context(this.gameObject);
+            rootStats = NodeStats.UPDATE;
+            SetRootNode();
             if (rootNode != null)
             {
                 rootNode.Init(this.context);
@@ -28,6 +30,8 @@ namespace RPG.AI
                 rootStats = rootNode.Update();
             }
         }
+
+        public abstract void SetRootNode();
     }
 
 }

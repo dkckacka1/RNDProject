@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.AI
 {
-    public class DistanceAction : ActionNode
+    public class DistanceCheckDecorator : DecoratorNode
     {
         public float minimumDistance = 0f;
         public Transform myTransform ,targetTransform;
@@ -14,11 +14,14 @@ namespace RPG.AI
             minimumDistance = context.stats.attackRange;
             myTransform = context.transform;
             targetTransform = context.controller.target.transform;
+            context.animator.SetBool("isMove", true);
         }
 
         public override void OnStop()
         {
             Debug.Log($"{myTransform.name}와 {targetTransform.name}의 거리가 가깝습니다.");
+            context.animator.SetTrigger("Dead");
+            context.stats.IsDead = true;
         }
 
         public override NodeStats OnUpdate()
@@ -30,7 +33,7 @@ namespace RPG.AI
                 return NodeStats.SUCCESS;
             }
 
-            Debug.Log($"{myTransform.name}와 {targetTransform.name}의 거리가 멉니다.");
+            child.Update();
             return NodeStats.UPDATE;
         }
     }

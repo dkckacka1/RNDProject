@@ -27,23 +27,24 @@ namespace RPG.Control
 
         // TestCompoonent
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            animator = GetComponent<Animator >();
-            movement = GetComponent<Movement>();
-            attack = GetComponent<Attack>();
-            stats = GetComponent<Stats>();
-            aiTree = GetComponent<BehaviourTree>();
+            animator = this.gameObject.GetComponent<Animator >();
+            movement = this.gameObject.GetComponent<Movement>();
+            attack = this.gameObject.GetComponent<Attack>();
+            stats = this.gameObject.GetComponent<Stats>();
+            aiTree = this.gameObject.GetComponent<BehaviourTree>();
+        }
 
-            Context context = new Context();
-            context.InitContext(this.gameObject);
-
-            aiTree.InitNode(context);
+        protected virtual void Start()
+        {
+            aiTree.InitNode();
         }
 
         private void Update()
         {
-            aiTree.Play();
+            if(!stats.IsDead)
+                aiTree.Play();
             /*
             switch (combatStats)
             {
@@ -93,7 +94,7 @@ namespace RPG.Control
             */
         }
 
-        protected virtual void FindNextTarget()
+        public virtual void FindNextTarget()
         {
             print("컨트롤러");
         }

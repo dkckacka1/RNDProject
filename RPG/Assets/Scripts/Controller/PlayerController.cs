@@ -9,17 +9,17 @@ namespace RPG.Control
 {
     public class PlayerController : Controller
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             BattleManager.GetInstance().livePlayers.Add(this);
         }
 
-        protected override void FindNextTarget()
+        public override void FindNextTarget()
         {
             base.FindNextTarget();
             print("플레이어컨트롤러");
-            BattleManager.GetInstance().MoveToNextPhase<PlayerController>(this);
-            this.combatStats = CombatStats.CHASESTART;
+            target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
         }
     }
 }

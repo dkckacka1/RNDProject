@@ -35,7 +35,7 @@ namespace RPG.AI
             }
 
             current++;
-            return children.Count == current ? NodeStats.SUCCESS : NodeStats.FAILURE;
+            return children.Count == current ? NodeStats.SUCCESS : NodeStats.UPDATE;
         }
     }
 }

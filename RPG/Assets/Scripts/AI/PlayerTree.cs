@@ -8,10 +8,9 @@ namespace RPG.AI
     {
         RepeatDecorator repeat = new RepeatDecorator();
 
-        private void Awake()
+        public override void SetRootNode()
         {
             repeat.child = Move();
-
             rootNode = repeat;
         }
 
@@ -19,9 +18,11 @@ namespace RPG.AI
         {
             SequenceComposite sNode = NodeCreater.CreateSequence();
             FindEnemyAction findAction = new FindEnemyAction();
+            DistanceCheckDecorator checkDeco = new DistanceCheckDecorator();
             MoveAction moveAction = new MoveAction();
+            checkDeco.child = moveAction;
             sNode.GetChilds().Add(findAction);
-            sNode.GetChilds().Add(moveAction);
+            sNode.GetChilds().Add(checkDeco);
 
             return sNode;
         }
