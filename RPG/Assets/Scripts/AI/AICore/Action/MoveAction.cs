@@ -5,20 +5,23 @@ using RPG.Move;
 
 namespace RPG.AI
 {
-    [CreateAssetMenu(fileName = "NewBT", menuName = "CreateAction/MoveAction", order = int.MinValue)]
     public class MoveAction : ActionNode
     {
+        Transform target;
         public override void OnStart()
         {
+            target = context.controller.target.transform;
+            context.controller.animator.SetBool("isMove", true);
         }
 
         public override void OnStop()
         {
+            context.controller.animator.SetBool("isMove", false);
         }
 
         public override NodeStats OnUpdate()
         {
-            context.movement.Move(context.controller.target.transform);
+            context.movement.Move(target);
             return NodeStats.SUCCESS;
         }
     }

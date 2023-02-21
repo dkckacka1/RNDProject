@@ -5,10 +5,9 @@ using RPG.Control;
 
 namespace RPG.AI
 {
-    [CreateAssetMenu(fileName = "NewAction", menuName = "CreateAction/FindEnemyAction", order = int.MaxValue)]
     public class FindEnemyAction : ActionNode
     {
-        EnemyController enemy;
+        public EnemyController enemy;
 
         public override void OnStart()
         {
@@ -24,6 +23,7 @@ namespace RPG.AI
         {
             if (enemy == null)
             {
+                Debug.Log("¾øÀ½!");
                 return NodeStats.FAILURE;
             }
 

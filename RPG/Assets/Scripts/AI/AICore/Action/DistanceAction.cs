@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RPG.AI
 {
-    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateAction/DistanceAction",order = int.MinValue)]
     public class DistanceAction : ActionNode
     {
         public float minimumDistance = 0f;

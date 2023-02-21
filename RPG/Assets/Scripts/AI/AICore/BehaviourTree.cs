@@ -5,8 +5,7 @@ using RPG.Character;
 
 namespace RPG.AI
 {
-    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateBT",order = int.MinValue)]
-    public class BehaviourTree : ScriptableObject
+    public abstract class BehaviourTree : MonoBehaviour
     {
         public Node rootNode;
         public NodeStats rootStats = NodeStats.UPDATE;

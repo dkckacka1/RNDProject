@@ -30,10 +30,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8edd049ec9f1a44a6bfbbe8e33215e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AITree: {fileID: 11400000, guid: f012057e9a752fa4899465ba2a517a6f, type: 2}
+  aiTree: {fileID: 0}
   target: {fileID: 0}
   combatStats: 0
   animator: {fileID: 0}
+--- !u!114 &-3364235687380724007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088922895877221684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10772356f1c37a043a0c0fa09cc48a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootStats: 0
 --- !u!1001 &7590344218283207027
 PrefabInstance:
   m_ObjectHideFlags: 0

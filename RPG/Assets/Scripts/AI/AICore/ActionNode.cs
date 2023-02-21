@@ -10,6 +10,7 @@ namespace RPG.AI
         public override void Init(Context context)
         {
             this.context = context;
+            stats = NodeStats.UPDATE;
         }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RPG.AI
 {
-    [CreateAssetMenu(fileName ="NewBT",menuName ="CreateComposite/SuccessTour",order = int.MinValue)]
     public class SuccessTourComposite : CompositeNode
     {
         public NodeStats statsTour;
@@ -31,6 +30,7 @@ namespace RPG.AI
 
                 if (stats == NodeStats.FAILURE)
                 {
+                Debug.Log("¾øÀ½!");
                     return NodeStats.FAILURE;
                 }
             }

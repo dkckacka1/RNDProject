@@ -18,9 +18,11 @@ namespace RPG.AI
         public override void Init(Context context)
         {
             this.context = context;
+            this.stats = NodeStats.UPDATE;
             foreach (var child in children)
             {
                 child.Init(context);
+                child.stats = NodeStats.UPDATE;
             }
         }
     }

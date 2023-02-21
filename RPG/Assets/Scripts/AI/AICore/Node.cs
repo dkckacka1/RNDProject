@@ -5,7 +5,7 @@ using RPG.Character;
 
 namespace RPG.AI
 {
-    public abstract class Node : ScriptableObject
+    public abstract class Node
     {
         public Context context;
 
@@ -24,6 +24,7 @@ namespace RPG.AI
 
             if (stats == NodeStats.SUCCESS || stats == NodeStats.FAILURE)
             {
+                isStart = false;
                 OnStop();
             }
 

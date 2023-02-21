@@ -12,7 +12,7 @@ namespace RPG.Control
 {
     public class Controller : MonoBehaviour
     {
-        public BehaviourTree AITree;
+        public BehaviourTree aiTree;
 
         public Controller target;
         public CombatStats combatStats = CombatStats.IDLE;
@@ -33,15 +33,17 @@ namespace RPG.Control
             movement = GetComponent<Movement>();
             attack = GetComponent<Attack>();
             stats = GetComponent<Stats>();
+            aiTree = GetComponent<BehaviourTree>();
 
             Context context = new Context();
             context.InitContext(this.gameObject);
-            AITree.InitNode(context);
+
+            aiTree.InitNode(context);
         }
 
         private void Update()
         {
-            AITree.Play();
+            aiTree.Play();
             /*
             switch (combatStats)
             {
