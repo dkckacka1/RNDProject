@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using RPG.Control;
 
@@ -11,7 +12,7 @@ public class BattleManager : MonoBehaviour
     public List<PlayerController> livePlayers;
 
     // TEST
-    public List<Controller> lives;
+    public List<Controller> lives = new List<Controller>();
 
     public BattleState currentStats;
 
@@ -110,9 +111,10 @@ public class BattleManager : MonoBehaviour
     //public T ReturnNearDistanceController2<T>(Transform transform) where T : Controller
     //{
     //    var list =
-    //        from controller in lives
-    //        where (typeof(T) == typeof(controller))
+    //        from controller in lives where (typeof(T) == controller.GetType())
     //        select controller;
+
+    //    return (T)list[0];
     //}
 
     /// <summary>

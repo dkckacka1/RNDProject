@@ -1,30 +1,57 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Control;
 
 namespace RPG.AI
 {
     public class PlayerTree : RPG.AI.BehaviourTree
     {
-        RepeatDecorator repeat = new RepeatDecorator();
-
         public override void SetRootNode()
         {
-            repeat.child = Move();
-            rootNode = repeat;
+            rootNode = SetStartNode();
         }
 
-        private Node Move()
+        private Node SetStartNode()
         {
-            SequenceComposite sNode = NodeCreater.CreateSequence();
-            FindEnemyAction findAction = new FindEnemyAction();
-            DistanceCheckDecorator checkDeco = new DistanceCheckDecorator();
-            MoveAction moveAction = new MoveAction();
-            checkDeco.child = moveAction;
-            sNode.GetChilds().Add(findAction);
-            sNode.GetChilds().Add(checkDeco);
+            CompositeNode sequence = new SequenceComposite();
+            // 전투 시작시 살아있는 적 확인
+            sequence.GetChilds().Add(new FindControllerAction());
+            // 전투 노드
+            sequence.GetChilds().Add(SetBaattleNode());
+            // 승리 노드
+            sequence.GetChilds().Add(SetWinNode());
+            return sequence;
+        }
 
-            return sNode;
+        private Node SetWinNode()
+        {
+            throw new NotImplementedException();
+        }
+
+        private Node SetBaattleNode()
+        {
+            DecoratorNode repeatUntillFail = new UntillFailureRepeatDecorator();
+            CompositeNode selector = new SelectorComposite();
+            repeatUntillFail.child = selector;
+            IfDecorator ifs = new IfDecorator(() => { return false; });
+
+            /*
+                                                                   (실패 반복)
+                                                                   [시퀀스]
+                [셀렉터]                                           [시퀀스]
+                (타겟한 적이 있는가?)
+                {없다면}
+                {살아있는적이있는가?)           
+                {있다면 타겟설정}
+             
+             
+             
+             */
+
+
+            throw new NotImplementedException();
         }
     }
 }

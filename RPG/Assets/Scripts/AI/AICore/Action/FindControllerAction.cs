@@ -5,13 +5,13 @@ using RPG.Control;
 
 namespace RPG.AI
 {
-    public class FindEnemyAction : ActionNode
+    public class FindControllerAction : ActionNode 
     {
-        public Controller enemy;
+        Controller controller;
 
         public override void OnStart()
         {
-
+            controller = context.controller.target;
         }
 
         public override void OnStop()
@@ -20,12 +20,11 @@ namespace RPG.AI
 
         public override NodeStats OnUpdate()
         {
-            if (enemy == null)
+            if (controller == null)
             {
                 // 현재 타겟이 없음
                 context.controller.FindNextTarget();
-                enemy = context.controller.target;
-                if (enemy == null)
+                if (controller == null)
                 {
                     // 새로 찾아도 없음
                     return NodeStats.FAILURE;

@@ -7,7 +7,7 @@ namespace RPG.AI
 {
     public class UntillFailureRepeatDecorator : DecoratorNode
     {
-        public UntillFailureRepeatDecorator(Node child)
+        public UntillFailureRepeatDecorator(Node child = null)
         {
             this.child = child;
         }

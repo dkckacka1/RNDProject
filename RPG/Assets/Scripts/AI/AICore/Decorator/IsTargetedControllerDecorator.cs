@@ -1,0 +1,25 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using RPG.Control;
+
+namespace RPG.AI
+{
+    /// <summary>
+    /// 타겟이 있다면 
+    /// </summary>
+    //public class IsTargetedControllerDecorator : DecoratorNode
+    //{
+    //    public override void OnStart()
+    //    {
+    //    }
+
+    //    public override void OnStop()
+    //    {
+    //    }
+
+    //    public override NodeStats OnUpdate()
+    //    {
+    //    }
+    //}
+}
