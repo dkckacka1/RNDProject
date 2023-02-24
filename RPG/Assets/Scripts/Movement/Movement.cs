@@ -13,11 +13,11 @@ namespace RPG.Move
         public ITargetable target;
 
         UnityAction moveEndActions;
-        Stats stats;
+        Status stats;
 
         private void Awake()
         {
-            stats = GetComponent<Stats>();
+            stats = GetComponent<Status>();
         }
 
         public void Move(Transform target)

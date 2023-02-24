@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class RepeatDecorator : DecoratorNode
     {
@@ -14,10 +14,10 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             child.Update();
-            return NodeStats.UPDATE;
+            return Stats.UPDATE;
         }
     }
 

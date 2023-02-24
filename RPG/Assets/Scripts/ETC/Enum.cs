@@ -17,7 +17,7 @@ public enum CombatStats
     DEAD
 }
 
-public enum NodeStats
+public enum Stats
 {
     UPDATE,
     FAILURE,

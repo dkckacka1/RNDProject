@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class SelectorComposite : CompositeNode
     {
@@ -14,22 +14,22 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             foreach (var node in children)
             {
-                NodeStats stats = node.Update();
+                Stats stats = node.Update();
 
                 switch (stats)
                 {
-                    case NodeStats.UPDATE:
-                        return NodeStats.UPDATE;
-                    case NodeStats.SUCCESS:
-                        return NodeStats.SUCCESS;
+                    case Stats.UPDATE:
+                        return Stats.UPDATE;
+                    case Stats.SUCCESS:
+                        return Stats.SUCCESS;
                 }
             }
 
-            return NodeStats.FAILURE;
+            return Stats.FAILURE;
         }
     }
 }

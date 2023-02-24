@@ -11,13 +11,13 @@ namespace RPG.Fight
         public bool canAttack = true;
 
         // Component
-        Stats stats;
+        Status stats;
         IDamagedable target;
 
 
         private void Awake()
         {
-            stats = GetComponent<Stats>();
+            stats = GetComponent<Status>();
         }
 
         public void AttackTarget(IDamagedable target)

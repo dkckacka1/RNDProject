@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class DebugAction : ActionNode
     {
@@ -23,10 +23,10 @@ namespace RPG.AI
             Debug.Log($"Stop Log => {str}");
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             Debug.Log($"Update Log => {str}");
-            return NodeStats.SUCCESS;
+            return Stats.SUCCESS;
         }
     }
 }

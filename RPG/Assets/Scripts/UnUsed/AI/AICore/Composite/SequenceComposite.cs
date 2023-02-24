@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class SequenceComposite : CompositeNode
     {
@@ -17,25 +17,25 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             if (children.Count == 0)
-                return NodeStats.SUCCESS;
+                return Stats.SUCCESS;
 
             var Node = children[current];
 
             switch (Node.Update())
             {
-                case NodeStats.UPDATE:
-                    return NodeStats.UPDATE;
-                case NodeStats.FAILURE:
-                    return NodeStats.FAILURE;
-                case NodeStats.SUCCESS:
+                case Stats.UPDATE:
+                    return Stats.UPDATE;
+                case Stats.FAILURE:
+                    return Stats.FAILURE;
+                case Stats.SUCCESS:
                     break;
             }
 
             current++;
-            return children.Count == current ? NodeStats.SUCCESS : NodeStats.UPDATE;
+            return children.Count == current ? Stats.SUCCESS : Stats.UPDATE;
         }
     }
 }

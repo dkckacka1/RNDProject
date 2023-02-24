@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
-    public class PlayerTree : RPG.AI.BehaviourTree
+    public class PlayerTree : RPG.UnUsed.BehaviourTree
     {
         public override void SetRootNode()
         {

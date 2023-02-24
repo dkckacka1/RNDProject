@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public static class NodeCreater 
     {

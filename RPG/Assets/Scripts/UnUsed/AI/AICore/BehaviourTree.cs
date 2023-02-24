@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public abstract class BehaviourTree : MonoBehaviour
     {
         public Node rootNode;
-        public NodeStats rootStats = NodeStats.UPDATE;
+        public Stats rootStats = Stats.UPDATE;
 
         public Context context;
 
         public void InitNode()
         {
             context = new Context(this.gameObject);
-            rootStats = NodeStats.UPDATE;
+            rootStats = Stats.UPDATE;
             SetRootNode();
             if (rootNode != null)
             {
@@ -25,7 +25,7 @@ namespace RPG.AI
 
         public void Play()
         {
-            if (rootNode != null && rootStats == NodeStats.UPDATE)
+            if (rootNode != null && rootStats == Stats.UPDATE)
             {
                 rootStats = rootNode.Update();
             }

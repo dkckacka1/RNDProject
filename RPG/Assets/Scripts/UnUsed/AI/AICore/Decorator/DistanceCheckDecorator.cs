@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class DistanceCheckDecorator : DecoratorNode
     {
@@ -24,17 +24,17 @@ namespace RPG.AI
             context.stats.IsDead = true;
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             float distance = Vector3.Distance(myTransform.position, targetTransform.position);
 
             if (distance <= minimumDistance)
             {
-                return NodeStats.SUCCESS;
+                return Stats.SUCCESS;
             }
 
             child.Update();
-            return NodeStats.UPDATE;
+            return Stats.UPDATE;
         }
     }
 }

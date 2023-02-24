@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class IfDecorator : DecoratorNode
     {
@@ -24,14 +24,14 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             if (function.Invoke())
             {
                 return child.Update();
             }
 
-            return NodeStats.FAILURE;
+            return Stats.FAILURE;
         }
     }
 }

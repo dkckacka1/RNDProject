@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class UntillFailureRepeatDecorator : DecoratorNode
     {
@@ -22,9 +22,9 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
-            return child.Update() == NodeStats.FAILURE ? NodeStats.SUCCESS : NodeStats.UPDATE;
+            return child.Update() == Stats.FAILURE ? Stats.SUCCESS : Stats.UPDATE;
         }
     }
 }

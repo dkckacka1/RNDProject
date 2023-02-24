@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class SuccessTourComposite : CompositeNode
     {
-        public NodeStats statsTour;
+        public Stats statsTour;
 
         public override void OnStart()
         {
@@ -16,22 +16,22 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
-            statsTour = NodeStats.SUCCESS;
+            statsTour = Stats.SUCCESS;
             foreach (var node in children)
             {
-                NodeStats stats = node.Update();
+                Stats stats = node.Update();
 
-                if (stats == NodeStats.UPDATE)
+                if (stats == Stats.UPDATE)
                 {
-                    statsTour = NodeStats.UPDATE;
+                    statsTour = Stats.UPDATE;
                 }
 
-                if (stats == NodeStats.FAILURE)
+                if (stats == Stats.FAILURE)
                 {
                 Debug.Log("¾øÀ½!");
-                    return NodeStats.FAILURE;
+                    return Stats.FAILURE;
                 }
             }
 

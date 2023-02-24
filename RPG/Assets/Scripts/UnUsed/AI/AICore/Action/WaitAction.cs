@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class WaitAction : ActionNode
     {
@@ -23,14 +23,14 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             if (Time.time - startTime > duration)
             {
-                return NodeStats.SUCCESS;
+                return Stats.SUCCESS;
             }
 
-            return NodeStats.UPDATE;
+            return Stats.UPDATE;
         }
     }
 

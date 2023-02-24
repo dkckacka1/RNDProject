@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     /// <summary>
     /// 살아있는 컨트롤러를 찾아줍니다.
@@ -23,16 +23,16 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             context.controller.target = target;
             if (context.controller.target == null)
             {
-                return NodeStats.FAILURE;
+                return Stats.FAILURE;
             }
             else
             {
-                return NodeStats.SUCCESS;
+                return Stats.SUCCESS;
             }
         }
     }

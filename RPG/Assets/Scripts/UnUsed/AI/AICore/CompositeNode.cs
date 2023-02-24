@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public abstract class CompositeNode : Node
     {
@@ -18,11 +18,11 @@ namespace RPG.AI
         public override void Init(Context context)
         {
             this.context = context;
-            this.stats = NodeStats.UPDATE;
+            this.stats = Stats.UPDATE;
             foreach (var child in children)
             {
                 child.Init(context);
-                child.stats = NodeStats.UPDATE;
+                child.stats = Stats.UPDATE;
             }
         }
     }

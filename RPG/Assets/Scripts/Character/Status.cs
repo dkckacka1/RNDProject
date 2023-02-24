@@ -7,7 +7,7 @@ using RPG.Control;
 
 namespace RPG.Character
 {
-    public class Stats : MonoBehaviour, IDamagedable, ITargetable
+    public class Status : MonoBehaviour, IDamagedable, ITargetable
     {
         [Header("Health")]
         [SerializeField] public int maxHp = 100;

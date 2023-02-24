@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public abstract class ActionNode : Node
     {
         public override void Init(Context context)
         {
             this.context = context;
-            stats = NodeStats.UPDATE;
+            stats = Stats.UPDATE;
         }
     }
 }

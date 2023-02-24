@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     /// <summary>
     /// 타겟이 있다면 

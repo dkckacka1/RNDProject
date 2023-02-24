@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class FindControllerAction : ActionNode 
     {
@@ -18,7 +18,7 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             if (controller == null)
             {
@@ -27,12 +27,12 @@ namespace RPG.AI
                 if (controller == null)
                 {
                     // 새로 찾아도 없음
-                    return NodeStats.FAILURE;
+                    return Stats.FAILURE;
                 }
             }
 
             // 타겟이 있음
-            return NodeStats.SUCCESS;
+            return Stats.SUCCESS;
         }
     }
 

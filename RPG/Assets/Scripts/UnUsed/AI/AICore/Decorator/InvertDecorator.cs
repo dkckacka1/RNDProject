@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     /// <summary>
     /// 하위 노드가 SUCCESS 일시 FAILURE
@@ -20,17 +20,17 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             switch (child.Update())
             {
-                case NodeStats.FAILURE:
-                    return NodeStats.SUCCESS;
-                case NodeStats.SUCCESS:
-                    return NodeStats.FAILURE;
+                case Stats.FAILURE:
+                    return Stats.SUCCESS;
+                case Stats.SUCCESS:
+                    return Stats.FAILURE;
             }
 
-            return NodeStats.UPDATE;
+            return Stats.UPDATE;
         }
     }
 }

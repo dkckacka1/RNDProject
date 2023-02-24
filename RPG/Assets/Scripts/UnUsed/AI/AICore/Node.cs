@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public abstract class Node
     {
         public Context context;
 
-        public NodeStats stats;
+        public Stats stats;
         bool isStart = false;
 
-        public NodeStats Update()
+        public Stats Update()
         {
             if (!isStart)
             {
@@ -22,7 +22,7 @@ namespace RPG.AI
 
             stats = OnUpdate();
 
-            if (stats == NodeStats.SUCCESS || stats == NodeStats.FAILURE)
+            if (stats == Stats.SUCCESS || stats == Stats.FAILURE)
             {
                 isStart = false;
                 OnStop();
@@ -34,6 +34,6 @@ namespace RPG.AI
         public abstract void Init(Context context);
         public abstract void OnStart();
         public abstract void OnStop();
-        public abstract NodeStats OnUpdate();
+        public abstract Stats OnUpdate();
     }
 }

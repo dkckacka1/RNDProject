@@ -15,7 +15,7 @@ namespace RPG.Character
         public Rigidbody rigidbody;
         public Animator animator;
 
-        public Stats stats;
+        public Status stats;
         public Movement movement;
         public Attack attack;
         public Controller controller;
@@ -28,7 +28,7 @@ namespace RPG.Character
             rigidbody = gameobject.GetComponent<Rigidbody>();
             animator = gameobject.GetComponent<Animator>();
 
-            stats = gameobject.GetComponent<Stats>();
+            stats = gameobject.GetComponent<Status>();
             movement = gameobject.GetComponent<Movement>();
             attack = gameobject.GetComponent<Attack>();
             controller = gameobject.GetComponent<Controller>();

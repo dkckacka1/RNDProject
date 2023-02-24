@@ -12,16 +12,17 @@ namespace RPG.Control
 {
     public class Controller : MonoBehaviour
     {
-        public BehaviourTree aiTree;
-
         public Controller target;
         public CombatStats combatStats = CombatStats.IDLE;
+        public StateContext stateContext;
+
+        public IdelState idelState = new IdelState();
 
         // Component
         public Animator animator;
         protected Movement movement;
         protected Attack attack;
-        protected Stats stats;
+        protected Status stats;
 
         // Encapsulation
 
@@ -32,66 +33,18 @@ namespace RPG.Control
             animator = this.gameObject.GetComponent<Animator >();
             movement = this.gameObject.GetComponent<Movement>();
             attack = this.gameObject.GetComponent<Attack>();
-            stats = this.gameObject.GetComponent<Stats>();
-            aiTree = this.gameObject.GetComponent<BehaviourTree>();
+            stats = this.gameObject.GetComponent<Status>();
+
+            stateContext = new StateContext(this, idelState);
         }
 
         protected virtual void Start()
         {
-            aiTree.InitNode();
         }
 
         private void Update()
         {
-            if(!stats.IsDead)
-                aiTree.Play();
-            /*
-            switch (combatStats)
-            {
-                case CombatStats.IDLE:
-                    break;
-
-                case CombatStats.CHASESTART:
-                    animator.SetBool("isMove", true);
-                    combatStats = CombatStats.CHASE;
-                    break;
-
-                case CombatStats.CHASE:
-                    if (target == null)
-                    {
-                        animator.SetBool("isMove", false);
-                        combatStats = CombatStats.IDLE;
-                        break;
-                    }
-
-                    movement.Move(target.transform);
-                    if (!movement.MoveDistanceResult(target.transform))
-                        combatStats = CombatStats.CHASEEND;
-                    break;
-
-                case CombatStats.CHASEEND:
-                    animator.SetBool("isMove", false);
-                    combatStats = CombatStats.BATTLE;
-                    break;
-
-                case CombatStats.BATTLE:
-                    if (target == null || target.stats.IsDead)
-                    {
-                        animator.SetTrigger("Idle");
-                        combatStats = CombatStats.IDLE;
-                        FindNextTarget();
-                        break;
-                    }
-                    if (!attack.canAttack) break;
-
-                    attack.AttackTarget(target.stats);
-
-                    break;
-
-                case CombatStats.DEAD:
-                    break;
-            }
-            */
+            stateContext.Update();
         }
 
         public virtual void FindNextTarget()

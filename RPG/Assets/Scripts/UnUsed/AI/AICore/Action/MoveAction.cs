@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Move;
 
-namespace RPG.AI
+namespace RPG.UnUsed
 {
     public class MoveAction : ActionNode
     {
@@ -17,10 +17,10 @@ namespace RPG.AI
         {
         }
 
-        public override NodeStats OnUpdate()
+        public override Stats OnUpdate()
         {
             context.movement.Move(target);
-            return NodeStats.SUCCESS;
+            return Stats.SUCCESS;
         }
     }
 }
