@@ -7,7 +7,7 @@ using RPG.Control;
 
 namespace RPG.Character
 {
-    public class Status : MonoBehaviour, IDamagedable, ITargetable
+    public class Status : MonoBehaviour, IDamagedable
     {
         [Header("Health")]
         [SerializeField] public int maxHp = 100;
@@ -52,11 +52,6 @@ namespace RPG.Character
         public void Heal(int healPoint)
         {
             CurrentHp += healPoint;
-        }
-
-        public Vector3 GetPosition()
-        {
-            return transform.position;
         }
     }
 

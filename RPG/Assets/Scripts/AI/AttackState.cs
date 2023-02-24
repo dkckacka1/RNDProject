@@ -1,11 +1,11 @@
-﻿using RPG.Control;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.AI
 {
-    public class IdelState : State, IState
+    public class AttackState : State, IState
     {
         public void OnEnd()
         {
@@ -13,10 +13,13 @@ namespace RPG.AI
 
         public void OnStart()
         {
+            controller.attack.SetTarget(controller.Target.status);
         }
 
         public void OnUpdate()
         {
+            controller.attack.AttackTarget();
+
         }
     }
 }

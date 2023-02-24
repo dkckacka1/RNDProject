@@ -13,7 +13,7 @@ namespace RPG.UnUsed
         {
             minimumDistance = context.stats.attackRange;
             myTransform = context.transform;
-            targetTransform = context.controller.target.transform;
+            targetTransform = context.controller.Target.transform;
             context.animator.SetBool("isMove", true);
         }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -810,10 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152de72527f4f5444b598b4303044bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liveEnemys: []
-  livePlayers: []
   lives: []
-  currentStats: 0
 --- !u!4 &487906485
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,6 +1331,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: maxHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: currentHp
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: attackDamage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5031836128950175751, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
       propertyPath: m_RootOrder
       value: 6

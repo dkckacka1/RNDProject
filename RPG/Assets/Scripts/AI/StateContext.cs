@@ -6,28 +6,31 @@ namespace RPG.AI
 {
     public class StateContext
     {
-        public IState CurrentState;
-
+        public IState CurrentState
+        {
+            get; set;
+        }
         private readonly Controller controller;
 
-        public StateContext(Controller controller, IState state)
+        public StateContext(Controller controller)
         {
             this.controller = controller;
-            CurrentState = state;
-            CurrentState.Handle(controller);
         }
 
         public void Update()
         {
-            CurrentState.OnUpdate();
+            if(CurrentState != null)
+                CurrentState.OnUpdate();
         }
 
         public void SetState(IState state)
         {
-            CurrentState.OnEnd();
+            if(CurrentState != null)
+                CurrentState.OnEnd();
 
             CurrentState = state;
-            CurrentState.Handle(controller);
+
+            (CurrentState as State).Handle(controller);
             CurrentState.OnStart();
         }
 

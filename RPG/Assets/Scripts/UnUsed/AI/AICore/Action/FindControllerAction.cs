@@ -11,7 +11,7 @@ namespace RPG.UnUsed
 
         public override void OnStart()
         {
-            controller = context.controller.target;
+            controller = context.controller.Target;
         }
 
         public override void OnStop()

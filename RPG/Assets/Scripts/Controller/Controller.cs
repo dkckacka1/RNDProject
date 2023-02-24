@@ -12,73 +12,86 @@ namespace RPG.Control
 {
     public class Controller : MonoBehaviour
     {
-        public Controller target;
+        public Controller Target
+        {
+            get
+            {
+                return target;
+            }
+            set
+            {
+                target = value;
+            }
+        }
         public CombatStats combatStats = CombatStats.IDLE;
         public StateContext stateContext;
 
         public IdelState idelState = new IdelState();
+        public ChaseState chaseState = new ChaseState();
+        public AttackState attackState = new AttackState();
 
         // Component
         public Animator animator;
-        protected Movement movement;
-        protected Attack attack;
-        protected Status stats;
+        public Movement movement;
+        public Attack attack;
+        public Status status;
 
         // Encapsulation
 
         // TestCompoonent
+        private Controller target;
 
         protected virtual void Awake()
         {
             animator = this.gameObject.GetComponent<Animator >();
             movement = this.gameObject.GetComponent<Movement>();
             attack = this.gameObject.GetComponent<Attack>();
-            stats = this.gameObject.GetComponent<Status>();
+            status = this.gameObject.GetComponent<Status>();
 
-            stateContext = new StateContext(this, idelState);
+            stateContext = new StateContext(this);
         }
 
         protected virtual void Start()
         {
+            stateContext.SetState(idelState);
         }
 
         private void Update()
         {
+            if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
+
+            FindTarget();
+            CheckMoveDistacne();
+
             stateContext.Update();
+        }
+
+        private void CheckMoveDistacne()
+        {
+            if (!movement.MoveDistanceResult(target.transform))
+            {
+                stateContext.SetState(attackState);
+            }
+        }
+
+        private void FindTarget()
+        {
+            if (Target == null)
+            {
+                FindNextTarget();
+            }
         }
 
         public virtual void FindNextTarget()
         {
-            print("컨트롤러");
+            stateContext.SetState(chaseState);
         }
 
-        public void DeadAction()
+        public virtual void DeadAction()
         {
             animator.SetTrigger("Dead");
-            stats.IsDead = true;
+            status.IsDead = true;
             GetComponent<Rigidbody>().isKinematic = true;
-            Controller controller;
-            if (controller = GetComponent<PlayerController>())
-            {
-                print("플레이어 확인");
-                BattleManager.GetInstance().livePlayers.Remove((PlayerController)controller);
-            }
-            else if (controller = GetComponent<EnemyController>())
-            {
-                print("몬스터 확인");
-                BattleManager.GetInstance().liveEnemys.Remove((EnemyController)controller);
-            }
-
-        }
-
-        public void Attack(IDamagedable damagedable)
-        {
-            if (damagedable.IsDead) return;
-            if (!attack.canAttack) return;
-
-            attack.AttackTarget(damagedable);
-            animator.SetBool("isMove", false);
-            animator.SetTrigger("Attack");
         }
     }
 }

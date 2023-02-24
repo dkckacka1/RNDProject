@@ -1,6 +1,6 @@
 ﻿public enum BattleState
 {
-    START,
+    BATTLE,
     STOP,
     DEFEAT,
     WIN

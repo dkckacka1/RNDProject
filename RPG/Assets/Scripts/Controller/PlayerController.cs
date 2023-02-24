@@ -12,14 +12,20 @@ namespace RPG.Control
         protected override void Start()
         {
             base.Start();
-            BattleManager.GetInstance().livePlayers.Add(this);
+            BattleManager.GetInstance().LivePlayers.Add(this);
         }
 
         public override void FindNextTarget()
         {
+            Target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
+
             base.FindNextTarget();
-            print("플레이어컨트롤러");
-            target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
+        }
+
+        public override void DeadAction()
+        {
+            base.DeadAction();
+            BattleManager.GetInstance().DeadController(this);
         }
     }
 }

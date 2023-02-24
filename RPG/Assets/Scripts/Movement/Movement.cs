@@ -10,9 +10,6 @@ namespace RPG.Move
     {
         public bool canMove = true;
 
-        public ITargetable target;
-
-        UnityAction moveEndActions;
         Status stats;
 
         private void Awake()

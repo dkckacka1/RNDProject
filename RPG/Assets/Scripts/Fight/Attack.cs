@@ -8,39 +8,51 @@ namespace RPG.Fight
 {
     public class Attack : MonoBehaviour
     {
-        public bool canAttack = true;
+        public bool canAttack;
 
         // Component
-        Status stats;
+        Controller controller;
+        Status status;
         IDamagedable target;
 
 
         private void Awake()
         {
-            stats = GetComponent<Status>();
+            controller = GetComponent<Controller>();
+            status = GetComponent<Status>();
         }
 
-        public void AttackTarget(IDamagedable target)
+        public void SetTarget(IDamagedable target)
+        {
+            this.target = target;
+        }
+
+        public void AttackTarget()
         {
             if (target.IsDead) return;
+            if (!canAttack) return;
 
-            this.target = target;
             canAttack = false;
-            GetComponent<Controller>().animator.SetTrigger("Attack");
-
-            StartCoroutine(AttackDelayCalculate());
-        }
-
-        IEnumerator AttackDelayCalculate()
-        {
-            yield return new WaitForSeconds(stats.attackDelay);
-
-            canAttack = true;
+            controller.transform.LookAt(controller.transform);
+            controller.animator.SetTrigger("Attack");
+            StartCoroutine(WaitAttackDelay());
         }
 
         public void AttackAnimEvent()
         {
-            target.TakeDamage(stats.attackDamage);
+            target.TakeDamage(status.attackDamage);
+            if (target.IsDead)
+            {
+                controller.Target = null;
+            }
+        }
+
+
+        IEnumerator WaitAttackDelay()
+        {
+            yield return new WaitForSeconds(status.attackDelay);
+
+            canAttack = true;
         }
     }
 }

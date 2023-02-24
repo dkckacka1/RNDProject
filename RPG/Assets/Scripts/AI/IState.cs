@@ -9,7 +9,6 @@ namespace RPG.AI
 {
     public interface IState
     {
-        public void Handle(Controller controller);
         public void OnUpdate();
         public void OnStart();
         public void OnEnd();

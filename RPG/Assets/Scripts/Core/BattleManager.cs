@@ -8,14 +8,74 @@ public class BattleManager : MonoBehaviour
 {
     private static BattleManager instance;
 
-    public List<EnemyController> liveEnemys;
-    public List<PlayerController> livePlayers;
+    private List<EnemyController> liveEnemys;
+    private List<PlayerController> livePlayers;
 
     // TEST
     public List<Controller> lives = new List<Controller>();
 
-    public BattleState currentStats;
+    private BattleState currentStats;
 
+    // Encapsulation
+
+    public List<EnemyController> LiveEnemys
+    {
+        get
+        {
+            if (liveEnemys == null)
+            {
+                liveEnemys = new List<EnemyController>();
+            }
+
+            return liveEnemys;
+        }
+        set
+        {
+            liveEnemys = value;
+        }
+    }
+
+    public List<PlayerController> LivePlayers
+    {
+        get
+        {
+            if (livePlayers == null)
+            {
+                livePlayers = new List<PlayerController>();
+            }
+            return livePlayers;
+        }
+        set
+        {
+            livePlayers = value;
+        }
+    }
+
+    public BattleState CurrentStats
+    {
+        get => currentStats;
+        private set
+        {
+            switch (value)
+            {
+                case BattleState.BATTLE:
+                    Debug.Log("전투중입니다.!");
+                    break;
+                case BattleState.STOP:
+                    Debug.Log("일시중지중입니다.!");
+                    break;
+                case BattleState.DEFEAT:
+                    Debug.Log("패배했습니다.!");
+                    break;
+                case BattleState.WIN:
+                    Debug.Log("승리했습니다.!");
+                    break;
+            }
+            currentStats = value;
+        }
+    }
+
+    // Method
     public static BattleManager GetInstance()
     {
         if (instance == null)
@@ -38,15 +98,7 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var item in livePlayers)
-        {
-            item.target = ReturnNearDistanceController<EnemyController>(item.transform);
-        }
-
-        foreach (var item in liveEnemys)
-        {
-            item.target = ReturnNearDistanceController<PlayerController>(item.transform);
-        }
+        CurrentStats = BattleState.BATTLE;
     }
 
     public void MoveToNextPhase<T>(T controllerMyself) where T : Controller
@@ -55,15 +107,33 @@ public class BattleManager : MonoBehaviour
         {
             foreach (var item in livePlayers)
             {
-                item.target = ReturnNearDistanceController<EnemyController>(item.transform);
+                item.Target = ReturnNearDistanceController<EnemyController>(item.transform);
             }
         }
         else if (typeof(T) == typeof(EnemyController))
         {
             foreach (var item in liveEnemys)
             {
-                item.target = ReturnNearDistanceController<PlayerController>(item.transform);
+                item.Target = ReturnNearDistanceController<PlayerController>(item.transform);
             }
+        }
+    }
+
+    public void DeadController(PlayerController controller)
+    {
+        livePlayers.Remove(controller);
+        if (livePlayers.Count == 0)
+        {
+            CurrentStats = BattleState.DEFEAT;
+        }
+    }
+
+    public void DeadController(EnemyController controller)
+    {
+        liveEnemys.Remove(controller);
+        if (liveEnemys.Count == 0)
+        {
+            CurrentStats = BattleState.WIN;
         }
     }
 
@@ -108,6 +178,7 @@ public class BattleManager : MonoBehaviour
         return (T)nearTarget;
     }
 
+    // TODO : LINQ를 통하여 T 갯수 구하기
     //public T ReturnNearDistanceController2<T>(Transform transform) where T : Controller
     //{
     //    var list =
