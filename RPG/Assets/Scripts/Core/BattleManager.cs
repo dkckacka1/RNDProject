@@ -178,14 +178,15 @@ public class BattleManager : MonoBehaviour
         return (T)nearTarget;
     }
 
-    // TODO : LINQ를 통하여 T 갯수 구하기
+    //TODO : LINQ를 통하여 T 갯수 구하기
     //public T ReturnNearDistanceController2<T>(Transform transform) where T : Controller
     //{
     //    var list =
-    //        from controller in lives where (typeof(T) == controller.GetType())
+    //        from controller in lives
+    //        where (typeof(T) == controller.GetType())
     //        select controller;
 
-    //    return (T)list[0];
+    //    return (T)list.;
     //}
 
     /// <summary>
