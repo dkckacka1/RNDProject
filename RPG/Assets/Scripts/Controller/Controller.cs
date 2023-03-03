@@ -12,17 +12,7 @@ namespace RPG.Control
 {
     public class Controller : MonoBehaviour
     {
-        public Controller Target
-        {
-            get
-            {
-                return target;
-            }
-            set
-            {
-                target = value;
-            }
-        }
+
         public CombatStats combatStats = CombatStats.IDLE;
         public StateContext stateContext;
 
@@ -36,14 +26,23 @@ namespace RPG.Control
         public Attack attack;
         public Status status;
 
-        // Encapsulation
-
-        // TestCompoonent
         private Controller target;
+        // Encapsulation
+        public Controller Target
+        {
+            get
+            {
+                return target;
+            }
+            set
+            {
+                target = value;
+            }
+        }
 
         protected virtual void Awake()
         {
-            animator = this.gameObject.GetComponent<Animator >();
+            animator = this.gameObject.GetComponent<Animator>();
             movement = this.gameObject.GetComponent<Movement>();
             attack = this.gameObject.GetComponent<Attack>();
             status = this.gameObject.GetComponent<Status>();
@@ -60,29 +59,36 @@ namespace RPG.Control
         {
             if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
 
-            FindTarget();
-            CheckMoveDistacne();
+            if (CheckTarget()) { SetChaseState(); }
+            if (CheckMoveDistacne()) { SetAttackState(); }
 
             stateContext.Update();
         }
 
-        private void CheckMoveDistacne()
+        private bool CheckMoveDistacne()
         {
-            if (!movement.MoveDistanceResult(target.transform))
-            {
-                stateContext.SetState(attackState);
-            }
+            // 타겟된 적이 공격 범위 내에 있는가
+            if (!movement.MoveDistanceResult(target.transform)) return true;
+
+            return false;
         }
 
-        private void FindTarget()
+        private bool CheckTarget()
         {
-            if (Target == null)
-            {
-                FindNextTarget();
-            }
+            // 타겟된 적이 있는가?
+            if (Target == null) return true;
+            // 적이 죽어있는가?
+            if (Target.status.IsDead) return true;
+
+            return false;
         }
 
-        public virtual void FindNextTarget()
+        protected virtual void SetAttackState()
+        {
+            stateContext.SetState(attackState);
+        }
+
+        protected virtual void SetChaseState()
         {
             stateContext.SetState(chaseState);
         }
@@ -90,7 +96,6 @@ namespace RPG.Control
         public virtual void DeadAction()
         {
             animator.SetTrigger("Dead");
-            status.IsDead = true;
             GetComponent<Rigidbody>().isKinematic = true;
         }
     }

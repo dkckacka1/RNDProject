@@ -23,7 +23,7 @@ namespace RPG.UnUsed
             if (controller == null)
             {
                 // 현재 타겟이 없음
-                context.controller.FindNextTarget();
+                //context.controller.SetChaseState();
                 if (controller == null)
                 {
                     // 새로 찾아도 없음

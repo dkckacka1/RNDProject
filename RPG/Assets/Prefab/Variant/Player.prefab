@@ -29,7 +29,7 @@ MonoBehaviour:
   currentHp: 100
   moveSpeed: 3
   attackRange: 1
-  attackDamage: 10
+  attackDamage: 25
   attackDelay: 1
 --- !u!114 &7221208774575316645
 MonoBehaviour:
@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8edd049ec9f1a44a6bfbbe8e33215e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiTree: {fileID: 0}
-  target: {fileID: 0}
   combatStats: 0
   animator: {fileID: 8663743792682507160}
+  movement: {fileID: 0}
+  attack: {fileID: 0}
+  status: {fileID: 0}
 --- !u!1001 &7590344218283207027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,8 +56,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 621996179791838649, guid: f460d605a67e69445adb7df8d4916572, type: 3}
+      propertyPath: m_Height
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 621996179791838649, guid: f460d605a67e69445adb7df8d4916572, type: 3}
+      propertyPath: m_Radius
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 621996179791838649, guid: f460d605a67e69445adb7df8d4916572, type: 3}
       propertyPath: m_Center.y
-      value: 1
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 3207404702370668916, guid: f460d605a67e69445adb7df8d4916572, type: 3}
       propertyPath: m_RootOrder
@@ -117,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 3443333627254457415, guid: f460d605a67e69445adb7df8d4916572, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236251064778299401, guid: f460d605a67e69445adb7df8d4916572, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1679883033214551425, guid: f460d605a67e69445adb7df8d4916572, type: 3}

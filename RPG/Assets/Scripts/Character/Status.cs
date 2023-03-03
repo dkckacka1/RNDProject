@@ -33,6 +33,7 @@ namespace RPG.Character
                 if (currentHp <= 0)
                 {
                     Dead();
+                    Destroy(gameObject,10f);
                 }
             }
         }
@@ -46,6 +47,7 @@ namespace RPG.Character
 
         public void Dead()
         {
+            isDead = true;
             GetComponent<Controller>().DeadAction();
         }
 

@@ -15,11 +15,11 @@ namespace RPG.Control
             BattleManager.GetInstance().LivePlayers.Add(this);
         }
 
-        public override void FindNextTarget()
+        protected override void SetChaseState()
         {
             Target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
 
-            base.FindNextTarget();
+            base.SetChaseState();
         }
 
         public override void DeadAction()

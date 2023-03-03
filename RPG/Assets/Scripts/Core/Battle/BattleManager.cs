@@ -8,16 +8,21 @@ public class BattleManager : MonoBehaviour
 {
     private static BattleManager instance;
 
+    public Transform playerParent;
+    public Transform enemyParent;
+
+
+    public SpawnPosition playerSpawnPosition;
+    public SpawnPosition enemySpawnPosition;
+
+    public List<GameObject> playerPrefabs;
+    public List<GameObject> enemyPrefabs;
+
     private List<EnemyController> liveEnemys;
     private List<PlayerController> livePlayers;
-
-    // TEST
-    public List<Controller> lives = new List<Controller>();
-
     private BattleState currentStats;
 
     // Encapsulation
-
     public List<EnemyController> LiveEnemys
     {
         get
@@ -29,12 +34,7 @@ public class BattleManager : MonoBehaviour
 
             return liveEnemys;
         }
-        set
-        {
-            liveEnemys = value;
-        }
     }
-
     public List<PlayerController> LivePlayers
     {
         get
@@ -45,12 +45,7 @@ public class BattleManager : MonoBehaviour
             }
             return livePlayers;
         }
-        set
-        {
-            livePlayers = value;
-        }
     }
-
     public BattleState CurrentStats
     {
         get => currentStats;
@@ -65,9 +60,21 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("일시중지중입니다.!");
                     break;
                 case BattleState.DEFEAT:
+                    {
+                        foreach (var item in LiveEnemys)
+                        {
+                            item.stateContext.SetState(item.idelState);
+                        }
+                    }
                     Debug.Log("패배했습니다.!");
                     break;
                 case BattleState.WIN:
+                    {
+                        foreach (var item in LivePlayers)
+                        {
+                            item.stateContext.SetState(item.idelState);
+                        }
+                    }
                     Debug.Log("승리했습니다.!");
                     break;
             }
@@ -98,26 +105,19 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (var item in playerSpawnPosition.spawnPositions)
+        {
+            Instantiate<GameObject>(playerPrefabs[0], item.position, Quaternion.identity, playerParent);
+        }
+
+        foreach (var item in enemySpawnPosition.spawnPositions)
+        {
+            Instantiate<GameObject>(enemyPrefabs[0], item.position, Quaternion.identity, enemyParent);
+        }
+
         CurrentStats = BattleState.BATTLE;
     }
 
-    public void MoveToNextPhase<T>(T controllerMyself) where T : Controller
-    {
-        if (typeof(T) == typeof(PlayerController))
-        {
-            foreach (var item in livePlayers)
-            {
-                item.Target = ReturnNearDistanceController<EnemyController>(item.transform);
-            }
-        }
-        else if (typeof(T) == typeof(EnemyController))
-        {
-            foreach (var item in liveEnemys)
-            {
-                item.Target = ReturnNearDistanceController<PlayerController>(item.transform);
-            }
-        }
-    }
 
     public void DeadController(PlayerController controller)
     {
@@ -178,16 +178,7 @@ public class BattleManager : MonoBehaviour
         return (T)nearTarget;
     }
 
-    //TODO : LINQ를 통하여 T 갯수 구하기
-    //public T ReturnNearDistanceController2<T>(Transform transform) where T : Controller
-    //{
-    //    var list =
-    //        from controller in lives
-    //        where (typeof(T) == controller.GetType())
-    //        select controller;
-
-    //    return (T)list.;
-    //}
+    #region 사용되지 않는 함수 모음
 
     /// <summary>
     /// 이 함수는 오래된 함수입니다. 사용되지 않습니다.
@@ -218,4 +209,29 @@ public class BattleManager : MonoBehaviour
         return minimumDistanceEnemy;
     }
 
+
+    /// <summary>
+    /// 사용되지 않는 함수 입니다.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="controllerMyself"></param>
+    public void MoveToNextPhase<T>(T controllerMyself) where T : Controller
+    {
+        if (typeof(T) == typeof(PlayerController))
+        {
+            foreach (var item in livePlayers)
+            {
+                item.Target = ReturnNearDistanceController<EnemyController>(item.transform);
+            }
+        }
+        else if (typeof(T) == typeof(EnemyController))
+        {
+            foreach (var item in liveEnemys)
+            {
+                item.Target = ReturnNearDistanceController<PlayerController>(item.transform);
+            }
+        }
+    }
+
+    #endregion
 }
