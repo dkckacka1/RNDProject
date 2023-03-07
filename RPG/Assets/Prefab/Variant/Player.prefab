@@ -27,6 +27,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   currentHp: 100
+  hpBarUI: {fileID: 3510894709814263190, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
   moveSpeed: 3
   attackRange: 1
   attackDamage: 25

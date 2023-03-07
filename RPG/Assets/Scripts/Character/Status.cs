@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Fight;
 using RPG.Move;
 using RPG.Control;
+using RPG.UI;
 
 namespace RPG.Character
 {
@@ -12,6 +13,7 @@ namespace RPG.Character
         [Header("Health")]
         [SerializeField] public int maxHp = 100;
         [SerializeField] public int currentHp = 100;
+        [SerializeField] public HPBarUI hpBarUI;
         private bool isDead = false;
 
         [Header("Movement")]
@@ -30,12 +32,24 @@ namespace RPG.Character
             set
             {
                 currentHp = Mathf.Clamp(value, 0, maxHp);
+                hpBarUI.SetHpSlider(currentHp);
                 if (currentHp <= 0)
                 {
                     Dead();
                     Destroy(gameObject,10f);
                 }
             }
+        }
+
+        public void SetHpBar()
+        {
+            hpBarUI = Instantiate(hpBarUI, BattleManager.GetInstance().hpBarCanvas.transform);
+            hpBarUI.SetHpSlider(maxHp, CurrentHp);
+        }
+
+        public void SetHpBarPosition(Vector3 position)
+        {
+            hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
         }
 
         public void TakeDamage(int damage)

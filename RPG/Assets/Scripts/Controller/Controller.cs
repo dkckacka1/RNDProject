@@ -55,6 +55,11 @@ namespace RPG.Control
             stateContext.SetState(idelState);
         }
 
+        private void OnEnable()
+        {
+            status.SetHpBar();
+        }
+
         private void Update()
         {
             if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
@@ -63,6 +68,11 @@ namespace RPG.Control
             if (CheckMoveDistacne()) { SetAttackState(); }
 
             stateContext.Update();
+        }
+
+        private void LateUpdate()
+        {
+            status.SetHpBarPosition(transform.position);
         }
 
         private bool CheckMoveDistacne()

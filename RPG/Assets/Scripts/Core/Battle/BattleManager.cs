@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using RPG.Control;
 
 public class BattleManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class BattleManager : MonoBehaviour
 
     public Transform playerParent;
     public Transform enemyParent;
-
+    public Canvas hpBarCanvas;
 
     public SpawnPosition playerSpawnPosition;
     public SpawnPosition enemySpawnPosition;
@@ -21,6 +22,8 @@ public class BattleManager : MonoBehaviour
     private List<EnemyController> liveEnemys;
     private List<PlayerController> livePlayers;
     private BattleState currentStats;
+    private readonly Dictionary<BattleState, UnityEvent> battleEventDic
+        = new Dictionary<BattleState, UnityEvent>();
 
     // Encapsulation
     public List<EnemyController> LiveEnemys
@@ -51,7 +54,8 @@ public class BattleManager : MonoBehaviour
         get => currentStats;
         private set
         {
-            switch (value)
+            currentStats = value;
+            switch (currentStats)
             {
                 case BattleState.BATTLE:
                     Debug.Log("전투중입니다.!");
@@ -78,7 +82,7 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("승리했습니다.!");
                     break;
             }
-            currentStats = value;
+            Publish(currentStats);
         }
     }
 
@@ -136,6 +140,42 @@ public class BattleManager : MonoBehaviour
             CurrentStats = BattleState.WIN;
         }
     }
+
+    public void SubscribeEvent(BattleState state, UnityAction listener)
+    {
+        UnityEvent thisEvent;
+        if (battleEventDic.TryGetValue(state, out thisEvent))
+        {
+            thisEvent.AddListener(listener);
+        }
+        else
+        {
+            thisEvent = new UnityEvent();
+            thisEvent.AddListener(listener);
+            battleEventDic.Add(state, thisEvent);
+        }
+    }
+
+    public void UnsubscribeEvent(BattleState state, UnityAction unityAction)
+    {
+        UnityEvent thisEvent;
+
+        if (battleEventDic.TryGetValue(state, out thisEvent))
+        {
+            thisEvent.RemoveListener(unityAction);
+        }
+    }
+
+    public void Publish(BattleState state)
+    {
+        UnityEvent thisEvent;
+
+        if (battleEventDic.TryGetValue(state, out thisEvent))
+        {
+            thisEvent.Invoke();
+        }
+    }
+
 
     /// <summary>
     /// 가장 가까운 T를 찾아서 리턴합니다.
