@@ -2,7 +2,7 @@ using RPG.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.AI;
 
 namespace RPG.Move
 {
@@ -10,18 +10,28 @@ namespace RPG.Move
     {
         public bool canMove = true;
 
-        Status stats;
+        NavMeshAgent nav;
+        Status status;
 
         private void Awake()
         {
-            stats = GetComponent<Status>();
+            status = GetComponent<Status>();
+            nav = GetComponent<NavMeshAgent>();
+
+            nav.speed = status.moveSpeed;
+            nav.stoppingDistance = status.attackRange;
+        }
+
+        public void MoveNav(Transform target)
+        {
+            nav.SetDestination(target.position);
         }
 
         public void Move(Transform target)
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
             this.transform.LookAt(movementVector);
-            transform.Translate(Vector3.forward * stats.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * status.moveSpeed * Time.deltaTime);
         }
 
         /// <summary>
@@ -31,7 +41,7 @@ namespace RPG.Move
         /// <returns></returns>
         public bool MoveDistanceResult(Transform target)
         {
-            return Vector3.Distance(target.transform.position, this.transform.position) > stats.attackRange;
+            return Vector3.Distance(target.transform.position, this.transform.position) > status.attackRange;
         }
     }
 }

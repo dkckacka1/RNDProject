@@ -28,8 +28,9 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 100
   hpBarUI: {fileID: 3510894709814263190, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
+  hpBarUIOffset: {x: 0, y: 2, z: 0}
   moveSpeed: 3
-  attackRange: 1
+  attackRange: 2
   attackDamage: 10
   attackDelay: 1
 --- !u!114 &8666444871348960858
@@ -122,7 +123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236251064778299401, guid: f460d605a67e69445adb7df8d4916572, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4448803124421443120, guid: f460d605a67e69445adb7df8d4916572, type: 3}

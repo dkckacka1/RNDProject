@@ -5,6 +5,7 @@ using RPG.Fight;
 using RPG.Move;
 using RPG.Control;
 using RPG.UI;
+using UnityEngine.AI;
 
 namespace RPG.Character
 {
@@ -14,6 +15,7 @@ namespace RPG.Character
         [SerializeField] public int maxHp = 100;
         [SerializeField] public int currentHp = 100;
         [SerializeField] public HPBarUI hpBarUI;
+        [SerializeField] public Vector3 hpBarUIOffset = new Vector3(0f, 1f,0f);
         private bool isDead = false;
 
         [Header("Movement")]
@@ -41,6 +43,11 @@ namespace RPG.Character
             }
         }
 
+        private void LateUpdate()
+        {
+            SetHpBarPosition(transform.position + hpBarUIOffset);
+        }
+
         public void SetHpBar()
         {
             hpBarUI = Instantiate(hpBarUI, BattleManager.GetInstance().hpBarCanvas.transform);
@@ -49,7 +56,8 @@ namespace RPG.Character
 
         public void SetHpBarPosition(Vector3 position)
         {
-            hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
+            hpBarUI.transform.transform.position = Camera.main.WorldToScreenPoint(position);
+            //hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
         }
 
         public void TakeDamage(int damage)
@@ -62,6 +70,7 @@ namespace RPG.Character
         public void Dead()
         {
             isDead = true;
+            GetComponent<NavMeshAgent>().enabled = false;
             GetComponent<Controller>().DeadAction();
         }
 

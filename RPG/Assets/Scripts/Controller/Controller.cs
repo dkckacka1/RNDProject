@@ -70,10 +70,7 @@ namespace RPG.Control
             stateContext.Update();
         }
 
-        private void LateUpdate()
-        {
-            status.SetHpBarPosition(transform.position);
-        }
+
 
         private bool CheckMoveDistacne()
         {

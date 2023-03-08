@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Character
 {
-    public class EnemyStats : Status
+    public class EnemyStatus : Status
     {
     }
 }
