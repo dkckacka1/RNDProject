@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPG.Control;
+using RPG.Battle.Control;
 
-namespace RPG.AI
+namespace RPG.Battle.AI
 {
     public class StateContext
     {

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using RPG.Move;
-using RPG.Fight;
-using RPG.Character;
+using RPG.Battle.Core;
+using RPG.Battle.Move;
+using RPG.Battle.Fight;
+using RPG.Battle.Character;
+using RPG.Battle.AI;
 using System;
-using RPG.AI;
 
-namespace RPG.Control
+namespace RPG.Battle.Control
 {
     public class Controller : MonoBehaviour
     {

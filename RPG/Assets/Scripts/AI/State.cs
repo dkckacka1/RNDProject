@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPG.Control;
+using RPG.Battle.Control;
 
-namespace RPG.AI
+namespace RPG.Battle.AI
 {
     public class State
     {

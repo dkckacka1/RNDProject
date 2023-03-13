@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Move;
+using RPG.Battle.Move;
 
 namespace RPG.UnUsed
 {

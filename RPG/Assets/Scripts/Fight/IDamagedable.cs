@@ -1,4 +1,4 @@
-﻿namespace RPG.Fight
+﻿namespace RPG.Battle.Fight
 {
     public interface IDamagedable
     {

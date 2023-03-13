@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Character;
-using RPG.Control;
+using RPG.Battle.Character;
+using RPG.Battle.Control;
 
-namespace RPG.Fight
+namespace RPG.Battle.Fight
 {
     public class Attack : MonoBehaviour
     {

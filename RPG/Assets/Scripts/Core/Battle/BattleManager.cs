@@ -4,9 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
-using RPG.Control;
+using RPG.Battle.Control;
 
-namespace RPG
+namespace RPG.Battle.Core
 {
     public class BattleManager : MonoBehaviour
     {
@@ -16,11 +16,10 @@ namespace RPG
         public Transform enemyParent;
         public Canvas hpBarCanvas;
 
-        public SpawnPosition playerSpawnPosition;
-        public SpawnPosition enemySpawnPosition;
+        public GameObject playerPrefabs;
 
-        public List<GameObject> playerPrefabs;
-        public List<GameObject> enemyPrefabs;
+        public List<ScriptableObject> StagePrefabs;
+        public Stage currentStage;
 
         private List<EnemyController> liveEnemys;
         private List<PlayerController> livePlayers;
@@ -112,16 +111,6 @@ namespace RPG
 
         private void Start()
         {
-            foreach (var item in playerSpawnPosition.spawnPositions)
-            {
-                Instantiate<GameObject>(playerPrefabs[0], item.position, Quaternion.identity, playerParent);
-            }
-
-            foreach (var item in enemySpawnPosition.spawnPositions)
-            {
-                Instantiate<GameObject>(enemyPrefabs[0], item.position, Quaternion.identity, enemyParent);
-            }
-
             CurrentStats = BattleState.BATTLE;
         }
 

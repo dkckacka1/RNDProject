@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.UI
+namespace RPG.Battle.UI
 {
     public class HPBarUI : MonoBehaviour
     {

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Fight;
-using RPG.Character;
+using RPG.Battle.Core;
+using RPG.Battle.Fight;
+using RPG.Battle.Character;
 
-namespace RPG.Control
+namespace RPG.Battle.Control
 {
 
     public class EnemyController : Controller

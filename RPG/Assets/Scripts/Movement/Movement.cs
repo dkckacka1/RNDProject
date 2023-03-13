@@ -1,10 +1,10 @@
-using RPG.Character;
+using RPG.Battle.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RPG.Move
+namespace RPG.Battle.Move
 {
     public class Movement : MonoBehaviour
     {

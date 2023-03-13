@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Fight;
-using RPG.Move;
-using RPG.Control;
-using RPG.UI;
+using RPG.Battle.Core;
+using RPG.Battle.Fight;
+using RPG.Battle.Move;
+using RPG.Battle.Control;
+using RPG.Battle.UI;
 using UnityEngine.AI;
 
-namespace RPG.Character
+namespace RPG.Battle.Character
 {
     public class Status : MonoBehaviour, IDamagedable
     {

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Move;
-using RPG.Fight;
-using RPG.Control;
+using RPG.Battle.Move;
+using RPG.Battle.Fight;
+using RPG.Battle.Control;
 
-namespace RPG.Character
+namespace RPG.Battle.Character
 {
     public class Context 
     {

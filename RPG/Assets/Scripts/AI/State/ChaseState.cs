@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPG.Control;
-using RPG.Move;
+using RPG.Battle.Control;
+using RPG.Battle.Move;
 
-namespace RPG.AI
+namespace RPG.Battle.AI
 {
     public class ChaseState : State,IState
     {
