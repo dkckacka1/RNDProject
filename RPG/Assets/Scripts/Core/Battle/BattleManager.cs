@@ -16,9 +16,9 @@ namespace RPG.Battle.Core
         public Transform enemyParent;
         public Canvas hpBarCanvas;
 
-        public GameObject playerPrefabs;
+        public GameObject playerPrefab;
 
-        public List<ScriptableObject> StagePrefabs;
+        public List<Stage> stages;
         public Stage currentStage;
 
         private List<EnemyController> liveEnemys;
@@ -111,6 +111,9 @@ namespace RPG.Battle.Core
 
         private void Start()
         {
+            currentStage = stages[0];
+            currentStage.CreatePlayer(playerPrefab, playerParent);
+            currentStage.CreateEnemys(enemyParent);
             CurrentStats = BattleState.BATTLE;
         }
 

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b60990a35d9b0742a4c35973255b72a, type: 3}
-  m_Name: NewStage
+  m_Script: {fileID: 11500000, guid: 860c5da9a264f244492e10dd6404c2a4, type: 3}
+  m_Name: NewWeaopn
   m_EditorClassIdentifier: 
-  playerSpawnPosition: {x: 8, y: 0, z: 0}
-  enemySpawnPositions: []
+  name: "\uAC70\uB300\uD55C "
+  weaponDamage: 0
+  weaponAttackSpeed: 0
+  weaponAttackDistance: 0

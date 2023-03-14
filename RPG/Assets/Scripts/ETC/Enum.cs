@@ -23,3 +23,18 @@ public enum Stats
     FAILURE,
     SUCCESS
 }
+
+public enum EquipmentType
+{
+    Weapon,
+    Armor,
+    Pants,
+    Helmet,
+    Accessory
+}
+
+public enum EquipmentTier
+{
+    Normal,
+}
+
