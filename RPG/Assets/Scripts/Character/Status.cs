@@ -13,23 +13,35 @@ namespace RPG.Battle.Character
     public class Status : MonoBehaviour, IDamagedable
     {
         [Header("Health")]
-        [SerializeField] public int maxHp = 100;
-        [SerializeField] public int currentHp = 100;
-        [SerializeField] public HPBarUI hpBarUI;
-        [SerializeField] public Vector3 hpBarUIOffset = new Vector3(0f, 1f,0f);
+        public int maxHp = 0;
+        public int currentHp = 0;
+        public HPBarUI hpBarUI;
+        public Vector3 hpBarUIOffset = new Vector3(0f, 1f,0f);
         private bool isDead = false;
 
-        [Header("Movement")]
-        [SerializeField] public float moveSpeed = 3f;
-
         [Header("Attack")]
-        [SerializeField] public float attackRange = 1f;
-        [SerializeField] public int attackDamage = 10;
-        [SerializeField] public float attackDelay = 1f;
+        public float attackRange = 0f;
+        public int attackDamage = 0;
+        public float attackSpeed = 0f;
+        public float criticalChance = 0f;
+        public float ciriticalDamage = 0f;
+        public float attackChance = 0f;
+
+        [Header("Defence")]
+        public int defencePoint = 0;
+        public float evasionPoint = 0f;
+        public float decreseCriticalDamage = 0f;
+        public float evasionCritical = 0f;
+
+        [Header("Movement")]
+        public float movementSpeed = 0f;
 
         [Header("Equipment")]
-        [SerializeField] public Transform weaponHandle;
-        [SerializeField] public GameObject WeaponEquipment;
+        public Transform weaponHandle;
+        public Weapon currentWeapon;
+        public Armor currentArmor;
+        public Helmet currentHelmet;
+        public Pants currentPants;
 
         // Encapsulation
         public bool IsDead { get => isDead; set => isDead = value; }
@@ -46,6 +58,11 @@ namespace RPG.Battle.Character
                     Destroy(gameObject,10f);
                 }
             }
+        }
+
+        public virtual void Initialize()
+        {
+            EquipItem(currentWeapon);
         }
 
         private void LateUpdate()
@@ -84,9 +101,39 @@ namespace RPG.Battle.Character
             CurrentHp += healPoint;
         }
 
-        public void EquipmentWeapon(Weapon weapon)
+        #region ¿Â∫Ò_¿Â¬¯
+        public void EquipItem(Weapon weapon)
         {
-            Instantiate(weapon.gameObject, this.weaponHandle);
+            attackDamage += weapon.attackDamage;
+            attackSpeed += weapon.attackSpeed;
+            movementSpeed += weapon.movementSpeed;
+            criticalChance += weapon.criticalChance;
+            ciriticalDamage += weapon.criticalDamage;
+            attackChance += weapon.attackChance;
         }
+
+        public void EquipItem(Armor armor)
+        {
+            maxHp += armor.hpPoint;
+            defencePoint += armor.defencePoint;
+            movementSpeed += armor.movementSpeed;
+            evasionPoint += armor.evasionPoint;
+        }
+
+        public void EquipItem(Helmet helmet)
+        {
+            maxHp += helmet.hpPoint;
+            defencePoint += helmet.defencePoint;
+            decreseCriticalDamage += helmet.decreseCriticalDamage;
+            evasionCritical += helmet.evasionCritical;
+        }
+
+        public void EquipItem(Pants pants)
+        {
+            maxHp += pants.hpPoint;
+            defencePoint += pants.defencePoint;
+            movementSpeed += pants.movementSpeed;
+        }
+        #endregion
     }
 }

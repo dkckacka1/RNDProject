@@ -465,9 +465,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: currentArmor
+      value: 
+      objectReference: {fileID: 11400000, guid: e83f7a298fea864439822d52b94bbe3c, type: 2}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: currentPants
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f41ac4daf5c7a74b85181dc061d0012, type: 2}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
       propertyPath: weaponHandle
       value: 
       objectReference: {fileID: 1752280670}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: currentHelmet
+      value: 
+      objectReference: {fileID: 11400000, guid: 2acd6928777183d4ab0a52f209e773c1, type: 2}
+    - target: {fileID: 252768819971204895, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 01a590d0a642dea409869fb5e13cb6ad, type: 2}
     - target: {fileID: 5031836128950175751, guid: 4cc1ccd868d66fd4bacb43c6be8f31be, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -18,7 +18,7 @@ namespace RPG.Battle.Move
             status = GetComponent<Status>();
             nav = GetComponent<NavMeshAgent>();
 
-            nav.speed = status.moveSpeed;
+            nav.speed = status.movementSpeed;
             nav.stoppingDistance = status.attackRange;
         }
 
@@ -31,7 +31,7 @@ namespace RPG.Battle.Move
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
             transform.LookAt(movementVector);
-            transform.Translate(Vector3.forward * status.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * status.movementSpeed * Time.deltaTime);
         }
 
         /// <summary>

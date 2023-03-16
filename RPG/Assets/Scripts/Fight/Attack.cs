@@ -54,7 +54,7 @@ namespace RPG.Battle.Fight
 
         IEnumerator WaitAttackDelay()
         {
-            yield return new WaitForSeconds(status.attackDelay);
+            yield return new WaitForSeconds(status.attackSpeed);
 
             canAttack = true;
         }

@@ -9,13 +9,13 @@ public class UserInfo
     int equipmentticket = 0; // ¿Â∫Ò ªÃ±‚±«
 
     // Weapon
-    int weaponId;
+    int latedWeaponID;
     // Helmet
-    int helmetId;
+    int latedHelmetID;
     // Armor
-    int ArmorId;
+    int latedArmorID;
     // Pants
-    int PantsId;
+    int latedPantsID;
     // Accessory
-    int accessoryId;
+    int latedAccessoryID;
 }

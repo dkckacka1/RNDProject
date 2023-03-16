@@ -6,5 +6,12 @@ namespace RPG.Battle.Character
 {
     public class PlayerStatus : Status
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            EquipItem(currentArmor);
+            EquipItem(currentHelmet);
+            EquipItem(currentPants);
+        }
     }
 }

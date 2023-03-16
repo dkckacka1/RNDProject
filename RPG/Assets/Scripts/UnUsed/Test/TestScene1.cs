@@ -10,6 +10,6 @@ public class TestScene1 : MonoBehaviour
 
     private void Start()
     {
-        status.EquipmentWeapon(WeaponPrefab.GetComponent<Weapon>());
+        //status.EquipmentWeapon(WeaponPrefab.GetComponent<Weapon>());
     }
 }
