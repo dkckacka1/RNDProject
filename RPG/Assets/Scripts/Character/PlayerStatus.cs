@@ -7,5 +7,4 @@ namespace RPG.Battle.Character
     public class PlayerStatus : Status
     {
     }
-
 }

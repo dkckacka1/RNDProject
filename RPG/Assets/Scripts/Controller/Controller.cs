@@ -13,8 +13,6 @@ namespace RPG.Battle.Control
 {
     public class Controller : MonoBehaviour
     {
-
-        public CombatStats combatStats = CombatStats.IDLE;
         public StateContext stateContext;
 
         public IdelState idelState = new IdelState();
@@ -43,11 +41,6 @@ namespace RPG.Battle.Control
 
         protected virtual void Awake()
         {
-            animator = this.gameObject.GetComponent<Animator>();
-            movement = this.gameObject.GetComponent<Movement>();
-            attack = this.gameObject.GetComponent<Attack>();
-            status = this.gameObject.GetComponent<Status>();
-
             stateContext = new StateContext(this);
         }
 
@@ -70,8 +63,6 @@ namespace RPG.Battle.Control
 
             stateContext.Update();
         }
-
-
 
         private bool CheckMoveDistacne()
         {

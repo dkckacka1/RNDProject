@@ -15,7 +15,6 @@ namespace RPG.Battle.Fight
         Status status;
         IDamagedable target;
 
-
         private void Awake()
         {
             controller = GetComponent<Controller>();
@@ -40,13 +39,18 @@ namespace RPG.Battle.Fight
 
         public void AttackAnimEvent()
         {
+            if (target == null)
+            {
+                print($"{name}의 타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
+                return;
+            }
+
             target.TakeDamage(status.attackDamage);
             if (target.IsDead)
             {
                 controller.Target = null;
             }
         }
-
 
         IEnumerator WaitAttackDelay()
         {

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Battle.Character;
 
 public class GameManager : MonoBehaviour
 {
+    // Singletone
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -18,6 +20,10 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+
+    public UserInfo userInfo = new UserInfo();
+    public PlayerStatus stutus;
+
     private void Awake()
     {
         if (instance == null)

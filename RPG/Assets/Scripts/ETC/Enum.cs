@@ -36,5 +36,8 @@ public enum EquipmentType
 public enum EquipmentTier
 {
     Normal,
+    Rare,
+    Unique,
+    Legendary
 }
 

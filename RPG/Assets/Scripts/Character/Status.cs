@@ -27,6 +27,10 @@ namespace RPG.Battle.Character
         [SerializeField] public int attackDamage = 10;
         [SerializeField] public float attackDelay = 1f;
 
+        [Header("Equipment")]
+        [SerializeField] public Transform weaponHandle;
+        [SerializeField] public GameObject WeaponEquipment;
+
         // Encapsulation
         public bool IsDead { get => isDead; set => isDead = value; }
         public int CurrentHp 
@@ -79,6 +83,10 @@ namespace RPG.Battle.Character
         {
             CurrentHp += healPoint;
         }
-    }
 
+        public void EquipmentWeapon(Weapon weapon)
+        {
+            Instantiate(weapon.gameObject, this.weaponHandle);
+        }
+    }
 }

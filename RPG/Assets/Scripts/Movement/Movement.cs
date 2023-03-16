@@ -30,7 +30,7 @@ namespace RPG.Battle.Move
         public void Move(Transform target)
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
-            this.transform.LookAt(movementVector);
+            transform.LookAt(movementVector);
             transform.Translate(Vector3.forward * status.moveSpeed * Time.deltaTime);
         }
 
