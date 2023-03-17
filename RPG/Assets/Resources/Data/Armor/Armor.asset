@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43720f0a91945e14cac660af7af30626, type: 3}
-  m_Name: NewPants
+  m_Script: {fileID: 11500000, guid: 113dd6cdd53642a48ad7e8fbe062c321, type: 3}
+  m_Name: Armor
   m_EditorClassIdentifier: 
-  EquipmentName: 
-  equipmentType: 0
+  EquipmentName: "\uAC00\uC8FD \uAC11\uC637"
+  equipmentType: 1
   equipmentTier: 0
-  description: 
-  defencePoint: 0
-  hpPoint: 0
-  movementSpeed: 0
+  description: "\uD3C9\uBC94\uD55C \uAC00\uC8FD \uAC11\uC637\uC774\uB2E4."
+  defencePoint: 30
+  hpPoint: 100
+  movementSpeed: 0.5
+  evasionPoint: 0.2

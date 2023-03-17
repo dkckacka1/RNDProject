@@ -12,6 +12,7 @@ namespace RPG.Battle.Character
             EquipItem(currentArmor);
             EquipItem(currentHelmet);
             EquipItem(currentPants);
+            currentHp = maxHp;
         }
     }
 }

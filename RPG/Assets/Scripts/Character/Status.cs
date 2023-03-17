@@ -104,35 +104,76 @@ namespace RPG.Battle.Character
         #region ¿Â∫Ò_¿Â¬¯
         public void EquipItem(Weapon weapon)
         {
-            attackDamage += weapon.attackDamage;
-            attackSpeed += weapon.attackSpeed;
-            movementSpeed += weapon.movementSpeed;
-            criticalChance += weapon.criticalChance;
-            ciriticalDamage += weapon.criticalDamage;
-            attackChance += weapon.attackChance;
+            if (currentWeapon != null)
+            {
+                attackDamage -= currentWeapon.attackDamage;
+                attackSpeed -= currentWeapon.attackSpeed;
+                movementSpeed -= currentWeapon.movementSpeed;
+                criticalChance -= currentWeapon.criticalChance;
+                ciriticalDamage -= currentWeapon.criticalDamage;
+                attackChance -= currentWeapon.attackChance;
+            }
+
+            currentWeapon = weapon;
+
+            attackDamage += currentWeapon.attackDamage;
+            attackSpeed += currentWeapon.attackSpeed;
+            movementSpeed += currentWeapon.movementSpeed;
+            criticalChance += currentWeapon.criticalChance;
+            ciriticalDamage += currentWeapon.criticalDamage;
+            attackChance += currentWeapon.attackChance;
         }
 
         public void EquipItem(Armor armor)
         {
-            maxHp += armor.hpPoint;
-            defencePoint += armor.defencePoint;
-            movementSpeed += armor.movementSpeed;
-            evasionPoint += armor.evasionPoint;
+            if (currentArmor != null)
+            {
+                maxHp -= armor.hpPoint;
+                defencePoint -= armor.defencePoint;
+                movementSpeed -= armor.movementSpeed;
+                evasionPoint -= armor.evasionPoint;
+            }
+
+            currentArmor = armor;
+
+            maxHp += currentArmor.hpPoint;
+            defencePoint += currentArmor.defencePoint;
+            movementSpeed += currentArmor.movementSpeed;
+            evasionPoint += currentArmor.evasionPoint;
         }
 
         public void EquipItem(Helmet helmet)
         {
-            maxHp += helmet.hpPoint;
-            defencePoint += helmet.defencePoint;
-            decreseCriticalDamage += helmet.decreseCriticalDamage;
-            evasionCritical += helmet.evasionCritical;
+            if (currentHelmet != null)
+            {
+                maxHp -= helmet.hpPoint;
+                defencePoint -= helmet.defencePoint;
+                decreseCriticalDamage -= helmet.decreseCriticalDamage;
+                evasionCritical -= helmet.evasionCritical;
+            }
+
+            currentHelmet = helmet;
+
+            maxHp += currentHelmet.hpPoint;
+            defencePoint += currentHelmet.defencePoint;
+            decreseCriticalDamage += currentHelmet.decreseCriticalDamage;
+            evasionCritical += currentHelmet.evasionCritical;
         }
 
         public void EquipItem(Pants pants)
         {
-            maxHp += pants.hpPoint;
-            defencePoint += pants.defencePoint;
-            movementSpeed += pants.movementSpeed;
+            if (currentPants != null)
+            {
+                maxHp -= pants.hpPoint;
+                defencePoint -= pants.defencePoint;
+                movementSpeed -= pants.movementSpeed;
+            }
+
+            currentPants = pants;
+
+            maxHp += currentPants.hpPoint;
+            defencePoint += currentPants.defencePoint;
+            movementSpeed += currentPants.movementSpeed;
         }
         #endregion
     }
