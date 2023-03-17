@@ -1,8 +1,8 @@
-using RPG.Battle.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Character.Status;
 
 namespace RPG.Battle.Move
 {

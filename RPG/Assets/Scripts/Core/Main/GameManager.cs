@@ -1,36 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Battle.Character;
+using RPG.Character.Equipment;
+using RPG.Character.Status;
 
-public class GameManager : MonoBehaviour
+namespace RPG.Core
 {
-    // Singletone
-    private static GameManager instance;
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-        get
+        // Singletone
+        private static GameManager instance;
+        public static GameManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    Debug.LogError("GameManager is null");
+                    return null;
+                }
+
+                return instance;
+            }
+        }
+
+        // Info
+        public UserInfo userInfo = new UserInfo();
+
+        // Dic
+        // TODO
+        public Dictionary<string, Equipment> equipmentDic = new Dictionary<string, Equipment>();
+
+        // Test
+        public PlayerStatus status;
+
+        private void Awake()
         {
             if (instance == null)
             {
-                Debug.LogError("GameManager is null");
-                return null;
+                instance = this;
             }
 
-            return instance;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    public UserInfo userInfo = new UserInfo();
-    public PlayerStatus stutus;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
 }

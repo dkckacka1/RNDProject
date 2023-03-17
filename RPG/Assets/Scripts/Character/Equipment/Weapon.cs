@@ -2,14 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeapon", menuName = "CreateScriptableObject/CreateWeapon", order = 1)]
-public class Weapon : Equipment
+
+namespace RPG.Character.Equipment
 {
-    public int attackDamage;
-    [Range(1, 2.5f)] public float attackSpeed;
-    [Range(1, 5f)] public float attackDistance;
-    [Range(1, 5f)] public float movementSpeed;
-    [Range(0, 0.6f)] public float criticalChance;
-    [Range(0, 0.5f)] public float criticalDamage;
-    [Range(0.8f, 1.0f)] public float attackChance;
+    public class Weapon : Equipment
+    {
+        public GameObject weaponLook;
+
+        public int attackDamage;
+        public float attackSpeed;
+        public float attackDistance;
+        public float movementSpeed;
+        public float criticalChance;
+        public float criticalDamage;
+        public float attackChance;
+
+        public Weapon(WeaponData data) : base(data)
+        {
+            attackDamage = data.attackDamage;
+            attackSpeed = data.attackSpeed;
+            attackDistance = data.attackDistance;
+            movementSpeed = data.movementSpeed;
+            criticalChance = data.criticalChance;
+            criticalDamage = data.criticalDamage;
+            attackChance = data.attackChance;
+        }
+    }
 }

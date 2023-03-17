@@ -4,7 +4,7 @@ using UnityEngine;
 using RPG.Battle.Core;
 using RPG.Battle.Fight;
 using RPG.Battle.Move;
-using RPG.Battle.Character;
+using RPG.Character.Status;
 
 namespace RPG.Battle.Control
 {

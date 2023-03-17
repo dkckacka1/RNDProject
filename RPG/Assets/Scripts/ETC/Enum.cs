@@ -1,4 +1,5 @@
-﻿public enum BattleState
+﻿// 현재 스테이지 상태
+public enum BattleState
 {
     BATTLE,
     STOP,
@@ -6,6 +7,7 @@
     WIN
 }
 
+// 캐릭터 전투 상태 (미사용)
 public enum CombatStats
 {
     IDLE,
@@ -17,6 +19,7 @@ public enum CombatStats
     DEAD
 }
 
+// 행동 트리 상태(미사용)
 public enum Stats
 {
     UPDATE,
@@ -24,7 +27,8 @@ public enum Stats
     SUCCESS
 }
 
-public enum EquipmentType
+// 장비아이템 타입
+public enum EquipmentItemType
 {
     Weapon,
     Armor,
@@ -33,11 +37,20 @@ public enum EquipmentType
     Accessory
 }
 
-public enum EquipmentTier
+// 장비아이템 등급
+public enum EquipmentItemTier
 {
     Normal,
     Rare,
     Unique,
     Legendary
 }
+
+public enum IncantType
+{ 
+    prefix,
+    suffix
+}
+
+
 

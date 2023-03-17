@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Battle.Character;
 using RPG.Battle.Control;
+using RPG.Character.Status;
 
 namespace RPG.Battle.Fight
 {

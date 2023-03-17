@@ -1,7 +1,7 @@
-using RPG.Battle.Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Character.Status;
 
 namespace RPG.UnUsed
 {

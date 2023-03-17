@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHelmet", menuName = "CreateScriptableObject/CreateHelmet", order = 3)]
-public class Helmet : Equipment
+namespace RPG.Character.Equipment
 {
-    public int defencePoint;
-    public int hpPoint;
-    [Range(0f, 0.2f)] public float decreseCriticalDamage;
-    [Range(0f, 0.2f)] public float evasionCritical;
+    public class Helmet : Equipment
+    {
+        public int defencePoint;
+        public int hpPoint;
+        public float decreseCriticalDamage;
+        public float evasionCritical;
+
+        public Helmet(HelmetData data) : base(data)
+        {
+            defencePoint = data.defencePoint;
+            hpPoint = data.hpPoint;
+            decreseCriticalDamage = data.decreseCriticalDamage;
+            evasionCritical = data.evasionCritical;
+        }
+    }
 }

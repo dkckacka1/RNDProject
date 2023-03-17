@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewArmor", menuName = "CreateScriptableObject/CreateArmor", order = 2)]
-public class Armor : Equipment
+namespace RPG.Character.Equipment
 {
-    public int defencePoint;
-    public int hpPoint;
-    [Range(0f, 0.5f)] public float movementSpeed;
-    [Range(0f, 0.2f)] public float evasionPoint;
+    public class Armor : Equipment
+    {
+        public int defencePoint;
+        public int hpPoint;
+        public float movementSpeed;
+        public float evasionPoint;
+
+        public Armor(ArmorData data) : base(data)
+        {
+            defencePoint = data.defencePoint;
+            hpPoint = data.hpPoint;
+            movementSpeed = data.movementSpeed;
+            evasionPoint = data.evasionPoint;
+        }
+    } 
 }

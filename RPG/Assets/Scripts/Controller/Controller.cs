@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,8 @@ using UnityEngine.Events;
 using RPG.Battle.Core;
 using RPG.Battle.Move;
 using RPG.Battle.Fight;
-using RPG.Battle.Character;
 using RPG.Battle.AI;
-using System;
+using RPG.Character.Status;
 
 namespace RPG.Battle.Control
 {

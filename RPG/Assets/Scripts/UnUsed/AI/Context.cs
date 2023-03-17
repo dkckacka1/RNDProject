@@ -4,8 +4,9 @@ using UnityEngine;
 using RPG.Battle.Move;
 using RPG.Battle.Fight;
 using RPG.Battle.Control;
+using RPG.Character.Status;
 
-namespace RPG.Battle.Character
+namespace RPG.UnUsed
 {
     public class Context 
     {

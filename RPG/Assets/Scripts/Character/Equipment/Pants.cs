@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewPants", menuName = "CreateScriptableObject/CreatePants", order = 4)]
-public class Pants : Equipment
+namespace RPG.Character.Equipment
 {
-    public int defencePoint;
-    public int hpPoint;
-    [Range(0f, 0.5f)] public float movementSpeed;
+    public class Pants : Equipment
+    {
+        public int defencePoint;
+        public int hpPoint;
+        public float movementSpeed;
+
+        public Pants(PantsData data) : base(data)
+        {
+            defencePoint = data.defencePoint;
+            hpPoint = data.hpPoint;
+            movementSpeed = data.movementSpeed;
+        }
+    }
 }
