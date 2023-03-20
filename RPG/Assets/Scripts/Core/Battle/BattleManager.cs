@@ -16,6 +16,7 @@ namespace RPG.Battle.Core
         public Transform enemyParent;
         public Canvas hpBarCanvas;
 
+        public BattleFactory factory;
         public PlayerController playerPrefab;
 
         public List<Stage> stages;

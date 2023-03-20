@@ -49,10 +49,6 @@ namespace RPG.Battle.Control
             stateContext.SetState(idelState);
         }
 
-        private void OnEnable()
-        {
-            status.SetHpBar();
-        }
 
         private void Update()
         {

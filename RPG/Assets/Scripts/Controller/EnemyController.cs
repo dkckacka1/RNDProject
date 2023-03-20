@@ -9,12 +9,6 @@ namespace RPG.Battle.Control
 
     public class EnemyController : Controller
     {
-        public override void DeadAction()
-        {
-            base.DeadAction();
-            BattleManager.GetInstance().DeadController(this);
-        }
-
         protected override void SetChaseState()
         {
             Target = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);

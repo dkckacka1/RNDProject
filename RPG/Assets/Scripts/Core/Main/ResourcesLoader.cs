@@ -17,6 +17,16 @@ namespace RPG.Core
             }
         }
 
+        public static void LoadEnemyData(string path, ref Dictionary<int, EnemyData> dic)
+        {
+            var enemies = Resources.LoadAll<EnemyData>(path);
+            foreach(var enemy in enemies)
+            {
+                Debug.Log(enemy.enemyName + "Loaded");
+                dic.Add(enemy.ID, enemy);
+            }
+        }
+
         public static T LoadEquipment<T>(string equpimentName, EquipmentItemType type)
             where T : EquipmentData
         {

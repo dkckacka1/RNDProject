@@ -16,10 +16,19 @@ MonoBehaviour:
   currentHp: 100
   hpBarUI: {fileID: 3510894709814263190, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
   hpBarUIOffset: {x: 0, y: 2, z: 0}
-  moveSpeed: 3
   attackRange: 2
   attackDamage: 10
-  attackDelay: 1
+  attackSpeed: 0
+  criticalChance: 0
+  criticalDamage: 0
+  attackChance: 0
+  defencePoint: 0
+  evasionPoint: 0
+  decreseCriticalDamage: 0
+  evasionCritical: 0
+  movementSpeed: 0
+  weaponHandle: {fileID: 0}
+  enemyName: 
 --- !u!114 &8666444871348960858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,7 +41,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa21bbfc166092488381365cca00c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStats: 0
   animator: {fileID: 8902537559359776492}
   movement: {fileID: 3055920951628879738}
   attack: {fileID: 3758555019800527607}
@@ -129,11 +137,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3443333627254457415, guid: f460d605a67e69445adb7df8d4916572, type: 3}
   m_PrefabInstance: {fileID: 2726692652593573795}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &672677984430804695 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3207404702370668916, guid: f460d605a67e69445adb7df8d4916572, type: 3}
-  m_PrefabInstance: {fileID: 2726692652593573795}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &8902537559359776492 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6799030515957991759, guid: f460d605a67e69445adb7df8d4916572, type: 3}
@@ -161,65 +164,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290d5154e55de6f43a6f73a678f3c89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &4059026136511422251
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 672677984430804695}
-    m_Modifications:
-    - target: {fileID: 1091438940017972, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_Name
-      value: Character_Goblin_Warrior_Female
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4428860544810500, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95021530546187976, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2c0af82519be32343a0041c7563aa840, type: 2}
-    m_RemovedComponents:
-    - {fileID: 95021530546187976, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 851e8547e58372347b1fc5cbc7bf3930, type: 3}

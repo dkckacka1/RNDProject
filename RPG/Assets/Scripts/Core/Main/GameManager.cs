@@ -27,11 +27,16 @@ namespace RPG.Core
         // Info
         public UserInfo userInfo = new UserInfo();
 
-        // Dic
+        #region DIC
+        // Enemy
+        public Dictionary<int, EnemyData> enemyDataDic = new Dictionary<int, EnemyData>();
+
+        // Equipment
         public Dictionary<int, WeaponData> weaponDataDic = new Dictionary<int, WeaponData>();
         public Dictionary<int, ArmorData> armorDataDic = new Dictionary<int, ArmorData>();
         public Dictionary<int, HelmetData> helmetDataDic = new Dictionary<int, HelmetData>();
         public Dictionary<int, PantsData> pantsDataDic = new Dictionary<int, PantsData>();
+        #endregion
 
         // Test
         public PlayerStatus status;
@@ -44,12 +49,18 @@ namespace RPG.Core
             }
 
             DontDestroyOnLoad(this.gameObject);
+
+            LoadEquipmentData();
+            LoadEnemyData();
+
+            if (status != null)
+            {
+                SetPlayerEquipment();
+            }
         }
 
-        private void Start()
+        private void SetPlayerEquipment()
         {
-            LoadEquipmentData();
-
             status.EquipItem(new Weapon(weaponDataDic[100]));
             status.EquipItem(new Armor(armorDataDic[200]));
             status.EquipItem(new Helmet(helmetDataDic[300]));
@@ -62,6 +73,11 @@ namespace RPG.Core
             ResourcesLoader.LoadEquipmentData("Data/Armor", ref armorDataDic);
             ResourcesLoader.LoadEquipmentData("Data/Pants", ref pantsDataDic);
             ResourcesLoader.LoadEquipmentData("Data/Helmet", ref helmetDataDic);
+        }
+
+        private void LoadEnemyData()
+        {
+            ResourcesLoader.LoadEnemyData("Data/Enemy", ref enemyDataDic);
         }
     }
 
