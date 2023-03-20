@@ -11,13 +11,13 @@ namespace RPG.Core
         int equipmentticket = 0; // ¿Â∫Ò ªÃ±‚±«
 
         // Weapon
-        int lastedWeapon;
-        // Helmet
-        int lastedHelmet;
+        int lastedWeapon = 100;
         // Armor
-        int lastedArmor;
+        int lastedArmor = 200;
+        // Helmet
+        int lastedHelmet = 300;
         // Pants
-        int lastedPants;
+        int lastedPants = 400;
     }
 
 }

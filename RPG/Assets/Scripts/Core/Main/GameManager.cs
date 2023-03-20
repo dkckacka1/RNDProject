@@ -28,8 +28,10 @@ namespace RPG.Core
         public UserInfo userInfo = new UserInfo();
 
         // Dic
-        // TODO
-        public Dictionary<string, Equipment> equipmentDic = new Dictionary<string, Equipment>();
+        public Dictionary<int, WeaponData> weaponDataDic = new Dictionary<int, WeaponData>();
+        public Dictionary<int, ArmorData> armorDataDic = new Dictionary<int, ArmorData>();
+        public Dictionary<int, HelmetData> helmetDataDic = new Dictionary<int, HelmetData>();
+        public Dictionary<int, PantsData> pantsDataDic = new Dictionary<int, PantsData>();
 
         // Test
         public PlayerStatus status;
@@ -42,6 +44,24 @@ namespace RPG.Core
             }
 
             DontDestroyOnLoad(this.gameObject);
+        }
+
+        private void Start()
+        {
+            LoadEquipmentData();
+
+            status.EquipItem(new Weapon(weaponDataDic[100]));
+            status.EquipItem(new Armor(armorDataDic[200]));
+            status.EquipItem(new Helmet(helmetDataDic[300]));
+            status.EquipItem(new Pants(pantsDataDic[400]));
+        }
+
+        private void LoadEquipmentData()
+        {
+            ResourcesLoader.LoadEquipmentData("Data/Weapon", ref weaponDataDic);
+            ResourcesLoader.LoadEquipmentData("Data/Armor", ref armorDataDic);
+            ResourcesLoader.LoadEquipmentData("Data/Pants", ref pantsDataDic);
+            ResourcesLoader.LoadEquipmentData("Data/Helmet", ref helmetDataDic);
         }
     }
 

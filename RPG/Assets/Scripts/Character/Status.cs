@@ -116,6 +116,7 @@ namespace RPG.Character.Status
             }
 
             currentWeapon = weapon;
+            Instantiate(currentWeapon.weaponLook, weaponHandle);
 
             attackDamage += currentWeapon.attackDamage;
             attackSpeed += currentWeapon.attackSpeed;

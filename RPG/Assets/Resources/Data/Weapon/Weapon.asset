@@ -9,17 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a617c77e3517c54e98a7ef67f79a5bb, type: 3}
+  m_Script: {fileID: 11500000, guid: db5ec814b363cc64e86760bf7c6c41c7, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
+  ID: 100
   EquipmentName: "\uCCA0\uAC80"
   equipmentType: 0
   equipmentTier: 0
-  description: "\uCCA0\uAC80\uC774\uB2E4."
+  description: "\uCCA0\uAC80"
+  weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
   attackDamage: 20
-  attackSpeed: 1
-  attackDistance: 1
-  movementSpeed: 1
-  criticalChance: 0
-  criticalDamage: 0
-  attackChance: 0.8
+  attackSpeed: 1.32
+  attackDistance: 2.03
+  movementSpeed: 2.03
+  criticalChance: 0.206
+  criticalDamage: 0.136
+  attackChance: 0.869

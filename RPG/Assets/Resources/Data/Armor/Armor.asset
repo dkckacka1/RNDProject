@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113dd6cdd53642a48ad7e8fbe062c321, type: 3}
+  m_Script: {fileID: 11500000, guid: cd745f8b24d1d904ab32789cf03acb78, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
+  ID: 200
   EquipmentName: "\uAC00\uC8FD \uAC11\uC637"
   equipmentType: 1
   equipmentTier: 0
-  description: "\uD3C9\uBC94\uD55C \uAC00\uC8FD \uAC11\uC637\uC774\uB2E4."
-  defencePoint: 30
+  description: "\uAC00\uC8FD\uAC11\uC637"
+  defencePoint: 10
   hpPoint: 100
-  movementSpeed: 0.5
-  evasionPoint: 0.2
+  movementSpeed: 0.2
+  evasionPoint: 0.094
