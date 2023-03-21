@@ -16,9 +16,9 @@ namespace RPG.Battle.Control
     {
         public StateContext stateContext;
 
-        public IdelState idelState = new IdelState();
-        public ChaseState chaseState = new ChaseState();
-        public AttackState attackState = new AttackState();
+        public IdelState idelState;
+        public ChaseState chaseState;
+        public AttackState attackState;
 
         // Component
         public Animator animator;
@@ -29,20 +29,7 @@ namespace RPG.Battle.Control
         public Attack attack;
 
         // Battle
-        private Controller target;
-
-        // Encapsulation
-        public Controller Target
-        {
-            get
-            {
-                return target;
-            }
-            set
-            {
-                target = value;
-            }
-        }
+        public Controller target;
 
         protected virtual void Awake()
         {
@@ -57,10 +44,6 @@ namespace RPG.Battle.Control
             stateContext.SetState(idelState);
         }
 
-        public virtual void Initialize()
-        {
-        }
-
         private void Update()
         {
             if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
@@ -69,6 +52,11 @@ namespace RPG.Battle.Control
             if (CheckMoveDistacne()) { SetAttackState(); }
 
             stateContext.Update();
+        }
+
+        public virtual void Initialize()
+        {
+            attack.canAttack = true;
         }
 
         private bool CheckMoveDistacne()
@@ -82,9 +70,9 @@ namespace RPG.Battle.Control
         private bool CheckTarget()
         {
             // 타겟된 적이 있는가?
-            if (Target == null) return true;
+            if (target == null) return true;
             // 적이 죽어있는가?
-            if (Target.status.IsDead) return true;
+            if (target.status.IsDead) return true;
 
             return false;
         }
@@ -109,7 +97,7 @@ namespace RPG.Battle.Control
 
         public virtual void AttactAction()
         {
-            Debug.Log("Attack!!!");
+            animator.SetTrigger("Attack");
             StartCoroutine(attack.WaitAttackTime());
             StartCoroutine(attack.WaitAttackDelay());
         }

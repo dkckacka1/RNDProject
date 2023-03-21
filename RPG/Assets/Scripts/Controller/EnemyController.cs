@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Battle.Core;
 using RPG.Battle.Fight;
+using RPG.Battle.AI;
 
 namespace RPG.Battle.Control
 {
 
     public class EnemyController : Controller
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            idelState = new IdelState();
+            chaseState = new ChaseState();
+            attackState = new AttackState();
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -21,7 +30,7 @@ namespace RPG.Battle.Control
 
         protected override void SetChaseState()
         {
-            Target = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);
+            target = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);
 
             base.SetChaseState();
         }
@@ -30,6 +39,16 @@ namespace RPG.Battle.Control
         {
             base.Start();
             BattleManager.GetInstance().LiveEnemys.Add(this);
+        }
+
+        public override void DeadAction()
+        {
+            base.DeadAction();
+        }
+
+        public override void AttactAction()
+        {
+            base.AttactAction();
         }
     }
 }

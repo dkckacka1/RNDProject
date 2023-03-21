@@ -10,7 +10,7 @@ namespace RPG.UnUsed
         Transform target;
         public override void OnStart()
         {
-            target = context.controller.Target.transform;
+            target = context.controller.target.transform;
         }
 
         public override void OnStop()

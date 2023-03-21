@@ -26,8 +26,8 @@ namespace RPG.UnUsed
 
         public override Stats OnUpdate()
         {
-            context.controller.Target = target;
-            if (context.controller.Target == null)
+            context.controller.target = target;
+            if (context.controller.target == null)
             {
                 return Stats.FAILURE;
             }

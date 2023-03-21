@@ -21,6 +21,7 @@ namespace RPG.Battle.Move
             this.status = status;
 
             nav.speed = status.movementSpeed;
+            nav.stoppingDistance = status.attackRange;
         }
 
         public void MoveNav(Transform target)

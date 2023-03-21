@@ -30,7 +30,7 @@ namespace RPG.Battle.AI
 
         public void OnUpdate()
         {
-            movement.MoveNav(controller.Target.transform);
+            movement.MoveNav(controller.target.transform);
             //movement.Move(controller.Target.transform);
         }
     }

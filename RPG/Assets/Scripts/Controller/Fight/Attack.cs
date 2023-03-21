@@ -47,21 +47,19 @@ namespace RPG.Battle.Fight
             target.TakeDamage(status.attackDamage);
             if (target.IsDead)
             {
-                controller.Target = null;
+                controller.target = null;
             }
         }
 
         public IEnumerator WaitAttackDelay()
         {
             yield return new WaitForSeconds(status.attackSpeed);
-
             canAttack = true;
         }
 
         public IEnumerator WaitAttackTime()
         {
             yield return new WaitForSeconds(attackDelay);
-
             TargetTakeDamage();
         }
     }

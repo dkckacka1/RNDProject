@@ -257,14 +257,14 @@ namespace RPG.Battle.Core
             {
                 foreach (var item in livePlayers)
                 {
-                    item.Target = ReturnNearDistanceController<EnemyController>(item.transform);
+                    item.target = ReturnNearDistanceController<EnemyController>(item.transform);
                 }
             }
             else if (typeof(T) == typeof(EnemyController))
             {
                 foreach (var item in liveEnemys)
                 {
-                    item.Target = ReturnNearDistanceController<PlayerController>(item.transform);
+                    item.target = ReturnNearDistanceController<PlayerController>(item.transform);
                 }
             }
         }

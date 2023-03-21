@@ -15,11 +15,11 @@ namespace RPG.Battle.Core
 
         public PlayerController CreatePlayer(UserInfo userinfo, Vector3 position, Transform parent = null)
         {
-            // ÇÃ·¹ÀÌ¾î instantiate ÇÏ±â
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ instantiate ï¿½Ï±ï¿½
             PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
-            print(player.name + "»ı¼º");
+            print(player.name + "ï¿½ï¿½ï¿½ï¿½");
 
-            // ÇÃ·¹ÀÌ¾î¿¡°Ô Àåºñ Áã¾îÁÖ±â
+            // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
             PlayerStatus status = player.status as PlayerStatus;
             SetPlayer(userinfo, ref status);
 
@@ -79,20 +79,22 @@ namespace RPG.Battle.Core
 
         public EnemyController CreateEnemy(EnemyData data, Vector3 position, Transform parent = null)
         {
-            // EnemyPrefab instantiate ÇÏ±â
+            // EnemyPrefab instantiate ï¿½Ï±ï¿½
             EnemyController enemy = Instantiate<EnemyController>(enemyController, position, Quaternion.identity, parent);
-            Debug.Log("enemy»ı¼º");
+            Debug.Log("enemyï¿½ï¿½ï¿½ï¿½");
 
-            // EnemyData ³Ö±â
+            // EnemyData ï¿½Ö±ï¿½
             EnemyStatus status = enemy.status as EnemyStatus;
             status.SetEnemyData(data);
 
-            // EnemyPrefab(¿ÜÇü) ³Ö±â
+            // EnemyPrefab(ï¿½ï¿½ï¿½ï¿½) ï¿½Ö±ï¿½
             GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
 
-            // EnemyPrefab¿¡ ¹«±â Áã¾îÁÖ±â
+            // EnemyPrefabì— ë¬´ê¸° ì¥ì–´ì£¼ê¸°
+            //Transform right_hand = looks.transform.Find("Hand_R");
+            //Instantiate(data.weapon, right_hand);
 
-            // Enemy Initialize() ÇÏ±â
+            // Enemy Initialize() ï¿½Ï±ï¿½
             enemy.SetAnimator(looks.GetComponent<Animator>());
             enemy.Initialize();
             status.Initialize();
