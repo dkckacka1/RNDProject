@@ -25,7 +25,7 @@ namespace RPG.Battle.Move
 
         public void MoveNav(Transform target)
         {
-            //nav.SetDestination(target.position);
+            nav.SetDestination(target.position);
         }
 
         public void Move(Transform target)

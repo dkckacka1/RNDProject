@@ -9,6 +9,16 @@ namespace RPG.Battle.Control
 
     public class EnemyController : Controller
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        public void SetAnimator(Animator animator)
+        {
+            this.animator = animator;
+        }
+
         protected override void SetChaseState()
         {
             Target = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);

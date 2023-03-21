@@ -57,6 +57,9 @@ namespace RPG.Battle.Control
             stateContext.SetState(idelState);
         }
 
+        public virtual void Initialize()
+        {
+        }
 
         private void Update()
         {
@@ -106,12 +109,9 @@ namespace RPG.Battle.Control
 
         public virtual void AttactAction()
         {
-            animator.SetTrigger("Attack");
+            Debug.Log("Attack!!!");
+            StartCoroutine(attack.WaitAttackTime());
             StartCoroutine(attack.WaitAttackDelay());
-        }
-        public void AttackAnimEvent()
-        {
-            attack.TargetTakeDamage();
         }
     }
 }

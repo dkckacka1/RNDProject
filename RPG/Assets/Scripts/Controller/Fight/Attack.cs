@@ -9,6 +9,7 @@ namespace RPG.Battle.Fight
     public class Attack
     {
         public bool canAttack;
+        public readonly float attackDelay = 0.3f;
 
         // Component
         Controller controller;
@@ -55,6 +56,13 @@ namespace RPG.Battle.Fight
             yield return new WaitForSeconds(status.attackSpeed);
 
             canAttack = true;
+        }
+
+        public IEnumerator WaitAttackTime()
+        {
+            yield return new WaitForSeconds(attackDelay);
+
+            TargetTakeDamage();
         }
     }
 }

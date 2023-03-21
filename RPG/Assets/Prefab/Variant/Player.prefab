@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8edd049ec9f1a44a6bfbbe8e33215e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8985298089586212878}
+  animator: {fileID: 6827944588897757222}
   status: {fileID: 8668303703841679543}
 --- !u!114 &8668303703841679543
 MonoBehaviour:
@@ -111,6 +111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14de6107bb04cd543a175228bc316157, type: 3}
+--- !u!95 &6827944588897757222 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9080814112433407166, guid: 14de6107bb04cd543a175228bc316157, type: 3}
+  m_PrefabInstance: {fileID: 2361068453642611864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2365796804150882186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4728550411551506, guid: 14de6107bb04cd543a175228bc316157, type: 3}
@@ -191,10 +196,5 @@ GameObject:
 --- !u!4 &7587913342763580815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 711069287744537964, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
-  m_PrefabInstance: {fileID: 6959072169266165987}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8985298089586212878 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2027084126764595437, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
   m_PrefabInstance: {fileID: 6959072169266165987}
   m_PrefabAsset: {fileID: 0}

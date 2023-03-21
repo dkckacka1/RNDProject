@@ -88,11 +88,13 @@ namespace RPG.Battle.Core
             status.SetEnemyData(data);
 
             // EnemyPrefab(외형) 넣기
-            Instantiate(data.enemyLook, enemy.gameObject.transform);
+            GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
 
             // EnemyPrefab에 무기 쥐어주기
 
             // Enemy Initialize() 하기
+            enemy.SetAnimator(looks.GetComponent<Animator>());
+            enemy.Initialize();
             status.Initialize();
 
             return enemy;

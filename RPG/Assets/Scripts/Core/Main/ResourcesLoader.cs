@@ -12,7 +12,7 @@ namespace RPG.Core
             var items = Resources.LoadAll<T>(path);
             foreach (var item in items)
             {
-                Debug.Log(item.EquipmentName + " Loaded");
+                //Debug.Log(item.EquipmentName + " Loaded");
                 dic.Add(item.ID, item);
             }
         }
@@ -22,7 +22,7 @@ namespace RPG.Core
             var enemies = Resources.LoadAll<EnemyData>(path);
             foreach(var enemy in enemies)
             {
-                Debug.Log(enemy.enemyName + "Loaded");
+                //Debug.Log(enemy.enemyName + "Loaded");
                 dic.Add(enemy.ID, enemy);
             }
         }

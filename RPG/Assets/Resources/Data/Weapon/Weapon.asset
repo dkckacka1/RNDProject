@@ -20,7 +20,7 @@ MonoBehaviour:
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
   attackDamage: 20
   attackSpeed: 1.32
-  attackDistance: 2.03
+  attackRange: 3.06
   movementSpeed: 2.03
   criticalChance: 0.206
   criticalDamage: 0.136
