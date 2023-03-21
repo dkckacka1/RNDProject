@@ -92,7 +92,6 @@ namespace RPG.Character.Status
         {
             isDead = true;
             GetComponent<NavMeshAgent>().enabled = false;
-            GetComponent<Controller>().DeadAction();
         }
 
         public void Heal(int healPoint)

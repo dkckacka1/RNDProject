@@ -14,15 +14,18 @@ namespace RPG.Battle.Control
 {
     public class Controller : MonoBehaviour
     {
-        public StateContext stateContext;
-
-        public IdelState idelState;
-        public ChaseState chaseState;
-        public AttackState attackState;
 
         // Component
         public Animator animator;
         public Status status;
+        public NavMeshAgent nav;
+
+        // AI State
+        public StateContext stateContext;
+        public IdelState idleState;
+        public ChaseState chaseState;
+        public AttackState attackState;
+        public DeadState deadState;
 
         // Behaviour
         public Movement movement;
@@ -31,75 +34,71 @@ namespace RPG.Battle.Control
         // Battle
         public Controller target;
 
-        protected virtual void Awake()
-        {
-            movement = new Movement(transform, status ,GetComponent<NavMeshAgent>());
-            attack = new Attack(this, status);
 
+
+        private void Awake()
+        {
+            // 생성자
             stateContext = new StateContext(this);
+
+            idleState = new IdelState();
+            chaseState = new ChaseState();
+            attackState = new AttackState();
+            deadState = new DeadState();
+
+            movement = new Movement(transform, status, nav);
+            attack = new Attack(status);
         }
 
-        protected virtual void Start()
+        private void Start()
         {
-            stateContext.SetState(idelState);
+            // 시작 시 
+            Initialize();
         }
 
         private void Update()
         {
+            // 전투중인가?
             if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
 
-            if (CheckTarget()) { SetChaseState(); }
-            if (CheckMoveDistacne()) { SetAttackState(); }
+            // AI 수행
+            if (CheckDeadState())           { stateContext.SetState(deadState); }
+            else if (CheckChaseState())     { stateContext.SetState(chaseState); }
+            else if (CheckAttackState())    { stateContext.SetState(attackState); }
+            else if (CheckIdleState())      { stateContext.SetState(idleState); }
 
             stateContext.Update();
         }
 
-        public virtual void Initialize()
+        public void Initialize()
         {
-            attack.canAttack = true;
+            stateContext.SetState(idleState);
         }
 
-        private bool CheckMoveDistacne()
+        public virtual bool CheckDeadState()
         {
-            // 타겟된 적이 공격 범위 내에 있는가
-            if (!movement.MoveDistanceResult(target.transform)) return true;
+            // 나는 죽어있는가?
+            if (status.IsDead)      return true;
 
             return false;
         }
 
-        private bool CheckTarget()
+        public virtual bool CheckChaseState()
         {
-            // 타겟된 적이 있는가?
-            if (target == null) return true;
-            // 적이 죽어있는가?
-            if (target.status.IsDead) return true;
+            // 타겟된 적이 없는가?
+            // 타겟할 적이 있는지 확인했지만 적이 없다.
 
             return false;
         }
 
-        protected virtual void SetAttackState()
+        public virtual bool CheckAttackState()
         {
-            print(gameObject.name + " : 공격상태");
-            stateContext.SetState(attackState);
+            return false;
         }
 
-        protected virtual void SetChaseState()
+        public virtual bool CheckIdleState()
         {
-            print(gameObject.name + " : 추적상태");
-            stateContext.SetState(chaseState);
-        }
-
-        public virtual void DeadAction()
-        {
-            animator.SetTrigger("Dead");
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
-
-        public virtual void AttactAction()
-        {
-            animator.SetTrigger("Attack");
-            StartCoroutine(attack.WaitAttackTime());
-            StartCoroutine(attack.WaitAttackDelay());
+            return false;
         }
     }
 }

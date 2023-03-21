@@ -12,14 +12,14 @@ namespace RPG.Battle.Fight
         public readonly float attackDelay = 0.3f;
 
         // Component
-        Controller controller;
         Status status;
         IDamagedable target;
 
-        public Attack(Controller controller, Status status)
+        public Attack(Status status)
         {
-            this.controller = controller;
             this.status = status;
+
+            canAttack = true;
         }
 
         public void SetTarget(IDamagedable target)
@@ -33,7 +33,6 @@ namespace RPG.Battle.Fight
             if (!canAttack) return;
 
             canAttack = false;
-            controller.AttactAction();
         }
 
         public void TargetTakeDamage()
@@ -45,10 +44,11 @@ namespace RPG.Battle.Fight
             }
 
             target.TakeDamage(status.attackDamage);
-            if (target.IsDead)
-            {
-                controller.target = null;
-            }
+            // TODO : 수정 필요 컨트롤러를 사용하지 않기
+            //if (target.IsDead)
+            //{
+            //    controller.target = null;
+            //}
         }
 
         public IEnumerator WaitAttackDelay()

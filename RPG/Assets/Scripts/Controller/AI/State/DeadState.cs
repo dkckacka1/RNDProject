@@ -1,11 +1,11 @@
-﻿using RPG.Battle.Control;
-using System;
+using RPG.Battle.Control;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Battle.AI
 {
-    public class IdelState : State, IState
+    public class DeadState : State, IState
     {
         public override void Handle(Controller controller)
         {
@@ -14,6 +14,7 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.animator.SetTrigger("Dead");
         }
 
         public void OnEnd()
@@ -25,3 +26,4 @@ namespace RPG.Battle.AI
         }
     }
 }
+

@@ -70,7 +70,7 @@ namespace RPG.Battle.Core
                         {
                             foreach (var item in LiveEnemys)
                             {
-                                item.stateContext.SetState(item.idelState);
+                                item.stateContext.SetState(item.idleState);
                             }
                         }
                         Debug.Log("패배했습니다.!");
@@ -79,7 +79,7 @@ namespace RPG.Battle.Core
                         {
                             foreach (var item in LivePlayers)
                             {
-                                item.stateContext.SetState(item.idelState);
+                                item.stateContext.SetState(item.idleState);
                             }
                         }
                         Debug.Log("승리했습니다.!");

@@ -95,8 +95,9 @@ namespace RPG.Battle.Core
             //Instantiate(data.weapon, right_hand);
 
             // Enemy Initialize() �ϱ�
-            enemy.SetAnimator(looks.GetComponent<Animator>());
-            enemy.Initialize();
+            // TODO : Controller 재개편중
+            //enemy.SetAnimator(looks.GetComponent<Animator>());
+            //enemy.Initialize();
             status.Initialize();
 
             return enemy;

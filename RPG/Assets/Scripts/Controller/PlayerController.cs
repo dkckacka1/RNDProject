@@ -11,41 +11,5 @@ namespace RPG.Battle.Control
 {
     public class PlayerController : Controller
     {
-        protected override void Awake()
-        {
-            base.Awake();
-            idelState = new IdelState();
-            chaseState = new ChaseState();
-            attackState = new AttackState();
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-            BattleManager.GetInstance().LivePlayers.Add(this);
-        }
-
-        protected override void SetChaseState()
-        {
-            target = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
-
-            base.SetChaseState();
-        }
-
-        public override void DeadAction()
-        {
-            base.DeadAction();
-            BattleManager.GetInstance().DeadController(this);
-        }
-
-        protected override void SetAttackState()
-        {
-            base.SetAttackState();
-        }
-
-        public override void AttactAction()
-        {
-            base.AttactAction();
-        }
     }
 }
