@@ -6,7 +6,7 @@ using RPG.Character.Status;
 
 namespace RPG.Battle.Fight
 {
-    public class Attack : MonoBehaviour
+    public class Attack
     {
         public bool canAttack;
 
@@ -15,10 +15,10 @@ namespace RPG.Battle.Fight
         Status status;
         IDamagedable target;
 
-        private void Awake()
+        public Attack(Controller controller, Status status)
         {
-            controller = GetComponent<Controller>();
-            status = GetComponent<Status>();
+            this.controller = controller;
+            this.status = status;
         }
 
         public void SetTarget(IDamagedable target)
@@ -32,16 +32,14 @@ namespace RPG.Battle.Fight
             if (!canAttack) return;
 
             canAttack = false;
-            controller.transform.LookAt(controller.transform);
-            controller.animator.SetTrigger("Attack");
-            StartCoroutine(WaitAttackDelay());
+            controller.AttactAction();
         }
 
-        public void AttackAnimEvent()
+        public void TargetTakeDamage()
         {
             if (target == null)
             {
-                print($"{name}의 타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
+                Debug.Log($"{status.name}의 타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
                 return;
             }
 
@@ -52,7 +50,7 @@ namespace RPG.Battle.Fight
             }
         }
 
-        IEnumerator WaitAttackDelay()
+        public IEnumerator WaitAttackDelay()
         {
             yield return new WaitForSeconds(status.attackSpeed);
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using RPG.Battle.Core;
 using RPG.Battle.Move;
@@ -21,11 +22,15 @@ namespace RPG.Battle.Control
 
         // Component
         public Animator animator;
-        public Movement movement;
-        public Attack attack;
         public Status status;
 
+        // Behaviour
+        public Movement movement;
+        public Attack attack;
+
+        // Battle
         private Controller target;
+
         // Encapsulation
         public Controller Target
         {
@@ -41,6 +46,9 @@ namespace RPG.Battle.Control
 
         protected virtual void Awake()
         {
+            movement = new Movement(transform, status ,GetComponent<NavMeshAgent>());
+            attack = new Attack(this, status);
+
             stateContext = new StateContext(this);
         }
 
@@ -80,11 +88,13 @@ namespace RPG.Battle.Control
 
         protected virtual void SetAttackState()
         {
+            print(gameObject.name + " : 공격상태");
             stateContext.SetState(attackState);
         }
 
         protected virtual void SetChaseState()
         {
+            print(gameObject.name + " : 추적상태");
             stateContext.SetState(chaseState);
         }
 
@@ -92,6 +102,16 @@ namespace RPG.Battle.Control
         {
             animator.SetTrigger("Dead");
             GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+        public virtual void AttactAction()
+        {
+            animator.SetTrigger("Attack");
+            StartCoroutine(attack.WaitAttackDelay());
+        }
+        public void AttackAnimEvent()
+        {
+            attack.TargetTakeDamage();
         }
     }
 }

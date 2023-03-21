@@ -9,6 +9,23 @@ namespace RPG.Character.Status
     {
         public string enemyName;
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+        }
+
+        protected override void LateUpdate()
+        {
+            base.LateUpdate();
+            SetHpBarPosition(transform.position + hpBarUIOffset);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SetHpBar();
+        }
+
         public void SetHpBar()
         {
             hpBarUI = Instantiate(hpBarUI, BattleManager.GetInstance().hpBarCanvas.transform);
@@ -21,17 +38,6 @@ namespace RPG.Character.Status
             //hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
         }
 
-        protected override void LateUpdate()
-        {
-            base.LateUpdate();
-            SetHpBarPosition(transform.position + hpBarUIOffset);
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            SetHpBar();
-        }
 
         public void SetEnemyData(EnemyData data)
         {

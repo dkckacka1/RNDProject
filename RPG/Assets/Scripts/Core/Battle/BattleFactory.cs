@@ -17,6 +17,7 @@ namespace RPG.Battle.Core
         {
             // 플레이어 instantiate 하기
             PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
+            print(player.name + "생성");
 
             // 플레이어에게 장비 쥐어주기
             PlayerStatus status = player.status as PlayerStatus;

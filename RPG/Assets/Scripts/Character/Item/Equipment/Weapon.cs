@@ -11,7 +11,7 @@ namespace RPG.Character.Equipment
 
         public int attackDamage;
         public float attackSpeed;
-        public float attackDistance;
+        public float attackRange;
         public float movementSpeed;
         public float criticalChance;
         public float criticalDamage;
@@ -22,7 +22,7 @@ namespace RPG.Character.Equipment
             weaponLook = data.weaponLook;
             attackDamage = data.attackDamage;
             attackSpeed = data.attackSpeed;
-            attackDistance = data.attackDistance;
+            attackRange = data.attackRange;
             movementSpeed = data.movementSpeed;
             criticalChance = data.criticalChance;
             criticalDamage = data.criticalDamage;

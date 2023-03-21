@@ -6,25 +6,26 @@ using RPG.Character.Status;
 
 namespace RPG.Battle.Move
 {
-    public class Movement : MonoBehaviour
+    public class Movement
     {
         public bool canMove = true;
 
+        Transform transform;
         NavMeshAgent nav;
         Status status;
 
-        private void Awake()
+        public Movement(Transform transform, Status status, NavMeshAgent nav)
         {
-            status = GetComponent<Status>();
-            nav = GetComponent<NavMeshAgent>();
+            this.transform = transform;
+            this.nav = nav;
+            this.status = status;
 
             nav.speed = status.movementSpeed;
-            nav.stoppingDistance = status.attackRange;
         }
 
         public void MoveNav(Transform target)
         {
-            nav.SetDestination(target.position);
+            //nav.SetDestination(target.position);
         }
 
         public void Move(Transform target)

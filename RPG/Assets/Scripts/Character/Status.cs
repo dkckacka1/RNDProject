@@ -61,14 +61,13 @@ namespace RPG.Character.Status
             }
         }
 
-        public virtual void Initialize()
+        protected virtual void OnEnable()
         {
-            CurrentHp = maxHp;
+            Initialize();
         }
 
         protected virtual void Start()
         {
-            Initialize();
         }
 
         protected virtual void LateUpdate()
@@ -76,11 +75,11 @@ namespace RPG.Character.Status
             
         }
 
-        protected virtual void OnEnable()
+        public virtual void Initialize()
         {
-            
+            currentHp = maxHp;
+            GetComponent<NavMeshAgent>().speed = movementSpeed;
         }
-
 
         public void TakeDamage(int damage)
         {

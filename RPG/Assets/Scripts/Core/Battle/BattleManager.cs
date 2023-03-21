@@ -112,9 +112,9 @@ namespace RPG.Battle.Core
 
         private void Start()
         {
-            currentStage = stages[0];
-            currentStage.CreatePlayer(playerPrefab.gameObject, playerParent);
-            currentStage.CreateEnemys(enemyParent);
+            //currentStage = stages[0];
+            //currentStage.CreatePlayer(playerPrefab.gameObject, playerParent);
+            //currentStage.CreateEnemys(enemyParent);
             CurrentStats = BattleState.BATTLE;
         }
 

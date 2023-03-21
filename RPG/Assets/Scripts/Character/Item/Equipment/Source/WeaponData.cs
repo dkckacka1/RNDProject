@@ -13,7 +13,7 @@ namespace RPG.Character.Equipment
 
         public int attackDamage;
         [Range(1, 2.5f)] public float attackSpeed;
-        [Range(1, 5f)] public float attackDistance;
+        [Range(1, 5f)] public float attackRange;
         [Range(1, 5f)] public float movementSpeed;
         [Range(0, 0.6f)] public float criticalChance;
         [Range(0, 0.5f)] public float criticalDamage;

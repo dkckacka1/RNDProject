@@ -7,10 +7,14 @@ namespace RPG.Character.Status
 {
     public class PlayerStatus : Status
     {
+        protected override void OnEnable()
+        {
+            
+        }
+
         public override void Initialize()
         {
             base.Initialize();
-            currentHp = maxHp;
         }
 
         #region ¿Â∫Ò_¿Â¬¯
@@ -19,6 +23,7 @@ namespace RPG.Character.Status
             if (currentWeapon != null)
             {
                 attackDamage -= currentWeapon.attackDamage;
+                attackRange -= currentWeapon.attackRange;
                 attackSpeed -= currentWeapon.attackSpeed;
                 movementSpeed -= currentWeapon.movementSpeed;
                 criticalChance -= currentWeapon.criticalChance;
@@ -30,6 +35,7 @@ namespace RPG.Character.Status
             Instantiate(currentWeapon.weaponLook, weaponHandle);
 
             attackDamage += currentWeapon.attackDamage;
+            attackRange += currentWeapon.attackRange;
             attackSpeed += currentWeapon.attackSpeed;
             movementSpeed += currentWeapon.movementSpeed;
             criticalChance += currentWeapon.criticalChance;
