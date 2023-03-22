@@ -33,7 +33,6 @@ namespace RPG.Battle.AI
 
             CurrentState = state;
 
-            (CurrentState as State).Handle(controller);
             CurrentState.OnStart();
         }
 

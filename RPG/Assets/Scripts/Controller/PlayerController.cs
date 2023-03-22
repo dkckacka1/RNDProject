@@ -11,5 +11,23 @@ namespace RPG.Battle.Control
 {
     public class PlayerController : Controller
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            BattleManager.GetInstance().LivePlayers.Add(this);
+        }
+
+        public override void DeadEvent()
+        {
+            base.DeadEvent();
+            BattleManager.GetInstance().DeadController(this);
+        }
+
+        public override bool SetTarget(out Controller controller)
+        {
+            controller = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
+
+            return (controller != null);
+        }
     }
 }

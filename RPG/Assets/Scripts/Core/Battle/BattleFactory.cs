@@ -15,14 +15,12 @@ namespace RPG.Battle.Core
 
         public PlayerController CreatePlayer(UserInfo userinfo, Vector3 position, Transform parent = null)
         {
-            // �÷��̾� instantiate �ϱ�
             PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
-            print(player.name + "����");
 
-            // �÷��̾�� ��� ����ֱ�
             PlayerStatus status = player.status as PlayerStatus;
             SetPlayer(userinfo, ref status);
 
+            player.Initialize();
             return player;
         }
 
@@ -79,26 +77,21 @@ namespace RPG.Battle.Core
 
         public EnemyController CreateEnemy(EnemyData data, Vector3 position, Transform parent = null)
         {
-            // EnemyPrefab instantiate �ϱ�
             EnemyController enemy = Instantiate<EnemyController>(enemyController, position, Quaternion.identity, parent);
-            Debug.Log("enemy����");
 
-            // EnemyData �ֱ�
             EnemyStatus status = enemy.status as EnemyStatus;
             status.SetEnemyData(data);
 
-            // EnemyPrefab(����) �ֱ�
             GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
 
-            // EnemyPrefab에 무기 쥐어주기
+            // TODO : EnemyPrefab에 무기 쥐어주기
             //Transform right_hand = looks.transform.Find("Hand_R");
             //Instantiate(data.weapon, right_hand);
 
             // Enemy Initialize() �ϱ�
-            // TODO : Controller 재개편중
-            //enemy.SetAnimator(looks.GetComponent<Animator>());
-            //enemy.Initialize();
+            enemy.SetAnimator(looks.GetComponent<Animator>());
             status.Initialize();
+            enemy.Initialize();
 
             return enemy;
         }

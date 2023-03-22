@@ -7,8 +7,30 @@ using RPG.Battle.AI;
 
 namespace RPG.Battle.Control
 {
-
     public class EnemyController : Controller
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            BattleManager.GetInstance().LiveEnemys.Add(this);
+        }
+
+        public override bool SetTarget(out Controller controller)
+        {
+            controller = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);
+
+            return (controller != null);
+        }
+
+        public override void DeadEvent()
+        {
+            base.DeadEvent();
+            BattleManager.GetInstance().DeadController(this);
+        }
+
+        public void SetAnimator(Animator animator)
+        {
+            this.animator = animator;
+        }
     }
 }

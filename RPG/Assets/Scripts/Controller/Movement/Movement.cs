@@ -19,7 +19,10 @@ namespace RPG.Battle.Move
             this.transform = transform;
             this.nav = nav;
             this.status = status;
+        }
 
+        public void SetNav()
+        {
             nav.speed = status.movementSpeed;
             nav.stoppingDistance = status.attackRange;
         }

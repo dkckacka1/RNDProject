@@ -7,9 +7,8 @@ namespace RPG.Battle.AI
 {
     public class IdelState : State, IState
     {
-        public override void Handle(Controller controller)
+        public IdelState(Controller controller) : base(controller)
         {
-            base.Handle(controller);
         }
 
         public void OnStart()

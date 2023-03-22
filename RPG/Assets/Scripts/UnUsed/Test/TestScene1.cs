@@ -20,9 +20,15 @@ public class TestScene1 : MonoBehaviour
         {
             UserInfo userinfo = new UserInfo();
 
-            factory.CreatePlayer(userinfo, PlayerSpawn.position);
+            StageData data = GameManager.Instance.stageDataDic[1];
+
+            factory.CreatePlayer(userinfo, data.playerSpawnPosition);
             //print(GameManager.Instance.enemyDataDic[1].enemyName);
-            factory.CreateEnemy(GameManager.Instance.enemyDataDic[1], enemySpawn.position);
+
+            foreach (var enemy in data.enemyDatas)
+            {
+                factory.CreateEnemy(GameManager.Instance.enemyDataDic[enemy.enemyID], enemy.position);
+            }
         }
 
     }

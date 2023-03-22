@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6827944588897757222}
   status: {fileID: 8668303703841679543}
+  nav: {fileID: 7051127263331252068}
+  target: {fileID: 0}
 --- !u!114 &8668303703841679543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 711069287744537964, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -196,5 +202,10 @@ GameObject:
 --- !u!4 &7587913342763580815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 711069287744537964, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+  m_PrefabInstance: {fileID: 6959072169266165987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &7051127263331252068 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
   m_PrefabInstance: {fileID: 6959072169266165987}
   m_PrefabAsset: {fileID: 0}

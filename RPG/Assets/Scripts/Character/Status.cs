@@ -46,6 +46,8 @@ namespace RPG.Character.Status
 
         // Encapsulation
         public bool IsDead { get => isDead; set => isDead = value; }
+        public Transform transfrom { get => transform; }
+
         public int CurrentHp 
         {
             get => currentHp; 
@@ -60,6 +62,7 @@ namespace RPG.Character.Status
                 }
             }
         }
+
 
         protected virtual void OnEnable()
         {
@@ -78,7 +81,6 @@ namespace RPG.Character.Status
         public virtual void Initialize()
         {
             currentHp = maxHp;
-            GetComponent<NavMeshAgent>().speed = movementSpeed;
         }
 
         public void TakeDamage(int damage)

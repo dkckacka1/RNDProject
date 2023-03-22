@@ -8,18 +8,20 @@ namespace RPG.Battle.Fight
 {
     public class Attack
     {
-        public bool canAttack;
-        public readonly float attackDelay = 0.3f;
+        public bool canAttack = true;
+        public float attackDelay = 0.3f;
+        public float attackAnimPoint = 0.3f;
 
         // Component
+        Transform transform;
         Status status;
         IDamagedable target;
 
-        public Attack(Status status)
+        public Attack(Transform transform, Status status)
         {
+            this.transform = transform;
             this.status = status;
-
-            canAttack = true;
+            attackDelay = CalcAttackDelay(status.attackSpeed);
         }
 
         public void SetTarget(IDamagedable target)
@@ -29,14 +31,12 @@ namespace RPG.Battle.Fight
 
         public void AttackTarget()
         {
-            if (target.IsDead) return;
-            if (!canAttack) return;
-
             canAttack = false;
         }
 
         public void TargetTakeDamage()
         {
+            if (target.IsDead) return;
             if (target == null)
             {
                 Debug.Log($"{status.name}의 타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
@@ -44,23 +44,23 @@ namespace RPG.Battle.Fight
             }
 
             target.TakeDamage(status.attackDamage);
-            // TODO : 수정 필요 컨트롤러를 사용하지 않기
-            //if (target.IsDead)
-            //{
-            //    controller.target = null;
-            //}
         }
 
         public IEnumerator WaitAttackDelay()
         {
-            yield return new WaitForSeconds(status.attackSpeed);
+            yield return new WaitForSeconds(attackDelay);
             canAttack = true;
         }
 
         public IEnumerator WaitAttackTime()
         {
-            yield return new WaitForSeconds(attackDelay);
+            yield return new WaitForSeconds(attackAnimPoint);
             TargetTakeDamage();
+        }
+
+        float CalcAttackDelay(float attackSpeed)
+        {
+            return (1 / attackSpeed);
         }
     }
 }

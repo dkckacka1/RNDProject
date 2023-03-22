@@ -19,11 +19,11 @@ namespace RPG.Battle.Core
         public BattleFactory factory;
         public PlayerController playerPrefab;
 
-        public List<Stage> stages;
-        public Stage currentStage;
+        public List<StageData> stages;
+        public StageData currentStage;
 
-        private List<EnemyController> liveEnemys;
-        private List<PlayerController> livePlayers;
+        private List<EnemyController> liveEnemys = new List<EnemyController>();
+        private List<PlayerController> livePlayers = new List<PlayerController>();
         private BattleState currentStats;
         private readonly Dictionary<BattleState, UnityEvent> battleEventDic
             = new Dictionary<BattleState, UnityEvent>();

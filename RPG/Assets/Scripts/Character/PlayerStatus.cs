@@ -20,27 +20,16 @@ namespace RPG.Character.Status
         #region ¿Â∫Ò_¿Â¬¯
         public void EquipItem(Weapon weapon)
         {
-            if (currentWeapon != null)
-            {
-                attackDamage -= currentWeapon.attackDamage;
-                attackRange -= currentWeapon.attackRange;
-                attackSpeed -= currentWeapon.attackSpeed;
-                movementSpeed -= currentWeapon.movementSpeed;
-                criticalChance -= currentWeapon.criticalChance;
-                criticalDamage -= currentWeapon.criticalDamage;
-                attackChance -= currentWeapon.attackChance;
-            }
-
             currentWeapon = weapon;
             Instantiate(currentWeapon.weaponLook, weaponHandle);
 
-            attackDamage += currentWeapon.attackDamage;
-            attackRange += currentWeapon.attackRange;
-            attackSpeed += currentWeapon.attackSpeed;
-            movementSpeed += currentWeapon.movementSpeed;
-            criticalChance += currentWeapon.criticalChance;
-            criticalDamage += currentWeapon.criticalDamage;
-            attackChance += currentWeapon.attackChance;
+            attackDamage = currentWeapon.attackDamage;
+            attackRange = currentWeapon.attackRange;
+            attackSpeed = currentWeapon.attackSpeed;
+            movementSpeed = currentWeapon.movementSpeed;
+            criticalChance = currentWeapon.criticalChance;
+            criticalDamage = currentWeapon.criticalDamage;
+            attackChance = currentWeapon.attackChance;
         }
 
         public void EquipItem(Armor armor)

@@ -12,20 +12,21 @@ namespace RPG.Battle.AI
     {
         private Movement movement;
 
-        public override void Handle(Controller controller)
+        public ChaseState(Controller controller) : base(controller)
         {
-            base.Handle(controller);
             movement = controller.movement;
         }
 
         public void OnEnd()
         {
-            controller.animator.SetBool("isMove", false);
+            animator.SetBool("isMove", false);
         }
 
         public void OnStart()
         {
-            controller.animator.SetBool("isMove", true);
+            animator.SetBool("isMove", true);
+            movement.SetNav();
+            
         }
 
         public void OnUpdate()

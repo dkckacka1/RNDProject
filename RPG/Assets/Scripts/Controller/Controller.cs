@@ -12,7 +12,7 @@ using RPG.Character.Status;
 
 namespace RPG.Battle.Control
 {
-    public class Controller : MonoBehaviour
+    public abstract class Controller : MonoBehaviour
     {
 
         // Component
@@ -34,26 +34,12 @@ namespace RPG.Battle.Control
         // Battle
         public Controller target;
 
-
-
         private void Awake()
         {
-            // 생성자
-            stateContext = new StateContext(this);
-
-            idleState = new IdelState();
-            chaseState = new ChaseState();
-            attackState = new AttackState();
-            deadState = new DeadState();
-
-            movement = new Movement(transform, status, nav);
-            attack = new Attack(status);
         }
 
         private void Start()
         {
-            // 시작 시 
-            Initialize();
         }
 
         private void Update()
@@ -70,35 +56,99 @@ namespace RPG.Battle.Control
             stateContext.Update();
         }
 
-        public void Initialize()
+        // 생성 시 초기화 단계
+        public virtual void Initialize()
         {
+            movement = new Movement(transform, status, nav);
+            attack = new Attack(transform ,status);
+
+            stateContext = new StateContext(this);
+            idleState = new IdelState(this);
+            chaseState = new ChaseState(this);
+            attackState = new AttackState(this);
+            deadState = new DeadState(this);
+
             stateContext.SetState(idleState);
         }
 
-        public virtual bool CheckDeadState()
+        public bool CheckDeadState()
         {
             // 나는 죽어있는가?
-            if (status.IsDead)      return true;
+            if (status.IsDead)
+            {
+                DeadEvent();
+                return true;
+            }
 
             return false;
         }
 
-        public virtual bool CheckChaseState()
+        public bool CheckChaseState()
         {
             // 타겟된 적이 없는가?
-            // 타겟할 적이 있는지 확인했지만 적이 없다.
+            if (target == null)
+            {
+                // 다른 적이 있는가?
+                if (!SetTarget(out target))
+                {
+                    return false;
+                }
+            }
+
+            // 타겟된 적이 있는가?
+            if (target != null)
+            {
+                // 타겟이 죽었는가?
+                if (target.status.IsDead)
+                {
+                    // 다른 적이 있는가?
+                    if (!SetTarget(out target))
+                    {
+                        return false;
+                    }
+                }
+
+                // 적과의 거리가 나의 공격 사거리보다 먼가?
+                if(movement.MoveDistanceResult(target.transform))
+                {
+                    return true;
+                }
+            }
 
             return false;
         }
 
-        public virtual bool CheckAttackState()
+        public bool CheckAttackState()
         {
+            // 타겟된 적이 있는가?
+            if (target != null)
+            {
+                //타겟이 살아있는가?
+                if(!target.status.IsDead)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
-        public virtual bool CheckIdleState()
+        public bool CheckIdleState()
         {
-            return false;
+            return true;
         }
+
+        public void AttackEvent()
+        {
+            StartCoroutine(attack.WaitAttackDelay());
+            StartCoroutine(attack.WaitAttackTime());
+        }
+
+        public virtual void DeadEvent()
+        {
+            
+        }
+
+        public abstract bool SetTarget(out Controller controller);
     }
 }

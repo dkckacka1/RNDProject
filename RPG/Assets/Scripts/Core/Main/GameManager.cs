@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
 using RPG.Character.Status;
+using RPG.Battle.Core;
 
 namespace RPG.Core
 {
@@ -28,6 +29,9 @@ namespace RPG.Core
         public UserInfo userInfo = new UserInfo();
 
         #region DIC
+        //Stage
+        public Dictionary<int, StageData> stageDataDic = new Dictionary<int, StageData>();
+
         // Enemy
         public Dictionary<int, EnemyData> enemyDataDic = new Dictionary<int, EnemyData>();
 
@@ -52,6 +56,7 @@ namespace RPG.Core
 
             LoadEquipmentData();
             LoadEnemyData();
+            LoadStageData();
 
             if (status != null)
             {
@@ -78,6 +83,11 @@ namespace RPG.Core
         private void LoadEnemyData()
         {
             ResourcesLoader.LoadEnemyData("Data/Enemy", ref enemyDataDic);
+        }
+
+        private void LoadStageData()
+        {
+            ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
         }
     }
 

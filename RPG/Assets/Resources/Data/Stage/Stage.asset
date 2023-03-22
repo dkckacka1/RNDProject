@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b60990a35d9b0742a4c35973255b72a, type: 3}
   m_Name: Stage
   m_EditorClassIdentifier: 
+  ID: 1
   playerSpawnPosition: {x: 8, y: 0, z: 0}
-  enemySpawnPositions:
-  - {x: -8, y: 0, z: -5}
-  - {x: -10, y: 0, z: -5}
-  - {x: -8, y: 0, z: 0}
-  - {x: -10, y: 0, z: 5}
-  - {x: -8, y: 0, z: 5}
-  enemyPrefabs:
-  - {fileID: 729025918733462500, guid: c7b35fdc377ed7b4b9225acfd1abf60a, type: 3}
-  - {fileID: 729025918733462500, guid: c7b35fdc377ed7b4b9225acfd1abf60a, type: 3}
-  - {fileID: 729025918733462500, guid: c7b35fdc377ed7b4b9225acfd1abf60a, type: 3}
-  - {fileID: 729025918733462500, guid: c7b35fdc377ed7b4b9225acfd1abf60a, type: 3}
-  - {fileID: 729025918733462500, guid: c7b35fdc377ed7b4b9225acfd1abf60a, type: 3}
+  enemyDatas:
+  - position: {x: 6, y: 0, z: -4}
+    enemyID: 1
+  - position: {x: 5, y: 0, z: 4}
+    enemyID: 1
+  - position: {x: -5, y: 0, z: 4}
+    enemyID: 1
+  - position: {x: -5, y: 0, z: 4}
+    enemyID: 1

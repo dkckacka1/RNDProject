@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace RPG.Battle.Core
 {
-    public class EnemyCreate : MonoBehaviour
+    [System.Serializable]
+    public class EnemyCreate
     {
-        public GameObject EnemyPrefab;
+        [SerializeReference]public Vector3 position;
+        [SerializeReference] public EnemyData data;
     }
-
 }

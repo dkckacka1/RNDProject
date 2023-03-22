@@ -7,14 +7,13 @@ namespace RPG.Battle.AI
 {
     public class DeadState : State, IState
     {
-        public override void Handle(Controller controller)
+        public DeadState(Controller controller) : base(controller)
         {
-            base.Handle(controller);
         }
 
         public void OnStart()
         {
-            controller.animator.SetTrigger("Dead");
+            animator.SetTrigger("Dead");
         }
 
         public void OnEnd()

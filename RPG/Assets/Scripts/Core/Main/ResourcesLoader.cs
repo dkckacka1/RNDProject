@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
+using RPG.Battle.Core;
 
 namespace RPG.Core
 {
@@ -61,5 +62,13 @@ namespace RPG.Core
             return item;
         }
 
+        public static void LoadStageData(string path, ref Dictionary<int, StageData> dic)
+        {
+            var items = Resources.LoadAll<StageData>(path);
+            foreach (var item in items)
+            {
+                dic.Add(item.ID, item);
+            }
+        }
     } 
 }
