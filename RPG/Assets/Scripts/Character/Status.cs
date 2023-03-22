@@ -13,11 +13,12 @@ namespace RPG.Character.Status
 {
     public class Status : MonoBehaviour, IDamagedable
     {
+        // Component
+        public CharacterUI characterUI;
+
         [Header("Health")]
         public int maxHp = 0;
         public int currentHp = 0;
-        public HPBarUI hpBarUI;
-        public Vector3 hpBarUIOffset = new Vector3(0f, 1f,0f);
         private bool isDead = false;
 
         [Header("Attack")]
@@ -37,13 +38,6 @@ namespace RPG.Character.Status
         [Header("Movement")]
         public float movementSpeed = 0f;
 
-        [Header("Equipment")]
-        public Transform weaponHandle;
-        public Weapon currentWeapon;
-        public Armor currentArmor;
-        public Helmet currentHelmet;
-        public Pants currentPants;
-
         // Encapsulation
         public bool IsDead { get => isDead; set => isDead = value; }
         public Transform transfrom { get => transform; }
@@ -54,11 +48,12 @@ namespace RPG.Character.Status
             set
             {
                 currentHp = Mathf.Clamp(value, 0, maxHp);
-                hpBarUI.SetHpSlider(currentHp);
+                characterUI.ChangeHPUI(currentHp);
                 if (currentHp <= 0)
                 {
                     Dead();
-                    Destroy(gameObject,10f);
+                    characterUI.RemoveUI(4.5f);
+                    Destroy(gameObject,5f);
                 }
             }
         }

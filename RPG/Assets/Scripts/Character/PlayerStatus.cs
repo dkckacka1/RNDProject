@@ -7,6 +7,13 @@ namespace RPG.Character.Status
 {
     public class PlayerStatus : Status
     {
+        [Header("Equipment")]
+        public Transform weaponHandle;
+        public Weapon currentWeapon;
+        public Armor currentArmor;
+        public Helmet currentHelmet;
+        public Pants currentPants;
+
         protected override void OnEnable()
         {
             

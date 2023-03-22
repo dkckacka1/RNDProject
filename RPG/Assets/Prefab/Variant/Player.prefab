@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3547984684722416041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123617734009306100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c849086565498974db294971c248e594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleCanvas: {fileID: 0}
+  hpBar: {fileID: 0}
 --- !u!114 &2545512943107213724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,9 +26,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8edd049ec9f1a44a6bfbbe8e33215e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: -3547984684722416041}
   animator: {fileID: 6827944588897757222}
-  status: {fileID: 8668303703841679543}
   nav: {fileID: 7051127263331252068}
+  status: {fileID: 8668303703841679543}
   target: {fileID: 0}
 --- !u!114 &8668303703841679543
 MonoBehaviour:
@@ -28,10 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c551c0017414c45a0bab3df48fb98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterUI: {fileID: -3547984684722416041}
   maxHp: 0
   currentHp: 0
-  hpBarUI: {fileID: 3510894709814263190, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
-  hpBarUIOffset: {x: 0, y: 1, z: 0}
   attackRange: 0
   attackDamage: 0
   attackSpeed: 0

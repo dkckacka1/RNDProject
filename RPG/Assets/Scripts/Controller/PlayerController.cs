@@ -26,6 +26,11 @@ namespace RPG.Battle.Control
         public override bool SetTarget(out Controller controller)
         {
             controller = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
+            if (controller != null)
+            {
+                this.target = controller;
+                attack.SetTarget(controller.status);
+            }
 
             return (controller != null);
         }

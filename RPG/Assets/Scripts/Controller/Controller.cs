@@ -8,7 +8,9 @@ using RPG.Battle.Core;
 using RPG.Battle.Move;
 using RPG.Battle.Fight;
 using RPG.Battle.AI;
+using RPG.Battle.UI;
 using RPG.Character.Status;
+
 
 namespace RPG.Battle.Control
 {
@@ -16,9 +18,10 @@ namespace RPG.Battle.Control
     {
 
         // Component
+        public CharacterUI ui;
         public Animator animator;
-        public Status status;
         public NavMeshAgent nav;
+        public Status status;
 
         // AI State
         public StateContext stateContext;
@@ -101,6 +104,7 @@ namespace RPG.Battle.Control
                 // 타겟이 죽었는가?
                 if (target.status.IsDead)
                 {
+                    target = null;
                     // 다른 적이 있는가?
                     if (!SetTarget(out target))
                     {
@@ -149,6 +153,11 @@ namespace RPG.Battle.Control
             
         }
 
+        /// <summary>
+        /// 찾으면 true 못찾으면 false
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
         public abstract bool SetTarget(out Controller controller);
     }
 }

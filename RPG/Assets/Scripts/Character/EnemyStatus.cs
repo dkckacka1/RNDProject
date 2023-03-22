@@ -17,27 +17,12 @@ namespace RPG.Character.Status
         protected override void LateUpdate()
         {
             base.LateUpdate();
-            SetHpBarPosition(transform.position + hpBarUIOffset);
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            SetHpBar();
         }
-
-        public void SetHpBar()
-        {
-            hpBarUI = Instantiate(hpBarUI, BattleManager.GetInstance().hpBarCanvas.transform);
-            hpBarUI.SetHpSlider(maxHp, CurrentHp);
-        }
-
-        public void SetHpBarPosition(Vector3 position)
-        {
-            hpBarUI.transform.transform.position = Camera.main.WorldToScreenPoint(position);
-            //hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
-        }
-
 
         public void SetEnemyData(EnemyData data)
         {

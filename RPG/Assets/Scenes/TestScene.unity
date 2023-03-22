@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerParent: {fileID: 0}
   enemyParent: {fileID: 0}
-  hpBarCanvas: {fileID: 1254607250}
+  battleCanvas: {fileID: 1254607250}
   factory: {fileID: 504684452}
   playerPrefab: {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
   stages: []

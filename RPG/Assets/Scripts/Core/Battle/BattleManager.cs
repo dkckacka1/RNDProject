@@ -14,7 +14,7 @@ namespace RPG.Battle.Core
 
         public Transform playerParent;
         public Transform enemyParent;
-        public Canvas hpBarCanvas;
+        public Canvas battleCanvas;
 
         public BattleFactory factory;
         public PlayerController playerPrefab;
@@ -112,10 +112,18 @@ namespace RPG.Battle.Core
 
         private void Start()
         {
-            //currentStage = stages[0];
-            //currentStage.CreatePlayer(playerPrefab.gameObject, playerParent);
-            //currentStage.CreateEnemys(enemyParent);
             CurrentStats = BattleState.BATTLE;
+            StartCoroutine(Test());
+        }
+
+        public IEnumerator Test()
+        {
+            while(true)
+            {
+                yield return new WaitForSeconds(1f);
+                print($"살아있는 적 : {liveEnemys.Count}");
+                print($"살아있는 플레이어 : {livePlayers.Count}");
+            }
         }
 
 
@@ -210,6 +218,8 @@ namespace RPG.Battle.Core
                     distance = newDistance;
                 }
             }
+
+            print("다음 타겟은 = " + nearTarget.name);
 
             return (T)nearTarget;
         }

@@ -16,11 +16,13 @@ namespace RPG.Battle.Core
         public PlayerController CreatePlayer(UserInfo userinfo, Vector3 position, Transform parent = null)
         {
             PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
+            PlayerStatus status = player.GetComponent<PlayerStatus>();
+            PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
 
-            PlayerStatus status = player.status as PlayerStatus;
             SetPlayer(userinfo, ref status);
-
             player.Initialize();
+            ui.Initialize(status);
+
             return player;
         }
 
@@ -75,23 +77,27 @@ namespace RPG.Battle.Core
             status.Initialize();
         }
 
+        private static int enemyCount = 1;
+
         public EnemyController CreateEnemy(EnemyData data, Vector3 position, Transform parent = null)
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, position, Quaternion.identity, parent);
+            enemy.gameObject.name = "고블리나(" + enemyCount++ + ")";
+            EnemyStatus status = enemy.GetComponent<EnemyStatus>();
+            EnemyCharacterUI ui = enemy.GetComponent<EnemyCharacterUI>();
 
-            EnemyStatus status = enemy.status as EnemyStatus;
             status.SetEnemyData(data);
 
             GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
 
-            // TODO : EnemyPrefab에 무기 쥐어주기
             //Transform right_hand = looks.transform.Find("Hand_R");
             //Instantiate(data.weapon, right_hand);
 
-            // Enemy Initialize() �ϱ�
+            // Enemy Initialize()
             enemy.SetAnimator(looks.GetComponent<Animator>());
             status.Initialize();
             enemy.Initialize();
+            ui.Initialize(status);
 
             return enemy;
         }

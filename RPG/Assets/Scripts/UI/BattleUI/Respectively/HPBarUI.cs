@@ -9,13 +9,13 @@ namespace RPG.Battle.UI
     {
         public Slider hpSlider;
 
-        public void SetHpSlider(float maxHp, float currentHp)
+        public void SetHpSlider(int maxHp)
         {
             hpSlider.maxValue = maxHp;
-            hpSlider.value= currentHp;
+            hpSlider.value= maxHp;
         }
 
-        public void SetHpSlider(float currentHp)
+        public void ChangeCurrentHP(int currentHp)
         {
             hpSlider.value = currentHp;
         }
