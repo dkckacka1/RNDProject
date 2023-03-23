@@ -21,7 +21,9 @@ namespace RPG.Battle.Core
 
             SetPlayer(userinfo, ref status);
             player.Initialize();
+            SetPlayerUI(ref ui);
             ui.Initialize(status);
+
 
             return player;
         }
@@ -77,6 +79,11 @@ namespace RPG.Battle.Core
             status.Initialize();
         }
 
+        public void SetPlayerUI(ref PlayerCharacterUI ui)
+        {
+            ui.hpBar = BattleManager.GetInstance().playerHPBar;
+        }
+
         private static int enemyCount = 1;
 
         public EnemyController CreateEnemy(EnemyData data, Vector3 position, Transform parent = null)
@@ -89,9 +96,6 @@ namespace RPG.Battle.Core
             status.SetEnemyData(data);
 
             GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
-
-            //Transform right_hand = looks.transform.Find("Hand_R");
-            //Instantiate(data.weapon, right_hand);
 
             // Enemy Initialize()
             enemy.SetAnimator(looks.GetComponent<Animator>());

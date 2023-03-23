@@ -10,7 +10,7 @@ namespace RPG.Battle.UI
     {
         public Canvas battleCanvas;
 
-        public HPBarUI hpBar;
+        public HPBar hpBar;
 
         public virtual void Initialize(Status status)
         {

@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 namespace RPG.Battle.UI
 {
-    public class HPBarUI : MonoBehaviour
+    public class HPBar : MonoBehaviour
     {
         public Slider hpSlider;
 
-        public void SetHpSlider(int maxHp)
+        public virtual void SetHpSlider(int maxHp)
         {
             hpSlider.maxValue = maxHp;
             hpSlider.value= maxHp;
         }
 
-        public void ChangeCurrentHP(int currentHp)
+        public virtual void ChangeCurrentHP(int currentHp)
         {
             hpSlider.value = currentHp;
         }

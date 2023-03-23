@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.Pool;
 using RPG.Core;
 using RPG.Battle.Control;
+using RPG.Battle.UI;
 
 namespace RPG.Battle.Core
 {
@@ -14,18 +15,23 @@ namespace RPG.Battle.Core
         private static BattleManager instance;
         public UserInfo userinfo = new UserInfo();
 
+        public PlayerController player;
         public Transform playerParent;
         public Transform enemyParent;
-        public Canvas battleCanvas;
 
+        [Header("UI")]
+        // PlayerUI
+        public Canvas battleCanvas;
+        public PlayerHPBar playerHPBar;
+
+        [Header("Component")]
         // Component
         public BattleFactory factory;
 
+        [Header("Stage")]
         public int currentStageID = 1;
 
-        public PlayerController player;
         private List<EnemyController> liveEnemys = new List<EnemyController>();
-        // TODO : 플레이어는 하나이기 때문에 수정 필요
         private BattleState currentStats;
         private readonly Dictionary<BattleState, UnityEvent> battleEventDic
             = new Dictionary<BattleState, UnityEvent>();
@@ -184,13 +190,13 @@ namespace RPG.Battle.Core
             if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID + 1, out data))
             {
                 currentStageID += 1;
-            Debug.Log("다음스테이지 출력!");
+                Debug.Log("다음스테이지 출력!");
                 LoadStage(data);
             }
             // 없다면 승리
             else
             {
-            Debug.Log("다음스테이지 없음!");
+                Debug.Log("다음스테이지 없음!");
                 currentStats = BattleState.WIN;
             }
         }

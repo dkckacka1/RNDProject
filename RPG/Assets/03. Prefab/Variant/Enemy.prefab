@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 0}
-  hpBar: {fileID: 3510894709814263190, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
+  hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
   hpBarOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &3723077782627438012
 MonoBehaviour:
