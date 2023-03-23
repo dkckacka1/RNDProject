@@ -70,5 +70,12 @@ namespace RPG.Core
                 dic.Add(item.ID, item);
             }
         }
+
+        public static void LoadIncant(ref Dictionary<int, Incant> dic)
+        {
+            int id = 1;
+            dic.Add(id++, new Sharpness());
+            dic.Add(id++, new Fast());
+        }
     } 
 }

@@ -8,28 +8,32 @@ using RPG.Battle.Core;
 
 public class TestScene1 : MonoBehaviour
 {
-    public PlayerStatus status;
-    public BattleFactory factory;
-
-    public Transform PlayerSpawn;
-    public Transform enemySpawn;
+    public EquipmentWindowUI ui;
+    Weapon weapon;
 
     private void Start()
     {
         if(GameManager.Instance != null)
         {
-            UserInfo userinfo = new UserInfo();
+            WeaponData data = GameManager.Instance.weaponDataDic[100];
+            weapon = new Weapon(data);
+            ui.ShowEquipmentItem(weapon);
+        }
+    }
 
-            StageData data = GameManager.Instance.stageDataDic[1];
-
-            factory.CreatePlayer(userinfo, data.playerSpawnPosition);
-            //print(GameManager.Instance.enemyDataDic[1].enemyName);
-
-            foreach (var enemy in data.enemyDatas)
-            {
-                factory.CreateEnemy(GameManager.Instance.enemyDataDic[enemy.enemyID], enemy.position);
-            }
+    public void OnGUI()
+    {
+        if(GUI.Button(new Rect(10,10,200,60),"접두 인챈트 하기"))
+        {
+            weapon.Incant(1);
+            ui.ShowEquipmentItem(weapon);
         }
 
+        if (GUI.Button(new Rect(10, 80, 200, 60), "접미 인챈트 하기"))
+        {
+            weapon.Incant(2);
+            ui.ShowEquipmentItem(weapon);
+
+        }
     }
 }

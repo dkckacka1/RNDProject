@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    [CreateAssetMenu(fileName = "NewIncant", menuName = "CreateScriptableObject/CreateIncant", order = 3)]
-    public class WeaponIncant : Incant
+    public abstract class WeaponIncant : Incant
     {
-        public int ID;
+        public abstract void IncantWeapon(Weapon weapon);
+        public abstract void IncantRemove(Weapon weapon);
     }
-
 }

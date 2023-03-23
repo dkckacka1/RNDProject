@@ -35,6 +35,7 @@ namespace RPG.Core
 
         // Enemy
         public Dictionary<int, EnemyData> enemyDataDic = new Dictionary<int, EnemyData>();
+        public Dictionary<int, Incant> incantDic = new Dictionary<int, Incant>();
 
         // Equipment
         public Dictionary<int, WeaponData> weaponDataDic = new Dictionary<int, WeaponData>();
@@ -62,7 +63,7 @@ namespace RPG.Core
             LoadStageData();
 
             // TEST
-            SceneManager.LoadScene("BattleScene");
+            //SceneManager.LoadScene("BattleScene");
         }
 
         private void LoadEquipmentData()
@@ -71,6 +72,7 @@ namespace RPG.Core
             ResourcesLoader.LoadEquipmentData("Data/Armor", ref armorDataDic);
             ResourcesLoader.LoadEquipmentData("Data/Pants", ref pantsDataDic);
             ResourcesLoader.LoadEquipmentData("Data/Helmet", ref helmetDataDic);
+            ResourcesLoader.LoadIncant(ref incantDic);
         }
 
         private void LoadEnemyData()
