@@ -19,7 +19,7 @@ MonoBehaviour:
   description: "\uCCA0\uAC80"
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
   attackDamage: 25
-  attackSpeed: 1
+  attackSpeed: 2.5
   attackRange: 3.06
   movementSpeed: 2.03
   criticalChance: 0.206
