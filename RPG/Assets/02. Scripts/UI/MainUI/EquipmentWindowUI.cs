@@ -8,10 +8,13 @@ using RPG.Character.Equipment;
 
 public class EquipmentWindowUI : MonoBehaviour
 {
+    [Header("Text")]
     [SerializeField] TextMeshProUGUI equipmentName;
     [SerializeField] TextMeshProUGUI equipmentDesc;
     [SerializeField] TextMeshProUGUI equipmentStatus;
+    [SerializeField] TextMeshProUGUI equipmentReinforce;
 
+    [Header("IncantColor")]
     [SerializeField] Color suffixColor; // 접두 표현 컬러
     [SerializeField] Color prefixColor; // 접미 표현 컬러
 
@@ -59,6 +62,32 @@ public class EquipmentWindowUI : MonoBehaviour
         equipmentDesc.text = desc;
 
     }
+
+    public void ShowReinforceCount(int count)
+    {
+        if(count == 0)
+        {
+            equipmentReinforce.gameObject.SetActive(false);
+            return;
+        }
+
+        equipmentReinforce.gameObject.SetActive(true);
+        if (count < 10)
+        {
+
+        }
+        else if(count < 20)
+        {
+
+        }
+        else if(count < 30)
+        {
+
+        }
+    }
+
+    #region 장비 스텟 설명 부분
+
 
     public void ShowItemStatus(Weapon weapon)
     {
@@ -108,5 +137,8 @@ public class EquipmentWindowUI : MonoBehaviour
 
 
         equipmentStatus.text = status;
-    }
+    } 
+    #endregion
+
+
 }

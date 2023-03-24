@@ -22,6 +22,6 @@ public abstract class Incant
 
     public string ShowDesc(Color baseColor)
     {
-        return $"{name}\t: {MyUtility.returnColorText(addDesc,Color.green,baseColor)} {MyUtility.returnColorText(minusDesc, Color.red, baseColor)}";
+        return $"{name}\t{MyUtility.returnColorText(addDesc,Color.green,baseColor)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red, baseColor)}";
     }
 }

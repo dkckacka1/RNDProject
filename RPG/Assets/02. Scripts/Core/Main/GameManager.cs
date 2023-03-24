@@ -105,6 +105,14 @@ namespace RPG.Core
 
             int randomIndex = Random.Range(0, IncantList.Count);
             incant = IncantList[randomIndex].Value;
+
+            if(incant.itemType != type)
+            {
+                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
+                incant = null;
+                return false;
+            }
+
             return true;
         }
 
@@ -123,6 +131,14 @@ namespace RPG.Core
 
             int randomIndex = Random.Range(0, IncantList.Count);
             incant = IncantList[randomIndex].Value;
+
+            if (incant.itemType != type)
+            {
+                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
+                incant = null;
+                return false;
+            }
+
             return true;
         }
     }

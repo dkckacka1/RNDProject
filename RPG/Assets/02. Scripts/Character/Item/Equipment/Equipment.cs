@@ -117,5 +117,15 @@ namespace RPG.Character.Equipment
         {
             return (prefix != null || suffix != null);
         }
+
+        public bool isReinforce()
+        {
+            return !(reinforceCount == 0);
+        }
+
+        public virtual void reinforceItem()
+        {
+            reinforceCount++;
+        }
     }
 }

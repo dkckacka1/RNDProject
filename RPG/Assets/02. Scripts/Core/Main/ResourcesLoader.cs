@@ -74,8 +74,14 @@ namespace RPG.Core
         public static void LoadIncant(ref Dictionary<int, Incant> dic)
         {
             int id = 1;
-            dic.Add(id++, new Sharpness());
-            dic.Add(id++, new Fast());
+            dic.Add(id++, new Sharpness_Weapon());
+            dic.Add(id++, new Fast_Weapon());
+            dic.Add(id++, new Hard_Armor());
+            dic.Add(id++, new Smooth_Armor());
+            dic.Add(id++, new Balanced_Helemt());
+            dic.Add(id++, new Spakling_Helmet());
+            dic.Add(id++, new Heavy_Pants());
+            dic.Add(id++, new Quick_Pants());
         }
     } 
 }

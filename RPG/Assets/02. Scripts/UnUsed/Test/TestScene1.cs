@@ -85,5 +85,15 @@ public class TestScene1 : MonoBehaviour
             item.RemoveAllIncant();
             ui.ShowEquipmentItem(item);
         }
+
+        if (GUI.Button(new Rect(10, 500, 200, 60), "강화 하기"))
+        {
+            ui.ShowEquipmentItem(item);
+        }
+
+        if (GUI.Button(new Rect(10, 570, 200, 60), "모든 강화 수치 지우기"))
+        {
+            ui.ShowEquipmentItem(item);
+        }
     }
 }

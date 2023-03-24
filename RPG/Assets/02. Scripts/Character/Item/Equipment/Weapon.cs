@@ -29,7 +29,5 @@ namespace RPG.Character.Equipment
             criticalDamage = data.criticalDamage;
             attackChance = data.attackChance;
         }
-
-        
     }
 }
