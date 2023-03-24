@@ -6,8 +6,8 @@ namespace RPG.Character.Equipment
 {
     public class Armor : Equipment
     {
-        public int defencePoint;
         public int hpPoint;
+        public int defencePoint;
         public float movementSpeed;
         public float evasionPoint;
 

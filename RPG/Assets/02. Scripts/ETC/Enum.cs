@@ -34,7 +34,6 @@ public enum EquipmentItemType
     Armor,
     Pants,
     Helmet,
-    Accessory
 }
 
 // 장비아이템 등급

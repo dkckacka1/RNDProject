@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using RPG.Character.Equipment;
@@ -28,6 +29,7 @@ namespace RPG.Core
 
         // Info
         public UserInfo userInfo = new UserInfo();
+        public PlayerStatus status;
 
         #region DIC
         //Stage
@@ -66,6 +68,8 @@ namespace RPG.Core
             //SceneManager.LoadScene("BattleScene");
         }
 
+        #region Method_LoadData
+
         private void LoadEquipmentData()
         {
             ResourcesLoader.LoadEquipmentData("Data/Weapon", ref weaponDataDic);
@@ -83,6 +87,43 @@ namespace RPG.Core
         private void LoadStageData()
         {
             ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
+        } 
+        #endregion
+
+        public bool GachaIncat(EquipmentItemType type, out Incant incant)
+        {
+            var IncantList = incantDic
+                            .Where(item => item.Value.itemType == type)
+                            .ToList();
+
+            if (IncantList.Count == 0)
+            {
+                Debug.Log("알맞는 인챈트가 없습니다.");
+                incant = null;
+                return false;
+            }
+
+            int randomIndex = Random.Range(0, IncantList.Count);
+            incant = IncantList[randomIndex].Value;
+            return true;
+        }
+
+        public bool GachaIncat(EquipmentItemType type, IncantType incantType, out Incant incant)
+        {
+            var IncantList = incantDic
+                            .Where(item => item.Value.itemType == type && item.Value.incantType == incantType)
+                            .ToList();
+
+            if (IncantList.Count == 0)
+            {
+                Debug.Log("알맞는 인챈트가 없습니다.");
+                incant = null;
+                return false;
+            }
+
+            int randomIndex = Random.Range(0, IncantList.Count);
+            incant = IncantList[randomIndex].Value;
+            return true;
         }
     }
 }
