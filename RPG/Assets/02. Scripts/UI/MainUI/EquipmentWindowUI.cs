@@ -11,7 +11,6 @@ public class EquipmentWindowUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI equipmentDesc;
     [SerializeField] TextMeshProUGUI equipmentStatus;
 
-    // TODO : 표현식에 컬러 표시하기
     [SerializeField] Color suffixColor; // 접두 표현 컬러
     [SerializeField] Color prefixColor; // 접미 표현 컬러
 
