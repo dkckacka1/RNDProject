@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
 
-public class Fast : WeaponIncant
+public class Fast : Incant
 {
     public Fast()
     {
         incantType = IncantType.suffix;
         itemType = EquipmentItemType.Weapon;
         name = "신속의 ";
-        desc = "공격속도를을 1 만큼 증가시킵니다.";
+        addDesc = "공격속도 +1";
+        minusDesc = "공격력 -1";
     }
 
-    public override void IncantRemove(Weapon weapon)
+    public override void IncantEquipment(Equipment equipment)
     {
-        weapon.attackSpeed += 1f;
+        Weapon weapon = equipment as Weapon;
+
+        weapon.attackSpeed += 1;
+        weapon.attackDamage -= 1;
     }
 
-    public override void IncantWeapon(Weapon weapon)
+    public override void RemoveIncant(Equipment equipment)
     {
-        weapon.attackSpeed -= 1f;
+        Weapon weapon = equipment as Weapon;
+
+        weapon.attackSpeed -= 1;
+        weapon.attackDamage += 1;
     }
 }
