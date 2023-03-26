@@ -65,6 +65,10 @@ namespace RPG.Core
             LoadStageData();
 
             // TEST
+            this.userInfo = CreateUserInfo();
+            SetStatus(userInfo);
+
+            // TEST
             //SceneManager.LoadScene("BattleScene");
         }
 
@@ -87,8 +91,97 @@ namespace RPG.Core
         private void LoadStageData()
         {
             ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
-        } 
+        }
         #endregion
+
+        public void SetStatus(UserInfo userInfo)
+        {
+            WeaponData w_data;
+            ArmorData a_data;
+            HelmetData h_data;
+            PantsData p_data;
+            weaponDataDic.TryGetValue(userInfo.lastedWeapon, out w_data);
+            armorDataDic.TryGetValue(userInfo.lastedArmor, out a_data);
+            helmetDataDic.TryGetValue(userInfo.lastedHelmet, out h_data);
+            pantsDataDic.TryGetValue(userInfo.lastedPants, out p_data);
+
+
+
+            if (w_data)
+            {
+                Weapon weapon = new Weapon(w_data);
+                status.EquipItem(weapon);
+            }
+            else
+                Debug.LogError("Weapon is null");
+
+            if (a_data)
+            {
+                Armor armor = new Armor(a_data);
+                status.EquipItem(armor);
+            }
+            else
+                Debug.LogError("Armor is null");
+
+
+            if (h_data)
+            {
+                Helmet helmet = new Helmet(h_data);
+                status.EquipItem(helmet);
+            }
+            else
+                Debug.LogError("Helmet is null");
+
+
+            if (p_data)
+            {
+                Pants pants = new Pants(p_data);
+                status.EquipItem(pants);
+            }
+            else
+                Debug.LogError("Pants is null");
+
+
+            status.Initialize();
+        }
+
+        #region UserInfo
+        public UserInfo CreateUserInfo()
+        {
+            UserInfo userInfo = new UserInfo();
+            userInfo.equipmentReinforcement = 0;
+            userInfo.equipmentIncant = 0;
+            userInfo.equipmentticket = 0;
+
+            userInfo.lastedWeapon = 100;
+            userInfo.weaponReinforceCount = 0;
+            userInfo.weaponprefixIncant = -1;
+            userInfo.weaponSuffixIncant = -1;
+
+            userInfo.lastedArmor = 200;
+            userInfo.armorReinforceCount = 0;
+            userInfo.armorprefixIncan = -1;
+            userInfo.armorSuffixIncan = -1;
+
+            userInfo.lastedHelmet = 300;
+            userInfo.helmetReinforceCount = 0;
+            userInfo.helmetprefixIncan = -1;
+            userInfo.helmetSuffixIncan = -1;
+            userInfo.lastedPants = 400;
+            userInfo.pantsReinforceCount = 0;
+            userInfo.pantsprefixIncan = -1;
+            userInfo.pantsSuffixIncan = -1;
+
+            return userInfo;
+        }
+
+        // TODO : 외부에서 Userinfo를 불러오는 함수 작성필요
+        public UserInfo LoadUserInfo(string path)
+        {
+            return null;
+        }
+        #endregion
+
 
         public bool GachaIncat(EquipmentItemType type, out Incant incant)
         {

@@ -30,13 +30,18 @@ namespace RPG.Character.Status
             currentWeapon = weapon;
             Instantiate(currentWeapon.weaponLook, weaponHandle);
 
-            attackDamage = currentWeapon.attackDamage;
-            attackRange = currentWeapon.attackRange;
-            attackSpeed = currentWeapon.attackSpeed;
-            movementSpeed = currentWeapon.movementSpeed;
-            criticalChance = currentWeapon.criticalChance;
-            criticalDamage = currentWeapon.criticalDamage;
-            attackChance = currentWeapon.attackChance;
+            SetWeapon();
+        }
+
+        private void SetWeapon()
+        {
+            attackDamage += currentWeapon.attackDamage;
+            attackRange += currentWeapon.attackRange;
+            attackSpeed += currentWeapon.attackSpeed;
+            movementSpeed += currentWeapon.movementSpeed;
+            criticalChance += currentWeapon.criticalChance;
+            criticalDamage += currentWeapon.criticalDamage;
+            attackChance += currentWeapon.attackChance;
         }
 
         public void EquipItem(Armor armor)

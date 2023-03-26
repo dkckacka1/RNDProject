@@ -29,5 +29,16 @@ namespace RPG.Character.Equipment
             criticalDamage = data.criticalDamage;
             attackChance = data.attackChance;
         }
+
+        public override void UpdateReinfoce()
+        {
+            attackDamage = (data as WeaponData).attackDamage + (int)((data as WeaponData).attackDamage * 0.1 * reinforceCount);
+            attackSpeed = (data as WeaponData).attackSpeed;
+            attackRange = (data as WeaponData).attackRange;
+            movementSpeed = (data as WeaponData).movementSpeed;
+            criticalChance = (data as WeaponData).criticalChance;
+            criticalDamage = (data as WeaponData).criticalDamage;
+            attackChance = (data as WeaponData).attackChance;
+        }
     }
 }

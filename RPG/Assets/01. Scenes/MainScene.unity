@@ -1915,6 +1915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a62b03c8020c4a479cf72859e3b7345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
 --- !u!4 &761395655
 Transform:
   m_ObjectHideFlags: 0
@@ -2963,6 +2964,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
     - {fileID: -3547984684722416041, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
+    - {fileID: 7051127263331252068, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
 --- !u!1001 &1082778085
 PrefabInstance:

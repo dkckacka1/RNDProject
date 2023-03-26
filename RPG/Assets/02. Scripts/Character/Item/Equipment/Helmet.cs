@@ -18,5 +18,14 @@ namespace RPG.Character.Equipment
             decreseCriticalDamage = data.decreseCriticalDamage;
             evasionCritical = data.evasionCritical;
         }
+
+        public override void UpdateReinfoce()
+        {
+            
+            defencePoint = (data as HelmetData).defencePoint + (int)((data as HelmetData).defencePoint * 0.1 * reinforceCount);
+            hpPoint = (data as HelmetData).hpPoint + (int)((data as HelmetData).hpPoint * 0.1 * reinforceCount);
+            decreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
+            evasionCritical = (data as HelmetData).evasionCritical;
+        }
     }
 }

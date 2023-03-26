@@ -18,5 +18,13 @@ namespace RPG.Character.Equipment
             movementSpeed = data.movementSpeed;
             evasionPoint = data.evasionPoint;
         }
+
+        public override void UpdateReinfoce()
+        {
+            defencePoint = (data as ArmorData).defencePoint + (int)((data as ArmorData).defencePoint * 0.1 * reinforceCount);
+            hpPoint = (data as ArmorData).hpPoint + (int)((data as ArmorData).hpPoint * 0.1 * reinforceCount);
+            movementSpeed = (data as ArmorData).movementSpeed;
+            evasionPoint = (data as ArmorData).evasionPoint;
+        }
     } 
 }

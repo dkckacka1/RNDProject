@@ -5,6 +5,7 @@ using RPG.Character.Status;
 using RPG.Character.Equipment;
 using RPG.Core;
 using RPG.Battle.Core;
+using RPG.Main.UI;
 
 public class TestScene1 : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class TestScene1 : MonoBehaviour
 
     private void Start()
     {
+        ui.Init(GameManager.Instance.status);
+
         if(GameManager.Instance != null)
         {
             WeaponData weaponData = GameManager.Instance.weaponDataDic[100];
@@ -88,11 +91,13 @@ public class TestScene1 : MonoBehaviour
 
         if (GUI.Button(new Rect(10, 500, 200, 60), "강화 하기"))
         {
+            item.ReinforceItem();
             ui.ShowEquipmentItem(item);
         }
 
         if (GUI.Button(new Rect(10, 570, 200, 60), "모든 강화 수치 지우기"))
         {
+            item.RemoveReinforce();
             ui.ShowEquipmentItem(item);
         }
     }

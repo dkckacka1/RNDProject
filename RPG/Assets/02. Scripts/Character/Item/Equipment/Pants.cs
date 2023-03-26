@@ -16,5 +16,12 @@ namespace RPG.Character.Equipment
             hpPoint = data.hpPoint;
             movementSpeed = data.movementSpeed;
         }
+
+        public override void UpdateReinfoce()
+        {
+            defencePoint = (data as PantsData).defencePoint + (int)((data as PantsData).defencePoint * 0.1 * reinforceCount);
+            hpPoint = (data as PantsData).hpPoint + (int)((data as PantsData).hpPoint * 0.1 * reinforceCount);
+            movementSpeed = (data as PantsData).movementSpeed;
+        }
     }
 }

@@ -5,24 +5,28 @@ using RPG.Core;
 
 namespace RPG.Character.Equipment
 {
-    public class Equipment
+    public abstract class Equipment 
     {
-        int reinforceCount = 0;
+        public int reinforceCount = 0;
         public string itemName;
         public EquipmentItemType equipmentType;
         public EquipmentItemTier equipmentTier;
         public string description;
+
+        protected EquipmentData data;
 
         public Incant prefix;
         public Incant suffix;
 
         public Equipment(EquipmentData data)
         {
+            this.data = data;
             itemName = data.EquipmentName;
             equipmentType = data.equipmentType;
             equipmentTier = data.equipmentTier;
             description = data.description;
         }
+        #region Incant
 
         public void Incant(int incantID)
         {
@@ -116,16 +120,43 @@ namespace RPG.Character.Equipment
         public bool isIncant()
         {
             return (prefix != null || suffix != null);
-        }
+        } 
+        #endregion
 
         public bool isReinforce()
         {
             return !(reinforceCount == 0);
         }
 
-        public virtual void reinforceItem()
+        public void ReinforceItem()
         {
             reinforceCount++;
         }
+
+        public void RemoveReinforce()
+        {
+            reinforceCount = 0;
+        }
+
+        public void UpdateItem()
+        {
+            UpdateReinfoce();
+            UpdateIncant();
+        }
+
+        public void UpdateIncant()
+        {
+            if (prefix != null)
+            {
+                prefix.IncantEquipment(this);
+            }
+
+            if (suffix != null)
+            {
+                suffix.IncantEquipment(this);
+            }
+        }
+
+        public abstract void UpdateReinfoce();
     }
 }

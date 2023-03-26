@@ -6,18 +6,31 @@ namespace RPG.Core
 {
     public class UserInfo
     {
-        int equipmentReinforcement = 0; // 장비 강화권
-        int equipmentIncant = 0; // 장비 인챈트권
-        int equipmentticket = 0; // 장비 뽑기권
+        public int equipmentReinforcement; // 장비 강화권
+        public int equipmentIncant; // 장비 인챈트권
+        public int equipmentticket; // 장비 뽑기권
 
         // Weapon
-        public int lastedWeapon = 100;
+        public int lastedWeapon;
+        public int weaponReinforceCount;
+        public int weaponprefixIncant;
+        public int weaponSuffixIncant;
         // Armor
-        public int lastedArmor = 200;
+        public int lastedArmor;
+        public int armorReinforceCount;
+        public int armorprefixIncan;
+        public int armorSuffixIncan;
         // Helmet
-        public int lastedHelmet = 300;
+        public int lastedHelmet;
+        public int helmetReinforceCount;
+        public int helmetprefixIncan;
+        public int helmetSuffixIncan;
+
         // Pants
-        public int lastedPants = 400;
+        public int lastedPants;
+        public int pantsReinforceCount;
+        public int pantsprefixIncan;
+        public int pantsSuffixIncan;
     }
 
 }

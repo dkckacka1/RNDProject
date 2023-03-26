@@ -82,6 +82,7 @@ namespace RPG.Core
             dic.Add(id++, new Spakling_Helmet());
             dic.Add(id++, new Heavy_Pants());
             dic.Add(id++, new Quick_Pants());
+            dic.Add(id++, new Heavy_Weapon());
         }
     } 
 }
