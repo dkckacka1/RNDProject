@@ -6,9 +6,9 @@ namespace RPG.Core
 {
     public class UserInfo
     {
-        public int equipmentReinforcement; // 장비 강화권
-        public int equipmentIncant; // 장비 인챈트권
-        public int equipmentticket; // 장비 뽑기권
+        public int itemReinforceCount; // 장비 강화권
+        public int itemIncantCount; // 장비 인챈트권
+        public int itemGachaTicket; // 장비 뽑기권
         public int risingTopCount;
 
         // Weapon

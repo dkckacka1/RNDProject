@@ -105,8 +105,6 @@ namespace RPG.Core
             helmetDataDic.TryGetValue(userInfo.lastedHelmet, out h_data);
             pantsDataDic.TryGetValue(userInfo.lastedPants, out p_data);
 
-
-
             if (w_data)
             {
                 Weapon weapon = new Weapon(w_data);
@@ -149,9 +147,9 @@ namespace RPG.Core
         public UserInfo CreateUserInfo()
         {
             UserInfo userInfo = new UserInfo();
-            userInfo.equipmentReinforcement = 0;
-            userInfo.equipmentIncant = 0;
-            userInfo.equipmentticket = 0;
+            userInfo.itemReinforceCount = 10;
+            userInfo.itemIncantCount = 10;
+            userInfo.itemGachaTicket = 10;
 
             userInfo.lastedWeapon = 100;
             userInfo.weaponReinforceCount = 0;
@@ -181,58 +179,5 @@ namespace RPG.Core
             return null;
         }
         #endregion
-
-
-        public bool GachaIncat(EquipmentItemType type, out Incant incant)
-        {
-            var IncantList = incantDic
-                            .Where(item => item.Value.itemType == type)
-                            .ToList();
-
-            if (IncantList.Count == 0)
-            {
-                Debug.Log("알맞는 인챈트가 없습니다.");
-                incant = null;
-                return false;
-            }
-
-            int randomIndex = Random.Range(0, IncantList.Count);
-            incant = IncantList[randomIndex].Value;
-
-            if(incant.itemType != type)
-            {
-                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
-                incant = null;
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool GachaIncat(EquipmentItemType type, IncantType incantType, out Incant incant)
-        {
-            var IncantList = incantDic
-                            .Where(item => item.Value.itemType == type && item.Value.incantType == incantType)
-                            .ToList();
-
-            if (IncantList.Count == 0)
-            {
-                Debug.Log("알맞는 인챈트가 없습니다.");
-                incant = null;
-                return false;
-            }
-
-            int randomIndex = Random.Range(0, IncantList.Count);
-            incant = IncantList[randomIndex].Value;
-
-            if (incant.itemType != type)
-            {
-                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
-                incant = null;
-                return false;
-            }
-
-            return true;
-        }
     }
 }

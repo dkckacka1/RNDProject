@@ -12,6 +12,7 @@ namespace RPG.Main.UI
     public class EquipmentWindowUI : MonoBehaviour
     {
         PlayerStatus status;
+        UserInfo userInfo;
         public Equipment choiceItem;
 
         [Header("Text")]
@@ -31,9 +32,16 @@ namespace RPG.Main.UI
         [SerializeField] Color reinfoce30;
         [SerializeField] Color reinfoce40;
 
-        public void Init(PlayerStatus status)
+        [Header("Buttons")]
+        [SerializeField] TextMeshProUGUI reinforceCount;
+        [SerializeField] TextMeshProUGUI incantCount;
+        [SerializeField] TextMeshProUGUI itemTicketCount;
+
+        public void Init(UserInfo userInfo, PlayerStatus status)
         {
             this.status = status;
+            this.userInfo = userInfo;
+            ShowUserScrollCount();
             ShowWeapon();
         }
 
@@ -60,6 +68,13 @@ namespace RPG.Main.UI
 
         
         #endregion
+
+        public void ShowUserScrollCount()
+        {
+            reinforceCount.text = $"X {userInfo.itemReinforceCount}";
+            incantCount.text = $"X {userInfo.itemIncantCount}";
+            itemTicketCount.text = $"X {userInfo.itemGachaTicket}";
+        }
 
         public void ShowEquipmentItem(Equipment item)
         {
