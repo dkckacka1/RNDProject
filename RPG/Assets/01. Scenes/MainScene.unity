@@ -1357,7 +1357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 353319023}
   m_Layer: 5
-  m_Name: object (1)
+  m_Name: Reinforce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a62b03c8020c4a479cf72859e3b7345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &761395655
 Transform:
   m_ObjectHideFlags: 0
@@ -1987,7 +1987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ba9fb3fa9105de143a4e8178fae7f580, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2478,7 +2478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948749625}
   m_Layer: 5
-  m_Name: object
+  m_Name: ItemGacha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3408,7 +3408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 723eda7e0e5c219468896bc084bc4854, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3436,7 +3436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214865114}
   m_Layer: 5
-  m_Name: object (2)
+  m_Name: Incant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5241,7 +5241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7f3d087440b37024c934cce4813641e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
