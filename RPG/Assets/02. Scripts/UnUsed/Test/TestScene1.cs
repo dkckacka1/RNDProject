@@ -19,7 +19,7 @@ public class TestScene1 : MonoBehaviour
 
     private void Start()
     {
-        ui.Init(GameManager.Instance.status);
+        ui.Init(GameManager.Instance.player);
 
         if(GameManager.Instance != null)
         {

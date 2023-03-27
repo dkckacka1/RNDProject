@@ -6,7 +6,7 @@ using RPG.Character.Status;
 
 public class PlayerCharacterUI : CharacterUI
 {
-    public override void Initialize(Status status)
+    public override void Initialize(BattleStatus status)
     {
         base.Initialize(status);
         InitHPUI(status.maxHp);

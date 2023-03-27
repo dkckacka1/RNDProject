@@ -12,7 +12,7 @@ namespace RPG.Battle.UI
 
         public HPBar hpBar;
 
-        public virtual void Initialize(Status status)
+        public virtual void Initialize(BattleStatus status)
         {
             battleCanvas = BattleManager.GetInstance().battleCanvas;
         }

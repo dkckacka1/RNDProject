@@ -9,6 +9,7 @@ namespace RPG.Core
         public int equipmentReinforcement; // 장비 강화권
         public int equipmentIncant; // 장비 인챈트권
         public int equipmentticket; // 장비 뽑기권
+        public int risingTopCount;
 
         // Weapon
         public int lastedWeapon;

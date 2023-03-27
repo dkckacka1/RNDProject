@@ -12,9 +12,9 @@ namespace RPG.Battle.Move
 
         Transform transform;
         NavMeshAgent nav;
-        Status status;
+        BattleStatus status;
 
-        public Movement(Transform transform, Status status, NavMeshAgent nav)
+        public Movement(Transform transform, BattleStatus status, NavMeshAgent nav)
         {
             this.transform = transform;
             this.nav = nav;

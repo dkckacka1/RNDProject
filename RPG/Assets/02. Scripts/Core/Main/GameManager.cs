@@ -29,7 +29,7 @@ namespace RPG.Core
 
         // Info
         public UserInfo userInfo = new UserInfo();
-        public PlayerStatus status;
+        public PlayerStatus player;
 
         #region DIC
         //Stage
@@ -110,7 +110,7 @@ namespace RPG.Core
             if (w_data)
             {
                 Weapon weapon = new Weapon(w_data);
-                status.EquipItem(weapon);
+                player.EquipItem(weapon);
             }
             else
                 Debug.LogError("Weapon is null");
@@ -118,7 +118,7 @@ namespace RPG.Core
             if (a_data)
             {
                 Armor armor = new Armor(a_data);
-                status.EquipItem(armor);
+                player.EquipItem(armor);
             }
             else
                 Debug.LogError("Armor is null");
@@ -127,7 +127,7 @@ namespace RPG.Core
             if (h_data)
             {
                 Helmet helmet = new Helmet(h_data);
-                status.EquipItem(helmet);
+                player.EquipItem(helmet);
             }
             else
                 Debug.LogError("Helmet is null");
@@ -136,13 +136,13 @@ namespace RPG.Core
             if (p_data)
             {
                 Pants pants = new Pants(p_data);
-                status.EquipItem(pants);
+                player.EquipItem(pants);
             }
             else
                 Debug.LogError("Pants is null");
 
 
-            status.Initialize();
+            player.Initialize();
         }
 
         #region UserInfo

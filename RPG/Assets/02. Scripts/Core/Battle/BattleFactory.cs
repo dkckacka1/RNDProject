@@ -93,7 +93,7 @@ namespace RPG.Battle.Core
             EnemyStatus status = enemy.GetComponent<EnemyStatus>();
             EnemyCharacterUI ui = enemy.GetComponent<EnemyCharacterUI>();
 
-            status.SetEnemyData(data);
+            status.SetStatus(data);
 
             GameObject looks = Instantiate(data.enemyLook, enemy.gameObject.transform);
 

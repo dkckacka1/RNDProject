@@ -12,7 +12,7 @@ namespace RPG.Main.UI
     public class EquipmentWindowUI : MonoBehaviour
     {
         PlayerStatus status;
-        Equipment choiceItem;
+        public Equipment choiceItem;
 
         [Header("Text")]
         [SerializeField] TextMeshProUGUI equipmentName;
@@ -58,23 +58,7 @@ namespace RPG.Main.UI
             ShowEquipmentItem(status.currentPants);
         }
 
-        public void IncantItem()
-        {
-            Incant incant;
-            if (GameManager.Instance.GachaIncat(choiceItem.equipmentType, out incant))
-            {
-                choiceItem.Incant(incant);
-            }
-            choiceItem.UpdateItem();
-            ShowEquipmentItem(choiceItem);
-        }
-
-        public void ReinforceItem()
-        {
-            choiceItem.ReinforceItem();
-            choiceItem.UpdateItem();
-            ShowEquipmentItem(choiceItem);
-        }
+        
         #endregion
 
         public void ShowEquipmentItem(Equipment item)

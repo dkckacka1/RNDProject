@@ -21,7 +21,7 @@ namespace RPG.Battle.Control
         public CharacterUI ui;
         public Animator animator;
         public NavMeshAgent nav;
-        public Status status;
+        public BattleStatus status;
 
         // AI State
         public StateContext stateContext;
