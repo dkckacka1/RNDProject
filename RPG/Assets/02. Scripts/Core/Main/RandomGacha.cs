@@ -8,6 +8,26 @@ namespace RPG.Core
 {
     public static class RandomGacha
     {
+        public static bool GachaRandomData<T>(Dictionary<int, EquipmentData> dic ,EquipmentItemType type, out T data, int lowerTier = 0) where T : EquipmentData
+        {
+            var tier = GetRandomTier(Random.Range(lowerTier, 101));
+
+            var list = dic
+                .Where(data => (data.Value.equipmentType == type && data.Value.equipmentTier == tier))
+                .ToList();
+
+            int getRandomIndex = Random.Range(0, list.Count);
+            if (list.Count == 0)
+            {
+                Debug.Log($"{tier}등급의 뽑을 {type}이 없습니다.");
+                data = null;
+                return false;
+            }
+
+            data = list[getRandomIndex].Value as T;
+            return true;
+        }
+
         public static bool GachaRandomData<T>(Dictionary<int, T> dic, out T data, int lowerTier = 0) where T : EquipmentData
         {
             var tier = GetRandomTier(Random.Range(lowerTier, 101));
@@ -89,7 +109,6 @@ namespace RPG.Core
 
         private static EquipmentItemTier GetRandomTier(int tex)
         {
-            Debug.Log($"내가 뽑은 확률 {tex}");
             if (tex <= 60)
             {
                 return EquipmentItemTier.Normal;

@@ -20,8 +20,8 @@ public abstract class Incant
     public abstract void IncantEquipment(Equipment equipment);
     public abstract void RemoveIncant(Equipment equipment);
 
-    public string ShowDesc(Color baseColor)
+    public string ShowDesc()
     {
-        return $"{name}\t{MyUtility.returnColorText(addDesc,Color.green,baseColor)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red, baseColor)}";
+        return $"{name}\t{MyUtility.returnColorText(addDesc,Color.green)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red)}";
     }
 }

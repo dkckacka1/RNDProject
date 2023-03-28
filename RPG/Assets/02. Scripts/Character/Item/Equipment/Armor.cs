@@ -19,6 +19,20 @@ namespace RPG.Character.Equipment
             evasionPoint = data.evasionPoint;
         }
 
+        public override void ChangeData(EquipmentData data)
+        {
+            if (!(data is ArmorData))
+            {
+                Debug.LogError("잘못된 데이타 형식입니다.");
+            }
+
+            base.ChangeData(data);
+            defencePoint = (data as ArmorData).defencePoint;
+            hpPoint = (data as ArmorData).hpPoint;
+            movementSpeed = (data as ArmorData).movementSpeed;
+            evasionPoint = (data as ArmorData).evasionPoint;
+        }
+
         public override void UpdateReinfoce()
         {
             defencePoint = (data as ArmorData).defencePoint + (int)((data as ArmorData).defencePoint * 0.1 * reinforceCount);

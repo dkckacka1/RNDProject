@@ -14,7 +14,23 @@ namespace RPG.Core
             foreach (var item in items)
             {
                 //Debug.Log(item.EquipmentName + " Loaded");
-                dic.Add(item.ID, item);
+                if (!dic.ContainsKey(item.ID))
+                {
+                    dic.Add(item.ID, item);
+                }
+                else
+                {
+                    Debug.Log("이미 인덱스 번호가 있습니다.");
+                }
+            }
+        }
+
+        public static void LoadEquipmentData(string path, ref Dictionary<int, EquipmentData> dic)
+        {
+            var list = Resources.LoadAll<EquipmentData>(path);
+            foreach (var data in list)
+            {
+                dic.Add(data.ID, data);
             }
         }
 
@@ -26,40 +42,6 @@ namespace RPG.Core
                 //Debug.Log(enemy.enemyName + "Loaded");
                 dic.Add(enemy.ID, enemy);
             }
-        }
-
-        public static T LoadEquipment<T>(string equpimentName, EquipmentItemType type)
-            where T : EquipmentData
-        {
-            string path = "Data/";
-
-            switch (type)
-            {
-                case EquipmentItemType.Weapon:
-                    path += ("Weapon/" + equpimentName);
-                    break;
-                case EquipmentItemType.Armor:
-                    path += ("Armor/" + equpimentName);
-                    break;
-                case EquipmentItemType.Pants:
-                    path += ("Pants/" + equpimentName);
-                    break;
-                case EquipmentItemType.Helmet:
-                    path += ("Helmet/" + equpimentName);
-                    break;
-                    //case EquipmentType.Accessory:
-                    //    path += ("Weapon/" + equpimentName);
-                    //    break;
-            }
-
-            T item = Resources.Load(path) as T;
-
-            if (item == null)
-            {
-                Debug.LogError("찾는 아이템이 없습니다.");
-            }
-
-            return item;
         }
 
         public static void LoadStageData(string path, ref Dictionary<int, StageData> dic)
@@ -78,7 +60,7 @@ namespace RPG.Core
             dic.Add(id++, new Fast_Weapon());
             dic.Add(id++, new Hard_Armor());
             dic.Add(id++, new Smooth_Armor());
-            dic.Add(id++, new Balanced_Helemt());
+            dic.Add(id++, new Balanced_Helmet());
             dic.Add(id++, new Spakling_Helmet());
             dic.Add(id++, new Heavy_Pants());
             dic.Add(id++, new Quick_Pants());

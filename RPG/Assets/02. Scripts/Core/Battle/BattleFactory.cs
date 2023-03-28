@@ -34,10 +34,14 @@ namespace RPG.Battle.Core
             ArmorData a_data;
             HelmetData h_data;
             PantsData p_data;
-            GameManager.Instance.weaponDataDic.TryGetValue(userinfo.lastedWeapon, out w_data);
-            GameManager.Instance.armorDataDic.TryGetValue(userinfo.lastedArmor, out a_data);
-            GameManager.Instance.helmetDataDic.TryGetValue(userinfo.lastedHelmet, out h_data);
-            GameManager.Instance.pantsDataDic.TryGetValue(userinfo.lastedPants, out p_data);
+            GameManager.Instance.GetEquipmentData(userinfo.lastedWeapon, out w_data);
+            GameManager.Instance.GetEquipmentData(userinfo.lastedArmor, out a_data);
+            GameManager.Instance.GetEquipmentData(userinfo.lastedHelmet, out h_data);
+            GameManager.Instance.GetEquipmentData(userinfo.lastedPants, out p_data);
+            //GameManager.Instance.weaponDataDic.TryGetValue(userinfo.lastedWeapon, out w_data);
+            //GameManager.Instance.armorDataDic.TryGetValue(userinfo.lastedArmor, out a_data);
+            //GameManager.Instance.helmetDataDic.TryGetValue(userinfo.lastedHelmet, out h_data);
+            //GameManager.Instance.pantsDataDic.TryGetValue(userinfo.lastedPants, out p_data);
 
 
 

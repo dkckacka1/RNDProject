@@ -19,6 +19,20 @@ namespace RPG.Character.Equipment
             evasionCritical = data.evasionCritical;
         }
 
+        public override void ChangeData(EquipmentData data)
+        {
+            if (!(data is HelmetData))
+            {
+                Debug.LogError("잘못된 데이타 형식입니다.");
+            }
+
+            base.ChangeData(data);
+            defencePoint = (data as HelmetData).defencePoint;
+            hpPoint = (data as HelmetData).hpPoint;
+            decreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
+            evasionCritical = (data as HelmetData).evasionCritical;
+        }
+
         public override void UpdateReinfoce()
         {
             

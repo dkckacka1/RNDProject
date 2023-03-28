@@ -157,7 +157,7 @@ namespace RPG.Battle.Control
             StartCoroutine(sf(4.5f));
         }
 
-        // TODO : 임시 함수 수정 필요
+        // UNDONE : 임시 함수 수정 필요
         private IEnumerator sf(float time)
         {
             yield return new WaitForSeconds(time);

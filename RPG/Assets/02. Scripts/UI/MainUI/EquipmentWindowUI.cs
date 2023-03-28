@@ -41,42 +41,42 @@ namespace RPG.Main.UI
         {
             this.status = status;
             this.userInfo = userInfo;
-            ShowUserScrollCount();
+            UpdateUserScroll();
             ShowWeapon();
         }
 
         #region ButtonPlugin
         public void ShowWeapon()
         {
-            ShowEquipmentItem(status.currentWeapon);
+            UpdateItem(status.currentWeapon);
         }
 
         public void ShowArmor()
         {
-            ShowEquipmentItem(status.currentArmor);
+            UpdateItem(status.currentArmor);
         }
 
         public void ShowHelmet()
         {
-            ShowEquipmentItem(status.currentHelmet);
+            UpdateItem(status.currentHelmet);
         }
 
         public void ShowPants()
         {
-            ShowEquipmentItem(status.currentPants);
+            UpdateItem(status.currentPants);
         }
 
         
         #endregion
 
-        public void ShowUserScrollCount()
+        public void UpdateUserScroll()
         {
             reinforceCount.text = $"X {userInfo.itemReinforceCount}";
             incantCount.text = $"X {userInfo.itemIncantCount}";
             itemTicketCount.text = $"X {userInfo.itemGachaTicket}";
         }
 
-        public void ShowEquipmentItem(Equipment item)
+        public void UpdateItem(Equipment item)
         {
             choiceItem = item;
 
@@ -107,16 +107,16 @@ namespace RPG.Main.UI
             {
                 name = "\n" + name;
             }
-            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.name, suffixColor, equipmentName.color) + name : name;
-            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.name, prefixColor, equipmentName.color) + name : name;
+            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.name, suffixColor) + name : name;
+            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.name, prefixColor) + name : name;
             equipmentName.text = name;
         }
 
         public void ShowDescText(Equipment equipment)
         {
             string desc = equipment.description;
-            desc = (equipment.prefix != null) ? $"{desc}\n{equipment.prefix.ShowDesc(equipmentDesc.color)}" : desc;
-            desc = (equipment.suffix != null) ? $"{desc}\n{equipment.suffix.ShowDesc(equipmentDesc.color)}" : desc;
+            desc = (equipment.prefix != null) ? $"{desc}\n{equipment.prefix.ShowDesc()}" : desc;
+            desc = (equipment.suffix != null) ? $"{desc}\n{equipment.suffix.ShowDesc()}" : desc;
             equipmentDesc.text = desc;
 
         }

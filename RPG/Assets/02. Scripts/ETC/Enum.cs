@@ -51,5 +51,11 @@ public enum IncantType
     suffix
 }
 
-
-
+public enum alignmentType
+{
+    left,
+    right,
+    center,
+    justified,
+    flush
+}

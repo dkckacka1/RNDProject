@@ -10,21 +10,18 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        HelmetData helmetData;
+        public MainUI ui;
 
         private void Start()
         {
-            TestClass.TestMethod();
+            ui.ShowStatusUI();
         }
 
         public void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "∞©ø  ªÃ±‚"))
+            if (GUI.Button(new Rect(10, 10, 200, 60), "¿Â∫Ò »Æ¿Œ"))
             {
-                if (RandomGacha.GachaRandomData(GameManager.Instance.helmetDataDic, out helmetData))
-                {
-                    print(helmetData.EquipmentName);
-                }
+                print(ui.equipmentUI.choiceItem.ToString());
             }
         }
     } 

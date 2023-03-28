@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using RPG.Core;
 using RPG.Character.Status;
+using RPG.Character.Equipment;
 
 namespace RPG.Main.UI
 {
@@ -39,6 +40,15 @@ namespace RPG.Main.UI
             statusUI.Init(userInfo, status);
         }
 
+        public void UpdateUI()
+        {
+            UpdateTicketCount();
+            statusUI.UpdateStatusText();
+            statusUI.UpdateUserText();
+            equipmentUI.UpdateUserScroll();
+            equipmentUI.UpdateItem(equipmentUI.choiceItem);
+        }
+
         #region ButtonPlugin
         public void SetActiveFalseUI()
         {
@@ -51,8 +61,12 @@ namespace RPG.Main.UI
         {
             equipmentUI.gameObject.SetActive(true);
             statusUI.gameObject.SetActive(true);
-            backButton.gameObject.SetActive(true);
             Init(status, userinfo);
+            if (backButton == null)
+            {
+                return;
+            }
+            backButton.gameObject.SetActive(true);
         }
 
         public void IncantItem()
@@ -70,13 +84,9 @@ namespace RPG.Main.UI
                 equipmentUI.choiceItem.Incant(incant);
             }
 
-            UpdateTicketCount();
             equipmentUI.choiceItem.UpdateItem();
             status.SetEquipment();
-            statusUI.UpdateStatusText();
-            statusUI.UpdateUserText();
-            equipmentUI.ShowUserScrollCount();
-            equipmentUI.ShowEquipmentItem(equipmentUI.choiceItem);
+            UpdateUI();
         }
 
         public void ReinforceItem()
@@ -87,23 +97,82 @@ namespace RPG.Main.UI
             }
 
             userinfo.itemReinforceCount--;
-
-            UpdateTicketCount();
             equipmentUI.choiceItem.ReinforceItem();
+
             equipmentUI.choiceItem.UpdateItem();
             status.SetEquipment();
-            statusUI.UpdateStatusText();
-            statusUI.UpdateUserText();
-            equipmentUI.ShowUserScrollCount();
-            equipmentUI.ShowEquipmentItem(equipmentUI.choiceItem);
+            UpdateUI();
+        }
+
+        public void GachaItem()
+        {
+            if (userinfo.itemGachaTicket <= 0)
+            {
+                return;
+            }
+
+            userinfo.itemGachaTicket--;
+            EquipmentItemType type = equipmentUI.choiceItem.equipmentType;
+            switch (type)
+            {
+                case EquipmentItemType.Weapon:
+                    {
+                        WeaponData data;
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        {
+                            status.currentWeapon.ChangeData(data);
+                            status.currentWeapon.UpdateItem();
+
+                        }
+                    }
+
+                    break;
+                case EquipmentItemType.Armor:
+                    {
+                        ArmorData data;
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        {
+                            status.currentArmor.ChangeData(data);
+                            status.currentArmor.UpdateItem();
+                        }
+                    }
+                    break;
+                case EquipmentItemType.Pants:
+                    {
+                        PantsData data;
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        {
+                            status.currentPants.ChangeData(data);
+                            status.currentPants.UpdateItem();
+                        }
+                    }
+                    break;
+                case EquipmentItemType.Helmet:
+                    {
+                        HelmetData data;
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        {
+                            status.currentHelmet.ChangeData(data);
+                            status.currentHelmet.UpdateItem();
+                        }
+                    }
+                    break;
+            }
+            status.SetEquipment();
+            UpdateUI();
         }
         #endregion
 
         public void UpdateTicketCount()
         {
+            if (reinforceCount == null)
+            {
+                return;
+            }
             this.itemGachaTicketCount.text = $"»Ì±â±Ç : {userinfo.itemGachaTicket}";
             this.reinforceCount.text = $"°­È­±Ç : {userinfo.itemReinforceCount}";
             this.incantCount.text = $"ÀÎÃ¦Æ®±Ç : {userinfo.itemIncantCount}";
         }
+
     }
 }

@@ -5,7 +5,7 @@ using RPG.Core;
 
 namespace RPG.Character.Equipment
 {
-    public abstract class Equipment 
+    public abstract class Equipment
     {
         public int reinforceCount = 0;
         public string itemName;
@@ -13,7 +13,7 @@ namespace RPG.Character.Equipment
         public EquipmentItemTier equipmentTier;
         public string description;
 
-        protected EquipmentData data;
+        public EquipmentData data;
 
         public Incant prefix;
         public Incant suffix;
@@ -26,6 +26,19 @@ namespace RPG.Character.Equipment
             equipmentTier = data.equipmentTier;
             description = data.description;
         }
+
+        public virtual void ChangeData(EquipmentData data)
+        {
+            RemoveAllIncant();
+            reinforceCount = 0;
+
+            this.data = data;
+            itemName = data.EquipmentName;
+            equipmentType = data.equipmentType;
+            equipmentTier = data.equipmentTier;
+            description = data.description;
+        }
+
         #region Incant
 
         public void Incant(int incantID)
@@ -120,7 +133,7 @@ namespace RPG.Character.Equipment
         public bool isIncant()
         {
             return (prefix != null || suffix != null);
-        } 
+        }
         #endregion
 
         public bool isReinforce()
@@ -158,5 +171,15 @@ namespace RPG.Character.Equipment
         }
 
         public abstract void UpdateReinfoce();
+
+        public override string ToString()
+        {
+            return $"장비이름 : {itemName}\n" +
+                $"장비티어 : {equipmentTier}\n" +
+                $"장비유형 : {equipmentType}\n" +
+                $"접두인챈트 : {(prefix != null ? prefix.name : "없음")}\n" +
+                $"접미인챈트 : {(suffix != null ? suffix.name : "없음")}";
+        }
     }
+
 }

@@ -40,10 +40,7 @@ namespace RPG.Core
         public Dictionary<int, Incant> incantDic = new Dictionary<int, Incant>();
 
         // Equipment
-        public Dictionary<int, WeaponData> weaponDataDic = new Dictionary<int, WeaponData>();
-        public Dictionary<int, ArmorData> armorDataDic = new Dictionary<int, ArmorData>();
-        public Dictionary<int, HelmetData> helmetDataDic = new Dictionary<int, HelmetData>();
-        public Dictionary<int, PantsData> pantsDataDic = new Dictionary<int, PantsData>();
+        public Dictionary<int, EquipmentData> EquipmentDataDic = new Dictionary<int, EquipmentData>();
         #endregion
 
 
@@ -76,10 +73,7 @@ namespace RPG.Core
 
         private void LoadEquipmentData()
         {
-            ResourcesLoader.LoadEquipmentData("Data/Weapon", ref weaponDataDic);
-            ResourcesLoader.LoadEquipmentData("Data/Armor", ref armorDataDic);
-            ResourcesLoader.LoadEquipmentData("Data/Pants", ref pantsDataDic);
-            ResourcesLoader.LoadEquipmentData("Data/Helmet", ref helmetDataDic);
+            ResourcesLoader.LoadEquipmentData("Data/", ref EquipmentDataDic);
             ResourcesLoader.LoadIncant(ref incantDic);
         }
 
@@ -100,10 +94,10 @@ namespace RPG.Core
             ArmorData a_data;
             HelmetData h_data;
             PantsData p_data;
-            weaponDataDic.TryGetValue(userInfo.lastedWeapon, out w_data);
-            armorDataDic.TryGetValue(userInfo.lastedArmor, out a_data);
-            helmetDataDic.TryGetValue(userInfo.lastedHelmet, out h_data);
-            pantsDataDic.TryGetValue(userInfo.lastedPants, out p_data);
+            GetEquipmentData(userInfo.lastedWeapon, out w_data);
+            GetEquipmentData(userInfo.lastedArmor, out a_data);
+            GetEquipmentData(userInfo.lastedHelmet, out h_data);
+            GetEquipmentData(userInfo.lastedPants, out p_data);
 
             if (w_data)
             {
@@ -173,11 +167,30 @@ namespace RPG.Core
             return userInfo;
         }
 
-        // TODO : 외부에서 Userinfo를 불러오는 함수 작성필요
         public UserInfo LoadUserInfo(string path)
         {
             return null;
         }
         #endregion
+
+        public bool GetEquipmentData<T>(int id,out T sourceData) where T : EquipmentData
+        {
+            EquipmentData data;
+            if (!EquipmentDataDic.TryGetValue(id, out data))
+            {
+                Debug.LogError("찾는 데이터가 없습니다.");
+                sourceData = null;
+                return false;
+            }
+
+            sourceData = data as T;
+            if (sourceData == null)
+            {
+                Debug.LogError("찾은 데이터가 잘못된 데이터입니다.");
+                return false;
+            }
+
+            return true;
+        }
     }
 }
