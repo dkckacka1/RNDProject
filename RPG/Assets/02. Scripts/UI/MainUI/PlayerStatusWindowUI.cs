@@ -47,7 +47,8 @@ namespace RPG.Main.UI
                 $"{status.currentPants.itemName} " +
                 $"{((status.currentPants.reinforceCount > 0) ? $"(+{status.currentPants.reinforceCount})" : "")}";
 
-            userText.text = $"{MyUtility.returnSideText("최대 층 수 : ", userInfo.risingTopCount.ToString() + "층")}\n" +
+            userText.text = $"" +
+                $"{MyUtility.returnSideText("최대 층 수 : ", userInfo.risingTopCount.ToString() + "층")}\n" +
                 $"{MyUtility.returnSideText("무기 :", weaponName)}\n" +
                 $"{MyUtility.returnSideText("아머 :", armorName)}\n" +
                 $"{MyUtility.returnSideText("투구 :", helmetName)}\n" +
@@ -65,12 +66,12 @@ namespace RPG.Main.UI
                 $"{MyUtility.returnSideText("치명타 데미지 :", $"기본 공격력의 {status.criticalDamage * 100}%")}\n" +
                 $"{MyUtility.returnSideText("이동 속도 :", status.movementSpeed.ToString())}\n";
 
-            // TODO
-            defenceStatusText.text = $"최대 체력\t{status.maxHp}\n" +
-                $"방어력\t{status.defencePoint}\n" +
-                $"회피율\t{status.evasionPoint * 100}%\n" +
-                $"치명타 회피율\t{status.evasionCritical * 100}%\n" +
-                $"치명타 데미지 감소\t{status.decreseCriticalDamage * 100}% 감소";
+            defenceStatusText.text = $"" +
+                $"{MyUtility.returnSideText("체력 :", status.maxHp.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 :", status.defencePoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("회피율 :", $"{status.evasionPoint * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 회피율 :", $"{status.evasionCritical * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 감소 :", $"{status.decreseCriticalDamage * 100}% 감소")}"; ;
         }
     }
 }

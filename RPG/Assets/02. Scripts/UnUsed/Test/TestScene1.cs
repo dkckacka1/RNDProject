@@ -14,15 +14,10 @@ namespace RPG.Core
 
         private void Start()
         {
-            ui.ShowStatusUI();
         }
 
         public void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "장비 확인"))
-            {
-                print(ui.equipmentUI.choiceItem.ToString());
-            }
         }
     } 
 }

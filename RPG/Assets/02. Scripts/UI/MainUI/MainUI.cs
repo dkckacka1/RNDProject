@@ -25,8 +25,8 @@ namespace RPG.Main.UI
 
         private void Start()
         {
-            userinfo = GameManager.Instance.userInfo;
-            status = GameManager.Instance.player;
+            userinfo = GameManager.Instance.UserInfo;
+            status = GameManager.Instance.Player;
             Init(status, userinfo);
             UpdateTicketCount();
 

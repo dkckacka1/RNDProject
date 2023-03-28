@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5ec814b363cc64e86760bf7c6c41c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 02870ff26392ae64680fe1f5d28e2701, type: 3}
   m_Name: IronWeapon
   m_EditorClassIdentifier: 
   ID: 100
-  EquipmentName: "\uCCA0\uAC80"
+  EquipmentName: "\uCCA0 \uAC80"
   equipmentType: 0
   equipmentTier: 0
-  description: "\uB2E8\uC21C\uD55C \uCCA0\uB85C\uB9CC\uB4E0 \uAC80\uC785\uB2C8\uB2E4."
+  description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uAC80\uC785\uB2C8\uB2E4."
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
   attackDamage: 10
   attackSpeed: 1
-  attackRange: 3
-  movementSpeed: 1
+  attackRange: 2
+  movementSpeed: 1.5
   criticalChance: 0.1
   criticalDamage: 0.1
-  attackChance: 1
+  attackChance: 0.9

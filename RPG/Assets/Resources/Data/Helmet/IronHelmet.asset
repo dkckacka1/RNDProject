@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15313cb267ee242409a1e5d761bd41a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1be1ee78267dee74a984f6c6e4d28d30, type: 3}
   m_Name: IronHelmet
   m_EditorClassIdentifier: 
   ID: 301
   EquipmentName: "\uCCA0 \uD22C\uAD6C"
   equipmentType: 3
   equipmentTier: 1
-  description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD22C\uAD6C\uC785\uB2C8\uB2E4."
-  defencePoint: 12
+  description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uD22C\uAD6C\uC785\uB2C8\uB2E4."
+  defencePoint: 8
   hpPoint: 50
-  decreseCriticalDamage: 0
+  decreseCriticalDamage: 0.1
   evasionCritical: 0

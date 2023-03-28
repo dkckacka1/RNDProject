@@ -109,7 +109,7 @@ namespace RPG.Battle.Core
 
         private void Start()
         {
-            userinfo = GameManager.Instance.userInfo;
+            userinfo = GameManager.Instance.UserInfo;
             LoadStage(currentStageID);
             CurrentStats = BattleState.BATTLE;
         }

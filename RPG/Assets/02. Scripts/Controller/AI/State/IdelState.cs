@@ -1,4 +1,5 @@
-﻿using RPG.Battle.Control;
+﻿
+using RPG.Battle.Control;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

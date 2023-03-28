@@ -27,9 +27,40 @@ namespace RPG.Core
             }
         }
 
+
+
         // Info
-        public UserInfo userInfo = new UserInfo();
-        public PlayerStatus player;
+        private UserInfo userInfo;
+        [SerializeField] private PlayerStatus player;
+
+        // Encapsule
+        public UserInfo UserInfo
+        {
+            get
+            {
+                if (userInfo == null)
+                {
+                    Debug.LogError("Userinfo가 NULL 입니다.");
+                    return null;
+                }
+                return userInfo;
+            }
+            set => userInfo = value;
+        }
+
+        public PlayerStatus Player 
+        {
+            get
+            { 
+                if(player == null)
+                {
+                    Debug.LogError("PlayerStatus 가 NULL입니다.");
+                    return null;
+                }
+                return player;
+            }
+            set => player = value; 
+        }
 
         #region DIC
         //Stage
@@ -102,7 +133,7 @@ namespace RPG.Core
             if (w_data)
             {
                 Weapon weapon = new Weapon(w_data);
-                player.EquipItem(weapon);
+                Player.EquipItem(weapon);
             }
             else
                 Debug.LogError("Weapon is null");
@@ -110,7 +141,7 @@ namespace RPG.Core
             if (a_data)
             {
                 Armor armor = new Armor(a_data);
-                player.EquipItem(armor);
+                Player.EquipItem(armor);
             }
             else
                 Debug.LogError("Armor is null");
@@ -119,7 +150,7 @@ namespace RPG.Core
             if (h_data)
             {
                 Helmet helmet = new Helmet(h_data);
-                player.EquipItem(helmet);
+                Player.EquipItem(helmet);
             }
             else
                 Debug.LogError("Helmet is null");
@@ -128,13 +159,13 @@ namespace RPG.Core
             if (p_data)
             {
                 Pants pants = new Pants(p_data);
-                player.EquipItem(pants);
+                Player.EquipItem(pants);
             }
             else
                 Debug.LogError("Pants is null");
 
 
-            player.Initialize();
+            Player.Initialize();
         }
 
         #region UserInfo
@@ -159,11 +190,13 @@ namespace RPG.Core
             userInfo.helmetReinforceCount = 0;
             userInfo.helmetprefixIncan = -1;
             userInfo.helmetSuffixIncan = -1;
+
             userInfo.lastedPants = 400;
             userInfo.pantsReinforceCount = 0;
             userInfo.pantsprefixIncan = -1;
             userInfo.pantsSuffixIncan = -1;
 
+            Debug.Log("Userinfo 생성");
             return userInfo;
         }
 

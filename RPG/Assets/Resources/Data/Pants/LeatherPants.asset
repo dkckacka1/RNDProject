@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7834aa173d521244299e87b0b322d5a2, type: 3}
+  m_Script: {fileID: 11500000, guid: d647bec9c26d09044a014323ce3d47b4, type: 3}
   m_Name: LeatherPants
   m_EditorClassIdentifier: 
   ID: 400
-  EquipmentName: "\uAC00\uC8FD\uBC14\uC9C0"
+  EquipmentName: "\uAC00\uC8FD \uBC14\uC9C0"
   equipmentType: 2
   equipmentTier: 0
-  description: "\uAC00\uC8FD\uBC14\uC9C0"
-  defencePoint: 5
+  description: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uBC14\uC9C0\uC785\uB2C8\uB2E4."
+  defencePoint: 3
   hpPoint: 50
-  movementSpeed: 0.1
+  movementSpeed: 0.25

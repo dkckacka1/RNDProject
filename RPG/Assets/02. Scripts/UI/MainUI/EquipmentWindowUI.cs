@@ -66,11 +66,24 @@ namespace RPG.Main.UI
             UpdateItem(status.currentPants);
         }
 
-        
+
         #endregion
 
         public void UpdateUserScroll()
         {
+            if (reinforceCount == null)
+            {
+                Debug.LogError("UI 미적용");
+                return;
+            }
+
+            if (userInfo == null)
+            {
+                Debug.LogError("userinfo 없음!");
+                return;
+            }
+
+
             reinforceCount.text = $"X {userInfo.itemReinforceCount}";
             incantCount.text = $"X {userInfo.itemIncantCount}";
             itemTicketCount.text = $"X {userInfo.itemGachaTicket}";
@@ -160,14 +173,13 @@ namespace RPG.Main.UI
         public void ShowItemStatus(Weapon weapon)
         {
             string status =
-                $"공격력\t\t{weapon.attackDamage}\n" +
-                $"공격 속도\t\t초당 {weapon.attackSpeed}회 타격\n" +
-                $"공격 범위\t\t{weapon.attackRange}\n" +
-                $"이동 속도\t\t{weapon.movementSpeed}\n" +
-                $"치명타 확률\t{weapon.criticalChance * 100}%\n" +
-                $"치명타 데미지\t기본 공격력의 {weapon.criticalDamage * 100}%\n" +
-                $"명중률\t\t{weapon.attackChance * 100}%";
-
+                $"{MyUtility.returnSideText("공격력 :", weapon.attackDamage.ToString())}\n" +
+                $"{MyUtility.returnSideText("공격 속도 :", $"초당 {weapon.attackSpeed}회 타격")}\n" +
+                $"{MyUtility.returnSideText("공격 범위 :", weapon.attackRange.ToString())}\n" +
+                $"{MyUtility.returnSideText("이동 속도 :", weapon.movementSpeed.ToString())}\n" +
+                $"{MyUtility.returnSideText("치명타 확률 :", $"{weapon.criticalChance * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 :", $"기본 공격력의 {weapon.criticalDamage * 100}%")}\n" +
+                $"{MyUtility.returnSideText("명중률 :", $"{weapon.attackChance * 100}%")}";
 
             equipmentStatus.text = status;
         }
@@ -175,11 +187,10 @@ namespace RPG.Main.UI
         public void ShowItemStatus(Armor armor)
         {
             string status =
-        $"체력\t\t\t{armor.hpPoint}\n" +
-        $"방어력\t\t{armor.defencePoint}\n" +
-        $"이동 속도\t\t{armor.movementSpeed}\n" +
-        $"회피율\t\t{armor.evasionPoint * 100}%";
-
+                $"{MyUtility.returnSideText("체력 :", armor.hpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 :", $"{armor.defencePoint}")}\n" +
+                $"{MyUtility.returnSideText("이동 속도 :", armor.movementSpeed.ToString())}\n" +
+                $"{MyUtility.returnSideText("회피율 :", $"{armor.evasionPoint * 100}%")}";
 
             equipmentStatus.text = status;
         }
@@ -187,10 +198,10 @@ namespace RPG.Main.UI
         public void ShowItemStatus(Helmet helmet)
         {
             string status =
-        $"체력\t\t\t{helmet.hpPoint}\n" +
-        $"방어력\t\t{helmet.defencePoint}\n" +
-        $"치명타 회피율\t{helmet.decreseCriticalDamage * 100}%\n" +
-        $"치명타 피해 감소\t{helmet.evasionCritical * 100}%";
+                $"{MyUtility.returnSideText("체력 :", helmet.hpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 :", $"{helmet.defencePoint}")}\n" +
+                $"{MyUtility.returnSideText("치명타 회피율 :", $"{helmet.evasionCritical * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 피해 감소 :", $"{helmet.decreseCriticalDamage * 100}%")}";
 
 
             equipmentStatus.text = status;
@@ -199,10 +210,9 @@ namespace RPG.Main.UI
         public void ShowItemStatus(Pants pants)
         {
             string status =
-        $"체력\t\t\t{pants.hpPoint}\n" +
-        $"방어력\t\t{pants.defencePoint}\n" +
-        $"이동 속도\t{pants.movementSpeed}\n";
-
+                $"{MyUtility.returnSideText("체력 :", pants.hpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 :", $"{pants.defencePoint}")}\n" +
+                $"{MyUtility.returnSideText("이동 속도 :", pants.movementSpeed.ToString())}";
 
             equipmentStatus.text = status;
         }
