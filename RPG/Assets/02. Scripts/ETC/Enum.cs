@@ -1,6 +1,7 @@
 ﻿// 현재 스테이지 상태
 public enum BattleState
 {
+    INIT,
     READY,
     BATTLE,
     STOP,

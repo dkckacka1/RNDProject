@@ -15,7 +15,7 @@ namespace RPG.Core
         // Weapon
         public int lastedWeapon;
         public int weaponReinforceCount;
-        public int weaponprefixIncantID;
+        public int weaponPreifxIncantID;
         public int weaponSuffixIncantID;
         // Armor
         public int lastedArmor;
@@ -25,7 +25,7 @@ namespace RPG.Core
         // Helmet
         public int lastedHelmet;
         public int helmetReinforceCount;
-        public int helemtPreifxIncantID;
+        public int helmetPrefixIncantID;
         public int helmetSuffixIncantID;
 
         // Pants

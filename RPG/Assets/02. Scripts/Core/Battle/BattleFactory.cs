@@ -12,8 +12,23 @@ namespace RPG.Battle.Core
     {
         public PlayerController playerController;
         public EnemyController enemyController;
+        #region PlayerCreate
+        public PlayerController CreatePlayer(UserInfo userinfo, Transform parent = null)
+        {
+            PlayerController player = Instantiate<PlayerController>(playerController, parent);
+            PlayerStatus status = player.GetComponent<PlayerStatus>();
+            PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
 
-        public PlayerController CreatePlayer(UserInfo userinfo, Vector3 position, Transform parent = null)
+            SetPlayer(userinfo, ref status);
+            player.Initialize();
+            SetPlayerUI(ref ui);
+            ui.Initialize(status);
+
+
+            return player;
+        }
+
+        public PlayerController CreatePlayer(UserInfo userinfo,Vector3 position, Transform parent = null)
         {
             PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
             PlayerStatus status = player.GetComponent<PlayerStatus>();
@@ -38,12 +53,6 @@ namespace RPG.Battle.Core
             GameManager.Instance.GetEquipmentData(userinfo.lastedArmor, out a_data);
             GameManager.Instance.GetEquipmentData(userinfo.lastedHelmet, out h_data);
             GameManager.Instance.GetEquipmentData(userinfo.lastedPants, out p_data);
-            //GameManager.Instance.weaponDataDic.TryGetValue(userinfo.lastedWeapon, out w_data);
-            //GameManager.Instance.armorDataDic.TryGetValue(userinfo.lastedArmor, out a_data);
-            //GameManager.Instance.helmetDataDic.TryGetValue(userinfo.lastedHelmet, out h_data);
-            //GameManager.Instance.pantsDataDic.TryGetValue(userinfo.lastedPants, out p_data);
-
-
 
             if (w_data)
             {
@@ -86,10 +95,11 @@ namespace RPG.Battle.Core
         public void SetPlayerUI(ref PlayerCharacterUI ui)
         {
             ui.hpBar = BattleManager.GetInstance().playerHPBar;
-        }
+        } 
+        #endregion
 
+        #region EnemyCreate
         private static int enemyCount = 1;
-
         public EnemyController CreateEnemy(EnemyData data, Vector3 position, Transform parent = null)
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, position, Quaternion.identity, parent);
@@ -108,6 +118,7 @@ namespace RPG.Battle.Core
             ui.Initialize(status);
 
             return enemy;
-        }
+        } 
+        #endregion
     }
 }

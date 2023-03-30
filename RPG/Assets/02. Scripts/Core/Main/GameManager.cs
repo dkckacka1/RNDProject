@@ -181,7 +181,7 @@ namespace RPG.Core
             
             userInfo.lastedWeapon = 100;
             userInfo.weaponReinforceCount = 0;
-            userInfo.weaponprefixIncantID = -1;
+            userInfo.weaponPreifxIncantID = -1;
             userInfo.weaponSuffixIncantID = -1;
 
             userInfo.lastedArmor = 200;
@@ -191,7 +191,7 @@ namespace RPG.Core
 
             userInfo.lastedHelmet = 300;
             userInfo.helmetReinforceCount = 0;
-            userInfo.helemtPreifxIncantID = -1;
+            userInfo.helmetPrefixIncantID = -1;
             userInfo.helmetSuffixIncantID = -1;
 
             userInfo.lastedPants = 400;

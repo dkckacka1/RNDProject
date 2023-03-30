@@ -107,26 +107,36 @@ namespace RPG.Battle.Core
             }
 
             userinfo = GameManager.Instance.UserInfo;
-            status = GameManager.Instance.Player;
             currentStageID = GameManager.Instance.choiceStageID;
         }
 
         private void Start()
         {
-            LoadStage(currentStageID);
-            SetState(BattleState.BATTLE);
+            SetBattleState(BattleState.INIT);
         }
 
-        public void SetState(BattleState battleState)
+        public void SetBattleState(BattleState battleState)
         {
             currentState = battleState;
 
             switch (battleState)
             {
+                case BattleState.INIT:
+                    // 1. 최초 플레이어 컨트롤러 생성
+                    if (player == null)
+                    {
+                        player = factory.CreatePlayer(userinfo, playerParent);
+                    }
+                    // 2. 전투 UI 세팅
+                    // 3. READY로 이행
+                    SetBattleState(BattleState.READY);
+                    break;
                 case BattleState.READY:
                     // 1. 스테이지 불러오기
+                    LoadStage(currentStageID);
                     // 2. 준비 UI 출력
                     // 3. BATTLE로 이행
+                    SetBattleState(BattleState.BATTLE);
                     break;
                 case BattleState.BATTLE:
                     // 1. 모든 컨트롤러 행동
@@ -140,12 +150,17 @@ namespace RPG.Battle.Core
                     break;
                 case BattleState.DEFEAT:
                     // 1. 전투 패배 UI 출력
+                    // 2. Userinfo 수정
                     break;
                 case BattleState.WIN:
                     // 전투 승리
                     // 1. 다음 스테이지 정보 전달
-                    // 2. READY로 이행
+                    // 2. Userinfo 수정
+                    // 3. 플레이어의 상태 정리(디버프 제거 등..)
+                    // 4. READY로 이행
+
                     break;
+
             }
 
         }
@@ -154,6 +169,17 @@ namespace RPG.Battle.Core
         {
             StageData data = GameManager.Instance.stageDataDic[StageID];
 
+            // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
+            CreateStage(data);
+        }
+
+        public void LoadStage(StageData data)
+        {
+            CreateStage(data);
+        }
+
+        private void CreateStage(StageData data)
+        {
             // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
             if (player == null)
             {
@@ -172,28 +198,6 @@ namespace RPG.Battle.Core
                 factory.CreateEnemy(enemyData, enemy.position, enemyParent);
             }
         }
-
-        public void LoadStage(StageData stage)
-        {
-            // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
-            if (player == null)
-            {
-                player = factory.CreatePlayer(userinfo, stage.playerSpawnPosition, playerParent);
-            }
-            else
-            {
-                player.transform.position = stage.playerSpawnPosition;
-            }
-
-            // 팩토리를 통해 적 생성
-            foreach (var enemy in stage.enemyDatas)
-            {
-                EnemyData enemyData = GameManager.Instance.enemyDataDic[enemy.enemyID];
-
-                factory.CreateEnemy(enemyData, enemy.position, enemyParent);
-            }
-        }
-
 
         public void DeadController(PlayerController controller)
         {
