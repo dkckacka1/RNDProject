@@ -175,26 +175,27 @@ namespace RPG.Core
             userInfo.itemReinforceCount = 10;
             userInfo.itemIncantCount = 10;
             userInfo.itemGachaTicket = 10;
-
+            userInfo.risingTopCount = 1;
+            
             userInfo.lastedWeapon = 100;
             userInfo.weaponReinforceCount = 0;
-            userInfo.weaponprefixIncant = -1;
-            userInfo.weaponSuffixIncant = -1;
+            userInfo.weaponprefixIncantID = -1;
+            userInfo.weaponSuffixIncantID = -1;
 
             userInfo.lastedArmor = 200;
             userInfo.armorReinforceCount = 0;
-            userInfo.armorprefixIncan = -1;
-            userInfo.armorSuffixIncan = -1;
+            userInfo.armorPrefixIncantID = -1;
+            userInfo.armorSuffixIncantID = -1;
 
             userInfo.lastedHelmet = 300;
             userInfo.helmetReinforceCount = 0;
-            userInfo.helmetprefixIncan = -1;
-            userInfo.helmetSuffixIncan = -1;
+            userInfo.helemtPreifxIncantID = -1;
+            userInfo.helmetSuffixIncantID = -1;
 
             userInfo.lastedPants = 400;
             userInfo.pantsReinforceCount = 0;
-            userInfo.pantsprefixIncan = -1;
-            userInfo.pantsSuffixIncan = -1;
+            userInfo.pantsPrefixIncantID = -1;
+            userInfo.pantsSuffixIncantID = -1;
 
             Debug.Log("Userinfo »ý¼º");
             return userInfo;

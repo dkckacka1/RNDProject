@@ -16,6 +16,7 @@ namespace RPG.Main.UI
 
         public EquipmentWindowUI equipmentUI;
         public PlayerStatusWindowUI statusUI;
+        public StageChoiceWindowUI stageChoiceWindowUI;
 
         [SerializeField] TextMeshProUGUI reinforceCount;
         [SerializeField] TextMeshProUGUI incantCount;
@@ -32,12 +33,14 @@ namespace RPG.Main.UI
 
             equipmentUI.gameObject.SetActive(false);
             statusUI.gameObject.SetActive(false);
+            stageChoiceWindowUI.gameObject.SetActive(false);
         }
 
         public void Init(PlayerStatus status, UserInfo userInfo)
         {
             equipmentUI.Init(userinfo, status);
             statusUI.Init(userInfo, status);
+            stageChoiceWindowUI.Init(userinfo);
         }
 
         public void UpdateUI()
@@ -54,6 +57,7 @@ namespace RPG.Main.UI
         {
             equipmentUI.gameObject.SetActive(false);
             statusUI.gameObject.SetActive(false);
+            stageChoiceWindowUI.gameObject.SetActive(false);
             backButton.gameObject.SetActive(false);
         }
 
@@ -61,7 +65,16 @@ namespace RPG.Main.UI
         {
             equipmentUI.gameObject.SetActive(true);
             statusUI.gameObject.SetActive(true);
-            Init(status, userinfo);
+            if (backButton == null)
+            {
+                return;
+            }
+            backButton.gameObject.SetActive(true);
+        }
+
+        public void ShowStageChoiceUI()
+        {
+            stageChoiceWindowUI.gameObject.SetActive(true);
             if (backButton == null)
             {
                 return;

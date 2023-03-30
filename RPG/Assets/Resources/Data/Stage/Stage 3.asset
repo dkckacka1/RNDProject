@@ -21,3 +21,4 @@ MonoBehaviour:
     enemyID: 1
   - position: {x: -6, y: 0, z: -4}
     enemyID: 1
+  ConsumEnergy: 30

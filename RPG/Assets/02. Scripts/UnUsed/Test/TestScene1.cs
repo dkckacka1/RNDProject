@@ -10,14 +10,11 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public MainUI ui;
+        public StageChoiceWindowUI ui;
 
         private void Start()
         {
-        }
-
-        public void OnGUI()
-        {
+            ui.Init(GameManager.Instance.UserInfo);
         }
     } 
 }
