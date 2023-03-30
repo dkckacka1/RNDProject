@@ -1,6 +1,7 @@
 ﻿// 현재 스테이지 상태
 public enum BattleState
 {
+    READY,
     BATTLE,
     STOP,
     DEFEAT,
@@ -58,4 +59,11 @@ public enum alignmentType
     center,
     justified,
     flush
+}
+
+public enum DropItemType
+{
+    GachaItemScroll,
+    reinfoceScroll,
+    IncantScroll
 }

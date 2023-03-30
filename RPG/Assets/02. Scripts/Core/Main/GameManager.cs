@@ -32,6 +32,7 @@ namespace RPG.Core
         // Info
         private UserInfo userInfo;
         [SerializeField] private PlayerStatus player;
+        public int choiceStageID;
 
         // Encapsule
         public UserInfo UserInfo
@@ -176,6 +177,7 @@ namespace RPG.Core
             userInfo.itemIncantCount = 10;
             userInfo.itemGachaTicket = 10;
             userInfo.risingTopCount = 1;
+            userInfo.Energy = 0;
             
             userInfo.lastedWeapon = 100;
             userInfo.weaponReinforceCount = 0;

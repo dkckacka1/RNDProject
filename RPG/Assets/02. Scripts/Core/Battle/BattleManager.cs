@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.Pool;
 using RPG.Core;
 using RPG.Battle.Control;
+using RPG.Character.Status;
 using RPG.Battle.UI;
 
 namespace RPG.Battle.Core
@@ -13,7 +14,8 @@ namespace RPG.Battle.Core
     public class BattleManager : MonoBehaviour
     {
         private static BattleManager instance;
-        public UserInfo userinfo = new UserInfo();
+        public UserInfo userinfo;
+        public PlayerStatus status;
 
         public PlayerController player;
         public Transform playerParent;
@@ -29,10 +31,10 @@ namespace RPG.Battle.Core
         public BattleFactory factory;
 
         [Header("Stage")]
-        public int currentStageID = 1;
+        public int currentStageID;
 
         private List<EnemyController> liveEnemys = new List<EnemyController>();
-        private BattleState currentStats;
+        private BattleState currentState;
         private readonly Dictionary<BattleState, UnityEvent> battleEventDic
             = new Dictionary<BattleState, UnityEvent>();
 
@@ -52,11 +54,11 @@ namespace RPG.Battle.Core
 
         public BattleState CurrentStats
         {
-            get => currentStats;
+            get => currentState;
             private set
             {
-                currentStats = value;
-                switch (currentStats)
+                currentState = value;
+                switch (currentState)
                 {
                     case BattleState.BATTLE:
                         Debug.Log("전투중입니다.!");
@@ -81,7 +83,7 @@ namespace RPG.Battle.Core
                         Debug.Log("승리했습니다.!");
                         break;
                 }
-                Publish(currentStats);
+                Publish(currentState);
             }
         }
 
@@ -102,27 +104,51 @@ namespace RPG.Battle.Core
             if (instance == null)
             {
                 instance = this;
-                DontDestroyOnLoad(this.gameObject);
             }
 
+            userinfo = GameManager.Instance.UserInfo;
+            status = GameManager.Instance.Player;
+            currentStageID = GameManager.Instance.choiceStageID;
         }
 
         private void Start()
         {
-            userinfo = GameManager.Instance.UserInfo;
             LoadStage(currentStageID);
-            CurrentStats = BattleState.BATTLE;
+            SetState(BattleState.BATTLE);
         }
 
-        //public IEnumerator Test()
-        //{
-        //    while(true)
-        //    {
-        //        yield return new WaitForSeconds(1f);
-        //        print($"살아있는 적 : {liveEnemys.Count}");
-        //        print($"살아있는 플레이어 : {livePlayers.Count}");
-        //    }
-        //}
+        public void SetState(BattleState battleState)
+        {
+            currentState = battleState;
+
+            switch (battleState)
+            {
+                case BattleState.READY:
+                    // 1. 스테이지 불러오기
+                    // 2. 준비 UI 출력
+                    // 3. BATTLE로 이행
+                    break;
+                case BattleState.BATTLE:
+                    // 1. 모든 컨트롤러 행동
+                    // 2. 모든 전투 UI 행동
+                    // 3. 전투 타임 시작
+                    break;
+                case BattleState.STOP:
+                    // 1. 모든 컨트롤러의 행동 중지
+                    // 2. 모든 전투 UI 행동 중지
+                    // 3. 전투 타임 중지
+                    break;
+                case BattleState.DEFEAT:
+                    // 1. 전투 패배 UI 출력
+                    break;
+                case BattleState.WIN:
+                    // 전투 승리
+                    // 1. 다음 스테이지 정보 전달
+                    // 2. READY로 이행
+                    break;
+            }
+
+        }
 
         public void LoadStage(int StageID)
         {
@@ -197,9 +223,11 @@ namespace RPG.Battle.Core
             else
             {
                 Debug.Log("다음스테이지 없음!");
-                currentStats = BattleState.WIN;
+                currentState = BattleState.WIN;
             }
         }
+
+        #region eventListener
 
         public void SubscribeEvent(BattleState state, UnityAction listener)
         {
@@ -236,6 +264,7 @@ namespace RPG.Battle.Core
             }
         }
 
+        #endregion
 
         /// <summary>
         /// 가장 가까운 T를 찾아서 리턴합니다.

@@ -530,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7438263813952437420, guid: 788a6f0c21d52174da2c34e0701656ca, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 701
       objectReference: {fileID: 0}
     - target: {fileID: 7438263813952437420, guid: 788a6f0c21d52174da2c34e0701656ca, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2133,6 +2133,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 429762, guid: 5409c9ff5a9c7b045a9809d71ccdcab8, type: 3}
   m_PrefabInstance: {fileID: 712415803}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &759916245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1680137219934120675, guid: 788a6f0c21d52174da2c34e0701656ca, type: 3}
+  m_PrefabInstance: {fileID: 67976321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274c8d1393be6774db4e4314c5f63066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761395653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1933113322}
+  choiceStageData: {fileID: 0}
 --- !u!4 &761395655
 Transform:
   m_ObjectHideFlags: 0
@@ -4204,6 +4216,34 @@ PrefabInstance:
       propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1965998275}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowStageChoiceUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RPG.Main.UI.MainUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
 --- !u!224 &1333477289 stripped
@@ -5392,7 +5432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentUI: {fileID: 990211193}
   statusUI: {fileID: 990211191}
-  stageChoiceWindowUI: {fileID: 0}
+  stageChoiceWindowUI: {fileID: 759916245}
   reinforceCount: {fileID: 1118145224}
   incantCount: {fileID: 809606372}
   itemGachaTicketCount: {fileID: 2141148068}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using RPG.Core;
 using RPG.Battle.Core;
 
 
@@ -19,6 +20,15 @@ namespace RPG.Main.UI
         [SerializeField] RawImage unClickedImage;
 
         [SerializeField] Button stageBaltteButton;
+
+        //Encapsulration
+        public StageData Data
+        {
+            get
+            {
+                return data;
+            }
+        }
 
         public void Init(StageData data, bool isClear, bool isLast)
         {
@@ -41,8 +51,22 @@ namespace RPG.Main.UI
             {
                 stageBaltteButton.interactable = false;
                 unClickedImage.gameObject.SetActive(true);
+
             }
         }
+
+        #region ButtonPlugin
+        public void StageBattleStart()
+        {
+            if (data == null)
+            {
+                Debug.LogError("스테이지 데이터가 없습니다.");
+            }
+            SceneLoader.LoadBattleScene(this.data);
+        }
+
+
+        #endregion
     }
 
 }

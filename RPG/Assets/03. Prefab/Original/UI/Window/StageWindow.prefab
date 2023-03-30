@@ -350,7 +350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 659345405731154266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3827469556989905933}
+        m_TargetAssemblyTypeName: RPG.Main.UI.StageWindowUI, Assembly-CSharp
+        m_MethodName: StageBattleStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5689239510892958242
 GameObject:
   m_ObjectHideFlags: 0

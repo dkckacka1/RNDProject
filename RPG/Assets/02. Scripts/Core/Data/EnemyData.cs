@@ -28,6 +28,10 @@ public class EnemyData : Data
     [Header("Movement")]
     public float movementSpeed = 0f;
 
+    [Header("DropItem")]
+    public int dropEnergy;
+    public List<DropTable> dropitems;
+
     [Header("Equipment")]
     public Transform weaponHandle;
     public GameObject weapon;
