@@ -27,11 +27,14 @@ namespace RPG.Character.Status
 
         public void SetEquipment()
         {
-            if (currentWeapon   == null   ||
-                currentArmor    == null   ||
-                currentHelmet   == null   ||
-                currentPants    == null)
+            if (currentWeapon == null ||
+                currentArmor == null ||
+                currentHelmet == null ||
+                currentPants == null)
+            {
+                Debug.LogError("장비 아이템이 없습니다.");
                 return;
+            }
 
             attackDamage =          currentWeapon.attackDamage;
             attackRange =           currentWeapon.attackChance;
@@ -62,6 +65,7 @@ namespace RPG.Character.Status
 
             // 1-1. 장비에 강화 수치 적용
             // 1-2. 장비에 인챈트 적용
+            // 1-3. 장비 아이템 업데이트
 
             if (w_data)
             {
@@ -114,8 +118,20 @@ namespace RPG.Character.Status
             {
                 Helmet helmet = new Helmet(h_data);
                 helmet.reinforceCount = userInfo.helmetReinforceCount;
+                if (userInfo.helmetPrefixIncantID != -1)
+                {
+                    Incant prefixIncant = GameManager.Instance.incantDic[userInfo.helmetPrefixIncantID];
+                    helmet.Incant(prefixIncant);
+                }
+
+                if (userInfo.helmetSuffixIncantID != -1)
+                {
+                    Incant suffixIncant = GameManager.Instance.incantDic[userInfo.helmetSuffixIncantID];
+                    helmet.Incant(suffixIncant);
+                }
+                helmet.UpdateItem();
+
                 this.EquipItem(helmet);
-                // TODO : Userinfo 에 따른 스테이터스 셋업
             }
             else
                 Debug.LogError("Helmet is null");
@@ -124,14 +140,30 @@ namespace RPG.Character.Status
             if (p_data)
             {
                 Pants pants = new Pants(p_data);
+                pants.reinforceCount = userInfo.pantsReinforceCount;
+
+                if (userInfo.pantsPrefixIncantID != -1)
+                {
+                    Incant prefixIncant = GameManager.Instance.incantDic[userInfo.pantsPrefixIncantID];
+                    pants.Incant(prefixIncant);
+                }
+
+                if (userInfo.pantsSuffixIncantID != -1)
+                {
+                    Incant suffixIncant = GameManager.Instance.incantDic[userInfo.pantsPrefixIncantID];
+                    pants.Incant(suffixIncant);
+                }
+
+                pants.UpdateItem();
+
                 this.EquipItem(pants);
             }
             else
                 Debug.LogError("Pants is null");
 
 
-            // 1-3. 장비 아이템 업데이트
             // 2.장비에 따른 스테이터스 변화해주기
+            this.SetEquipment();
         }
 
         #region 장비_장착

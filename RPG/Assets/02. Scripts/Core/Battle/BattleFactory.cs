@@ -19,7 +19,9 @@ namespace RPG.Battle.Core
             PlayerStatus status = player.GetComponent<PlayerStatus>();
             PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
 
-            SetPlayer(userinfo, ref status);
+            status.SetPlayerStatusFromUserinfo(userinfo);
+            status.Initialize();
+            //SetPlayer(userinfo, ref status);
             player.Initialize();
             SetPlayerUI(ref ui);
             ui.Initialize(status);
@@ -34,7 +36,9 @@ namespace RPG.Battle.Core
             PlayerStatus status = player.GetComponent<PlayerStatus>();
             PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
 
-            SetPlayer(userinfo, ref status);
+            status.SetPlayerStatusFromUserinfo(userinfo);
+            status.Initialize();
+            //SetPlayer(userinfo, ref status);
             player.Initialize();
             SetPlayerUI(ref ui);
             ui.Initialize(status);

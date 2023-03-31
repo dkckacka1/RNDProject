@@ -125,6 +125,7 @@ namespace RPG.Battle.Core
                     // 1. 최초 플레이어 컨트롤러 생성
                     if (player == null)
                     {
+                        Debug.Log("플레이어 생성");
                         player = factory.CreatePlayer(userinfo, playerParent);
                     }
                     // 2. 전투 UI 세팅
