@@ -11,11 +11,6 @@ public class RythumButton : MonoBehaviour
     public float nodeSpeed = 1f;
     public ComboText comboText;
 
-    [Space()]
-    public Image buttonImage;
-    public Sprite baseImage;
-    public Sprite clickImage;
-
     Vector3 magnitude;
     GameObject node;
     nodeType type;
@@ -59,18 +54,6 @@ public class RythumButton : MonoBehaviour
             type = nodeType.rhythm;
         }
 
-    }
-
-    public void PointerUP()
-    {
-        print("버튼 땜");
-        buttonImage.sprite = baseImage;
-    }
-
-    public void PointerDown()
-    {
-        print("버튼 누름");
-        buttonImage.sprite = clickImage;
     }
 
     public void Clicked()
