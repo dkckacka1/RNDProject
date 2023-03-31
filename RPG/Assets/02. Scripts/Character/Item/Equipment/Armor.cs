@@ -11,6 +11,16 @@ namespace RPG.Character.Equipment
         public float movementSpeed;
         public float evasionPoint;
 
+        public Armor(Armor armor) : base(armor)
+        {
+            defencePoint = armor.defencePoint;
+            hpPoint = armor.hpPoint;
+            movementSpeed = armor.movementSpeed;
+            evasionPoint = armor.evasionPoint;
+
+            this.UpdateItem();
+        }
+
         public Armor(ArmorData data) : base(data)
         {
             defencePoint = data.defencePoint;

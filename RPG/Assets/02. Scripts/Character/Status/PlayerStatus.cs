@@ -6,24 +6,12 @@ using RPG.Core;
 
 namespace RPG.Character.Status
 {
-    public class PlayerStatus : BattleStatus
+    public class PlayerStatus : Status
     {
-        [Header("Equipment")]
-        public Transform weaponHandle;
         public Weapon currentWeapon;
         public Armor currentArmor;
         public Helmet currentHelmet;
         public Pants currentPants;
-
-        protected override void OnEnable()
-        {
-
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
 
         public void SetEquipment()
         {
@@ -32,7 +20,7 @@ namespace RPG.Character.Status
                 currentHelmet == null ||
                 currentPants == null)
             {
-                Debug.LogError("장비 아이템이 없습니다.");
+                Debug.LogError("장비 아이템이 없습니다.");    
                 return;
             }
 
@@ -51,6 +39,7 @@ namespace RPG.Character.Status
 
             movementSpeed =         currentWeapon.movementSpeed + currentPants.movementSpeed;
         }
+
         public void SetPlayerStatusFromUserinfo(UserInfo userInfo)
         {
             // 1.장비 장착
@@ -166,34 +155,35 @@ namespace RPG.Character.Status
             this.SetEquipment();
         }
 
+        public void SetPlayerStatusFromStatus(PlayerStatus status)
+        {
+            currentWeapon = new Weapon(status.currentWeapon);
+            currentArmor = new Armor(status.currentArmor);
+            currentHelmet = new Helmet(status.currentHelmet);
+            currentPants = new Pants(status.currentPants);
+
+            this.SetEquipment();
+        }
+
         #region 장비_장착
         public void EquipItem(Weapon weapon)
         {
             currentWeapon = weapon;
-            Instantiate(currentWeapon.weaponLook, weaponHandle);
-
-            SetEquipment();
         }
 
         public void EquipItem(Armor armor)
         {
             currentArmor = armor;
-
-            SetEquipment();
         }
 
         public void EquipItem(Helmet helmet)
         {
             currentHelmet = helmet;
-
-            SetEquipment();
         }
 
         public void EquipItem(Pants pants)
         {
             currentPants = pants;
-
-            SetEquipment();
         }
         #endregion
     }

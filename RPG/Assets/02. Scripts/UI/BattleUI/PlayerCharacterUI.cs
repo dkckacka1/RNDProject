@@ -6,9 +6,9 @@ using RPG.Character.Status;
 
 public class PlayerCharacterUI : CharacterUI
 {
-    public override void Initialize(BattleStatus status)
+    public override void Initialize(BattleStatus battleStatus)
     {
-        base.Initialize(status);
-        InitHPUI(status.maxHp);
+        base.Initialize(battleStatus);
+        InitHPUI(battleStatus.status.maxHp);
     }
 }

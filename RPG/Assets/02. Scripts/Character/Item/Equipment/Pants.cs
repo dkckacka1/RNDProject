@@ -10,6 +10,15 @@ namespace RPG.Character.Equipment
         public int hpPoint;
         public float movementSpeed;
 
+        public Pants(Pants pants) : base(pants)
+        {
+            defencePoint = pants.defencePoint;
+            hpPoint = pants.hpPoint;
+            movementSpeed = pants.movementSpeed;
+
+            this.UpdateItem();
+        }
+
         public Pants(PantsData data) : base(data)
         {
             defencePoint = data.defencePoint;

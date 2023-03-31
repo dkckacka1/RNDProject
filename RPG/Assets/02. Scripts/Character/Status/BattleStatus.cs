@@ -11,7 +11,7 @@ using RPG.Character.Equipment;
 
 namespace RPG.Character.Status
 {
-    public class BattleStatus : Status, IDamagedable
+    public class BattleStatus : MonoBehaviour, IDamagedable
     {
         // Component
         [Header("UI")]
@@ -21,6 +21,8 @@ namespace RPG.Character.Status
         public int currentHp = 0;
         private bool isDead = false;
 
+        [Header("Status")]
+        public Status status;
         // Encapsulation
         public bool IsDead { get => isDead; set => isDead = value; }
         public Transform transfrom { get => transform; }
@@ -30,7 +32,7 @@ namespace RPG.Character.Status
             get => currentHp;
             set
             {
-                currentHp = Mathf.Clamp(value, 0, maxHp);
+                currentHp = Mathf.Clamp(value, 0, status.maxHp);
                 if (characterUI != null)
                 {
                     characterUI.ChangeHPUI(currentHp);
@@ -43,10 +45,9 @@ namespace RPG.Character.Status
             }
         }
 
-
         protected virtual void OnEnable()
         {
-            Initialize();
+            UpdateStatus();
         }
 
         protected virtual void Start()
@@ -58,9 +59,9 @@ namespace RPG.Character.Status
 
         }
 
-        public virtual void Initialize()
+        public virtual void UpdateStatus()
         {
-            currentHp = maxHp;
+            currentHp = status.maxHp;
         }
 
         public void TakeDamage(int damage)

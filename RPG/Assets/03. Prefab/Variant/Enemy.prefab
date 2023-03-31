@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-624484618651885034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8612147987020589377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ceaab64971df7b49a5b41ba5f6f6c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleCanvas: {fileID: 0}
-  hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
-  hpBarOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &3723077782627438012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,8 +15,23 @@ MonoBehaviour:
   ui: {fileID: -624484618651885034}
   animator: {fileID: 0}
   nav: {fileID: 7548954268734023121}
-  status: {fileID: 6917052620463464743}
+  status: {fileID: 8989304631275338796}
   target: {fileID: 0}
+--- !u!114 &-624484618651885034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612147987020589377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ceaab64971df7b49a5b41ba5f6f6c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleCanvas: {fileID: 0}
+  hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
+  hpBarOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &6917052620463464743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704c1a39f3b7bcf4b8449f51ac7cb476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterUI: {fileID: -624484618651885034}
   maxHp: 0
-  currentHp: 0
   attackRange: 0
   attackDamage: 0
   attackSpeed: 0
@@ -66,6 +64,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: status
+      value: 
+      objectReference: {fileID: 6917052620463464743}
+    - target: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: characterUI
+      value: 
+      objectReference: {fileID: -624484618651885034}
     - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_AutoBraking
       value: 1
@@ -134,3 +140,14 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
   m_PrefabInstance: {fileID: 7605014401582344790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8989304631275338796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+  m_PrefabInstance: {fileID: 7605014401582344790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612147987020589377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca177e21b72875c42afc4886018bf9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

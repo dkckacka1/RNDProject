@@ -15,7 +15,7 @@ namespace RPG.Battle.Core
     {
         private static BattleManager instance;
         public UserInfo userinfo;
-        public PlayerStatus status;
+        public PlayerStatus playerStatus;
 
         public PlayerController player;
         public Transform playerParent;
@@ -107,6 +107,7 @@ namespace RPG.Battle.Core
             }
 
             userinfo = GameManager.Instance.UserInfo;
+            
             currentStageID = GameManager.Instance.choiceStageID;
         }
 
@@ -126,7 +127,7 @@ namespace RPG.Battle.Core
                     if (player == null)
                     {
                         Debug.Log("플레이어 생성");
-                        player = factory.CreatePlayer(userinfo, playerParent);
+                        player = factory.CreatePlayer(GameManager.Instance.Player, playerParent);
                     }
                     // 2. 전투 UI 세팅
                     // 3. READY로 이행
@@ -168,10 +169,8 @@ namespace RPG.Battle.Core
 
         public void LoadStage(int StageID)
         {
-            StageData data = GameManager.Instance.stageDataDic[StageID];
-
             // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
-            CreateStage(data);
+            CreateStage(GameManager.Instance.stageDataDic[StageID]);
         }
 
         public void LoadStage(StageData data)
@@ -184,7 +183,7 @@ namespace RPG.Battle.Core
             // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
             if (player == null)
             {
-                player = factory.CreatePlayer(userinfo, data.playerSpawnPosition, playerParent);
+                player = factory.CreatePlayer(GameManager.Instance.Player, playerParent);
             }
             else
             {

@@ -18,6 +18,19 @@ namespace RPG.Character.Equipment
         public Incant prefix;
         public Incant suffix;
 
+        public Equipment(Equipment equipment)
+        {
+            data = equipment.data;
+            itemName = equipment.itemName;
+            equipmentType = equipment.equipmentType;
+            equipmentTier = equipment.equipmentTier;
+            description = equipment.description;
+
+            reinforceCount = equipment.reinforceCount;
+            prefix = equipment.prefix;
+            suffix = equipment.suffix;
+        }
+
         public Equipment(EquipmentData data)
         {
             this.data = data;
@@ -174,7 +187,8 @@ namespace RPG.Character.Equipment
 
         public override string ToString()
         {
-            return $"장비이름 : {itemName}\n" +
+            return 
+                $"장비이름 : {itemName}\n" +
                 $"장비티어 : {equipmentTier}\n" +
                 $"장비유형 : {equipmentType}\n" +
                 $"접두인챈트 : {(prefix != null ? prefix.name : "없음")}\n" +

@@ -11,7 +11,7 @@ namespace RPG.UnUsed
 
         public override void OnStart()
         {
-            minimumDistance = context.stats.attackRange;
+            //minimumDistance = context.stats.attackRange;
             myTransform = context.transform;
             targetTransform = context.controller.target.transform;
             context.animator.SetBool("isMove", true);

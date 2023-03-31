@@ -11,6 +11,16 @@ namespace RPG.Character.Equipment
         public float decreseCriticalDamage;
         public float evasionCritical;
 
+        public Helmet(Helmet helmet) : base(helmet)
+        {
+            defencePoint = helmet.defencePoint;
+            hpPoint = helmet.hpPoint;
+            decreseCriticalDamage = helmet.decreseCriticalDamage;
+            evasionCritical = helmet.evasionCritical;
+
+            this.UpdateItem();
+        }
+
         public Helmet(HelmetData data) : base(data)
         {
             defencePoint = data.defencePoint;
@@ -35,7 +45,7 @@ namespace RPG.Character.Equipment
 
         public override void UpdateReinfoce()
         {
-            
+
             defencePoint = (data as HelmetData).defencePoint + (int)((data as HelmetData).defencePoint * 0.1 * reinforceCount);
             hpPoint = (data as HelmetData).hpPoint + (int)((data as HelmetData).hpPoint * 0.1 * reinforceCount);
             decreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;

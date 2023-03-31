@@ -18,6 +18,20 @@ namespace RPG.Character.Equipment
         public float criticalDamage;
         public float attackChance;
 
+        public Weapon(Weapon weapon) : base(weapon)
+        {
+            weaponLook = weapon.weaponLook;
+            attackDamage = weapon.attackDamage;
+            attackSpeed = weapon.attackSpeed;
+            attackRange = weapon.attackRange;
+            movementSpeed = weapon.movementSpeed;
+            criticalChance = weapon.criticalChance;
+            criticalDamage = weapon.criticalDamage;
+            attackChance = weapon.attackChance;
+
+            this.UpdateItem();
+        }
+
         public Weapon(WeaponData data) : base(data)
         {
             weaponLook = data.weaponLook;

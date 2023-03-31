@@ -14,13 +14,13 @@ namespace RPG.Battle.Fight
 
         // Component
         Transform transform;
-        BattleStatus status;
+        Status status;
         IDamagedable target;
 
-        public Attack(Transform transform, BattleStatus status)
+        public Attack(Transform transform, BattleStatus battleStatus)
         {
             this.transform = transform;
-            this.status = status;
+            this.status = battleStatus.status;
             attackDelay = CalcAttackDelay(status.attackSpeed);
             attackAnimPoint = CalcAttacPointTime(status.attackSpeed);
         }

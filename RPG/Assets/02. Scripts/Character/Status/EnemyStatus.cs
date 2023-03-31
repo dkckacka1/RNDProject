@@ -5,24 +5,9 @@ using RPG.Battle.Core;
 
 namespace RPG.Character.Status
 {
-    public class EnemyStatus : BattleStatus
+    public class EnemyStatus : Status
     {
         public string enemyName;
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        protected override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
 
         public void SetStatus(EnemyData data)
         {

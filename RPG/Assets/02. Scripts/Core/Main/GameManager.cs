@@ -31,7 +31,7 @@ namespace RPG.Core
 
         // Info
         private UserInfo userInfo;
-        [SerializeField] private PlayerStatus player;
+        [SerializeField] PlayerStatus player;
         public int choiceStageID;
 
         // Encapsule
@@ -95,7 +95,7 @@ namespace RPG.Core
 
             // TEST
             this.userInfo = CreateUserInfo();
-            SetStatus(userInfo);
+            this.player.SetPlayerStatusFromUserinfo(userInfo);
 
             // TEST
             //SceneManager.LoadScene("BattleScene");
@@ -119,55 +119,6 @@ namespace RPG.Core
             ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
         }
         #endregion
-
-        public void SetStatus(UserInfo userInfo)
-        {
-            WeaponData w_data;
-            ArmorData a_data;
-            HelmetData h_data;
-            PantsData p_data;
-            GetEquipmentData(userInfo.lastedWeapon, out w_data);
-            GetEquipmentData(userInfo.lastedArmor, out a_data);
-            GetEquipmentData(userInfo.lastedHelmet, out h_data);
-            GetEquipmentData(userInfo.lastedPants, out p_data);
-
-            if (w_data)
-            {
-                Weapon weapon = new Weapon(w_data);
-                Player.EquipItem(weapon);
-            }
-            else
-                Debug.LogError("Weapon is null");
-
-            if (a_data)
-            {
-                Armor armor = new Armor(a_data);
-                Player.EquipItem(armor);
-            }
-            else
-                Debug.LogError("Armor is null");
-
-
-            if (h_data)
-            {
-                Helmet helmet = new Helmet(h_data);
-                Player.EquipItem(helmet);
-            }
-            else
-                Debug.LogError("Helmet is null");
-
-
-            if (p_data)
-            {
-                Pants pants = new Pants(p_data);
-                Player.EquipItem(pants);
-            }
-            else
-                Debug.LogError("Pants is null");
-
-
-            Player.Initialize();
-        }
 
         #region UserInfo
         public UserInfo CreateUserInfo()
@@ -199,7 +150,7 @@ namespace RPG.Core
             userInfo.pantsPrefixIncantID = -1;
             userInfo.pantsSuffixIncantID = -1;
 
-            Debug.Log("Userinfo 持失");
+            Debug.Log("Userinfo 持失"); 
             return userInfo;
         }
 

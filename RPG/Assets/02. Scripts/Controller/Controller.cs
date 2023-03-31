@@ -73,7 +73,7 @@ namespace RPG.Battle.Control
 
             stateContext.SetState(idleState);
 
-            animator.SetFloat("AttackSpeed", status.attackSpeed);
+            animator.SetFloat("AttackSpeed", status.status.attackSpeed);
         }
 
         public bool CheckDeadState()

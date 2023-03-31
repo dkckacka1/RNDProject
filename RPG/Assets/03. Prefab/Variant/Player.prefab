@@ -29,7 +29,7 @@ MonoBehaviour:
   ui: {fileID: -3547984684722416041}
   animator: {fileID: 6827944588897757222}
   nav: {fileID: 7051127263331252068}
-  status: {fileID: 8668303703841679543}
+  status: {fileID: 8491972388946292377}
   target: {fileID: 0}
 --- !u!114 &8668303703841679543
 MonoBehaviour:
@@ -43,9 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c551c0017414c45a0bab3df48fb98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterUI: {fileID: -3547984684722416041}
   maxHp: 0
-  currentHp: 0
   attackRange: 0
   attackDamage: 0
   attackSpeed: 0
@@ -57,7 +55,6 @@ MonoBehaviour:
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 0
-  weaponHandle: {fileID: 2365796804150882186}
 --- !u!1001 &2361068453642611864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,6 +141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: status
+      value: 
+      objectReference: {fileID: 8668303703841679543}
+    - target: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: characterUI
+      value: 
+      objectReference: {fileID: -3547984684722416041}
     - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_AutoBraking
       value: 1
@@ -223,3 +228,14 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
   m_PrefabInstance: {fileID: 6959072169266165987}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8491972388946292377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7689301934574201222, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+  m_PrefabInstance: {fileID: 6959072169266165987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123617734009306100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca177e21b72875c42afc4886018bf9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

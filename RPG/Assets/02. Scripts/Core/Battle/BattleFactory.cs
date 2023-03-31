@@ -13,87 +13,22 @@ namespace RPG.Battle.Core
         public PlayerController playerController;
         public EnemyController enemyController;
         #region PlayerCreate
-        public PlayerController CreatePlayer(UserInfo userinfo, Transform parent = null)
+        public PlayerController CreatePlayer(PlayerStatus status, Transform parent = null)
         {
-            PlayerController player = Instantiate<PlayerController>(playerController, parent);
-            PlayerStatus status = player.GetComponent<PlayerStatus>();
-            PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
+            PlayerController controller = Instantiate<PlayerController>(playerController, parent);
+            controller.Initialize();
 
-            status.SetPlayerStatusFromUserinfo(userinfo);
-            status.Initialize();
-            //SetPlayer(userinfo, ref status);
-            player.Initialize();
-            SetPlayerUI(ref ui);
-            ui.Initialize(status);
+            PlayerStatus playerStatus = controller.gameObject.GetComponent<PlayerStatus>();
+            playerStatus.SetPlayerStatusFromStatus(status);
 
+            BattleStatus battleStatus = controller.gameObject.GetComponent<BattleStatus>();
+            battleStatus.UpdateStatus();
 
-            return player;
-        }
+            PlayerCharacterUI UI = controller.gameObject.GetComponent<PlayerCharacterUI>();
+            SetPlayerUI(ref UI);
+            UI.Initialize(battleStatus);
 
-        public PlayerController CreatePlayer(UserInfo userinfo,Vector3 position, Transform parent = null)
-        {
-            PlayerController player = Instantiate<PlayerController>(playerController, position, Quaternion.identity, parent);
-            PlayerStatus status = player.GetComponent<PlayerStatus>();
-            PlayerCharacterUI ui = player.GetComponent<PlayerCharacterUI>();
-
-            status.SetPlayerStatusFromUserinfo(userinfo);
-            status.Initialize();
-            //SetPlayer(userinfo, ref status);
-            player.Initialize();
-            SetPlayerUI(ref ui);
-            ui.Initialize(status);
-
-
-            return player;
-        }
-
-        public void SetPlayer(UserInfo userinfo, ref PlayerStatus status)
-        {
-            WeaponData w_data;
-            ArmorData a_data;
-            HelmetData h_data;
-            PantsData p_data;
-            GameManager.Instance.GetEquipmentData(userinfo.lastedWeapon, out w_data);
-            GameManager.Instance.GetEquipmentData(userinfo.lastedArmor, out a_data);
-            GameManager.Instance.GetEquipmentData(userinfo.lastedHelmet, out h_data);
-            GameManager.Instance.GetEquipmentData(userinfo.lastedPants, out p_data);
-
-            if (w_data)
-            {
-                Weapon weapon = new Weapon(w_data);
-                status.EquipItem(weapon);
-            }
-            else
-                Debug.LogError("Weapon is null");
-
-            if (a_data)
-            {
-                Armor armor = new Armor(a_data);
-                status.EquipItem(armor);
-            }
-            else
-                Debug.LogError("Armor is null");
-
-
-            if (h_data)
-            {
-                Helmet helmet = new Helmet(h_data);
-                status.EquipItem(helmet);
-            }
-            else
-                Debug.LogError("Helmet is null");
-
-
-            if (p_data)
-            {
-                Pants pants = new Pants(p_data);
-                status.EquipItem(pants);
-            }
-            else
-                Debug.LogError("Pants is null");
-
-
-            status.Initialize();
+            return controller;
         }
 
         public void SetPlayerUI(ref PlayerCharacterUI ui)
@@ -108,7 +43,8 @@ namespace RPG.Battle.Core
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, position, Quaternion.identity, parent);
             enemy.gameObject.name = "고블리나(" + enemyCount++ + ")";
-            EnemyStatus status = enemy.GetComponent<EnemyStatus>();
+            BattleStatus battleStatus = enemy.GetComponent<BattleStatus>();
+            EnemyStatus status = battleStatus.status as EnemyStatus;
             EnemyCharacterUI ui = enemy.GetComponent<EnemyCharacterUI>();
 
             status.SetStatus(data);
@@ -117,9 +53,9 @@ namespace RPG.Battle.Core
 
             // Enemy Initialize()
             enemy.SetAnimator(looks.GetComponent<Animator>());
-            status.Initialize();
+            battleStatus.UpdateStatus();
             enemy.Initialize();
-            ui.Initialize(status);
+            ui.Initialize(battleStatus);
 
             return enemy;
         } 
