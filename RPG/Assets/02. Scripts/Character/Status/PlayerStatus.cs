@@ -155,12 +155,17 @@ namespace RPG.Character.Status
             this.SetEquipment();
         }
 
-        public void SetPlayerStatusFromStatus(PlayerStatus status)
+        public void SetPlayerStatusFromStatus(PlayerStatus status, CharacterAppearance ap = null)
         {
             currentWeapon = new Weapon(status.currentWeapon);
             currentArmor = new Armor(status.currentArmor);
             currentHelmet = new Helmet(status.currentHelmet);
             currentPants = new Pants(status.currentPants);
+
+            if (ap != null)
+            {
+                ap.EquipWeapon(currentWeapon.weaponLook);
+            }
 
             this.SetEquipment();
         }

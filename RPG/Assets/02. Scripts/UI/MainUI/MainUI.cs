@@ -17,6 +17,7 @@ namespace RPG.Main.UI
         public EquipmentWindowUI equipmentUI;
         public PlayerStatusWindowUI statusUI;
         public StageChoiceWindowUI stageChoiceWindowUI;
+        public CharacterAppearance appearance;
 
         [SerializeField] TextMeshProUGUI reinforceCount;
         [SerializeField] TextMeshProUGUI incantCount;
@@ -41,6 +42,7 @@ namespace RPG.Main.UI
             equipmentUI.Init(userinfo, status);
             statusUI.Init(userInfo, status);
             stageChoiceWindowUI.Init(userinfo);
+            appearance.EquipWeapon(status.currentWeapon.weaponLook);
         }
 
         public void UpdateUI()

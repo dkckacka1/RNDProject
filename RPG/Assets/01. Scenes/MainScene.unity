@@ -2144,6 +2144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274c8d1393be6774db4e4314c5f63066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &761014572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6331740861493986047, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
+  m_PrefabInstance: {fileID: 1049758180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4108cd7f805e7dd46adbece823e17476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761395653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5479,6 +5490,7 @@ MonoBehaviour:
   equipmentUI: {fileID: 990211193}
   statusUI: {fileID: 990211191}
   stageChoiceWindowUI: {fileID: 759916245}
+  appearance: {fileID: 761014572}
   reinforceCount: {fileID: 1118145224}
   incantCount: {fileID: 809606372}
   itemGachaTicketCount: {fileID: 2141148068}
