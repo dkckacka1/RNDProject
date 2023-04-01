@@ -10,7 +10,11 @@ namespace RPG.Battle.UI
     {
         public Canvas battleCanvas;
 
+        [Header("HPUI")]
         public HPBar hpBar;
+
+        [Header("BattleText")]
+        public Vector3 battleTextOffset;
 
         public virtual void Initialize(BattleStatus status)
         {
@@ -53,5 +57,9 @@ namespace RPG.Battle.UI
             }
         }
 
+        public void TakeDamageText(int damage)
+        {
+            BattleManager.GetInstance().objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset);
+        }
     }
 }

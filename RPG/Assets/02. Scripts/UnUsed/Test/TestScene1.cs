@@ -5,16 +5,25 @@ using RPG.Character.Status;
 using RPG.Character.Equipment;
 using RPG.Battle.Core;
 using RPG.Main.UI;
+using RPG.Battle.UI;
 
 namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public StageChoiceWindowUI ui;
+        public BattleText text;
+        public Transform spawnPosition;
 
         private void Start()
         {
-            ui.Init(GameManager.Instance.UserInfo);
+        }
+
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 10, 200, 60), "클릭버튼"))
+            {
+                text.SetText((1000).ToString(), spawnPosition.position);
+            }
         }
     } 
 }

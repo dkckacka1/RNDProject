@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
     public bool isDoorOpening = false;
     public float createNodeTime = 3f;
 
+    [Header("Audio")]
+    public AudioSource audio;
+    public AudioClip cash;
+    public AudioClip coin;
+    public AudioClip coo;
+    public AudioClip prec;
+    public AudioClip pop;
+    public AudioClip tap;
+    public AudioClip universal02;
+
     private float nodeTimer;
 
     public static GameManager Instance;
@@ -41,6 +51,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        audio.clip = universal02;
+        audio.Play();
     }
 
     private void Update()
@@ -135,8 +151,4 @@ public class GameManager : MonoBehaviour
         isTee = false;
         gameCharacterAnimation.SetBool("isTake", isTee);
     }
-    #region ButtonPlugin
-
-
-    #endregion
 }

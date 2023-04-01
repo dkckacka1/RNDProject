@@ -69,6 +69,7 @@ namespace RPG.Character.Status
             if (isDead) return;
 
             CurrentHp -= damage;
+            characterUI.TakeDamageText(damage);
         }
 
         public void Dead()

@@ -773,12 +773,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152de72527f4f5444b598b4303044bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: {fileID: 0}
   player: {fileID: 0}
   playerParent: {fileID: 1421559899}
   enemyParent: {fileID: 764800174}
   battleCanvas: {fileID: 301917548}
   playerHPBar: {fileID: 1350556421}
   factory: {fileID: 804276984}
+  objectPool: {fileID: 954064119}
   currentStageID: 1
 --- !u!4 &487906485
 Transform:
@@ -787,11 +789,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487906483}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.257049, y: -1.9567811, z: 2.1017344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 804276985}
+  - {fileID: 954064118}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1447,6 +1450,50 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 65477713564383604, guid: 704795cfbb02b844591f900d2b76342e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 704795cfbb02b844591f900d2b76342e, type: 3}
+--- !u!1 &954064117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954064118}
+  - component: {fileID: 954064119}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &954064118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954064117}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 487906485}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954064119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954064117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d805674394191944a8a239066998806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleTextPrefab: {fileID: 3321867653707091620, guid: d1c4a2bd70dd3964da45a80e19dd8d15, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

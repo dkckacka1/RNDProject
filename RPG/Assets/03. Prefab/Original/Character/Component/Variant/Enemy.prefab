@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-624484618651885034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612147987020589377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ceaab64971df7b49a5b41ba5f6f6c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleCanvas: {fileID: 0}
+  hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
+  battleTextOffset: {x: 0, y: 2, z: 0}
+  hpBarOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &3723077782627438012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,21 +33,6 @@ MonoBehaviour:
   nav: {fileID: 7548954268734023121}
   status: {fileID: 8989304631275338796}
   target: {fileID: 0}
---- !u!114 &-624484618651885034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8612147987020589377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ceaab64971df7b49a5b41ba5f6f6c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleCanvas: {fileID: 0}
-  hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
-  hpBarOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &6917052620463464743
 MonoBehaviour:
   m_ObjectHideFlags: 0

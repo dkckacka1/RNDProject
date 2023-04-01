@@ -29,6 +29,7 @@ namespace RPG.Battle.Core
         [Header("Component")]
         // Component
         public BattleFactory factory;
+        public ObjectPooling objectPool;
 
         [Header("Stage")]
         public int currentStageID;
@@ -107,8 +108,9 @@ namespace RPG.Battle.Core
             }
 
             userinfo = GameManager.Instance.UserInfo;
-            
             currentStageID = GameManager.Instance.choiceStageID;
+
+            objectPool.Init(battleCanvas);
         }
 
         private void Start()

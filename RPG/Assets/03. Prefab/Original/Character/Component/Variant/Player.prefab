@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 0}
   hpBar: {fileID: 0}
+  battleTextOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &2545512943107213724
 MonoBehaviour:
   m_ObjectHideFlags: 0
