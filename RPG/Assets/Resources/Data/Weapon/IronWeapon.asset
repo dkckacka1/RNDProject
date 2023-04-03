@@ -18,7 +18,7 @@ MonoBehaviour:
   equipmentTier: 0
   description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uAC80\uC785\uB2C8\uB2E4."
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
-  attackDamage: 10
+  attackDamage: 30
   attackSpeed: 2.5
   attackRange: 2
   movementSpeed: 1.5

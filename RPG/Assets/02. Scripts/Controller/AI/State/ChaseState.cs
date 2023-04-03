@@ -19,12 +19,12 @@ namespace RPG.Battle.AI
 
         public void OnEnd()
         {
-            animator.SetBool("isMove", false);
+            controller.animator.SetBool("isMove", false);
         }
 
         public void OnStart()
         {
-            animator.SetBool("isMove", true);
+            controller.animator.SetBool("isMove", true);
             movement.SetNav();
             
         }

@@ -48,6 +48,7 @@ namespace RPG.Battle.Control
         private void Update()
         {
             // 전투중인가?
+            if (BattleManager.GetInstance() == null) return;
             if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
 
             // AI 수행
@@ -60,7 +61,7 @@ namespace RPG.Battle.Control
         }
 
         // 생성 시 초기화 단계
-        public virtual void Initialize()
+        public virtual void SetUp()
         {
             movement = new Movement(transform, status, nav);
             attack = new Attack(transform ,status);
@@ -70,6 +71,20 @@ namespace RPG.Battle.Control
             chaseState = new ChaseState(this);
             attackState = new AttackState(this);
             deadState = new DeadState(this);
+        }
+
+        public virtual void Init()
+        {
+            stateContext.SetState(idleState);
+
+            animator.SetFloat("AttackSpeed", status.status.attackSpeed);
+        }
+
+        public virtual void Init(Animator animator)
+        {
+            this.animator = animator;
+
+            animator.Rebind();
 
             stateContext.SetState(idleState);
 

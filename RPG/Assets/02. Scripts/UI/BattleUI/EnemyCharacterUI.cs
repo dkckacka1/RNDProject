@@ -8,26 +8,28 @@ public class EnemyCharacterUI : CharacterUI
 {
     public Vector3 hpBarOffset = new Vector3(0, 1.5f, 0);
 
-    public override void Initialize(BattleStatus battleStatus)
+    public override void SetUP(BattleStatus battleStatus)
     {
-        base.Initialize(battleStatus);
-        CreateHPUI();
-        InitHPUI(battleStatus.status.maxHp);
+        base.SetUP(battleStatus);
+        SetUpHPUI();
     }
 
     private void LateUpdate()
     {
-        SetHpBarPosition(transform.position + hpBarOffset);
+        UpdateHPBarPosition(transform.position + hpBarOffset);
     }
 
-    public void SetHpBarPosition(Vector3 position)
+    public void UpdateHPBarPosition(Vector3 position)
     {
         hpBar.transform.transform.position = Camera.main.WorldToScreenPoint(position);
-        //hpBarUI.hpSlider.transform.position = Camera.main.WorldToScreenPoint(position);
     }
 
-    public void CreateHPUI()
+    public void SetUpHPUI()
     {
+        if (battleCanvas == null)
+        {
+            return;
+        }
         hpBar = Instantiate(hpBar, battleCanvas.transform);
     }
 }

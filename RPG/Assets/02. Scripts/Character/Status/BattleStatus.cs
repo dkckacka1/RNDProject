@@ -45,11 +45,6 @@ namespace RPG.Character.Status
             }
         }
 
-        protected virtual void OnEnable()
-        {
-            UpdateStatus();
-        }
-
         protected virtual void Start()
         {
         }
@@ -59,7 +54,7 @@ namespace RPG.Character.Status
 
         }
 
-        public virtual void UpdateStatus()
+        public virtual void Init()
         {
             currentHp = status.maxHp;
             isDead = false;

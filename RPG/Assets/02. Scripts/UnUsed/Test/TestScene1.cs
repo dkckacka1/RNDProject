@@ -6,25 +6,54 @@ using RPG.Character.Equipment;
 using RPG.Battle.Core;
 using RPG.Main.UI;
 using RPG.Battle.UI;
+using RPG.Battle.Control;
 
 namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public BattleText text;
-        public Transform spawnPosition;
-
-        private void Start()
-        {
-        }
+        public ObjectPooling pooling;
+        public List<EnemyController> controllers;
+        public EnemyData data;
+        public float timer;
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "클릭버튼"))
+            if (GUI.Button(new Rect(10, 10, 200, 60), "풀에서 빼기"))
             {
-                text.SetText((1000).ToString(), spawnPosition.position);
-                text.gameObject.SetActive(true);
+                float randomfloat1 = Random.Range(-5f, 5f);
+                float randomfloat2 = Random.Range(-5f, 5f);
+                controllers.Add(pooling.GetEnemyController(data, new Vector3(randomfloat1, 0, randomfloat2)));
+            }
+
+            if (GUI.Button(new Rect(10, 70, 200, 60), "풀에 넣기"))
+            {
+                if (controllers.Count <= 0)
+                {
+                    return;
+                }
+                var controller = controllers[Random.Range(0, controllers.Count)];
+                pooling.ReturnEnemy(controller);
+                controllers.Remove(controller);
+            }
+
+            if (GUI.Button(new Rect(10, 130, 200, 60), "유닛 죽이기"))
+            {
+                if (controllers.Count <= 0)
+                {
+                    return;
+                }
+                var controller = controllers[Random.Range(0, controllers.Count)];
+                StartCoroutine(test(controller));
             }
         }
-    } 
+
+        IEnumerator test(EnemyController enemy)
+        {
+            enemy.animator.SetTrigger("Dead");
+            yield return new WaitForSeconds(timer);
+            pooling.ReturnEnemy(enemy);
+            controllers.Remove(enemy);
+        }
+    }
 }

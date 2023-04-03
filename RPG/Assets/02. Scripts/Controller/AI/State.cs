@@ -11,12 +11,10 @@ namespace RPG.Battle.AI
     public class State
     {
         protected Controller controller;
-        protected Animator animator;
 
         public State(Controller controller)
         {
             this.controller = controller;
-            this.animator = controller.animator;
         }
     }
 }

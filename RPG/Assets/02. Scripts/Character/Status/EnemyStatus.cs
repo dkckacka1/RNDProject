@@ -9,7 +9,7 @@ namespace RPG.Character.Status
     {
         public string enemyName;
 
-        public void SetStatus(EnemyData data)
+        public void Init(EnemyData data)
         {
             enemyName = data.enemyName;
             maxHp = data.maxHp;

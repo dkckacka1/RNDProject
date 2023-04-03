@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Battle.UI;
 using RPG.Battle.Control;
 using RPG.Character.Status;
+using UnityEditor;
 
 namespace RPG.Battle.Core
 {
@@ -15,7 +16,7 @@ namespace RPG.Battle.Core
         [SerializeField] GameObject battleTextPrefab;
 
         Canvas battleCanvas;
-        public void Init(Canvas canvas)
+        public void SetUp(Canvas canvas)
         {
             this.battleCanvas = canvas;
         }
@@ -27,7 +28,9 @@ namespace RPG.Battle.Core
         public EnemyController CreateController(EnemyData data, Transform parent = null)
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, parent);
-            enemyControllerPool.Enqueue(enemy);
+            EnemyCharacterUI enemyUI = enemy.GetComponent<EnemyCharacterUI>();
+            enemy.SetUp();
+            enemyUI.SetUP(enemy.GetComponent<BattleStatus>());
             return enemy;
         }
 
@@ -37,29 +40,32 @@ namespace RPG.Battle.Core
             {
                 // 풀이 비어있다면 생성
                 EnemyController enemy = CreateController(data, parent);
-                InitEnemyController(ref enemy, data, position, parent);
-                enemy.transform.position = position;
+                InitEnemyController(ref enemy, data, parent);
+                enemy.gameObject.transform.position = position;
                 enemy.gameObject.SetActive(true);
+                print(enemy.gameObject.transform.name + " : " + enemy.gameObject.transform.position);
+                EditorApplication.isPaused = true;
                 return enemy;
             }
             else
             {
                 // 풀에 남아있다면 남아있는 컨트롤러 재활용
                 EnemyController enemy = enemyControllerPool.Dequeue();
-                InitEnemyController(ref enemy, data, position, parent);
-                enemy.transform.position = position;
+                InitEnemyController(ref enemy, data, parent);
+                enemy.gameObject.transform.position = position;
                 enemy.gameObject.SetActive(true);
+                EditorApplication.isPaused = true;
                 return enemy;
             }
         }
 
-        public void InitEnemyController(ref EnemyController enemy, EnemyData data, Vector3 position, Transform parent = null)
+        public void InitEnemyController(ref EnemyController enemy, EnemyData data, Transform parent = null)
         {
             BattleStatus battleStatus = enemy.GetComponent<BattleStatus>();
             EnemyStatus status = battleStatus.status as EnemyStatus;
-            EnemyCharacterUI ui = enemy.GetComponent<EnemyCharacterUI>();
+            EnemyCharacterUI enemyUI = enemy.GetComponent<EnemyCharacterUI>();
 
-            status.SetStatus(data);
+            status.Init(data);
 
             // TODO : 에너미의 외형이 동일하다면 외형 재활용
             // 동일하지 않다면 외형을 새롭게 설정해주어야한다.
@@ -72,18 +78,19 @@ namespace RPG.Battle.Core
             else
             // 기존 사용하던 외형이 있다면 
             {
-                if (enemy.enemyLooks.name != data.enemyLook.name)
+                Debug.Log(enemy.enemyLooks.name + " : " + data.enemyLook.name + " = " + (enemy.enemyLooks.name == data.enemyLook.name));
+                if ((enemy.enemyLooks.name == data.enemyLook.name) == false)
                 // 기존에 사용하던 외형과 enemydata의 외형이 동일하지 않다면 새롭게 외형 세팅
                 {
+                    Debug.Log("외형 재세팅!");
                     Destroy(enemy.enemyLooks);
                     enemy.enemyLooks = Instantiate(data.enemyLook, enemy.gameObject.transform);
                 }
             }
 
-            enemy.SetAnimator(enemy.enemyLooks.GetComponent<Animator>());
-            battleStatus.UpdateStatus();
-            enemy.Initialize();
-            ui.Initialize(battleStatus);
+            battleStatus.Init();
+            enemyUI.Init();
+            enemy.Init(enemy.enemyLooks.GetComponent<Animator>());
         }
 
         public void ReturnEnemy(EnemyController enemy)
@@ -113,8 +120,8 @@ namespace RPG.Battle.Core
             {
                 // 풀에 있는 것 사용
                 BattleText text = battleTextPool.Dequeue();
+                text.Init(textStr, position);
                 text.gameObject.SetActive(true);
-                text.SetText(textStr, position);
                 return text;
             }
             else
@@ -122,8 +129,8 @@ namespace RPG.Battle.Core
                 // 새로 만들어서 풀에 넣기
                 BattleText text = CreateText();
                 battleTextPool.Enqueue(text);
+                text.Init(textStr, position);
                 text.gameObject.SetActive(true);
-                text.SetText(textStr, position);
                 return text;
             }
         }
@@ -132,7 +139,7 @@ namespace RPG.Battle.Core
         {
             text.gameObject.SetActive(false);
             battleTextPool.Enqueue(text);
-        } 
+        }
         #endregion
     }
 }

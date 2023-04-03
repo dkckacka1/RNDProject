@@ -93,7 +93,7 @@ namespace RPG.Battle.Core
         {
             if (instance == null)
             {
-                Debug.LogError(typeof(BattleManager).Name + "is NULL");
+                Debug.Log(typeof(BattleManager).Name + "is NULL");
                 return null;
             }
 
@@ -110,7 +110,7 @@ namespace RPG.Battle.Core
             userinfo = GameManager.Instance.UserInfo;
             currentStageID = GameManager.Instance.choiceStageID;
 
-            objectPool.Init(battleCanvas);
+            objectPool.SetUp(battleCanvas);
         }
 
         private void Start()
@@ -120,6 +120,7 @@ namespace RPG.Battle.Core
 
         public void SetBattleState(BattleState battleState)
         {
+
             currentState = battleState;
 
             switch (battleState)
@@ -220,10 +221,6 @@ namespace RPG.Battle.Core
         public void WinEvent()
         {
             StageData data;
-            // TEST
-            Debug.Log("다음스테이지 없음!");
-            currentState = BattleState.WIN;
-            return;
             // 다음 스테이지가 있으면 스테이지 출력
             if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID + 1, out data))
             {

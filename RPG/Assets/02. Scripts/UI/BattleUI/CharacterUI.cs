@@ -9,6 +9,7 @@ namespace RPG.Battle.UI
     public abstract class CharacterUI : MonoBehaviour
     {
         public Canvas battleCanvas;
+        public BattleStatus status;
 
         [Header("HPUI")]
         public HPBar hpBar;
@@ -16,9 +17,20 @@ namespace RPG.Battle.UI
         [Header("BattleText")]
         public Vector3 battleTextOffset;
 
-        public virtual void Initialize(BattleStatus status)
+        public virtual void SetUP(BattleStatus status)
         {
+            if (BattleManager.GetInstance() == null)
+            {
+                return;
+            }
+
+            this.status = status;
             battleCanvas = BattleManager.GetInstance().battleCanvas;
+        }
+
+        public virtual void Init()
+        {
+            InitHPUI(status.status.maxHp);
         }
 
         public virtual void RemoveUI()

@@ -28,7 +28,7 @@ namespace RPG.Battle.UI
             BattleManager.GetInstance().objectPool.ReturnText(this);
         }
 
-        public void SetText(string textStr, Vector3 position)
+        public void Init(string textStr, Vector3 position)
         {
             this.Text.alpha = 1;
             this.transform.position = Camera.main.WorldToScreenPoint(position);

@@ -29,7 +29,7 @@ namespace RPG.Battle.AI
             if (!attack.canAttack) return;
 
             Debug.Log(controller.name + "공격중");
-            animator.SetTrigger("Attack");
+            controller.animator.SetTrigger("Attack");
             controller.transform.LookAt(controller.target.transform);
             attack.AttackTarget();
             controller.AttackEvent();

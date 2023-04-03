@@ -11,9 +11,9 @@ namespace RPG.Battle.Control
 {
     public class PlayerController : Controller
     {
-        public override void Initialize()
+        public override void SetUp()
         {
-            base.Initialize();
+            base.SetUp();
             BattleManager.GetInstance().player = this;
         }
 

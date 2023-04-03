@@ -11,10 +11,9 @@ namespace RPG.Battle.Control
     {
         public GameObject enemyLooks;
 
-        public override void Initialize()
+        public override void SetUp()
         {
-            base.Initialize();
-
+            base.SetUp();
         }
 
         public override bool SetTarget(out Controller controller)
@@ -33,11 +32,6 @@ namespace RPG.Battle.Control
         {
             base.DeadEvent();
             BattleManager.GetInstance().DeadController(this);
-        }
-
-        public void SetAnimator(Animator animator)
-        {
-            this.animator = animator;
         }
     }
 }
