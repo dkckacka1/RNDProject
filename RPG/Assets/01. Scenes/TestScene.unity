@@ -946,6 +946,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DamageText
       objectReference: {fileID: 0}
+    - target: {fileID: 2480299213312425241, guid: 5bee2b86b499ef44e85fe612f4de0dbe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610868020120493758, guid: 5bee2b86b499ef44e85fe612f4de0dbe, type: 3}
+      propertyPath: deleteTiming
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bee2b86b499ef44e85fe612f4de0dbe, type: 3}
 --- !u!224 &7424488750518289782 stripped

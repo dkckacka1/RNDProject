@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using RPG.Battle.Core;
+using DG.Tweening;
 
 namespace RPG.Battle.UI
 {
@@ -12,25 +13,24 @@ namespace RPG.Battle.UI
         [SerializeField] float speed;
         [SerializeField] float deleteTiming;
 
-        private float timer;
-
         private void OnEnable()
         {
-            timer = 0;
+            Text.DOFade(0, deleteTiming).OnComplete(() => { ReleaseText(); });
         }
 
         private void Update()
         {
-            timer += Time.deltaTime;
             transform.position += (Vector3.up * speed);
-            if (timer >= deleteTiming)
-            {
-                BattleManager.GetInstance().objectPool.ReturnText(this);
-            }
+        }
+
+        public void ReleaseText()
+        {
+            BattleManager.GetInstance().objectPool.ReturnText(this);
         }
 
         public void SetText(string textStr, Vector3 position)
         {
+            this.Text.alpha = 1;
             this.transform.position = Camera.main.WorldToScreenPoint(position);
             this.Text.text = textStr;
         }

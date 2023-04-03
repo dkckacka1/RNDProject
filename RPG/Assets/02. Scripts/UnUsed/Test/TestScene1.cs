@@ -23,6 +23,7 @@ namespace RPG.Core
             if (GUI.Button(new Rect(10, 10, 200, 60), "클릭버튼"))
             {
                 text.SetText((1000).ToString(), spawnPosition.position);
+                text.gameObject.SetActive(true);
             }
         }
     } 

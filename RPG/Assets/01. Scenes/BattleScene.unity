@@ -1311,7 +1311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
-  enemyController: {fileID: 3723077782627438012, guid: 300ff0e0cc2bd2248bb2d0478a4c0147, type: 3}
 --- !u!4 &804276985
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,6 +1492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d805674394191944a8a239066998806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factory: {fileID: 804276984}
+  enemyController: {fileID: 3723077782627438012, guid: 300ff0e0cc2bd2248bb2d0478a4c0147, type: 3}
   battleTextPrefab: {fileID: 3321867653707091620, guid: d1c4a2bd70dd3964da45a80e19dd8d15, type: 3}
 --- !u!1 &963194225
 GameObject:

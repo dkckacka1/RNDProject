@@ -192,12 +192,13 @@ namespace RPG.Battle.Core
                 player.transform.position = data.playerSpawnPosition;
             }
 
-            // 팩토리를 통해 적 생성
             foreach (var enemy in data.enemyDatas)
             {
                 EnemyData enemyData = GameManager.Instance.enemyDataDic[enemy.enemyID];
 
-                factory.CreateEnemy(enemyData, enemy.position, enemyParent);
+                EnemyController enemyController = objectPool.GetEnemyController(enemyData, enemy.position, enemyParent);
+                liveEnemys.Add(enemyController);
+
             }
         }
 
@@ -208,6 +209,7 @@ namespace RPG.Battle.Core
 
         public void DeadController(EnemyController controller)
         {
+            objectPool.ReturnEnemy(controller);
             liveEnemys.Remove(controller);
             if (liveEnemys.Count == 0)
             {
@@ -218,6 +220,10 @@ namespace RPG.Battle.Core
         public void WinEvent()
         {
             StageData data;
+            // TEST
+            Debug.Log("다음스테이지 없음!");
+            currentState = BattleState.WIN;
+            return;
             // 다음 스테이지가 있으면 스테이지 출력
             if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID + 1, out data))
             {

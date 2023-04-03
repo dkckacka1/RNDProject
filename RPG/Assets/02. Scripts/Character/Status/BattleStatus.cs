@@ -62,6 +62,7 @@ namespace RPG.Character.Status
         public virtual void UpdateStatus()
         {
             currentHp = status.maxHp;
+            isDead = false;
         }
 
         public void TakeDamage(int damage)

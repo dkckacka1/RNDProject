@@ -9,10 +9,12 @@ namespace RPG.Battle.Control
 {
     public class EnemyController : Controller
     {
+        public GameObject enemyLooks;
+
         public override void Initialize()
         {
             base.Initialize();
-            BattleManager.GetInstance().LiveEnemys.Add(this);
+
         }
 
         public override bool SetTarget(out Controller controller)
@@ -23,7 +25,6 @@ namespace RPG.Battle.Control
                 this.target = controller;
                 attack.SetTarget(controller.status);
             }
-
 
             return (controller != null);
         }
