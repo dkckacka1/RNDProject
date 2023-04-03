@@ -14,7 +14,6 @@ namespace RPG.Battle.AI
         public void OnStart()
         {
             controller.animator.SetTrigger("Dead");
-            controller.DeadEvent();
         }
 
         public void OnEnd()

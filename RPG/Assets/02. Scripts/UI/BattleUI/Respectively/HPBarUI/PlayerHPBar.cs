@@ -17,9 +17,9 @@ namespace RPG.Battle.UI
             hpText.text = $"{currentHp}  /  {maxHp}";
         }
 
-        public override void SetHpSlider(int maxHp)
+        public override void InitHpSlider(int maxHp)
         {
-            base.SetHpSlider(maxHp);
+            base.InitHpSlider(maxHp);
             this.maxHp = maxHp;
             hpText.text = $"{maxHp}  /  {maxHp}";
         }

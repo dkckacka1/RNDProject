@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace RPG.Battle.Control
         public override void SetUp()
         {
             base.SetUp();
+        }
+
+        public override void Init()
+        {
+            this.animator = GetComponentInChildren<Animator>();
+            base.Init();
         }
 
         public override bool SetTarget(out Controller controller)

@@ -17,23 +17,28 @@ namespace RPG.Battle.UI
         [Header("BattleText")]
         public Vector3 battleTextOffset;
 
-        public virtual void SetUP(BattleStatus status)
+        private void Awake()
         {
-            if (BattleManager.GetInstance() == null)
-            {
-                return;
-            }
+            SetUp();
+        }
 
-            this.status = status;
+
+        public virtual void SetUp()
+        {
+            this.status = GetComponent<BattleStatus>();
             battleCanvas = BattleManager.GetInstance().battleCanvas;
         }
 
         public virtual void Init()
         {
-            InitHPUI(status.status.maxHp);
+            if (hpBar != null)
+            {
+                hpBar.gameObject.SetActive(true);
+                hpBar.InitHpSlider(status.status.maxHp);
+            }
         }
 
-        public virtual void RemoveUI()
+        public virtual void ReleaseUI()
         {
             if (hpBar != null)
             {
@@ -41,27 +46,7 @@ namespace RPG.Battle.UI
             }
         }
 
-        public virtual void RemoveUI(float time)
-        {
-            StartCoroutine(Remove(time));
-        }
-
-        public IEnumerator Remove(float time)
-        {
-            yield return new WaitForSeconds(time);
-
-            RemoveUI();
-        }
-
-        public void InitHPUI(int maxHP)
-        {
-            if(hpBar != null)
-            {
-                hpBar.SetHpSlider(maxHP);
-            }
-        }
-
-        public void ChangeHPUI(int currentHP)
+        public void UpdateHPUI(int currentHP)
         {
             if(hpBar != null)
             {

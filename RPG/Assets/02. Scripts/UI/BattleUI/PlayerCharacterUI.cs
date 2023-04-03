@@ -7,9 +7,9 @@ using RPG.Character.Status;
 
 public class PlayerCharacterUI : CharacterUI
 {
-    public override void SetUP(BattleStatus battleStatus)
+    public override void SetUp()
     {
-        base.SetUP(battleStatus);
+        base.SetUp();
         hpBar = BattleManager.GetInstance().playerHPBar;
     }
 

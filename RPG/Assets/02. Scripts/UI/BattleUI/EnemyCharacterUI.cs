@@ -8,10 +8,16 @@ public class EnemyCharacterUI : CharacterUI
 {
     public Vector3 hpBarOffset = new Vector3(0, 1.5f, 0);
 
-    public override void SetUP(BattleStatus battleStatus)
+    public override void SetUp()
     {
-        base.SetUP(battleStatus);
+        base.SetUp();
         SetUpHPUI();
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        this.gameObject.SetActive(true);
     }
 
     private void LateUpdate()

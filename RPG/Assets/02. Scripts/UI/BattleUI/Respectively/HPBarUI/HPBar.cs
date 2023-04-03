@@ -9,7 +9,7 @@ namespace RPG.Battle.UI
     {
         public Slider hpSlider;
 
-        public virtual void SetHpSlider(int maxHp)
+        public virtual void InitHpSlider(int maxHp)
         {
             hpSlider.maxValue = maxHp;
             hpSlider.value= maxHp;

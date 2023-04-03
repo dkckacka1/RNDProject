@@ -15,17 +15,8 @@ namespace RPG.Battle.Core
         public PlayerController CreatePlayer(PlayerStatus status, Transform parent = null)
         {
             PlayerController controller = Instantiate<PlayerController>(playerController, parent);
-            PlayerStatus playerStatus = controller.gameObject.GetComponent<PlayerStatus>();
-            BattleStatus battleStatus = controller.gameObject.GetComponent<BattleStatus>();
-            PlayerCharacterUI playerUI = controller.gameObject.GetComponent<PlayerCharacterUI>();
-
-            playerStatus.SetPlayerStatusFromStatus(status, playerStatus.GetComponentInChildren<CharacterAppearance>());
-            playerUI.SetUP(battleStatus);
-            controller.SetUp();
-
-            battleStatus.Init();
-            controller.Init();
-            playerUI.Init();
+            (controller.status.status as PlayerStatus).SetPlayerStatusFromStatus(status);
+            controller.gameObject.SetActive(true);
 
             return controller;
         }

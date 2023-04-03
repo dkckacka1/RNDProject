@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 0}
+  status: {fileID: 0}
   hpBar: {fileID: 3500329613706121277, guid: 33bb064b2e478b145bf9e279689505a3, type: 3}
   battleTextOffset: {x: 0, y: 2, z: 0}
   hpBarOffset: {x: 0, y: 2, z: 0}
@@ -33,6 +34,7 @@ MonoBehaviour:
   nav: {fileID: 7548954268734023121}
   status: {fileID: 8989304631275338796}
   target: {fileID: 0}
+  enemyLooks: {fileID: 0}
 --- !u!114 &6917052620463464743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 2165684658837029655, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165684658837029655, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7398143957701797792, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: hpBarUI

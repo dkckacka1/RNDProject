@@ -16,7 +16,6 @@ namespace RPG.Battle.Control
 {
     public abstract class Controller : MonoBehaviour
     {
-
         // Component
         public CharacterUI ui;
         public Animator animator;
@@ -39,6 +38,21 @@ namespace RPG.Battle.Control
 
         private void Awake()
         {
+            SetUp();
+        }
+
+        private void OnEnable()
+        {
+            status.Init();
+            ui.Init();
+            Init();
+        }
+
+        private void OnDisable()
+        {
+            status.Release();
+            ui.ReleaseUI();
+            Release();
         }
 
         private void Start()
@@ -75,20 +89,15 @@ namespace RPG.Battle.Control
 
         public virtual void Init()
         {
-            stateContext.SetState(idleState);
-
+            nav.enabled = true;
+            animator.Rebind();
             animator.SetFloat("AttackSpeed", status.status.attackSpeed);
+            stateContext.SetState(idleState);
         }
 
-        public virtual void Init(Animator animator)
+        public virtual void Release()
         {
-            this.animator = animator;
-
-            animator.Rebind();
-
             stateContext.SetState(idleState);
-
-            animator.SetFloat("AttackSpeed", status.status.attackSpeed);
         }
 
         public bool CheckDeadState()
@@ -168,15 +177,6 @@ namespace RPG.Battle.Control
         public virtual void DeadEvent()
         {
             nav.enabled = false;
-            ui.RemoveUI(4.5f);
-            StartCoroutine(sf(4.5f));
-        }
-
-        // UNDONE : 임시 함수 수정 필요
-        private IEnumerator sf(float time)
-        {
-            yield return new WaitForSeconds(time);
-            gameObject.SetActive(false);
         }
 
         /// <summary>

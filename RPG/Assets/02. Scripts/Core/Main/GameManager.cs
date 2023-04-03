@@ -150,7 +150,6 @@ namespace RPG.Core
             userInfo.pantsPrefixIncantID = -1;
             userInfo.pantsSuffixIncantID = -1;
 
-            Debug.Log("Userinfo »ý¼º"); 
             return userInfo;
         }
 

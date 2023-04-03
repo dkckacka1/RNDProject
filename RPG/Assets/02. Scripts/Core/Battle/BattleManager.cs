@@ -39,6 +39,8 @@ namespace RPG.Battle.Core
         private readonly Dictionary<BattleState, UnityEvent> battleEventDic
             = new Dictionary<BattleState, UnityEvent>();
 
+        public bool isTest = false;
+
         // Encapsulation
         public List<EnemyController> LiveEnemys
         {
@@ -115,6 +117,10 @@ namespace RPG.Battle.Core
 
         private void Start()
         {
+            if (isTest == true)
+            {
+                return;
+            }
             SetBattleState(BattleState.INIT);
         }
 
@@ -129,7 +135,6 @@ namespace RPG.Battle.Core
                     // 1. 최초 플레이어 컨트롤러 생성
                     if (player == null)
                     {
-                        Debug.Log("플레이어 생성");
                         player = factory.CreatePlayer(GameManager.Instance.Player, playerParent);
                     }
                     // 2. 전투 UI 세팅
@@ -225,13 +230,11 @@ namespace RPG.Battle.Core
             if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID + 1, out data))
             {
                 currentStageID += 1;
-                Debug.Log("다음스테이지 출력!");
                 LoadStage(data);
             }
             // 없다면 승리
             else
             {
-                Debug.Log("다음스테이지 없음!");
                 currentState = BattleState.WIN;
             }
         }
@@ -312,8 +315,6 @@ namespace RPG.Battle.Core
                     distance = newDistance;
                 }
             }
-
-            print("다음 타겟은 = " + nearTarget.name);
 
             return (T)nearTarget;
         }
