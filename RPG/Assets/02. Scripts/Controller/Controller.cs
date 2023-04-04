@@ -35,8 +35,11 @@ namespace RPG.Battle.Control
 
         // Battle
         public Controller target;
-
         public CombatState state;
+
+        private Coroutine attackDelayCheckCoroutine;
+        private Coroutine waitAttackTimeCoroutine;
+
 
         private void Awake()
         {
@@ -97,6 +100,17 @@ namespace RPG.Battle.Control
         {
             nav.enabled = true;
             animator.Rebind();
+            RuntimeAnimatorController rc = animator.runtimeAnimatorController;
+            foreach (var item in rc.animationClips)
+            {
+                Debug.Log($"{item.name}의 길이 : {item.length}");
+                if (item.name == "MeleeAttack_OneHanded")
+                {
+                    attack.attackDelay = item.length / status.status.attackSpeed;
+                    attack.attackAnimPoint = attack.attackDelay / 2;
+                    break;
+                }
+            }
             animator.SetFloat("AttackSpeed", status.status.attackSpeed);
         }
 
@@ -111,7 +125,7 @@ namespace RPG.Battle.Control
 
         public void Defeat()
         {
-
+            
         }
 
         public bool CheckDeadState()
@@ -120,6 +134,7 @@ namespace RPG.Battle.Control
             if (status.IsDead)
             {
                 DeadEvent();
+                StopAttack();
                 return true;
             }
 
@@ -144,6 +159,7 @@ namespace RPG.Battle.Control
                 // 타겟이 죽었는가?
                 if (target.status.IsDead)
                 {
+                    StopAttack();
                     target = null;
                     // 다른 적이 있는가?
                     if (!SetTarget(out target))
@@ -184,8 +200,14 @@ namespace RPG.Battle.Control
 
         public void AttackEvent()
         {
-            StartCoroutine(attack.WaitAttackDelay());
-            StartCoroutine(attack.WaitAttackTime());
+            attackDelayCheckCoroutine = StartCoroutine(attack.WaitAttackDelay());
+            waitAttackTimeCoroutine = StartCoroutine(attack.WaitAttackTime());
+        }
+
+        public void StopAttack()
+        {
+            StopCoroutine(attackDelayCheckCoroutine);
+            StopCoroutine(waitAttackTimeCoroutine);
         }
 
         public virtual void DeadEvent()

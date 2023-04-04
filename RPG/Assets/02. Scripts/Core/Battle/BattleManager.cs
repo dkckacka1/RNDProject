@@ -119,16 +119,13 @@ namespace RPG.Battle.Core
                 {
                     SetBattleState(BattleSceneState.Win);
                 }
-                StartCoroutine(MethodCallTimer(() =>
-                {
-                    objectPool.ReturnEnemy(enemy);
-                }, 1f));
             }
         }
 
         private void Win()
         {
             // ½Â¸® ¿¬Ãâ
+            currentStageID++;
             currentBattleState = BattleSceneState.Win;
             battleUI.ShowWinText();
             StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
