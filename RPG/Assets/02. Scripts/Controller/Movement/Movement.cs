@@ -27,6 +27,11 @@ namespace RPG.Battle.Move
             nav.stoppingDistance = status.attackRange;
         }
 
+        public void ResetNav()
+        {
+            nav.ResetPath();
+        }
+
         public void MoveNav(Transform target)
         {
             nav.SetDestination(target.position);

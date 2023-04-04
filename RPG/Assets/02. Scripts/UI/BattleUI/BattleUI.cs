@@ -31,8 +31,21 @@ namespace RPG.Battle.UI
         public void ShowStart()
         {
             readyText.text = "시작";
-            BattleManager.Instance.currentBattleState = BattleSceneState.Battle;
             StartCoroutine(RemoveReadyUI(removeReadyUITime));
+        }
+
+        public void ShowWinText()
+        {
+            readyText.text = "승리!";
+            readyText.gameObject.SetActive(true);
+
+        }
+
+        public void ShowDefeatText()
+        {
+            readyText.text = "패배~";
+            readyText.gameObject.SetActive(true);
+
         }
 
         private IEnumerator RemoveReadyUI(float duration)

@@ -48,7 +48,8 @@ namespace RPG.Battle.Control
             status.Init();
             ui.Init();
             Init();
-            print(name + " OnEnable : " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, Win);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, Defeat);
         }
 
         private void OnDisable()
@@ -56,7 +57,8 @@ namespace RPG.Battle.Control
             status.Release();
             ui.ReleaseUI();
             Release();
-            print(name + " OnDisable : " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Win, Win);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Defeat, Defeat);
         }
 
         private void Start()
@@ -96,13 +98,20 @@ namespace RPG.Battle.Control
             nav.enabled = true;
             animator.Rebind();
             animator.SetFloat("AttackSpeed", status.status.attackSpeed);
-            stateContext.SetState(idleState);
         }
 
         public virtual void Release()
         {
-            animator.Rebind();
-            stateContext.SetState(idleState);
+        }
+
+        public void Win()
+        {
+            movement.ResetNav();
+        }
+
+        public void Defeat()
+        {
+
         }
 
         public bool CheckDeadState()
@@ -182,6 +191,7 @@ namespace RPG.Battle.Control
         public virtual void DeadEvent()
         {
             nav.enabled = false;
+            BattleManager.Instance.CharacterDead(this);
         }
 
         /// <summary>

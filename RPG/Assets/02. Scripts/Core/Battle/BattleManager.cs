@@ -8,6 +8,7 @@ using RPG.Core;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using RPG.Battle.UI;
+using System;
 
 namespace RPG.Battle.Core
 {
@@ -32,15 +33,13 @@ namespace RPG.Battle.Core
         [Header("BattleCore")]
         // Component
         public BattleUI battleUI;
-        public BattleFactory factory;
         public ObjectPooling objectPool;
         public BattleSceneState currentBattleState = BattleSceneState.Default;
 
         [Header("Controller")]
         public PlayerController livePlayer;
         public List<EnemyController> liveEnemies = new List<EnemyController>();
-        public Transform playerParent;
-        public Transform enemyParent;
+
 
         [Header("Stage")]
         public int currentStageID = 0;
@@ -61,38 +60,94 @@ namespace RPG.Battle.Core
             }
 
             objectPool.SetUp(battleUI.battleCanvas);
+
+            SubscribeEvent(BattleSceneState.Win, Win);
+            SubscribeEvent(BattleSceneState.Win, Defeat);
         }
 
         private void Start()
         {
-            LoadFirstStage();
+            ReadyNextBattle(2f);
         }
 
-        private void LoadFirstStage()
+        public void SetBattleState(BattleSceneState state)
         {
-            stageData = LoadStageData(currentStageID);
-            SetUpStage(ref stageData);
-            Ready();
+            this.currentBattleState = state;
+            Publish(currentBattleState);
         }
+
         #region 전투 준비
 
-        private void Ready()
+        private void ReadyNextBattle(float startTime)
         {
+            LoadCurrentStage();
             battleUI.ShowReady();
-            StartCoroutine(VoidMethodCallTimer(battleUI.ShowStart, 1f));
+            StartCoroutine(MethodCallTimer(() =>
+            {
+                battleUI.ShowStart();
+                currentBattleState = BattleSceneState.Battle;
+            }, startTime));
         }
 
+
         #endregion
-        private StageData LoadStageData(int stageID)
+
+
+        private StageData LoadStageData()
         {
             StageData stage;
 
-            if (GameManager.Instance.stageDataDic.TryGetValue(stageID, out stage))
+            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID, out stage))
             {
                 return stage;
             }
 
             return null;
+        }
+
+        public void CharacterDead(Controller controller)
+        {
+            if (controller is PlayerController)
+            {
+                SetBattleState(BattleSceneState.Defeat);
+            }
+            else if (controller is EnemyController)
+            {
+                var enemy = controller as EnemyController;
+                liveEnemies.Remove(enemy);
+                if (liveEnemies.Count <= 0)
+                {
+                    SetBattleState(BattleSceneState.Win);
+                }
+                StartCoroutine(MethodCallTimer(() =>
+                {
+                    objectPool.ReturnEnemy(enemy);
+                }, 1f));
+            }
+        }
+
+        private void Win()
+        {
+            // 승리 연출
+            currentBattleState = BattleSceneState.Win;
+            battleUI.ShowWinText();
+            StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
+        }
+
+        private void Defeat()
+        {
+            // 패배 연출
+            currentBattleState = BattleSceneState.Defeat;
+            Debug.Log("패배");
+            battleUI.ShowDefeatText();
+        }
+
+        #region LoadStage
+
+        private void LoadCurrentStage()
+        {
+            stageData = LoadStageData();
+            SetUpStage(ref stageData);
         }
 
         private void SetUpStage(ref StageData stage)
@@ -101,7 +156,7 @@ namespace RPG.Battle.Core
             if (livePlayer == null)
             // 플레이어가 없다면 생성
             {
-                livePlayer = this.factory.CreatePlayer(GameManager.Instance.Player);
+                livePlayer = this.objectPool.CreatePlayer(GameManager.Instance.Player);
             }
             else
             // 있다면 위치값 세팅
@@ -115,13 +170,14 @@ namespace RPG.Battle.Core
                 EnemyData enemyData;
                 if (GameManager.Instance.enemyDataDic.TryGetValue(enemySpawnData.enemyID, out enemyData))
                 {
-                    EnemyController enemy = objectPool.GetEnemyController(enemyData, enemySpawnData.position, enemyParent);
+                    EnemyController enemy = objectPool.GetEnemyController(enemyData, enemySpawnData.position);
                     liveEnemies.Add(enemy);
                 }
             }
         }
+        #endregion
 
-        private IEnumerator VoidMethodCallTimer(voidFunc func, float duration)
+        private IEnumerator MethodCallTimer(voidFunc func, float duration)
         {
             yield return new WaitForSeconds(duration);
             func.Invoke();

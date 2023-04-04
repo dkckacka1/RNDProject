@@ -10,10 +10,10 @@ namespace RPG.Battle.Core
 {
     public class ObjectPooling : MonoBehaviour
     {
-        public BattleFactory factory;
-
         [SerializeField] EnemyController enemyController;
         [SerializeField] GameObject battleTextPrefab;
+        public Transform playerParent;
+        public Transform enemyParent;
 
         Canvas battleCanvas;
         public void SetUp(Canvas canvas)
@@ -21,20 +21,30 @@ namespace RPG.Battle.Core
             this.battleCanvas = canvas;
         }
 
+        public PlayerController playerController;
+        public PlayerController CreatePlayer(PlayerStatus status)
+        {
+            PlayerController controller = Instantiate<PlayerController>(playerController, playerParent);
+            (controller.status.status as PlayerStatus).SetPlayerStatusFromStatus(status);
+            controller.gameObject.SetActive(true);
+
+            return controller;
+        }
+
         #region Enemy
         // Pool
         Queue<EnemyController> enemyControllerPool = new Queue<EnemyController>();
         static int count = 1;
 
-        private EnemyController CreateController(EnemyData data, Transform parent = null)
+        private EnemyController CreateController(EnemyData data)
         {
-            EnemyController enemy = Instantiate<EnemyController>(enemyController, parent);
+            EnemyController enemy = Instantiate<EnemyController>(enemyController, enemyParent);
             enemy.gameObject.name = "고블리나 " + count++;
             (enemy.status.status as EnemyStatus).Init(data);
             return enemy;
         }
 
-        public EnemyController GetEnemyController(EnemyData data, Vector3 position, Transform parent = null)
+        public EnemyController GetEnemyController(EnemyData data, Vector3 position)
         {
             EnemyController enemy;
             if (enemyControllerPool.Count > 0)
@@ -48,7 +58,7 @@ namespace RPG.Battle.Core
             else
             {                   
                 // 풀이 비어있다면 생성
-                enemy = CreateController(data, parent);
+                enemy = CreateController(data);
                 SetLook(ref enemy, data);
                 enemy.gameObject.transform.position = position;
                 enemy.gameObject.SetActive(true);

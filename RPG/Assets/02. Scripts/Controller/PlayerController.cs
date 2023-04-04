@@ -20,8 +20,6 @@ namespace RPG.Battle.Control
         public override void DeadEvent()
         {
             base.DeadEvent();
-            // HACK
-            //BattleManager.Instance.DeadController(this);
         }
 
         public override bool SetTarget(out Controller controller)

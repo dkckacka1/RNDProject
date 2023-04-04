@@ -152,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 487906485}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &71960252
 MonoBehaviour:
@@ -822,13 +822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleUI: {fileID: 71960252}
-  factory: {fileID: 804276984}
   objectPool: {fileID: 954064119}
   currentBattleState: 0
   livePlayer: {fileID: 0}
   liveEnemies: []
-  playerParent: {fileID: 0}
-  enemyParent: {fileID: 0}
   currentStageID: 1
 --- !u!4 &487906485
 Transform:
@@ -841,7 +838,6 @@ Transform:
   m_LocalPosition: {x: 9.257049, y: -1.9567811, z: 2.1017344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 804276985}
   - {fileID: 954064118}
   - {fileID: 71960251}
   m_Father: {fileID: 0}
@@ -1330,50 +1326,6 @@ Transform:
   m_Father: {fileID: 1994020327}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &804276983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 804276985}
-  - component: {fileID: 804276984}
-  m_Layer: 0
-  m_Name: BattleFactory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &804276984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804276983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bc3acd926da27645bb641d4cd530779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
---- !u!4 &804276985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804276983}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 487906485}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &844818621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1527,7 +1479,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 487906485}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &954064119
 MonoBehaviour:
@@ -1541,9 +1493,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d805674394191944a8a239066998806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factory: {fileID: 804276984}
   enemyController: {fileID: 3723077782627438012, guid: 300ff0e0cc2bd2248bb2d0478a4c0147, type: 3}
   battleTextPrefab: {fileID: 3321867653707091620, guid: d1c4a2bd70dd3964da45a80e19dd8d15, type: 3}
+  playerParent: {fileID: 1421559899}
+  enemyParent: {fileID: 764800174}
+  playerController: {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
