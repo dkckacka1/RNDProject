@@ -1,12 +1,14 @@
 ﻿// 현재 스테이지 상태
-public enum BattleState
+
+// UI에 의해 보여지는 State
+public enum BattleSceneState
 {
-    INIT,
-    READY,
-    BATTLE,
-    STOP,
-    DEFEAT,
-    WIN
+    Default,
+    Ready,
+    Battle,
+    Stop,
+    Defeat,
+    Win
 }
 
 public enum CombatState

@@ -25,7 +25,7 @@ namespace RPG.Battle.Control
 
         public override bool SetTarget(out Controller controller)
         {
-            controller = BattleManager.GetInstance().ReturnNearDistanceController<PlayerController>(transform);
+            controller = BattleManager.Instance.ReturnNearDistanceController<PlayerController>(transform);
             if(controller != null)
             {
                 this.target = controller;
@@ -38,7 +38,8 @@ namespace RPG.Battle.Control
         public override void DeadEvent()
         {
             base.DeadEvent();
-            BattleManager.GetInstance().DeadController(this);
+            // HACK
+            //BattleManager.Instance.DeadController(this);
         }
     }
 }

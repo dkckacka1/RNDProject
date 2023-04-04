@@ -26,7 +26,7 @@ namespace RPG.Battle.Core
         Queue<EnemyController> enemyControllerPool = new Queue<EnemyController>();
         static int count = 1;
 
-        public EnemyController CreateController(EnemyData data, Transform parent = null)
+        private EnemyController CreateController(EnemyData data, Transform parent = null)
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, parent);
             enemy.gameObject.name = "고블리나 " + count++;

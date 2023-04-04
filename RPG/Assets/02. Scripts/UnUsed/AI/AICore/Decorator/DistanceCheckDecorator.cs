@@ -21,7 +21,7 @@ namespace RPG.UnUsed
         {
             Debug.Log($"{myTransform.name}와 {targetTransform.name}의 거리가 가깝습니다.");
             context.animator.SetTrigger("Dead");
-            context.stats.IsDead = true;
+            //context.stats.IsDead = true;
         }
 
         public override Stats OnUpdate()

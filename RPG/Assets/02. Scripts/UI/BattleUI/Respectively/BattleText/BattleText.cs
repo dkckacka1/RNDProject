@@ -25,7 +25,7 @@ namespace RPG.Battle.UI
 
         public void ReleaseText()
         {
-            BattleManager.GetInstance().objectPool.ReturnText(this);
+            BattleManager.Instance.objectPool.ReturnText(this);
         }
 
         public void Init(string textStr, Vector3 position)

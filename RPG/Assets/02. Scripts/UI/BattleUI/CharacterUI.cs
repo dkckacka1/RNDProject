@@ -26,7 +26,7 @@ namespace RPG.Battle.UI
         public virtual void SetUp()
         {
             this.status = GetComponent<BattleStatus>();
-            battleCanvas = BattleManager.GetInstance().battleCanvas;
+            battleCanvas = BattleManager.Instance.battleUI.battleCanvas;
         }
 
         public virtual void Init()
@@ -56,7 +56,7 @@ namespace RPG.Battle.UI
 
         public void TakeDamageText(int damage)
         {
-            BattleManager.GetInstance().objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset);
+            BattleManager.Instance.objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset);
         }
     }
 }

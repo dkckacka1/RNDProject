@@ -13,243 +13,124 @@ namespace RPG.Battle.Core
 {
     public class BattleManager : MonoBehaviour
     {
-        private static BattleManager instance;
-        public UserInfo userinfo;
-        public PlayerStatus playerStatus;
-
-        public PlayerController player;
-        public Transform playerParent;
-        public Transform enemyParent;
-
-        [Header("UI")]
-        // PlayerUI
-        public Canvas battleCanvas;
-        public PlayerHPBar playerHPBar;
-
-        [Header("Component")]
-        // Component
-        public BattleFactory factory;
-        public ObjectPooling objectPool;
-
-        [Header("Stage")]
-        public int currentStageID;
-
-        private List<EnemyController> liveEnemys = new List<EnemyController>();
-        private BattleState currentState;
-        private readonly Dictionary<BattleState, UnityEvent> battleEventDic
-            = new Dictionary<BattleState, UnityEvent>();
-
-        public bool isTest = false;
-
-        // Encapsulation
-        public List<EnemyController> LiveEnemys
+        // Singletone
+        public static BattleManager Instance
         {
             get
             {
-                if (liveEnemys == null)
+                if (instance == null)
                 {
-                    liveEnemys = new List<EnemyController>();
+                    Debug.Log("BattleManager is NULL");
+                    return null;
                 }
 
-                return liveEnemys;
+                return instance;
             }
         }
+        private static BattleManager instance;
 
-        public BattleState CurrentStats
-        {
-            get => currentState;
-            private set
-            {
-                currentState = value;
-                switch (currentState)
-                {
-                    case BattleState.BATTLE:
-                        Debug.Log("전투중입니다.!");
-                        break;
-                    case BattleState.STOP:
-                        Debug.Log("일시중지중입니다.!");
-                        break;
-                    case BattleState.DEFEAT:
-                        {
-                            foreach (var item in LiveEnemys)
-                            {
-                                item.stateContext.SetState(item.idleState);
-                            }
-                        }
-                        Debug.Log("패배했습니다.!");
-                        break;
-                    case BattleState.WIN:
-                        {
-                            if (player != null)
-                                player.stateContext.SetState(player.idleState);
-                        }
-                        Debug.Log("승리했습니다.!");
-                        break;
-                }
-                Publish(currentState);
-            }
-        }
+        [Header("BattleCore")]
+        // Component
+        public BattleUI battleUI;
+        public BattleFactory factory;
+        public ObjectPooling objectPool;
+        public BattleSceneState currentBattleState = BattleSceneState.Default;
 
-        // Method
-        public static BattleManager GetInstance()
-        {
-            if (instance == null)
-            {
-                Debug.Log(typeof(BattleManager).Name + "is NULL");
-                return null;
-            }
+        [Header("Controller")]
+        public PlayerController livePlayer;
+        public List<EnemyController> liveEnemies = new List<EnemyController>();
+        public Transform playerParent;
+        public Transform enemyParent;
 
-            return instance;
-        }
+        [Header("Stage")]
+        public int currentStageID = 0;
+        private StageData stageData;
+
+        private readonly Dictionary<BattleSceneState, UnityEvent> battleEventDic = new Dictionary<BattleSceneState, UnityEvent>();
+        private delegate void voidFunc();
+        private delegate IEnumerator IEnumeratorFunc();
 
         private void Awake()
         {
             if (instance == null)
-            {
                 instance = this;
+            else
+            {
+                Destroy(this.gameObject);
+                return;
             }
 
-            //userinfo = GameManager.Instance.UserInfo;
-            //currentStageID = GameManager.Instance.choiceStageID;
-
-            //objectPool.SetUp(battleCanvas);
+            objectPool.SetUp(battleUI.battleCanvas);
         }
 
         private void Start()
         {
-            userinfo = GameManager.Instance.UserInfo;
-            currentStageID = GameManager.Instance.choiceStageID;
+            LoadFirstStage();
+        }
 
-            objectPool.SetUp(battleCanvas);
+        private void LoadFirstStage()
+        {
+            stageData = LoadStageData(currentStageID);
+            SetUpStage(ref stageData);
+            Ready();
+        }
+        #region 전투 준비
 
-            if (isTest == true)
+        private void Ready()
+        {
+            battleUI.ShowReady();
+            StartCoroutine(VoidMethodCallTimer(battleUI.ShowStart, 1f));
+        }
+
+        #endregion
+        private StageData LoadStageData(int stageID)
+        {
+            StageData stage;
+
+            if (GameManager.Instance.stageDataDic.TryGetValue(stageID, out stage))
             {
-                return;
+                return stage;
             }
-            SetBattleState(BattleState.INIT);
+
+            return null;
         }
 
-        public void SetBattleState(BattleState battleState)
+        private void SetUpStage(ref StageData stage)
         {
-
-            currentState = battleState;
-
-            switch (battleState)
+            // PlayerSetting
+            if (livePlayer == null)
+            // 플레이어가 없다면 생성
             {
-                case BattleState.INIT:
-                    // 1. 최초 플레이어 컨트롤러 생성
-                    if (player == null)
-                    {
-                        player = factory.CreatePlayer(GameManager.Instance.Player, playerParent);
-                    }
-                    // 2. 전투 UI 세팅
-                    // 3. READY로 이행
-                    SetBattleState(BattleState.READY);
-                    break;
-                case BattleState.READY:
-                    // 1. 스테이지 불러오기
-                    LoadStage(currentStageID);
-                    // 2. 준비 UI 출력
-                    // 3. BATTLE로 이행
-                    SetBattleState(BattleState.BATTLE);
-                    break;
-                case BattleState.BATTLE:
-                    // 1. 모든 컨트롤러 행동
-                    // 2. 모든 전투 UI 행동
-                    // 3. 전투 타임 시작
-                    break;
-                case BattleState.STOP:
-                    // 1. 모든 컨트롤러의 행동 중지
-                    // 2. 모든 전투 UI 행동 중지
-                    // 3. 전투 타임 중지
-                    break;
-                case BattleState.DEFEAT:
-                    // 1. 전투 패배 UI 출력
-                    // 2. Userinfo 수정
-                    break;
-                case BattleState.WIN:
-                    // 전투 승리
-                    // 1. 다음 스테이지 정보 전달
-                    // 2. Userinfo 수정
-                    // 3. 플레이어의 상태 정리(디버프 제거 등..)
-                    // 4. READY로 이행
-                    break;
-            }
-        }
-
-        public IEnumerator SetBattleState(BattleState battleState, float time)
-        {
-            yield return new WaitForSeconds(time);
-            SetBattleState(battleState);
-        }
-
-        public void LoadStage(int StageID)
-        {
-            // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
-            CreateStage(GameManager.Instance.stageDataDic[StageID]);
-        }
-
-        public void LoadStage(StageData data)
-        {
-            CreateStage(data);
-        }
-
-        private void CreateStage(StageData data)
-        {
-            // 만약 플레이어가 없다면 팩토리를 통해 플레이어를 생성
-            if (player == null)
-            {
-                player = factory.CreatePlayer(GameManager.Instance.Player, playerParent);
+                livePlayer = this.factory.CreatePlayer(GameManager.Instance.Player);
             }
             else
+            // 있다면 위치값 세팅
             {
-                player.transform.position = data.playerSpawnPosition;
+                livePlayer.transform.position = stage.playerSpawnPosition;
             }
 
-            foreach (var enemy in data.enemyDatas)
+            // EnemiesSetting
+            foreach (var enemySpawnData in stage.enemyDatas)
             {
-                EnemyData enemyData = GameManager.Instance.enemyDataDic[enemy.enemyID];
-
-                EnemyController enemyController = objectPool.GetEnemyController(enemyData, enemy.position, enemyParent);
-                liveEnemys.Add(enemyController);
-
-            }
-        }
-
-        public void DeadController(PlayerController controller)
-        {
-            CurrentStats = BattleState.DEFEAT;
-        }
-
-        public void DeadController(EnemyController controller)
-        {
-            objectPool.ReturnEnemy(controller);
-            liveEnemys.Remove(controller);
-            if (liveEnemys.Count == 0)
-            {
-                SetBattleState(BattleState.WIN);
+                EnemyData enemyData;
+                if (GameManager.Instance.enemyDataDic.TryGetValue(enemySpawnData.enemyID, out enemyData))
+                {
+                    EnemyController enemy = objectPool.GetEnemyController(enemyData, enemySpawnData.position, enemyParent);
+                    liveEnemies.Add(enemy);
+                }
             }
         }
 
-        public void WinEvent()
+        private IEnumerator VoidMethodCallTimer(voidFunc func, float duration)
         {
-            StageData data;
-            // 다음 스테이지가 있으면 스테이지 출력
-            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID + 1, out data))
-            {
-                currentStageID += 1;
-                LoadStage(data);
-            }
-            // 없다면 승리
-            else
-            {
-                currentState = BattleState.WIN;
-            }
+            yield return new WaitForSeconds(duration);
+            func.Invoke();
         }
 
         #region eventListener
 
-        public void SubscribeEvent(BattleState state, UnityAction listener)
+        // 이벤트 구독
+        public void SubscribeEvent(BattleSceneState state, UnityAction listener)
         {
             UnityEvent thisEvent;
             if (battleEventDic.TryGetValue(state, out thisEvent))
@@ -264,7 +145,8 @@ namespace RPG.Battle.Core
             }
         }
 
-        public void UnsubscribeEvent(BattleState state, UnityAction unityAction)
+        // 이벤트 구독 해제
+        public void UnsubscribeEvent(BattleSceneState state, UnityAction unityAction)
         {
             UnityEvent thisEvent;
 
@@ -274,7 +156,8 @@ namespace RPG.Battle.Core
             }
         }
 
-        public void Publish(BattleState state)
+        // 이벤트 활성화
+        public void Publish(BattleSceneState state)
         {
             UnityEvent thisEvent;
 
@@ -294,9 +177,9 @@ namespace RPG.Battle.Core
         {
             if (typeof(T) == typeof(PlayerController))
             {
-                if (player != null)
+                if (livePlayer != null)
                 {
-                    return player as T;
+                    return livePlayer as T;
                 }
             }
             else if (typeof(T) == typeof(EnemyController))
@@ -307,7 +190,7 @@ namespace RPG.Battle.Core
                 return null;
             }
 
-            List<T> list = liveEnemys as List<T>;
+            List<T> list = liveEnemies as List<T>;
             if (list.Count == 0) return null;
 
             Controller nearTarget = list[0];
@@ -336,15 +219,15 @@ namespace RPG.Battle.Core
         /// <returns></returns>
         public EnemyController ReturnMinimumdistanceEnemy(Transform transform)
         {
-            if (liveEnemys.Count == 0)
+            if (liveEnemies.Count == 0)
             {
                 print("적들은 존재하지 않습니다.");
                 return null;
             }
 
-            EnemyController minimumDistanceEnemy = liveEnemys[0];
+            EnemyController minimumDistanceEnemy = liveEnemies[0];
 
-            foreach (EnemyController enemy in liveEnemys)
+            foreach (EnemyController enemy in liveEnemies)
             {
                 float distacne = Vector3.Distance(transform.position, minimumDistanceEnemy.transform.position);
                 float newDistance = Vector3.Distance(transform.position, enemy.transform.position);

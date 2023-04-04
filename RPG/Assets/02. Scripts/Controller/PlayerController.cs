@@ -14,18 +14,19 @@ namespace RPG.Battle.Control
         public override void SetUp()
         {
             base.SetUp();
-            BattleManager.GetInstance().player = this;
+            BattleManager.Instance.livePlayer = this;
         }
 
         public override void DeadEvent()
         {
             base.DeadEvent();
-            BattleManager.GetInstance().DeadController(this);
+            // HACK
+            //BattleManager.Instance.DeadController(this);
         }
 
         public override bool SetTarget(out Controller controller)
         {
-            controller = BattleManager.GetInstance().ReturnNearDistanceController<EnemyController>(transform);
+            controller = BattleManager.Instance.ReturnNearDistanceController<EnemyController>(transform);
             if (controller != null)
             {
                 this.target = controller;

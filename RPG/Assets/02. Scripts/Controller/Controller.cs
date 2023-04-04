@@ -66,8 +66,8 @@ namespace RPG.Battle.Control
         private void Update()
         {
             // 전투중인가?
-            if (BattleManager.GetInstance() == null) return;
-            if (BattleManager.GetInstance().CurrentStats != BattleState.BATTLE) return;
+            if (BattleManager.Instance == null) return;
+            if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle) return;
 
             // AI 수행
             if (CheckDeadState())           { stateContext.SetState(deadState); }

@@ -17,7 +17,7 @@ namespace RPG.UnUsed
 
         public override void OnStart()
         {
-            target = BattleManager.GetInstance().ReturnNearDistanceController<T>(context.transform);
+            target = BattleManager.Instance.ReturnNearDistanceController<T>(context.transform);
         }
 
         public override void OnStop()
