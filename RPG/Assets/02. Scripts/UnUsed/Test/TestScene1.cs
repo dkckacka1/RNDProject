@@ -44,7 +44,10 @@ namespace RPG.Core
                     return;
                 }
                 var controller = controllers[Random.Range(0, controllers.Count)];
-                StartCoroutine(test(controller));
+                controller.animator.SetTrigger("Dead");
+                pooling.ReturnEnemy(controller);
+                controllers.Remove(controller);
+                //StartCoroutine(test(controller));
             }
         }
 

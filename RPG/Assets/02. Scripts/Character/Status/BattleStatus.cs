@@ -24,7 +24,7 @@ namespace RPG.Character.Status
         [Header("Status")]
         public Status status;
         // Encapsulation
-        public bool IsDead { get => isDead; set => isDead = value; }
+        public bool IsDead { get => isDead;}
         public Transform transfrom { get => transform; }
 
         public int CurrentHp

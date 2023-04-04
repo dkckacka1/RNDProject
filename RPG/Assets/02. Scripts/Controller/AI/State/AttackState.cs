@@ -22,6 +22,8 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.state = CombatState.Attack;
+            attack.canAttack = true;
         }
 
         public void OnUpdate()

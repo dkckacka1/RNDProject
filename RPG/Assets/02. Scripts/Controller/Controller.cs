@@ -36,6 +36,8 @@ namespace RPG.Battle.Control
         // Battle
         public Controller target;
 
+        public CombatState state;
+
         private void Awake()
         {
             SetUp();
@@ -46,6 +48,7 @@ namespace RPG.Battle.Control
             status.Init();
             ui.Init();
             Init();
+            print(name + " OnEnable : " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         }
 
         private void OnDisable()
@@ -53,6 +56,7 @@ namespace RPG.Battle.Control
             status.Release();
             ui.ReleaseUI();
             Release();
+            print(name + " OnDisable : " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         }
 
         private void Start()
@@ -97,6 +101,7 @@ namespace RPG.Battle.Control
 
         public virtual void Release()
         {
+            animator.Rebind();
             stateContext.SetState(idleState);
         }
 

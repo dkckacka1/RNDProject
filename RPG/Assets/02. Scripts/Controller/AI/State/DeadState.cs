@@ -13,6 +13,7 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.state = CombatState.Dead;
             controller.animator.SetTrigger("Dead");
         }
 

@@ -14,6 +14,8 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.state = CombatState.Idle;
+            controller.animator.SetTrigger("Idle"); 
         }
 
         public void OnEnd()

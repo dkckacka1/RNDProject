@@ -10,6 +10,6 @@ namespace RPG.Battle.Fight
 
         Transform transfrom { get; }
 
-        bool IsDead { get; set; }
+        bool IsDead { get;}
     }
 }

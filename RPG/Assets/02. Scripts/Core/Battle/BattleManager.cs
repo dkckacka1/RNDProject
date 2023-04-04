@@ -109,14 +109,19 @@ namespace RPG.Battle.Core
                 instance = this;
             }
 
-            userinfo = GameManager.Instance.UserInfo;
-            currentStageID = GameManager.Instance.choiceStageID;
+            //userinfo = GameManager.Instance.UserInfo;
+            //currentStageID = GameManager.Instance.choiceStageID;
 
-            objectPool.SetUp(battleCanvas);
+            //objectPool.SetUp(battleCanvas);
         }
 
         private void Start()
         {
+            userinfo = GameManager.Instance.UserInfo;
+            currentStageID = GameManager.Instance.choiceStageID;
+
+            objectPool.SetUp(battleCanvas);
+
             if (isTest == true)
             {
                 return;
@@ -168,11 +173,14 @@ namespace RPG.Battle.Core
                     // 2. Userinfo 수정
                     // 3. 플레이어의 상태 정리(디버프 제거 등..)
                     // 4. READY로 이행
-
                     break;
-
             }
+        }
 
+        public IEnumerator SetBattleState(BattleState battleState, float time)
+        {
+            yield return new WaitForSeconds(time);
+            SetBattleState(battleState);
         }
 
         public void LoadStage(int StageID)
@@ -219,7 +227,7 @@ namespace RPG.Battle.Core
             liveEnemys.Remove(controller);
             if (liveEnemys.Count == 0)
             {
-                WinEvent();
+                SetBattleState(BattleState.WIN);
             }
         }
 

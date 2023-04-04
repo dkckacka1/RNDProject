@@ -9,16 +9,15 @@ public enum BattleState
     WIN
 }
 
-// 캐릭터 전투 상태 (미사용)
-public enum CombatStats
+public enum CombatState
 {
-    IDLE,
+    Idle,
     CHASESTART,
-    CHASE,
+    Chase,
     CHASEEND,
     BATTLESTART,
-    BATTLE,
-    DEAD
+    Attack,
+    Dead
 }
 
 // 행동 트리 상태(미사용)
