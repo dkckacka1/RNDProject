@@ -62,7 +62,7 @@ namespace RPG.Battle.Core
             objectPool.SetUp(battleUI.battleCanvas);
 
             SubscribeEvent(BattleSceneState.Win, Win);
-            SubscribeEvent(BattleSceneState.Win, Defeat);
+            SubscribeEvent(BattleSceneState.Defeat, Defeat);
         }
 
         private void Start()
@@ -138,7 +138,6 @@ namespace RPG.Battle.Core
         {
             // 패배 연출
             currentBattleState = BattleSceneState.Defeat;
-            Debug.Log("패배");
             battleUI.ShowDefeatText();
         }
 
