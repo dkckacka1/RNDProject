@@ -9,20 +9,38 @@ namespace RPG.Battle.Fight
     public class Attack
     {
         public bool canAttack = true;
+        public int attackDamage;
         public float attackDelay = 1;
         public float attackAnimPoint = 1.2f;
+        public float defaultAttackAnimLength;
 
         // Component
         Transform transform;
-        Status status;
         IDamagedable target;
+        
 
-        public Attack(Transform transform, BattleStatus battleStatus)
+        public Attack(Transform transform)
         {
             this.transform = transform;
-            this.status = battleStatus.status;
-            attackDelay = CalcAttackDelay(status.attackSpeed);
-            attackAnimPoint = CalcAttacPointTime(status.attackSpeed);
+        }
+
+        public void UpdateStatus(Controller controller)
+        {
+            RuntimeAnimatorController rc = controller.animator.runtimeAnimatorController;
+            foreach (var item in rc.animationClips)
+            {
+                Debug.Log($"{item.name}의 길이 : {item.length}");
+                if (item.name == "MeleeAttack_OneHanded")
+                {
+                    defaultAttackAnimLength = item.length;
+                    break;
+                }
+            }
+
+            controller.animator.SetFloat("AttackSpeed", controller.battleStatus.status.attackSpeed);
+            attackDamage = controller.battleStatus.status.attackDamage;
+            attackDelay = defaultAttackAnimLength / controller.battleStatus.status.attackSpeed;
+            attackAnimPoint = attackDelay / 2.8f;
         }
 
         public void SetTarget(IDamagedable target)
@@ -40,11 +58,11 @@ namespace RPG.Battle.Fight
             if (target.IsDead) return;
             if (target == null)
             {
-                Debug.Log($"{status.name}의 타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
+                Debug.Log($"타겟이 없지만 AttackAnimEvent가 호출되었습니다.");
                 return;
             }
 
-            target.TakeDamage(status.attackDamage);
+            target.TakeDamage(attackDamage);
         }
 
         public IEnumerator WaitAttackDelay()
@@ -57,16 +75,6 @@ namespace RPG.Battle.Fight
         {
             yield return new WaitForSeconds(attackAnimPoint);
             TargetTakeDamage();
-        }
-
-        float CalcAttackDelay(float attackSpeed)
-        {
-            return (attackDelay / attackSpeed);
-        }
-
-        float CalcAttacPointTime(float attackSpeed)
-        {
-            return (attackAnimPoint / attackSpeed);
         }
     }
 }

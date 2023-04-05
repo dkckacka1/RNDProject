@@ -61,8 +61,6 @@ namespace RPG.Battle.Core
 
             objectPool.SetUp(battleUI.battleCanvas);
 
-            SubscribeEvent(BattleSceneState.Win, Win);
-            SubscribeEvent(BattleSceneState.Defeat, Defeat);
         }
 
         private void Start()
@@ -70,11 +68,6 @@ namespace RPG.Battle.Core
             ReadyNextBattle(2f);
         }
 
-        public void SetBattleState(BattleSceneState state)
-        {
-            this.currentBattleState = state;
-            Publish(currentBattleState);
-        }
 
         #region 전투 준비
 
@@ -82,6 +75,7 @@ namespace RPG.Battle.Core
         {
             LoadCurrentStage();
             battleUI.ShowReady();
+            SetBattleState(BattleSceneState.Ready);
             StartCoroutine(MethodCallTimer(() =>
             {
                 battleUI.ShowStart();
@@ -109,7 +103,7 @@ namespace RPG.Battle.Core
         {
             if (controller is PlayerController)
             {
-                SetBattleState(BattleSceneState.Defeat);
+                Defeat();
             }
             else if (controller is EnemyController)
             {
@@ -117,7 +111,7 @@ namespace RPG.Battle.Core
                 liveEnemies.Remove(enemy);
                 if (liveEnemies.Count <= 0)
                 {
-                    SetBattleState(BattleSceneState.Win);
+                    Win();
                 }
             }
         }
@@ -126,9 +120,9 @@ namespace RPG.Battle.Core
         {
             // 승리 연출
             currentStageID++;
-            currentBattleState = BattleSceneState.Win;
             battleUI.ShowWinText();
             StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
+            SetBattleState(BattleSceneState.Win);
         }
 
         private void Defeat()
@@ -136,6 +130,14 @@ namespace RPG.Battle.Core
             // 패배 연출
             currentBattleState = BattleSceneState.Defeat;
             battleUI.ShowDefeatText();
+            SetBattleState(BattleSceneState.Defeat);
+        }
+
+
+        public void SetBattleState(BattleSceneState state)
+        {
+            this.currentBattleState = state;
+            Publish(currentBattleState);
         }
 
         #region LoadStage

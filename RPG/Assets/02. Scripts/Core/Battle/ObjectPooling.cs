@@ -25,7 +25,7 @@ namespace RPG.Battle.Core
         public PlayerController CreatePlayer(PlayerStatus status)
         {
             PlayerController controller = Instantiate<PlayerController>(playerController, playerParent);
-            (controller.status.status as PlayerStatus).SetPlayerStatusFromStatus(status);
+            (controller.battleStatus.status as PlayerStatus).SetPlayerStatusFromStatus(status);
             controller.gameObject.SetActive(true);
 
             return controller;
@@ -40,7 +40,7 @@ namespace RPG.Battle.Core
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, enemyParent);
             enemy.gameObject.name = "고블리나 " + count++;
-            (enemy.status.status as EnemyStatus).Init(data);
+            (enemy.battleStatus.status as EnemyStatus).Init(data);
             return enemy;
         }
 

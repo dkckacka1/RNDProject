@@ -28,7 +28,7 @@ namespace RPG.Battle.Control
             if (controller != null)
             {
                 this.target = controller;
-                attack.SetTarget(controller.status);
+                attack.SetTarget(controller.battleStatus);
             }
 
             return (controller != null);

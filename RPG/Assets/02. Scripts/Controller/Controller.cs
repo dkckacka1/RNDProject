@@ -20,7 +20,7 @@ namespace RPG.Battle.Control
         public CharacterUI ui;
         public Animator animator;
         public NavMeshAgent nav;
-        public BattleStatus status;
+        public BattleStatus battleStatus;
 
         // AI State
         public StateContext stateContext;
@@ -48,16 +48,17 @@ namespace RPG.Battle.Control
 
         private void OnEnable()
         {
-            status.Init();
+            battleStatus.Init();
             ui.Init();
             Init();
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, Defeat);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Ready, Ready);
         }
 
         private void OnDisable()
         {
-            status.Release();
+            battleStatus.Release();
             ui.ReleaseUI();
             Release();
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Win, Win);
@@ -86,8 +87,8 @@ namespace RPG.Battle.Control
         // 생성 시 초기화 단계
         public virtual void SetUp()
         {
-            movement = new Movement(transform, status, nav);
-            attack = new Attack(transform ,status);
+            movement = new Movement(transform, nav);
+            attack = new Attack(transform);
 
             stateContext = new StateContext(this);
             idleState = new IdelState(this);
@@ -100,18 +101,7 @@ namespace RPG.Battle.Control
         {
             nav.enabled = true;
             animator.Rebind();
-            RuntimeAnimatorController rc = animator.runtimeAnimatorController;
-            foreach (var item in rc.animationClips)
-            {
-                Debug.Log($"{item.name}의 길이 : {item.length}");
-                if (item.name == "MeleeAttack_OneHanded")
-                {
-                    attack.attackDelay = item.length / status.status.attackSpeed;
-                    attack.attackAnimPoint = attack.attackDelay / 2;
-                    break;
-                }
-            }
-            animator.SetFloat("AttackSpeed", status.status.attackSpeed);
+            UpdateStatus();
         }
 
         public virtual void Release()
@@ -120,7 +110,6 @@ namespace RPG.Battle.Control
 
         public void Win()
         {
-            movement.ResetNav();
         }
 
         public void Defeat()
@@ -128,10 +117,15 @@ namespace RPG.Battle.Control
             
         }
 
+        public void Ready()
+        {
+            movement.ResetNav();
+        }
+
         public bool CheckDeadState()
         {
             // 나는 죽어있는가?
-            if (status.IsDead)
+            if (battleStatus.IsDead)
             {
                 DeadEvent();
                 StopAttack();
@@ -157,7 +151,7 @@ namespace RPG.Battle.Control
             if (target != null)
             {
                 // 타겟이 죽었는가?
-                if (target.status.IsDead)
+                if (target.battleStatus.IsDead)
                 {
                     StopAttack();
                     target = null;
@@ -184,7 +178,7 @@ namespace RPG.Battle.Control
             if (target != null)
             {
                 //타겟이 살아있는가?
-                if(!target.status.IsDead)
+                if(!target.battleStatus.IsDead)
                 {
                     return true;
                 }
@@ -222,5 +216,13 @@ namespace RPG.Battle.Control
         /// <param name="controller"></param>
         /// <returns></returns>
         public abstract bool SetTarget(out Controller controller);
+
+        #region Update Status
+        public void UpdateStatus()
+        {
+            attack.UpdateStatus(this);
+            movement.UpdateStatus(this);
+        }
+        #endregion
     }
 }

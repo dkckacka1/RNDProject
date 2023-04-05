@@ -25,7 +25,6 @@ namespace RPG.Battle.AI
         public void OnStart()
         {
             controller.animator.SetBool("isMove", true);
-            movement.SetNav();
             controller.state = CombatState.Chase;
         }
 

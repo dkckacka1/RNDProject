@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Character.Status;
+using RPG.Battle.Control;
 
 namespace RPG.Battle.Move
 {
@@ -12,19 +13,20 @@ namespace RPG.Battle.Move
 
         Transform transform;
         NavMeshAgent nav;
-        Status status;
 
-        public Movement(Transform transform, BattleStatus battleStatus, NavMeshAgent nav)
+        float attackRange;
+
+        public Movement(Transform transform, NavMeshAgent nav)
         {
             this.transform = transform;
             this.nav = nav;
-            this.status = battleStatus.status;
         }
 
-        public void SetNav()
+        public void UpdateStatus(Controller controller)
         {
-            nav.speed = status.movementSpeed;
-            nav.stoppingDistance = status.attackRange;
+            attackRange = controller.battleStatus.status.attackRange;
+            nav.speed = controller.battleStatus.status.movementSpeed;
+            nav.stoppingDistance = controller.battleStatus.status.attackRange;
         }
 
         public void ResetNav()
@@ -41,7 +43,7 @@ namespace RPG.Battle.Move
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
             transform.LookAt(movementVector);
-            transform.Translate(Vector3.forward * status.movementSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.forward * status.movementSpeed * Time.deltaTime);
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace RPG.Battle.Move
         /// <returns></returns>
         public bool MoveDistanceResult(Transform target)
         {
-            return Vector3.Distance(target.transform.position, this.transform.position) > status.attackRange;
+            return Vector3.Distance(target.transform.position, this.transform.position) > attackRange;
         }
     }
 }

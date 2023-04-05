@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using RPG.Character.Status;
 using RPG.Character.Equipment;
 using RPG.Battle.Core;
@@ -12,51 +13,67 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public ObjectPooling pooling;
-        public List<EnemyController> controllers;
-        public EnemyData data;
-        public float timer;
+        public Animator animator;
+        public bool canAttack = true;
+        public float attackSpeed = 1;
+        public float attackDelay = 0;
+        public float test1;
+        public float test2;
+        public Slider slider;
+        public float attackTImechecker = 1.5f;
+
+        private void Start()
+        {
+            RuntimeAnimatorController rac = animator.runtimeAnimatorController;
+
+            foreach (var anim in rac.animationClips)
+            {
+                if (anim.name == "MeleeAttack_OneHanded")
+                {
+                    Debug.Log(anim.name + " : " + anim.length);
+                    attackDelay = anim.length;
+                    break;
+                }
+            }
+        }
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "풀에서 빼기"))
+            if (GUI.Button(new Rect(10, 10, 200, 60), "공격하기"))
             {
-                float randomfloat1 = Random.Range(-5f, 5f);
-                float randomfloat2 = Random.Range(-5f, 5f);
-                controllers.Add(pooling.GetEnemyController(data, new Vector3(randomfloat1, 0, randomfloat2)));
+                animator.SetFloat("AttackSpeed", this.attackSpeed);
+                if (canAttack)
+                {
+
+                    animator.SetTrigger("Attack");
+                    canAttack = false;
+                    StartCoroutine(AttackTimeCheck());
+                    StartCoroutine(AttackDelayCheck());
+                }
             }
 
-            if (GUI.Button(new Rect(10, 70, 200, 60), "풀에 넣기"))
+            if (GUI.Button(new Rect(10, 70, 200, 60), ""))
             {
-                if (controllers.Count <= 0)
-                {
-                    return;
-                }
-                var controller = controllers[Random.Range(0, controllers.Count)];
-                pooling.ReturnEnemy(controller);
-                controllers.Remove(controller);
             }
 
-            if (GUI.Button(new Rect(10, 130, 200, 60), "유닛 죽이기"))
+            if (GUI.Button(new Rect(10, 130, 200, 60), ""))
             {
-                if (controllers.Count <= 0)
-                {
-                    return;
-                }
-                var controller = controllers[Random.Range(0, controllers.Count)];
-                controller.animator.SetTrigger("Dead");
-                pooling.ReturnEnemy(controller);
-                controllers.Remove(controller);
-                //StartCoroutine(test(controller));
             }
         }
 
-        IEnumerator test(EnemyController enemy)
+        IEnumerator AttackTimeCheck()
         {
-            enemy.animator.SetTrigger("Dead");
-            yield return new WaitForSeconds(timer);
-            pooling.ReturnEnemy(enemy);
-            controllers.Remove(enemy);
+            test1 = attackDelay / attackSpeed; 
+            yield return new WaitForSeconds(attackDelay / attackSpeed);
+            canAttack = true;
         }
+
+        IEnumerator AttackDelayCheck()
+        {
+            test2 = attackDelay / attackSpeed / attackTImechecker;
+            yield return new WaitForSeconds(attackDelay / attackSpeed / attackTImechecker);
+            slider.value -= 10;
+        }
+
     }
 }
