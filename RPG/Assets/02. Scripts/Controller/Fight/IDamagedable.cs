@@ -8,7 +8,7 @@ namespace RPG.Battle.Fight
         void Heal(int healPoint);
         void Dead();
 
-        Transform transfrom { get; }
+        Transform Transfrom { get; }
 
         bool IsDead { get;}
         float AttackChance { get; }

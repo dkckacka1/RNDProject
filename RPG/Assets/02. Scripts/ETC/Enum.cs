@@ -34,7 +34,7 @@ public enum DamagedType
 {
     Normal,
     Ciritical,
-    Evasion
+    MISS
 }
 
 // 장비아이템 타입

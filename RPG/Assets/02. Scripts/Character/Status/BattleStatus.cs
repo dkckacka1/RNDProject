@@ -25,7 +25,7 @@ namespace RPG.Character.Status
         public Status status;
         // Encapsulation
         public bool IsDead => isDead;
-        public Transform transfrom => transform;
+        public Transform Transfrom => transform;
         public float AttackChance => status.attackChance;
         public float EvasionPoint => status.evasionPoint;
         public float DecreseCriticalDamage => status.decreseCriticalDamage;
@@ -88,7 +88,7 @@ namespace RPG.Character.Status
                     CurrentHp -= damage;
                     characterUI.TakeDamageText(damage.ToString());
                     break;
-                case DamagedType.Evasion:
+                case DamagedType.MISS:
                     characterUI.TakeDamageText("MISS~");
                     break;
             }

@@ -16,12 +16,14 @@ namespace RPG.Battle.Fight
 
         // Component
         Transform transform;
+        BattleStatus character;
         IDamagedable target;
         
 
-        public Attack(Transform transform)
+        public Attack(Transform transform,BattleStatus character)
         {
             this.transform = transform;
+            this.character = character;
         }
 
         public void UpdateStatus(Controller controller)
@@ -62,7 +64,16 @@ namespace RPG.Battle.Fight
             }
 
             // 1. 공격한다
-            // 1-1. 회피했는지 맞았는지 체크
+            if (AttackSuccess(character, target))
+                // 2. 공격이 적중한다.
+            {
+                target.TakeDamage(attackDamage, DamagedType.Normal);
+            }
+            else
+                // 2. 공격이 실패한다.
+            {
+                target.TakeDamage(attackDamage, DamagedType.MISS);
+            }
 
 
 
@@ -74,11 +85,19 @@ namespace RPG.Battle.Fight
 
             float random = Random.Range(0, 1f);
 
-            if (chance < random)
+            Debug.Log($"{character.name}가 공격하여 {target.Transfrom.name}을 타격했습니다.\n" +
+                $"{character.name}의 적중률 : {character.AttackChance * 100}%\n" +
+                $"{target.Transfrom.name}의 회피율 : {target.EvasionPoint * 100}%\n" +
+                $"공격이 적중할 확률은 {chance * 100}% 입니다.\n" +
+                $"주사위는 {random * 100}이 나왔습니다.");
+
+            if (chance > random)
             {
+                // 적중 성공
                 return true;
             }
 
+            // 적중 실패
             return false;
         }
 

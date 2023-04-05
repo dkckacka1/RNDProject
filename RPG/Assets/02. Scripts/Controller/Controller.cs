@@ -89,7 +89,7 @@ namespace RPG.Battle.Control
         public virtual void SetUp()
         {
             movement = new Movement(transform, nav);
-            attack = new Attack(transform);
+            attack = new Attack(transform, battleStatus);
 
             stateContext = new StateContext(this);
             idleState = new IdelState(this);
