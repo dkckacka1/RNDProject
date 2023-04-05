@@ -8,7 +8,6 @@ using RPG.Core;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using RPG.Battle.UI;
-using System;
 
 namespace RPG.Battle.Core
 {
@@ -108,6 +107,35 @@ namespace RPG.Battle.Core
             else if (controller is EnemyController)
             {
                 var enemy = controller as EnemyController;
+                // 아이템 루팅
+                EnemyData enemyData;
+                if (GameManager.Instance.enemyDataDic.TryGetValue((controller.battleStatus.status as EnemyStatus).enemyID, out enemyData))
+                {
+                    objectPool.GetLootingItem(Camera.main.WorldToScreenPoint(controller.transform.position), DropItemType.Energy, battleUI.backpack.transform);
+                    GameManager.Instance.UserInfo.Energy += enemyData.dropEnergy;
+
+                    foreach (var dropTable in enemyData.dropitems)
+                    {
+                        float random = Random.Range(0f, 100f);
+                        if (random <= dropTable.percent)
+                        {
+                            objectPool.GetLootingItem(Camera.main.WorldToScreenPoint(controller.transform.position), dropTable.itemType, battleUI.backpack.transform);
+                            switch (dropTable.itemType)
+                            {
+                                case DropItemType.GachaItemScroll:
+                                    GameManager.Instance.UserInfo.itemGachaTicket++;
+                                    break;
+                                case DropItemType.reinfoceScroll:
+                                    GameManager.Instance.UserInfo.itemReinforceCount++;
+                                    break;
+                                case DropItemType.IncantScroll:
+                                    GameManager.Instance.UserInfo.itemIncantCount++;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
                 liveEnemies.Remove(enemy);
                 if (liveEnemies.Count <= 0)
                 {

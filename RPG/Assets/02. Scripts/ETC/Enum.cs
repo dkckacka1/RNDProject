@@ -72,6 +72,7 @@ public enum alignmentType
 
 public enum DropItemType
 {
+    Energy,
     GachaItemScroll,
     reinfoceScroll,
     IncantScroll

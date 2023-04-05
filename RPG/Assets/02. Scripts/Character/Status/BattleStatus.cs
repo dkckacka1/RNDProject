@@ -65,22 +65,23 @@ namespace RPG.Character.Status
         {
         }
 
-        public void TakeDamage(int damage,DamagedType type)
+        public void TakeDamage(int damage,DamagedType type = DamagedType.Normal)
         {
             if (isDead) return;
+
 
             switch (type)
             {
                 case DamagedType.Normal:
                     CurrentHp -= damage;
-                    characterUI.TakeDamageText(damage.ToString());
+                    characterUI.TakeDamageText(damage.ToString(), type);
                     break;
                 case DamagedType.Ciritical:
                     CurrentHp -= damage;
-                    characterUI.TakeDamageText(damage.ToString() + "!!");
+                    characterUI.TakeDamageText(damage.ToString() + "!!", type);
                     break;
                 case DamagedType.MISS:
-                    characterUI.TakeDamageText("MISS~");
+                    characterUI.TakeDamageText("MISS~", type);
                     break;
             }
         }

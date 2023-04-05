@@ -95,9 +95,9 @@ namespace RPG.Battle.Fight
 
         private int DamageCalc(int damage, float defenceAverage)
         {
-            Debug.Log($"공격력 : {damage}\n" +
-                $"방어율 : {defenceAverage * 100}%" +
-                $"실제 데미지 수치 : {(int)(damage * defenceAverage)}");
+            //Debug.Log($"공격력 : {damage}\n" +
+            //    $"방어율 : {defenceAverage * 100}%" +
+            //    $"실제 데미지 수치 : {(int)(damage * defenceAverage)}");
 
             return (int)(damage * defenceAverage);
         }

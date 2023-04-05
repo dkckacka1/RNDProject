@@ -17,7 +17,10 @@ namespace RPG.Battle.UI
         [Header("ReadyUI")]
         [SerializeField] TextMeshProUGUI readyText;
         [SerializeField] float removeReadyUITime = 1f;
-     
+
+        [Header("looting")]
+        public Image backpack;
+
         [Header("PlayerUI")]
         // PlayerUI
         public PlayerHPBar playerHPBar;

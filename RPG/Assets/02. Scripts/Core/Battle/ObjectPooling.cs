@@ -10,18 +10,22 @@ namespace RPG.Battle.Core
 {
     public class ObjectPooling : MonoBehaviour
     {
+        [SerializeField] PlayerController playerController;
         [SerializeField] EnemyController enemyController;
         [SerializeField] GameObject battleTextPrefab;
-        public Transform playerParent;
-        public Transform enemyParent;
+        [SerializeField] LootingItem lootingItem;
+        [SerializeField] Transform playerParent;
+        [SerializeField] Transform enemyParent;
+        [SerializeField] Transform battleTextParent;
+        [SerializeField] Transform LootingItemParent;
 
         Canvas battleCanvas;
+
         public void SetUp(Canvas canvas)
         {
             this.battleCanvas = canvas;
         }
 
-        public PlayerController playerController;
         public PlayerController CreatePlayer(PlayerStatus status)
         {
             PlayerController controller = Instantiate<PlayerController>(playerController, playerParent);
@@ -63,22 +67,22 @@ namespace RPG.Battle.Core
         public EnemyController GetEnemyController(EnemyData data, Vector3 position)
         {
             EnemyController enemy;
+
             if (enemyControllerPool.Count > 0)
             {
                 // 풀에 남아있다면 남아있는 컨트롤러 재활용
                 enemy = enemyControllerPool.Dequeue();
-                SetLook(ref enemy, data);
-                enemy.gameObject.transform.position = position;
-                enemy.gameObject.SetActive(true);
             }
             else
             {                   
                 // 풀이 비어있다면 생성
                 enemy = CreateController(data);
-                SetLook(ref enemy, data);
-                enemy.gameObject.transform.position = position;
-                enemy.gameObject.SetActive(true);
             }
+
+            SetLook(ref enemy, data);
+            enemy.gameObject.transform.position = position;
+            enemy.gameObject.SetActive(true);
+
             return enemy;
         }
 
@@ -105,30 +109,31 @@ namespace RPG.Battle.Core
 
         public BattleText CreateText()
         {
-            GameObject obj = Instantiate(battleTextPrefab, battleCanvas.gameObject.transform);
+            GameObject obj = Instantiate(battleTextPrefab, battleTextParent.transform);
             BattleText text = obj.GetComponent<BattleText>();
             return text;
         }
 
-        public BattleText GetText(string textStr, Vector3 position)
+        public BattleText GetText(string textStr, Vector3 position, DamagedType type = DamagedType.Normal)
         {
+            BattleText text;
+
             if (battleTextPool.Count > 0)
             {
                 // 풀에 있는 것 사용
-                BattleText text = battleTextPool.Dequeue();
-                text.Init(textStr, position);
-                text.gameObject.SetActive(true);
-                return text;
+                text = battleTextPool.Dequeue();
+
             }
             else
             {
                 // 새로 만들어서 풀에 넣기
-                BattleText text = CreateText();
-                battleTextPool.Enqueue(text);
-                text.Init(textStr, position);
-                text.gameObject.SetActive(true);
-                return text;
+                text = CreateText();
             }
+
+            text.Init(textStr, position, type);
+            text.gameObject.SetActive(true);
+
+            return text;
         }
 
         public void ReturnText(BattleText text)
@@ -136,6 +141,45 @@ namespace RPG.Battle.Core
             text.gameObject.SetActive(false);
             battleTextPool.Enqueue(text);
         }
+        #endregion
+
+        #region LootingItem
+
+        //Pool
+        Queue<LootingItem> LootingItemPool = new Queue<LootingItem>();
+
+        public LootingItem CreateLooitngItem(Transform backpackTransform)
+        {
+            LootingItem item = Instantiate(lootingItem,LootingItemParent);
+            item.SetUp(backpackTransform);
+            return item;
+        }
+
+        public LootingItem GetLootingItem(Vector3 position, DropItemType type, Transform backpackTransform)
+        {
+            LootingItem lootingItem;
+
+            if (LootingItemPool.Count > 0)
+            {
+                lootingItem = LootingItemPool.Dequeue();
+            }
+            else
+            {
+                lootingItem = CreateLooitngItem(backpackTransform);
+            }
+
+            lootingItem.Init(position, type);
+            lootingItem.gameObject.SetActive(true);
+
+            return lootingItem;
+        }
+
+        public void ReturnLootingItem(LootingItem item)
+        {
+            item.gameObject.SetActive(false);
+            LootingItemPool.Enqueue(item);
+        }
+
         #endregion
     }
 }

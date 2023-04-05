@@ -27,7 +27,9 @@ MonoBehaviour:
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 0
-  dropitems: []
+  dropEnergy: 10
+  dropitems:
+  - itemType: 1
+    percent: 100
   weaponHandle: {fileID: 0}
   weapon: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}

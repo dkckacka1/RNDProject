@@ -7,10 +7,13 @@ namespace RPG.Character.Status
 {
     public class EnemyStatus : Status
     {
+        public int enemyID;
         public string enemyName;
 
         public void Init(EnemyData data)
         {
+            enemyID = data.ID;
+
             enemyName = data.enemyName;
             maxHp = data.maxHp;
             attackDamage = data.attackDamage;

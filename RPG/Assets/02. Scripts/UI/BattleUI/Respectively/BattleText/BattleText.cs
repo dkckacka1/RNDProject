@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using RPG.Battle.Core;
@@ -9,13 +10,14 @@ namespace RPG.Battle.UI
 {
     public class BattleText : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI Text;
+        [SerializeField] TextMeshProUGUI text;
         [SerializeField] float speed;
         [SerializeField] float deleteTiming;
+        [SerializeField] List<DamageTextMaterial> materials;
 
         private void OnEnable()
         {
-            Text.DOFade(0, deleteTiming).OnComplete(() => { ReleaseText(); });
+            text.DOFade(0, deleteTiming).OnComplete(() => { ReleaseText(); });
         }
 
         private void Update()
@@ -28,11 +30,21 @@ namespace RPG.Battle.UI
             BattleManager.Instance.objectPool.ReturnText(this);
         }
 
-        public void Init(string textStr, Vector3 position)
+        public void Init(string textStr, Vector3 position, DamagedType type = DamagedType.Normal)
         {
-            this.Text.alpha = 1;
+            try
+            {
+                text.fontMaterial = materials.Find(mat => mat.type.Equals(type)).material;
+            }
+            catch
+            {
+                Debug.Log("마테리얼 변경 실패");
+            }
+
+
+            this.text.alpha = 1;
             this.transform.position = Camera.main.WorldToScreenPoint(position);
-            this.Text.text = textStr;
+            this.text.text = textStr;
         }
     }
 }

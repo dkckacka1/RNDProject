@@ -22,6 +22,6 @@ MonoBehaviour:
   attackSpeed: 1
   attackRange: 2
   movementSpeed: 1.5
-  criticalChance: 0.25
+  criticalChance: 0.58
   criticalDamage: 0.5
   attackChance: 1

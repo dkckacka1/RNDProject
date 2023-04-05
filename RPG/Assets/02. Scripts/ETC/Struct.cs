@@ -14,3 +14,16 @@ public struct DropTable
     public int percent;
 }
 
+[System.Serializable]
+public struct DamageTextMaterial
+{
+    public DamagedType type;
+    public Material material;
+}
+
+[System.Serializable]
+public struct LootingImage
+{
+    public DropItemType type;
+    public Sprite sprite;
+}

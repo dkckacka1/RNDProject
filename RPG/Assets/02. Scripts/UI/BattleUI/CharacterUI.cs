@@ -54,9 +54,9 @@ namespace RPG.Battle.UI
             }
         }
 
-        public void TakeDamageText(string damage)
+        public void TakeDamageText(string damage, DamagedType type = DamagedType.Normal)
         {
-            BattleManager.Instance.objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset);
+            BattleManager.Instance.objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset, type);
         }
     }
 }
