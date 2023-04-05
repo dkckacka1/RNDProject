@@ -128,7 +128,7 @@ namespace RPG.Battle.Control
         public bool CheckDeadState()
         {
             // 나는 죽어있는가?
-            if (battleStatus.IsDead)
+            if (battleStatus.isDead)
             {
                 DeadEvent();
                 StopAttack();
@@ -154,7 +154,7 @@ namespace RPG.Battle.Control
             if (target != null)
             {
                 // 타겟이 죽었는가?
-                if (target.battleStatus.IsDead)
+                if (target.battleStatus.isDead)
                 {
                     StopAttack();
                     target = null;
@@ -181,7 +181,7 @@ namespace RPG.Battle.Control
             if (target != null)
             {
                 //타겟이 살아있는가?
-                if(!target.battleStatus.IsDead)
+                if(!target.battleStatus.isDead)
                 {
                     return true;
                 }

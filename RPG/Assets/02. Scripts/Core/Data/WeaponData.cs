@@ -15,8 +15,8 @@ namespace RPG.Character.Equipment
         [Range(1, 2.5f)] public float attackSpeed;
         [Range(1, 5f)] public float attackRange;
         [Range(1, 5f)] public float movementSpeed;
-        [Range(0, 0.6f)] public float criticalChance;
-        [Range(0, 0.5f)] public float criticalDamage;
-        [Range(0.8f, 1.0f)] public float attackChance;
+        [Range(0, 1f)] public float criticalChance;
+        [Range(0, 1f)] public float criticalDamage;
+        [Range(0.6f, 1.2f)] public float attackChance;
     }
 }

@@ -11,7 +11,7 @@ using RPG.Character.Equipment;
 
 namespace RPG.Character.Status
 {
-    public class BattleStatus : MonoBehaviour, IDamagedable
+    public class BattleStatus : MonoBehaviour
     {
         // Component
         [Header("UI")]
@@ -19,18 +19,10 @@ namespace RPG.Character.Status
 
         [Header("Battle")]
         public int currentHp = 0;
-        private bool isDead = false;
+        public bool isDead = false;
 
         [Header("Status")]
         public Status status;
-        // Encapsulation
-        public bool IsDead => isDead;
-        public Transform Transfrom => transform;
-        public float AttackChance => status.attackChance;
-        public float EvasionPoint => status.evasionPoint;
-        public float DecreseCriticalDamage => status.decreseCriticalDamage;
-        public float EvasionCritical => status.evasionCritical;
-        public int DefencePoint => status.defencePoint;
 
         public int CurrentHp
         {
@@ -49,7 +41,6 @@ namespace RPG.Character.Status
                 }
             }
         }
-
 
         private void OnEnable()
         {
@@ -86,7 +77,7 @@ namespace RPG.Character.Status
                     break;
                 case DamagedType.Ciritical:
                     CurrentHp -= damage;
-                    characterUI.TakeDamageText(damage.ToString());
+                    characterUI.TakeDamageText(damage.ToString() + "!!");
                     break;
                 case DamagedType.MISS:
                     characterUI.TakeDamageText("MISS~");
@@ -103,5 +94,6 @@ namespace RPG.Character.Status
         {
             CurrentHp += healPoint;
         }
+
     }
 }

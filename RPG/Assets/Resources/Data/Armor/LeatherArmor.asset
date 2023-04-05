@@ -20,4 +20,4 @@ MonoBehaviour:
   defencePoint: 10
   hpPoint: 100
   movementSpeed: 0.5
-  evasionPoint: 0
+  evasionPoint: 0.2
