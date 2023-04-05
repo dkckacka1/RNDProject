@@ -32,8 +32,9 @@ MonoBehaviour:
   ui: {fileID: -624484618651885034}
   animator: {fileID: 0}
   nav: {fileID: 7548954268734023121}
-  status: {fileID: 8989304631275338796}
+  battleStatus: {fileID: 8989304631275338796}
   target: {fileID: 0}
+  state: 0
   enemyLooks: {fileID: 0}
 --- !u!114 &6917052620463464743
 MonoBehaviour:

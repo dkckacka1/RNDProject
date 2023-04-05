@@ -23,9 +23,6 @@ namespace RPG.Battle.AI
         public void OnStart()
         {
             controller.state = CombatState.Attack;
-            attack.canAttack = true;
-            Debug.Log($"{controller.name} attackDelay : {attack.attackDelay}\n" +
-                $"{controller.name} attacktime : {attack.attackAnimPoint}");
         }
 
         public void OnUpdate()

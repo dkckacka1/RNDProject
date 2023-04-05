@@ -30,6 +30,13 @@ public enum Stats
     SUCCESS
 }
 
+public enum DamagedType
+{
+    Normal,
+    Ciritical,
+    Evasion
+}
+
 // 장비아이템 타입
 public enum EquipmentItemType
 {

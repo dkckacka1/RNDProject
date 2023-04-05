@@ -25,6 +25,22 @@ namespace RPG.Battle.Core
         public PlayerController CreatePlayer(PlayerStatus status)
         {
             PlayerController controller = Instantiate<PlayerController>(playerController, playerParent);
+            if (controller == null)
+            {
+                Debug.Log("Controller is NULL");
+            }
+
+            if (controller.battleStatus == null)
+            {
+                Debug.Log("(controller.battleStatus is NULL");
+            }
+
+            if ((controller.battleStatus.status as PlayerStatus) == null)
+            {
+                Debug.Log("(controller.battleStatus.status as PlayerStatus) is NULL");
+            }
+
+
             (controller.battleStatus.status as PlayerStatus).SetPlayerStatusFromStatus(status);
             controller.gameObject.SetActive(true);
 

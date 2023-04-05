@@ -54,7 +54,7 @@ namespace RPG.Battle.UI
             }
         }
 
-        public void TakeDamageText(int damage)
+        public void TakeDamageText(string damage)
         {
             BattleManager.Instance.objectPool.GetText(damage.ToString(), this.transform.position + battleTextOffset);
         }

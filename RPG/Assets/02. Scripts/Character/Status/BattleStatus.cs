@@ -24,8 +24,13 @@ namespace RPG.Character.Status
         [Header("Status")]
         public Status status;
         // Encapsulation
-        public bool IsDead { get => isDead;}
-        public Transform transfrom { get => transform; }
+        public bool IsDead => isDead;
+        public Transform transfrom => transform;
+        public float AttackChance => status.attackChance;
+        public float EvasionPoint => status.evasionPoint;
+        public float DecreseCriticalDamage => status.decreseCriticalDamage;
+        public float EvasionCritical => status.evasionCritical;
+        public int DefencePoint => status.defencePoint;
 
         public int CurrentHp
         {
@@ -44,6 +49,7 @@ namespace RPG.Character.Status
                 }
             }
         }
+
 
         private void OnEnable()
         {
@@ -66,23 +72,31 @@ namespace RPG.Character.Status
 
         public virtual void Release()
         {
-            isDead = false;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage,DamagedType type)
         {
             if (isDead) return;
 
-            CurrentHp -= damage;
-            characterUI.TakeDamageText(damage);
+            switch (type)
+            {
+                case DamagedType.Normal:
+                    CurrentHp -= damage;
+                    characterUI.TakeDamageText(damage.ToString());
+                    break;
+                case DamagedType.Ciritical:
+                    CurrentHp -= damage;
+                    characterUI.TakeDamageText(damage.ToString());
+                    break;
+                case DamagedType.Evasion:
+                    characterUI.TakeDamageText("MISS~");
+                    break;
+            }
         }
 
         public void Dead()
         {
             isDead = true;
-            //GetComponent<NavMeshAgent>().enabled = false;
-            //characterUI.RemoveUI(4.5f);
-            //Destroy(gameObject,5f);
         }
 
         public void Heal(int healPoint)

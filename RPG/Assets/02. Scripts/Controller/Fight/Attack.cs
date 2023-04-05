@@ -29,7 +29,6 @@ namespace RPG.Battle.Fight
             RuntimeAnimatorController rc = controller.animator.runtimeAnimatorController;
             foreach (var item in rc.animationClips)
             {
-                Debug.Log($"{item.name}의 길이 : {item.length}");
                 if (item.name == "MeleeAttack_OneHanded")
                 {
                     defaultAttackAnimLength = item.length;
@@ -62,7 +61,25 @@ namespace RPG.Battle.Fight
                 return;
             }
 
-            target.TakeDamage(attackDamage);
+            // 1. 공격한다
+            // 1-1. 회피했는지 맞았는지 체크
+
+
+
+            //target.TakeDamage(attackDamage);
+        }
+        private bool AttackSuccess(BattleStatus character, IDamagedable target)
+        {
+            float chance = character.AttackChance * (1 - target.EvasionPoint);
+
+            float random = Random.Range(0, 1f);
+
+            if (chance < random)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public IEnumerator WaitAttackDelay()

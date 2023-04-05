@@ -63,6 +63,7 @@ namespace RPG.Battle.Control
             Release();
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Defeat, Defeat);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ready, Ready);
         }
 
         private void Start()
@@ -99,6 +100,7 @@ namespace RPG.Battle.Control
 
         public virtual void Init()
         {
+            attack.canAttack = true;
             nav.enabled = true;
             animator.Rebind();
             UpdateStatus();
@@ -119,6 +121,7 @@ namespace RPG.Battle.Control
 
         public void Ready()
         {
+            target = null;
             movement.ResetNav();
         }
 
@@ -200,7 +203,6 @@ namespace RPG.Battle.Control
 
         public void StopAttack()
         {
-            StopCoroutine(attackDelayCheckCoroutine);
             StopCoroutine(waitAttackTimeCoroutine);
         }
 

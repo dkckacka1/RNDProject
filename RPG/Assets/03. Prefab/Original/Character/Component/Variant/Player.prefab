@@ -31,8 +31,9 @@ MonoBehaviour:
   ui: {fileID: -3547984684722416041}
   animator: {fileID: 6827944588897757222}
   nav: {fileID: 7051127263331252068}
-  status: {fileID: 8491972388946292377}
+  battleStatus: {fileID: 8491972388946292377}
   target: {fileID: 0}
+  state: 0
 --- !u!114 &8668303703841679543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,10 @@ PrefabInstance:
     - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_AutoBraking
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 711069287744537964, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_RootOrder
