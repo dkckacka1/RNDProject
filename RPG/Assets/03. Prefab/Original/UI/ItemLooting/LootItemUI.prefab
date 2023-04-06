@@ -128,6 +128,9 @@ MonoBehaviour:
   rootImage: {fileID: 779879814285900820}
   rootspeed: 0.01
   minDistance: 30
+  bouncePointX: 80
+  bouncePointY: 10
+  moveTime: 1
   lootings:
   - type: 0
     sprite: {fileID: 21300000, guid: 0207001f43361c14d83b99cdd5fd6d6e, type: 3}
@@ -137,3 +140,4 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: ba9fb3fa9105de143a4e8178fae7f580, type: 3}
   - type: 3
     sprite: {fileID: 21300000, guid: 7f3d087440b37024c934cce4813641e5, type: 3}
+  jumpPower: 20

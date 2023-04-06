@@ -27,7 +27,8 @@ namespace RPG.Core
             if (GUI.Button(new Rect(10, 10, 200, 60), "에너지 떨구기"))
             {
                 sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                LootingItem loots = Instantiate(loot,canvas.transform);
+                LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
+                loots.SetUp(backpack);
                 loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.Energy);
             }
 
@@ -35,6 +36,7 @@ namespace RPG.Core
             {
                 sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
                 LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
+                loots.SetUp(backpack);
                 loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.reinfoceScroll);
             }
 
@@ -42,6 +44,7 @@ namespace RPG.Core
             {
                 sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
                 LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
+                loots.SetUp(backpack);
                 loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.GachaItemScroll);
             }
 
@@ -49,6 +52,7 @@ namespace RPG.Core
             {
                 sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
                 LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
+                loots.SetUp(backpack);
                 loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.IncantScroll);
             }
         }
