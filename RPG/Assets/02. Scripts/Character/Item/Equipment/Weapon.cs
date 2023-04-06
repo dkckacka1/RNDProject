@@ -46,7 +46,6 @@ namespace RPG.Character.Equipment
 
         public override void ChangeData(EquipmentData data)
         {
-            // UNDONE : 무기 외형 변경 넣기
             if (!(data is WeaponData))
             {
                 Debug.LogError("잘못된 데이타 형식입니다.");

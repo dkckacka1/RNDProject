@@ -13,47 +13,14 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public LootingItem loot;
-        public Canvas canvas;
-        public Transform backpack;
-
-        public GameObject sh;
         private void Start()
         {
         }
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "¿¡³ÊÁö ¶³±¸±â"))
+            if (GUI.Button(new Rect(10, 10, 200, 60), "½ºÅ³ »ç¿ë"))
             {
-                sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
-                loots.SetUp(backpack);
-                loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.Energy);
-            }
-
-            if (GUI.Button(new Rect(10, 70, 200, 60), "°­È­±Ç ¶³±¸±â"))
-            {
-                sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
-                loots.SetUp(backpack);
-                loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.reinfoceScroll);
-            }
-
-            if (GUI.Button(new Rect(10, 130, 200, 60), "»Ì±â±Ç ¶³±¸±â"))
-            {
-                sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
-                loots.SetUp(backpack);
-                loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.GachaItemScroll);
-            }
-
-            if (GUI.Button(new Rect(10, 190, 200, 60), "ÀÎÃ¦Æ®±Ç ¶³±¸±â"))
-            {
-                sh.transform.position = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                LootingItem loots = Instantiate(loot, Camera.main.WorldToScreenPoint(sh.transform.position), Quaternion.identity, canvas.transform);
-                loots.SetUp(backpack);
-                loots.Init(Camera.main.WorldToScreenPoint(sh.transform.position), DropItemType.IncantScroll);
             }
         }
 

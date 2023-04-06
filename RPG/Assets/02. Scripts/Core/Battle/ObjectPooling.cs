@@ -5,6 +5,7 @@ using RPG.Battle.UI;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using UnityEditor;
+using RPG.Character.Equipment;
 
 namespace RPG.Battle.Core
 {
@@ -44,8 +45,9 @@ namespace RPG.Battle.Core
                 Debug.Log("(controller.battleStatus.status as PlayerStatus) is NULL");
             }
 
+            var controllerStatus = (controller.battleStatus.status as PlayerStatus);
 
-            (controller.battleStatus.status as PlayerStatus).SetPlayerStatusFromStatus(status);
+            controllerStatus.SetPlayerStatusFromStatus(status, controller.GetComponentInChildren<CharacterAppearance>());
             controller.gameObject.SetActive(true);
 
             return controller;
@@ -74,7 +76,7 @@ namespace RPG.Battle.Core
                 enemy = enemyControllerPool.Dequeue();
             }
             else
-            {                   
+            {
                 // 풀이 비어있다면 생성
                 enemy = CreateController(data);
             }
@@ -86,10 +88,10 @@ namespace RPG.Battle.Core
             return enemy;
         }
 
-        public void SetLook(ref EnemyController enemy,EnemyData data)
+        public void SetLook(ref EnemyController enemy, EnemyData data)
         {
-            if(enemy.enemyLooks == null)
-                enemy.enemyLooks = Instantiate(data.enemyLook,enemy.gameObject.transform);
+            if (enemy.enemyLooks == null)
+                enemy.enemyLooks = Instantiate(data.enemyLook, enemy.gameObject.transform);
         }
 
 
@@ -150,7 +152,7 @@ namespace RPG.Battle.Core
 
         public LootingItem CreateLooitngItem(Transform backpackTransform)
         {
-            LootingItem item = Instantiate(lootingItem,LootingItemParent);
+            LootingItem item = Instantiate(lootingItem, LootingItemParent);
             item.SetUp(backpackTransform);
             return item;
         }

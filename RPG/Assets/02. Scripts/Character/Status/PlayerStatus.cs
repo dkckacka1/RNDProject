@@ -162,6 +162,8 @@ namespace RPG.Character.Status
             currentHelmet = new Helmet(status.currentHelmet);
             currentPants = new Pants(status.currentPants);
 
+            Debug.Log("Characterapperance is NULL? = " + (ap == null));
+
             if (ap != null)
             {
                 ap.EquipWeapon(currentWeapon.weaponLook);

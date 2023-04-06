@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 
 namespace RPG.Battle.Fight
 {
+    public class AttackEvent : UnityEvent<BattleStatus> { }
+
     public class Attack
     {
         public bool canAttack = true;
         public float attackDelay = 1;
         public float attackAnimPoint = 1.2f;
         public float defaultAttackAnimLength;
+
+        // AttackEvent
+        AttackEvent attackEvent;
 
         // Component
         Transform transform;
@@ -23,6 +29,12 @@ namespace RPG.Battle.Fight
         {
             this.transform = transform;
             this.character = character;
+            attackEvent = new AttackEvent();
+        }
+
+        public void AddAction(UnityAction<BattleStatus> action)
+        {
+            attackEvent.AddListener(action);
         }
 
         public void UpdateStatus(Controller controller)
@@ -70,6 +82,7 @@ namespace RPG.Battle.Fight
             if (AttackChangeCalc(character, target))
                 // 2. 공격이 적중한다.
             {
+                attackEvent.Invoke(target);
                 if (AttackCriticalCalc(character, target))
                     // 3. 공격 치명타가 발생한다.
                 {

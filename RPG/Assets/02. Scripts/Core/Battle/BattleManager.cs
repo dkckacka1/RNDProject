@@ -143,6 +143,7 @@ namespace RPG.Battle.Core
                 }
 
                 liveEnemies.Remove(enemy);
+                objectPool.ReturnEnemy((controller as EnemyController));
                 if (liveEnemies.Count <= 0)
                 {
                     Win();
@@ -208,6 +209,21 @@ namespace RPG.Battle.Core
             userInfo.itemGachaTicket += gainGacha;
             userInfo.itemReinforceCount += gainReinforce;
             userInfo.itemIncantCount += gainIncant;
+        }
+
+        private void ResetStage()
+        {
+            if (livePlayer != null)
+            {
+                livePlayer.gameObject.SetActive(false);
+            }
+
+            foreach (var enemy in liveEnemies)
+            {
+                objectPool.ReturnEnemy(enemy);
+            }
+
+            liveEnemies.Clear();
         }
 
 
@@ -353,6 +369,7 @@ namespace RPG.Battle.Core
         public void ToMainScene()
         {
             UpdateUserinfo();
+            ResetStage();
             SceneManager.LoadScene(0);
         }
         #endregion

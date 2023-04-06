@@ -38,7 +38,6 @@ namespace RPG.Battle.Control
         public override void DeadEvent()
         {
             base.DeadEvent();
-            BattleManager.Instance.objectPool.ReturnEnemy(this);
         }
     }
 }

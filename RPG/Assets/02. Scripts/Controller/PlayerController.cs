@@ -6,6 +6,8 @@ using RPG.Battle.AI;
 using RPG.Battle.Fight;
 using RPG.Battle.Move;
 using RPG.Character.Status;
+using RPG.Character.Equipment;
+using UnityEngine.Events;
 
 namespace RPG.Battle.Control
 {
@@ -14,7 +16,23 @@ namespace RPG.Battle.Control
         public override void SetUp()
         {
             base.SetUp();
+            AddAttackEvent();
             BattleManager.Instance.livePlayer = this;
+        }
+
+        public void AddAttackEvent()
+        {
+            PlayerStatus status = (battleStatus.status as PlayerStatus);
+
+            if (status.currentWeapon.suffix != null && status.currentWeapon.suffix.isIncantSkill)
+            {
+                attack.AddAction(status.currentWeapon.suffix.Skill);
+            }
+
+            if (status.currentWeapon.prefix != null && status.currentWeapon.prefix.isIncantSkill)
+            {
+                attack.AddAction(status.currentWeapon.prefix.Skill);
+            }
         }
 
         public override void DeadEvent()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
+using RPG.Character.Status;
 
 public abstract class Incant
 {
@@ -12,6 +13,7 @@ public abstract class Incant
 
     // 인챈트의 이름
     public string name;
+    public bool isIncantSkill;
 
     // 인챈트의 설명
     public string addDesc;
@@ -23,5 +25,10 @@ public abstract class Incant
     public string ShowDesc()
     {
         return $"{name}\t{MyUtility.returnColorText(addDesc,Color.green)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red)}";
+    }
+
+    public virtual void Skill(BattleStatus status)
+    {
+
     }
 }
