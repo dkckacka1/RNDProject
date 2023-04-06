@@ -23,16 +23,6 @@ namespace RPG.Battle.Control
         public void AddAttackEvent()
         {
             PlayerStatus status = (battleStatus.status as PlayerStatus);
-
-            if (status.currentWeapon.suffix != null && status.currentWeapon.suffix.isIncantSkill)
-            {
-                attack.AddAction(status.currentWeapon.suffix.Skill);
-            }
-
-            if (status.currentWeapon.prefix != null && status.currentWeapon.prefix.isIncantSkill)
-            {
-                attack.AddAction(status.currentWeapon.prefix.Skill);
-            }
         }
 
         public override void DeadEvent()

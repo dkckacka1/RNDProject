@@ -7,7 +7,7 @@ using RPG.Character.Status;
 
 namespace RPG.Battle.Fight
 {
-    public class AttackEvent : UnityEvent<BattleStatus> { }
+    public class AttackEvent : UnityEvent<BattleStatus, BattleStatus> { }
 
     public class Attack
     {
@@ -32,7 +32,7 @@ namespace RPG.Battle.Fight
             attackEvent = new AttackEvent();
         }
 
-        public void AddAction(UnityAction<BattleStatus> action)
+        public void AddAction(UnityAction<BattleStatus, BattleStatus> action)
         {
             attackEvent.AddListener(action);
         }
@@ -82,7 +82,7 @@ namespace RPG.Battle.Fight
             if (AttackChangeCalc(character, target))
                 // 2. 공격이 적중한다.
             {
-                attackEvent.Invoke(target);
+                attackEvent.Invoke(character, target);
                 if (AttackCriticalCalc(character, target))
                     // 3. 공격 치명타가 발생한다.
                 {
