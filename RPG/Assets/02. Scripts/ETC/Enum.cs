@@ -6,7 +6,7 @@ public enum BattleSceneState
     Default,
     Ready,
     Battle,
-    Stop,
+    Pause,
     Defeat,
     Win
 }

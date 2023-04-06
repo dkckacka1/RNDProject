@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 using RPG.Core;
 using RPG.Battle.Control;
 using RPG.Character.Status;
@@ -44,6 +44,12 @@ namespace RPG.Battle.Core
         public int currentStageID = 0;
         private StageData stageData;
 
+        private int gainEnergy = 0;
+        private int gainGacha = 0;
+        private int gainReinforce = 0;
+        private int gainIncant = 0;
+
+
         private readonly Dictionary<BattleSceneState, UnityEvent> battleEventDic = new Dictionary<BattleSceneState, UnityEvent>();
         private delegate void voidFunc();
         private delegate IEnumerator IEnumeratorFunc();
@@ -78,7 +84,7 @@ namespace RPG.Battle.Core
             StartCoroutine(MethodCallTimer(() =>
             {
                 battleUI.ShowStart();
-                currentBattleState = BattleSceneState.Battle;
+                Battle();
             }, startTime));
         }
 
@@ -112,7 +118,7 @@ namespace RPG.Battle.Core
                 if (GameManager.Instance.enemyDataDic.TryGetValue((controller.battleStatus.status as EnemyStatus).enemyID, out enemyData))
                 {
                     objectPool.GetLootingItem(Camera.main.WorldToScreenPoint(controller.transform.position), DropItemType.Energy, battleUI.backpack.transform);
-                    GameManager.Instance.UserInfo.Energy += enemyData.dropEnergy;
+                    gainItem(DropItemType.Energy, enemyData.dropEnergy);
 
                     foreach (var dropTable in enemyData.dropitems)
                     {
@@ -123,13 +129,13 @@ namespace RPG.Battle.Core
                             switch (dropTable.itemType)
                             {
                                 case DropItemType.GachaItemScroll:
-                                    GameManager.Instance.UserInfo.itemGachaTicket++;
+                                    gainItem(DropItemType.GachaItemScroll, 1);
                                     break;
                                 case DropItemType.reinfoceScroll:
-                                    GameManager.Instance.UserInfo.itemReinforceCount++;
+                                    gainItem(DropItemType.reinfoceScroll, 1);
                                     break;
                                 case DropItemType.IncantScroll:
-                                    GameManager.Instance.UserInfo.itemIncantCount++;
+                                    gainItem(DropItemType.IncantScroll, 1);
                                     break;
                             }
                         }
@@ -141,6 +147,25 @@ namespace RPG.Battle.Core
                 {
                     Win();
                 }
+            }
+        }
+
+        private void gainItem(DropItemType type,int count)
+        {
+            switch (type)
+            {
+                case DropItemType.Energy:
+                    gainEnergy += count;
+                    break;
+                case DropItemType.GachaItemScroll:
+                    gainGacha += count;
+                    break;
+                case DropItemType.reinfoceScroll:
+                    gainReinforce += count;
+                    break;
+                case DropItemType.IncantScroll:
+                    gainIncant += count;
+                    break;
             }
         }
 
@@ -159,6 +184,30 @@ namespace RPG.Battle.Core
             currentBattleState = BattleSceneState.Defeat;
             battleUI.ShowDefeatText();
             SetBattleState(BattleSceneState.Defeat);
+        }
+
+        private void Battle()
+        {
+            SetBattleState(BattleSceneState.Battle);
+        }
+
+        private void Pause()
+        {
+            SetBattleState(BattleSceneState.Pause);
+        }
+
+        private void UpdateUserinfo()
+        {
+            UserInfo userInfo = GameManager.Instance.UserInfo;
+            if (userInfo.risingTopCount < currentStageID)
+            {
+                userInfo.risingTopCount = currentStageID;
+            }
+
+            userInfo.Energy += gainEnergy;
+            userInfo.itemGachaTicket += gainGacha;
+            userInfo.itemReinforceCount += gainReinforce;
+            userInfo.itemIncantCount += gainIncant;
         }
 
 
@@ -291,6 +340,22 @@ namespace RPG.Battle.Core
 
             return (T)nearTarget;
         }
+
+        #region ButtonPlugin
+
+        public void ShowResultUI()
+        {
+            Pause();
+            battleUI.resultUI.InitUI(currentStageID, gainEnergy, gainGacha, gainReinforce, gainIncant);
+            battleUI.ShowResultUI();
+        }
+
+        public void ToMainScene()
+        {
+            UpdateUserinfo();
+            SceneManager.LoadScene(0);
+        }
+        #endregion
 
         #region 사용되지 않는 함수 모음
 

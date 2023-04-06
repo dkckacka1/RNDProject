@@ -25,6 +25,9 @@ namespace RPG.Battle.UI
         // PlayerUI
         public PlayerHPBar playerHPBar;
 
+        [Header("BattleResultUI")]
+        public BattleResultWindow resultUI;
+
         public void ShowReady()
         {
             readyText.text = "준비";
@@ -51,10 +54,17 @@ namespace RPG.Battle.UI
 
         }
 
+        public void ShowResultUI()
+        {
+            resultUI.gameObject.SetActive(true);
+        }
+
         private IEnumerator RemoveReadyUI(float duration)
         {
             yield return new WaitForSeconds(duration);
             readyText.gameObject.SetActive(false);
         }
+
+
     }
 }

@@ -54,6 +54,8 @@ namespace RPG.Battle.Control
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, Defeat);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Ready, Ready);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Battle, Battle);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Pause, Pause);
         }
 
         private void OnDisable()
@@ -64,6 +66,8 @@ namespace RPG.Battle.Control
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Defeat, Defeat);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ready, Ready);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Battle, Battle);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Pause, Pause);
         }
 
         private void Start()
@@ -123,6 +127,17 @@ namespace RPG.Battle.Control
         {
             target = null;
             movement.ResetNav();
+        }
+
+        public void Battle()
+        {
+            animator.speed = 1;
+        }
+
+        public void Pause()
+        {
+            animator.speed = 0;
+            nav.ResetPath();
         }
 
         public bool CheckDeadState()

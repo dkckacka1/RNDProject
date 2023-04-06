@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 namespace RPG.Battle.UI
 {
@@ -12,6 +13,20 @@ namespace RPG.Battle.UI
         [SerializeField] TextMeshProUGUI gainGachaText;
         [SerializeField] TextMeshProUGUI gainReinforceText;
         [SerializeField] TextMeshProUGUI gainIncantText;
+
+        [SerializeField] float scaleSpeedTime;
+
+        private void OnEnable()
+        {
+            Debug.Log("OnEnable");
+            this.gameObject.transform.DOScale(1, scaleSpeedTime).SetEase(Ease.OutBack);
+        }
+
+        private void OnDisable()
+        {
+            Debug.Log("OnDisable");
+            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        }
 
         public void InitUI(int floor, int gainEnergy, int gainGacha, int gainReinfoce, int gainIncant)
         {
