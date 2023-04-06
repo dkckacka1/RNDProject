@@ -94,7 +94,7 @@ namespace RPG.Main.UI
             userinfo.itemIncantCount--;
 
             Incant incant;
-            if (RandomGacha.GachaIncat(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
+            if (RandomGacha.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
             {
                 equipmentUI.choiceItem.Incant(incant);
             }
@@ -133,7 +133,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Weapon:
                     {
                         WeaponData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             status.currentWeapon.ChangeData(data);
                             status.currentWeapon.UpdateItem();
@@ -145,7 +145,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Armor:
                     {
                         ArmorData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             status.currentArmor.ChangeData(data);
                             status.currentArmor.UpdateItem();
@@ -155,7 +155,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Pants:
                     {
                         PantsData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             status.currentPants.ChangeData(data);
                             status.currentPants.UpdateItem();
@@ -165,7 +165,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Helmet:
                     {
                         HelmetData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.EquipmentDataDic, type, out data))
+                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             status.currentHelmet.ChangeData(data);
                             status.currentHelmet.UpdateItem();

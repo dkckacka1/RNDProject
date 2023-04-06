@@ -13,11 +13,14 @@ public abstract class Incant
 
     // 인챈트의 이름
     public string name;
-    public bool isIncantSkill;
 
     // 인챈트의 설명
     public string addDesc;
     public string minusDesc;
+
+    // 인챈트 된 스킬
+    public bool isIncantSkill;
+    public int skillID;
 
     public abstract void IncantEquipment(Equipment equipment);
     public abstract void RemoveIncant(Equipment equipment);
@@ -25,10 +28,5 @@ public abstract class Incant
     public string ShowDesc()
     {
         return $"{name}\t{MyUtility.returnColorText(addDesc,Color.green)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red)}";
-    }
-
-    public virtual void Skill(BattleStatus status)
-    {
-
     }
 }

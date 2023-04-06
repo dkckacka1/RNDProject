@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
 using RPG.Battle.Core;
+using RPG.Battle.Skill;
 
 namespace RPG.Core
 {
@@ -66,6 +67,15 @@ namespace RPG.Core
             dic.Add(id++, new Spakling_Helmet());
             dic.Add(id++, new Heavy_Pants());
             dic.Add(id++, new Quick_Pants());
+        }
+
+        public static void LoadSkillPrefab(string path, ref Dictionary<int, Skill> dic)
+        {
+            var skills = Resources.LoadAll<Skill>(path);
+            foreach (var skill in skills)
+            {
+                dic.Add(skill.skillID, skill);
+            }
         }
     } 
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 
 namespace RPG.Battle.Skill
 {
-    public class Skill : MonoBehaviour
+    public abstract class Skill : MonoBehaviour
     {
-        //TODO : 인터페이스로 구분해야할지 생각해야함
+        public int skillID;
+        public string skillName;
+        [Space()]
+        [TextArea()]
+        public string skillDesc;
+
+        // 처음에 스킬이 어디서 나타날 것인가?
         public Vector3 skillStartPositionOffset;
     }
 }

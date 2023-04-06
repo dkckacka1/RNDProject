@@ -2,31 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Status;
-using RPG.Character.Equipment;
+using RPG.Battle.Skill;
+using RPG.Core;
 
-public class Stone_Weapon : Incant
+namespace RPG.Character.Equipment
 {
-    public Stone_Weapon()
+    public class Stone_Weapon : WeaponIncant
     {
-        incantType = IncantType.suffix;
-        itemType = EquipmentItemType.Weapon;
-        name = "µπµ¢¿Ã";
-        addDesc = "∞¯∞› Ω√ µπµ¢¿Ã ≈ı√¥";
-        minusDesc = "";
-        isIncantSkill = true;
-    }
+        public Stone_Weapon()
+        {
+            incantType = IncantType.suffix;
+            itemType = EquipmentItemType.Weapon;
+            name = "µπµ¢¿Ã";
+            addDesc = "∞¯∞› Ω√ µπµ¢¿Ã ≈ı√¥";
+            minusDesc = "";
+            isIncantSkill = true;
+            skillID = 1;
+        }
 
-    public override void IncantEquipment(Equipment equipment)
-    {
-    }
+        public override void IncantEquipment(Equipment equipment)
+        {
+        }
 
-    public override void RemoveIncant(Equipment equipment)
-    {
-    }
+        public override void RemoveIncant(Equipment equipment)
+        {
+        }
 
-    public override void Skill(BattleStatus status)
-    {
-        base.Skill(status);
-        Debug.Log(status.name + "ø°∞‘ µπµ¢¿Ã ∞¯∞›!!");
+        public override void Skill(BattleStatus player, BattleStatus enemy)
+        {
+            Skill skill = GameManager.Instance.SkillPrefabDic[skillID];
+            Object.Instantiate(skill,player.transform.position,player.transform.rotation);
+        }
     }
 }

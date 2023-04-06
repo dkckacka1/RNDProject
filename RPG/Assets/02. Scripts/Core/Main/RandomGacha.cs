@@ -55,7 +55,7 @@ namespace RPG.Core
             return true;
         }
 
-        public static bool GachaIncat(EquipmentItemType type, Dictionary<int,Incant> dic, out Incant incant)
+        public static bool GachaIncant(EquipmentItemType type, Dictionary<int, Incant> dic, out Incant incant)
         {
             var IncantList = dic
                             .Where(item => item.Value.itemType == type)
@@ -81,7 +81,7 @@ namespace RPG.Core
             return true;
         }
 
-        public static bool GachaIncat(EquipmentItemType type, IncantType incantType, Dictionary<int, Incant> dic, out Incant incant)
+        public static bool GachaIncant(EquipmentItemType type, IncantType incantType, Dictionary<int, Incant> dic, out Incant incant)
         {
             var IncantList = dic
                             .Where(item => item.Value.itemType == type && item.Value.incantType == incantType)

@@ -1,10 +1,11 @@
+using RPG.Character.Status;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public class Sharpness_Weapon : Incant
+    public class Sharpness_Weapon : WeaponIncant
     {
         public Sharpness_Weapon()
         {
@@ -27,6 +28,10 @@ namespace RPG.Character.Equipment
             Weapon weapon = equipment as Weapon;
 
             weapon.attackDamage -= 10;
+        }
+
+        public override void Skill(BattleStatus player, BattleStatus enemy)
+        {
         }
     }
 }

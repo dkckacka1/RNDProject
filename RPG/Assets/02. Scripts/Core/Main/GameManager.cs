@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using RPG.Character.Equipment;
 using RPG.Character.Status;
 using RPG.Battle.Core;
+using RPG.Battle.Skill;
 
 namespace RPG.Core
 {
@@ -69,10 +70,13 @@ namespace RPG.Core
 
         // Enemy
         public Dictionary<int, EnemyData> enemyDataDic = new Dictionary<int, EnemyData>();
-        public Dictionary<int, Incant> incantDic = new Dictionary<int, Incant>();
 
         // Equipment
-        public Dictionary<int, EquipmentData> EquipmentDataDic = new Dictionary<int, EquipmentData>();
+        public Dictionary<int, EquipmentData> equipmentDataDic = new Dictionary<int, EquipmentData>();
+        public Dictionary<int, Incant> incantDic = new Dictionary<int, Incant>();
+
+        // Skill
+        public Dictionary<int, Skill> SkillPrefabDic = new Dictionary<int, Skill>();
         #endregion
 
 
@@ -92,6 +96,12 @@ namespace RPG.Core
             LoadEquipmentData();
             LoadEnemyData();
             LoadStageData();
+            LoadSkill();
+
+            foreach (var skill in SkillPrefabDic)
+            {
+                Debug.Log(skill.Value.skillDesc);
+            }
 
             // TEST
             this.userInfo = CreateUserInfo();
@@ -105,7 +115,7 @@ namespace RPG.Core
 
         private void LoadEquipmentData()
         {
-            ResourcesLoader.LoadEquipmentData("Data/", ref EquipmentDataDic);
+            ResourcesLoader.LoadEquipmentData("Data/", ref equipmentDataDic);
             ResourcesLoader.LoadIncant(ref incantDic);
         }
 
@@ -117,6 +127,11 @@ namespace RPG.Core
         private void LoadStageData()
         {
             ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
+        }
+
+        private void LoadSkill()
+        {
+            ResourcesLoader.LoadSkillPrefab("Prefab/Skill", ref SkillPrefabDic);
         }
         #endregion
 
@@ -162,7 +177,7 @@ namespace RPG.Core
         public bool GetEquipmentData<T>(int id,out T sourceData) where T : EquipmentData
         {
             EquipmentData data;
-            if (!EquipmentDataDic.TryGetValue(id, out data))
+            if (!equipmentDataDic.TryGetValue(id, out data))
             {
                 Debug.LogError("찾는 데이터가 없습니다.");
                 sourceData = null;
