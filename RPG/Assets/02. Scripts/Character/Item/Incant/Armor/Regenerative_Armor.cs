@@ -12,7 +12,7 @@ namespace RPG.Character.Equipment
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Armor;
             name = "재생의 ";
-            addDesc = "초당 체력이 10만큼 재생됩니다.";
+            addDesc = "초당 체력이 1만큼 재생됩니다.";
             minusDesc = "";
         }
 
@@ -26,7 +26,7 @@ namespace RPG.Character.Equipment
 
         public override void PerSecEvent(BattleStatus status)
         {
-            status.Heal(10);
+            status.Heal(1);
         }
     }
 

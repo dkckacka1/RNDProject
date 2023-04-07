@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 8300747611102187824}
-  speed: 1
+  speed: 0.5
   deleteTiming: 1
   materials:
   - type: 0
