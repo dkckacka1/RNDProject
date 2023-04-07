@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Character.Status;
 using RPG.Battle.Control;
+using RPG.Battle.Event;
+using UnityEngine.Events;
 
 namespace RPG.Battle.Move
 {
@@ -11,15 +13,26 @@ namespace RPG.Battle.Move
     {
         public bool canMove = true;
 
-        Transform transform;
+        BattleStatus character;
         NavMeshAgent nav;
 
         float attackRange;
 
-        public Movement(Transform transform, NavMeshAgent nav)
+        public bool isMove;
+        public MoveEvent moveEvent;
+        public IEnumerator moveEventCorotine;
+
+        public Movement(BattleStatus character, NavMeshAgent nav)
         {
-            this.transform = transform;
+            this.character = character;
             this.nav = nav;
+            moveEvent = new MoveEvent();
+            moveEventCorotine = MoveEvent();
+        }
+
+        public void AddMoveEvent(UnityAction<BattleStatus> action)
+        {
+            moveEvent.AddListener(action);
         }
 
         public void UpdateStatus(Controller controller)
@@ -42,7 +55,7 @@ namespace RPG.Battle.Move
         public void Move(Transform target)
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
-            transform.LookAt(movementVector);
+            character.transform.LookAt(movementVector);
             //transform.Translate(Vector3.forward * status.movementSpeed * Time.deltaTime);
         }
 
@@ -53,7 +66,19 @@ namespace RPG.Battle.Move
         /// <returns></returns>
         public bool MoveDistanceResult(Transform target)
         {
-            return Vector3.Distance(target.transform.position, this.transform.position) > attackRange;
+            return Vector3.Distance(target.transform.position, this.character.transform.position) > attackRange;
+        }
+
+        IEnumerator MoveEvent()
+        {
+            while (true)
+            {
+                if (isMove)
+                {
+                    moveEvent.Invoke(character);
+                }
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

@@ -26,12 +26,12 @@ namespace RPG.Battle.Control
 
             if (status.currentWeapon.prefix != null)
             {
-                attack.AddAction((status.currentWeapon.prefix as WeaponIncant).AttackEvent);
+                attack.AddAttackEvent((status.currentWeapon.prefix as WeaponIncant).AttackEvent);
             }
 
             if (status.currentWeapon.suffix != null)
             {
-                attack.AddAction((status.currentWeapon.suffix as WeaponIncant).AttackEvent);
+                attack.AddAttackEvent((status.currentWeapon.suffix as WeaponIncant).AttackEvent);
             }
 
             if (status.currentArmor.prefix != null)
@@ -42,6 +42,26 @@ namespace RPG.Battle.Control
             if (status.currentArmor.suffix != null)
             {
                 battleStatus.AddPerSecAction((status.currentArmor.suffix as ArmorIncant).TakeDamageEvent);
+            }
+
+            if (status.currentHelmet.prefix != null)
+            {
+                attack.AddCriticalAttackEvent((status.currentHelmet.suffix as HelmetIncant).criticalAttackEvent);
+            }
+
+            if (status.currentHelmet.suffix != null)
+            {
+
+            }
+
+            if (status.currentPants.prefix != null)
+            {
+                movement.AddMoveEvent((status.currentPants.suffix as PantsIncant).MoveEvent);
+            }
+
+            if (status.currentPants.suffix != null)
+            {
+
             }
         }
 

@@ -92,8 +92,8 @@ namespace RPG.Battle.Control
         // 생성 시 초기화 단계
         public virtual void SetUp()
         {
-            movement = new Movement(transform, nav);
-            attack = new Attack(transform, battleStatus);
+            movement = new Movement(battleStatus, nav);
+            attack = new Attack(battleStatus);
 
             stateContext = new StateContext(this);
             idleState = new IdelState(this);
@@ -134,12 +134,14 @@ namespace RPG.Battle.Control
         {
             animator.speed = 1;
             StartCoroutine(battleStatus.perSecCoroutine);
+            StartCoroutine(movement.moveEventCorotine);
         }
 
         public void Pause()
         {
             animator.speed = 0;
             StopCoroutine(battleStatus.perSecCoroutine);
+            StopCoroutine(movement.moveEventCorotine);
             nav.ResetPath();
         }
 

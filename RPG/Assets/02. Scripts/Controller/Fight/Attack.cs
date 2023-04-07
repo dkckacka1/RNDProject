@@ -17,21 +17,26 @@ namespace RPG.Battle.Fight
 
         // AttackEvent
         AttackEvent attackEvent;
+        CriticalAttackEvent criticalAttackEvent;
 
         // Component
-        Transform transform;
         BattleStatus character;
         BattleStatus target;
-        public Attack(Transform transform,BattleStatus character)
+        public Attack(BattleStatus character)
         {
-            this.transform = transform;
             this.character = character;
             attackEvent = new AttackEvent();
+            criticalAttackEvent = new CriticalAttackEvent();
         }
 
-        public void AddAction(UnityAction<BattleStatus, BattleStatus> action)
+        public void AddAttackEvent(UnityAction<BattleStatus, BattleStatus> action)
         {
             attackEvent.AddListener(action);
+        }
+
+        public void AddCriticalAttackEvent(UnityAction<BattleStatus, BattleStatus> action)
+        {
+            criticalAttackEvent.AddListener(action);
         }
 
         public void UpdateStatus(Controller controller)
@@ -83,6 +88,7 @@ namespace RPG.Battle.Fight
                 if (AttackCriticalCalc(character, target))
                     // 3. 공격 치명타가 발생한다.
                 {
+                    criticalAttackEvent.Invoke(character, target);
                     int criticalDamage = (int)(character.status.attackDamage * (1 + character.status.criticalDamage));
                     target.TakeDamage(DamageCalc(criticalDamage,defenceAverage), DamagedType.Ciritical);
                 }

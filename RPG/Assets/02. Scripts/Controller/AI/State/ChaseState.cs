@@ -19,12 +19,14 @@ namespace RPG.Battle.AI
 
         public void OnEnd()
         {
-            controller.animator.SetBool("isMove", false);
+            movement.isMove = false;
+            controller.animator.SetBool("isMove", movement.isMove);
         }
 
         public void OnStart()
         {
-            controller.animator.SetBool("isMove", true);
+            movement.isMove = true;
+            controller.animator.SetBool("isMove", movement.isMove);
             controller.state = CombatState.Chase;
         }
 
