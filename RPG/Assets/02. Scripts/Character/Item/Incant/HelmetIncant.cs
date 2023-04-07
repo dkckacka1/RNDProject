@@ -7,5 +7,4 @@ namespace RPG.Character.Equipment
     public abstract class HelmetIncant : Incant
     {
     }
-
 }

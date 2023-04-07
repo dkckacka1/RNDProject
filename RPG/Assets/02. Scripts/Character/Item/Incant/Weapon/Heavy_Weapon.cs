@@ -31,10 +31,5 @@ namespace RPG.Character.Equipment
             weapon.attackDamage -= 30;
             weapon.attackSpeed += 2;
         }
-
-        public override void AttackEvent(BattleStatus player, BattleStatus enemy)
-        {
-        }
     }
-
 }

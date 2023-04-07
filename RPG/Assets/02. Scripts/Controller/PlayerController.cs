@@ -33,6 +33,16 @@ namespace RPG.Battle.Control
             {
                 attack.AddAction((status.currentWeapon.suffix as WeaponIncant).AttackEvent);
             }
+
+            if (status.currentArmor.prefix != null)
+            {
+                battleStatus.AddPerSecAction((status.currentArmor.prefix as ArmorIncant).PerSecEvent);
+            }
+
+            if (status.currentArmor.suffix != null)
+            {
+                battleStatus.AddPerSecAction((status.currentArmor.suffix as ArmorIncant).TakeDamageEvent);
+            }
         }
 
         public override void DeadEvent()
