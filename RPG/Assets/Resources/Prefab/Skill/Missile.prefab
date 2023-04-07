@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9914dca7af8c61040bd9c0493961dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillID: 1
-  skillName: "\uD654\uC5FC\uB3CC\uB9F9\uC774"
-  skillDesc: "\uD654\uC5FC \uB3CC\uB9F9\uC774\uB97C \uD22C\uCC99\uD55C\uB2E4(\uAD00\uD1B5)"
-  skillStartPositionOffset: {x: 0, y: 0, z: 0}
-  damage: 0
+  abilityID: 1
+  abilityName: "\uBD88\uB369\uC774 \uC791\uB82C"
+  abilityDesc: "\uBD88\uB369\uC774 \uC791\uB82C"
+  abilityTime: 5
+  abilityPositionOffset: {x: 0, y: 0.5, z: 3}
+  damage: 10
   speed: 2
-  destroyTime: 5
 --- !u!199 &3713226499044758117
 ParticleSystemRenderer:
   serializedVersion: 6

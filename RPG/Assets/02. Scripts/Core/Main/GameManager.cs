@@ -76,7 +76,7 @@ namespace RPG.Core
         public Dictionary<int, Incant> incantDic = new Dictionary<int, Incant>();
 
         // Skill
-        public Dictionary<int, Skill> SkillPrefabDic = new Dictionary<int, Skill>();
+        public Dictionary<int, Ability> abilityPrefabDic = new Dictionary<int, Ability>();
         #endregion
 
 
@@ -98,9 +98,9 @@ namespace RPG.Core
             LoadStageData();
             LoadSkill();
 
-            foreach (var skill in SkillPrefabDic)
+            foreach (var skill in abilityPrefabDic)
             {
-                Debug.Log(skill.Value.skillDesc);
+                Debug.Log(skill.Value.abilityDesc);
             }
 
             // TEST
@@ -131,7 +131,7 @@ namespace RPG.Core
 
         private void LoadSkill()
         {
-            ResourcesLoader.LoadSkillPrefab("Prefab/Skill", ref SkillPrefabDic);
+            ResourcesLoader.LoadSkillPrefab("Prefab/Skill", ref abilityPrefabDic);
         }
         #endregion
 

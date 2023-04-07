@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using RPG.Battle.UI;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using UnityEditor;
+using RPG.Battle.Skill;
 using RPG.Character.Equipment;
+using RPG.Core;
 
 namespace RPG.Battle.Core
 {
@@ -19,6 +22,7 @@ namespace RPG.Battle.Core
         [SerializeField] Transform enemyParent;
         [SerializeField] Transform battleTextParent;
         [SerializeField] Transform LootingItemParent;
+        [SerializeField] Transform abilityParent;
 
         Canvas battleCanvas;
 
@@ -180,6 +184,49 @@ namespace RPG.Battle.Core
         {
             item.gameObject.SetActive(false);
             LootingItemPool.Enqueue(item);
+        }
+
+        #endregion
+
+        #region Skill
+
+        List<Ability> abilityPool = new List<Ability>();
+
+        private Ability CreateAbility(int abilityID)
+        {
+            Ability prefab = GameManager.Instance.abilityPrefabDic[abilityID];
+            return Instantiate(prefab, Vector3.zero, Quaternion.identity, abilityParent);
+        }
+
+        public Ability GetAbility(int abilityID)
+        {
+            Ability getAbility;
+
+            if (abilityPool.Count > 0)
+            {
+                if ((getAbility = abilityPool.Find(ability => ability.abilityID == abilityID)) != null)
+                {
+                    abilityPool.Remove(getAbility);
+                }
+                else
+                {
+                    getAbility = CreateAbility(abilityID);
+                }
+            }
+            else
+            {
+                getAbility = CreateAbility(abilityID);
+            }
+
+            getAbility.gameObject.SetActive(true);
+            return getAbility;
+        }
+
+        public void ReturnAbility(Ability ability)
+        {
+            ability.transform.position = Vector3.zero;
+            ability.gameObject.SetActive(false);
+            abilityPool.Add(ability);
         }
 
         #endregion

@@ -27,7 +27,7 @@ namespace RPG.Battle.UI
 
         public void ReleaseText()
         {
-            BattleManager.Instance.objectPool.ReturnText(this);
+            BattleManager.ObjectPool.ReturnText(this);
         }
 
         public void Init(string textStr, Vector3 position, DamagedType type = DamagedType.Normal)

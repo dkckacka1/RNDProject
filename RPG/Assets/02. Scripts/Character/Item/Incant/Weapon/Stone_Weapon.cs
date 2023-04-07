@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Status;
-using RPG.Battle.Skill;
-using RPG.Core;
+using RPG.Battle.Core;
 
 namespace RPG.Character.Equipment
 {
@@ -30,8 +29,8 @@ namespace RPG.Character.Equipment
 
         public override void Skill(BattleStatus player, BattleStatus enemy)
         {
-            Skill skill = GameManager.Instance.SkillPrefabDic[skillID];
-            Object.Instantiate(skill,player.transform.position,player.transform.rotation);
+            var ability = BattleManager.ObjectPool.GetAbility(skillID);
+            ability.InitAbility(player.transform);
         }
     }
 }

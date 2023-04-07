@@ -69,12 +69,12 @@ namespace RPG.Core
             dic.Add(id++, new Quick_Pants());
         }
 
-        public static void LoadSkillPrefab(string path, ref Dictionary<int, Skill> dic)
+        public static void LoadSkillPrefab(string path, ref Dictionary<int, Ability> dic)
         {
-            var skills = Resources.LoadAll<Skill>(path);
+            var skills = Resources.LoadAll<Ability>(path);
             foreach (var skill in skills)
             {
-                dic.Add(skill.skillID, skill);
+                dic.Add(skill.abilityID, skill);
             }
         }
     } 

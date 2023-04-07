@@ -44,7 +44,7 @@ namespace RPG.Battle.UI
                 if (Vector3.Distance(transform.position, targetPos.position) < minDistance)
                 {
                     canMove = false;
-                    BattleManager.Instance.objectPool.ReturnLootingItem(this);
+                    BattleManager.ObjectPool.ReturnLootingItem(this);
                 } 
             }
         }

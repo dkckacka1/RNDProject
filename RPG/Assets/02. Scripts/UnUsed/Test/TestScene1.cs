@@ -13,6 +13,8 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
+        public int skillID;
+        public GameObject startPos;
         private void Start()
         {
         }
@@ -21,6 +23,8 @@ namespace RPG.Core
         {
             if (GUI.Button(new Rect(10, 10, 200, 60), "스킬 사용"))
             {
+                var ab = BattleManager.ObjectPool.GetAbility(skillID);
+                ab.InitAbility(startPos.transform);
             }
         }
 

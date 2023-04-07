@@ -1115,8 +1115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152de72527f4f5444b598b4303044bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleUI: {fileID: 71960252}
-  objectPool: {fileID: 954064119}
   currentBattleState: 0
   livePlayer: {fileID: 0}
   liveEnemies: []
