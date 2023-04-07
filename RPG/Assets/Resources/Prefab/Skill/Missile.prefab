@@ -54,10 +54,10 @@ MonoBehaviour:
   abilityID: 1
   abilityName: "\uBD88\uB369\uC774 \uC791\uB82C"
   abilityDesc: "\uBD88\uB369\uC774 \uC791\uB82C"
-  abilityTime: 5
-  abilityPositionOffset: {x: 0, y: 0.5, z: 3}
+  abilityTime: 4
+  abilityPositionOffset: {x: 0, y: 0.9, z: 0.5}
   damage: 10
-  speed: 2
+  speed: 10
 --- !u!199 &3713226499044758117
 ParticleSystemRenderer:
   serializedVersion: 6

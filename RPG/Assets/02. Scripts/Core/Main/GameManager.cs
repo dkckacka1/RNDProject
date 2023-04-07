@@ -98,11 +98,6 @@ namespace RPG.Core
             LoadStageData();
             LoadSkill();
 
-            foreach (var skill in abilityPrefabDic)
-            {
-                Debug.Log(skill.Value.abilityDesc);
-            }
-
             // TEST
             this.userInfo = CreateUserInfo();
             this.player.SetPlayerStatusFromUserinfo(userInfo);

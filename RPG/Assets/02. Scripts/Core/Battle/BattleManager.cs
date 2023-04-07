@@ -116,6 +116,7 @@ namespace RPG.Battle.Core
             LoadCurrentStage();
             BattleUI.ShowReady();
             SetBattleState(BattleSceneState.Ready);
+            objectPool.ReleaseAllAbility();
             StartCoroutine(MethodCallTimer(() =>
             {
                 BattleUI.ShowStart();

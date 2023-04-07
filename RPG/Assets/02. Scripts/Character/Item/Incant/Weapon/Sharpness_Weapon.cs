@@ -30,7 +30,7 @@ namespace RPG.Character.Equipment
             weapon.attackDamage -= 10;
         }
 
-        public override void Skill(BattleStatus player, BattleStatus enemy)
+        public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
         }
     }

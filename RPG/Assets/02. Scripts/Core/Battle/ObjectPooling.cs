@@ -195,7 +195,9 @@ namespace RPG.Battle.Core
         private Ability CreateAbility(int abilityID)
         {
             Ability prefab = GameManager.Instance.abilityPrefabDic[abilityID];
-            return Instantiate(prefab, Vector3.zero, Quaternion.identity, abilityParent);
+            var ability = Instantiate(prefab, Vector3.zero, Quaternion.identity, abilityParent);
+            abilityPool.Add(ability);  
+            return ability;
         }
 
         public Ability GetAbility(int abilityID)
@@ -204,13 +206,10 @@ namespace RPG.Battle.Core
 
             if (abilityPool.Count > 0)
             {
-                if ((getAbility = abilityPool.Find(ability => ability.abilityID == abilityID)) != null)
-                {
-                    abilityPool.Remove(getAbility);
-                }
-                else
+                if ((getAbility = abilityPool.Find(ability => (ability.abilityID == abilityID) && (!ability.gameObject.activeInHierarchy))) == null)
                 {
                     getAbility = CreateAbility(abilityID);
+
                 }
             }
             else
@@ -226,7 +225,14 @@ namespace RPG.Battle.Core
         {
             ability.transform.position = Vector3.zero;
             ability.gameObject.SetActive(false);
-            abilityPool.Add(ability);
+        }
+
+        public void ReleaseAllAbility()
+        {
+            foreach (var ability in abilityPool)
+            {
+                ReturnAbility(ability);
+            }
         }
 
         #endregion

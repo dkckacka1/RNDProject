@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.Battle.Core;
-using RPG.Battle.Fight;
-using RPG.Battle.Move;
-using RPG.Battle.Control;
 using RPG.Battle.UI;
 using RPG.Character.Equipment;
+using RPG.Battle.Event;
+using UnityEngine.Events;
 
 namespace RPG.Character.Status
 {
@@ -24,6 +22,14 @@ namespace RPG.Character.Status
         [Header("Status")]
         public Status status;
 
+        // Coroutine
+        public IEnumerator perSecCoroutine;
+
+        // Event
+        PerSecondEvent perSecEvent;
+        TakeDamageEvent takeDamageEvent;
+
+        // Encapsule
         public int CurrentHp
         {
             get => currentHp;
@@ -40,6 +46,13 @@ namespace RPG.Character.Status
                     Dead();
                 }
             }
+        }
+
+        private void Awake()
+        {
+            perSecEvent = new PerSecondEvent();
+            takeDamageEvent = new TakeDamageEvent();
+            perSecCoroutine = PerSecEvent();
         }
 
         private void OnEnable()
@@ -61,6 +74,16 @@ namespace RPG.Character.Status
             isDead = false;
         }
 
+        public void AddTakeDamageAction(UnityAction action)
+        {
+            takeDamageEvent.AddListener(action);
+        }
+
+        public void AddPerSecAction(UnityAction<BattleStatus> action)
+        {
+            perSecEvent.AddListener(action);
+        }
+
         public virtual void Release()
         {
         }
@@ -69,6 +92,7 @@ namespace RPG.Character.Status
         {
             if (isDead) return;
 
+            takeDamageEvent.Invoke();
 
             switch (type)
             {
@@ -96,5 +120,13 @@ namespace RPG.Character.Status
             CurrentHp += healPoint;
         }
 
+        public IEnumerator PerSecEvent()
+        {
+            while (!isDead)
+            {
+                yield return new WaitForSeconds(1f);
+                perSecEvent.Invoke(this);
+            }
+        }
     }
 }

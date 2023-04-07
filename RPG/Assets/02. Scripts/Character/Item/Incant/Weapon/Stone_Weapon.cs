@@ -27,7 +27,7 @@ namespace RPG.Character.Equipment
         {
         }
 
-        public override void Skill(BattleStatus player, BattleStatus enemy)
+        public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
             var ability = BattleManager.ObjectPool.GetAbility(skillID);
             ability.InitAbility(player.transform);

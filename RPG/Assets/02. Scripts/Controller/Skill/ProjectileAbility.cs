@@ -7,7 +7,6 @@ namespace RPG.Battle.Skill
 {
     public class ProjectileAbility : Ability
     {
-        // TODO : 오프셋 조정해야하고 실제 데미지 들어가는지 확인해야함
         public int damage;
         [SerializeField] float speed;
 
@@ -18,8 +17,8 @@ namespace RPG.Battle.Skill
 
         public override void InitAbility(Transform startPos)
         {
-            base.InitAbility(startPos);
             this.transform.rotation = startPos.rotation;
+            base.InitAbility(startPos);
         }
 
         // Update is called once per frame

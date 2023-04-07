@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using RPG.Battle.Control;
 using RPG.Character.Status;
+using RPG.Battle.Event;
 
 namespace RPG.Battle.Fight
 {
-    public class AttackEvent : UnityEvent<BattleStatus, BattleStatus> { }
-
     public class Attack
     {
         public bool canAttack = true;
@@ -23,8 +22,6 @@ namespace RPG.Battle.Fight
         Transform transform;
         BattleStatus character;
         BattleStatus target;
-        
-
         public Attack(Transform transform,BattleStatus character)
         {
             this.transform = transform;

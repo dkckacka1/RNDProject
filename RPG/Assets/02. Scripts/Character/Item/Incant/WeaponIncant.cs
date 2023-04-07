@@ -6,5 +6,5 @@ using RPG.Character.Status;
 
 public abstract class WeaponIncant : Incant
 {
-    public abstract void Skill(BattleStatus player, BattleStatus enemy);
+    public abstract void AttackEvent(BattleStatus player, BattleStatus enemy);
 }

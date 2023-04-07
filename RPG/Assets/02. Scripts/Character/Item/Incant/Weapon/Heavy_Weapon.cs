@@ -32,7 +32,7 @@ namespace RPG.Character.Equipment
             weapon.attackSpeed += 2;
         }
 
-        public override void Skill(BattleStatus player, BattleStatus enemy)
+        public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
         }
     }

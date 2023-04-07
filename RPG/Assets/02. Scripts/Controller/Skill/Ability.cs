@@ -18,10 +18,11 @@ namespace RPG.Battle.Skill
         public Vector3 abilityPositionOffset;
         public virtual void InitAbility(Transform startPos)
         {
-            this.transform.position = startPos.position + abilityPositionOffset;
+            this.transform.localPosition = startPos.localPosition;
+            this.transform.Translate(abilityPositionOffset);
         }
 
-        public void ReleaseAbility()
+        public virtual void ReleaseAbility()
         {
             BattleManager.ObjectPool.ReturnAbility(this);
         }

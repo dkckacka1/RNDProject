@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public class Heavy_Pants : Incant
+    public class Heavy_Pants : PantsIncant
     {
         public Heavy_Pants()
         {

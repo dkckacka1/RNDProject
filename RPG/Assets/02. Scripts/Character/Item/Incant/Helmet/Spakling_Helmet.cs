@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public class Spakling_Helmet : Incant
+    public class Spakling_Helmet : HelmetIncant
     {
         public Spakling_Helmet()
         {

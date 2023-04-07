@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public class Smooth_Armor : Incant
+    public class Smooth_Armor : ArmorIncant
     {
         public Smooth_Armor()
         {

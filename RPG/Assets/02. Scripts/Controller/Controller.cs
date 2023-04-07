@@ -116,11 +116,12 @@ namespace RPG.Battle.Control
 
         public void Win()
         {
+            StopCoroutine(battleStatus.perSecCoroutine);
         }
 
         public void Defeat()
         {
-            
+            StopCoroutine(battleStatus.perSecCoroutine);
         }
 
         public void Ready()
@@ -132,11 +133,13 @@ namespace RPG.Battle.Control
         public void Battle()
         {
             animator.speed = 1;
+            StartCoroutine(battleStatus.perSecCoroutine);
         }
 
         public void Pause()
         {
             animator.speed = 0;
+            StopCoroutine(battleStatus.perSecCoroutine);
             nav.ResetPath();
         }
 

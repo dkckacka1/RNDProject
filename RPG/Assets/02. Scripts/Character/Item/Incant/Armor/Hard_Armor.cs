@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public class Hard_Armor : Incant
+    public class Hard_Armor : ArmorIncant
     {
         public Hard_Armor()
         {

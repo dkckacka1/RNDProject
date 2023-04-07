@@ -26,12 +26,12 @@ namespace RPG.Battle.Control
 
             if (status.currentWeapon.prefix != null)
             {
-                attack.AddAction((status.currentWeapon.prefix as WeaponIncant).Skill);
+                attack.AddAction((status.currentWeapon.prefix as WeaponIncant).AttackEvent);
             }
 
             if (status.currentWeapon.suffix != null)
             {
-                attack.AddAction((status.currentWeapon.suffix as WeaponIncant).Skill);
+                attack.AddAction((status.currentWeapon.suffix as WeaponIncant).AttackEvent);
             }
         }
 
