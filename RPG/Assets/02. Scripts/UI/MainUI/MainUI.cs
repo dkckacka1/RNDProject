@@ -19,9 +19,10 @@ namespace RPG.Main.UI
         public StageChoiceWindowUI stageChoiceWindowUI;
         public CharacterAppearance appearance;
 
-        [SerializeField] TextMeshProUGUI reinforceCount;
-        [SerializeField] TextMeshProUGUI incantCount;
-        [SerializeField] TextMeshProUGUI itemGachaTicketCount;
+        [SerializeField] TextMeshProUGUI reinforceText;
+        [SerializeField] TextMeshProUGUI incantText;
+        [SerializeField] TextMeshProUGUI itemGachaTicketText;
+        [SerializeField] TextMeshProUGUI EnergyText;
 
         [SerializeField] Button backButton;
 
@@ -180,13 +181,14 @@ namespace RPG.Main.UI
 
         public void UpdateTicketCount()
         {
-            if (reinforceCount == null)
+            if (reinforceText == null)
             {
                 return;
             }
-            this.itemGachaTicketCount.text = $"ªÃ±‚±« : {userinfo.itemGachaTicket}";
-            this.reinforceCount.text = $"∞≠»≠±« : {userinfo.itemReinforceCount}";
-            this.incantCount.text = $"¿Œ√¶∆Æ±« : {userinfo.itemIncantCount}";
+            this.itemGachaTicketText.text = $"{userinfo.itemGachaTicket}";
+            this.reinforceText.text = $"{userinfo.itemReinforceCount}";
+            this.incantText.text = $"{userinfo.itemIncantCount}";
+            this.EnergyText.text = $"{userinfo.Energy}";
         }
 
     }
