@@ -49,20 +49,12 @@ namespace RPG.Battle.Control
                 attack.AddCriticalAttackEvent((status.currentHelmet.suffix as HelmetIncant).criticalAttackEvent);
             }
 
-            if (status.currentHelmet.suffix != null)
-            {
-
-            }
-
             if (status.currentPants.prefix != null)
             {
                 movement.AddMoveEvent((status.currentPants.suffix as PantsIncant).MoveEvent);
             }
 
-            if (status.currentPants.suffix != null)
-            {
-
-            }
+            BattleManager.BattleUI.InitAbility(status.currentHelmet, status.currentPants, battleStatus);
         }
 
         public override void DeadEvent()

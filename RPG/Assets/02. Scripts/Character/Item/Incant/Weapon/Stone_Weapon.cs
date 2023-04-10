@@ -15,8 +15,6 @@ namespace RPG.Character.Equipment
             IncantName = "µπµ¢¿Ã";
             addDesc = "∞¯∞› Ω√ µπµ¢¿Ã ≈ı√¥";
             minusDesc = "";
-            isIncantSkill = true;
-            skillID = 1;
         }
 
         public override void IncantEquipment(Equipment equipment)
@@ -29,7 +27,7 @@ namespace RPG.Character.Equipment
 
         public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
-            var ability = BattleManager.ObjectPool.GetAbility(skillID);
+            var ability = BattleManager.ObjectPool.GetAbility(1);
             ability.InitAbility(player.transform);
         }
     }

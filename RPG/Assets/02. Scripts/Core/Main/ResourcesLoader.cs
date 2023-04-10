@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Character.Equipment;
 using RPG.Battle.Core;
-using RPG.Battle.Skill;
+using RPG.Battle.Ability;
 using System;
 
 namespace RPG.Core
@@ -69,6 +69,8 @@ namespace RPG.Core
                 var incantInstance = Activator.CreateInstance(incantType) as Incant;
 
                 incantInstance.incantID = incant.ID;
+                incantInstance.isIncantAbility = incant.isIncantAbility;
+                incantInstance.abilityIcon = incant.abilityIcon;
                 dic.Add(incantInstance.incantID, incantInstance);
             }
         }

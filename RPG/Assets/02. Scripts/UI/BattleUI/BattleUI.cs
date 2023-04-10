@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using RPG.Battle.Core;
+using RPG.Battle.Ability;
+using RPG.Character.Equipment;
+using RPG.Character.Status;
 
 namespace RPG.Battle.UI
 {
@@ -28,6 +31,39 @@ namespace RPG.Battle.UI
 
         [Header("BattleResultUI")]
         public BattleResultWindow resultUI;
+
+        [Header("AbilityButton")]
+        public AbilityButton helmetAbility;
+        public AbilityButton PantsAbility;
+
+        public void InitAbility(Helmet helmet, Pants pants, BattleStatus status)
+        {
+            if (helmet.suffix != null && helmet.suffix.isIncantAbility)
+            {
+                HelmetIncant incant = helmet.suffix as HelmetIncant;
+
+                helmetAbility.gameObject.SetActive(true);
+                helmetAbility.Init(helmet.suffix.abilityIcon, incant.skillCoolTime);
+                helmetAbility.AbilityBtn.onClick.AddListener(() => { incant.ActiveSkill(status); });
+            }
+            else
+            {
+                helmetAbility.gameObject.SetActive(false);
+            }
+
+            if (pants.suffix != null && pants.suffix.isIncantAbility)
+            {
+                PantsIncant incant = helmet.suffix as PantsIncant;
+
+                PantsAbility.gameObject.SetActive(true);
+                PantsAbility.Init(helmet.suffix.abilityIcon, incant.skillCoolTime);
+                PantsAbility.AbilityBtn.onClick.AddListener(() => { incant.ActiveSkill(status); });
+            }
+            else
+            {
+                PantsAbility.gameObject.SetActive(false);
+            }
+        }
 
         public void ShowReady()
         {

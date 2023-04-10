@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using RPG.Character.Status;
@@ -13,18 +14,26 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public int skillID;
-        public GameObject startPos;
+        public Image image;
+
         private void Start()
         {
+
         }
 
         private void OnGUI()
         {
             if (GUI.Button(new Rect(10, 10, 200, 60), "스킬 사용"))
             {
-                var ab = BattleManager.ObjectPool.GetAbility(skillID);
-                ab.InitAbility(startPos.transform);
+                var list = GameManager.Instance.incantDic.Where(incant => incant.Value.isIncantAbility == true).ToList();
+
+
+                var random = Random.Range(0, list.Count);
+                var sprite = list[random].Value.abilityIcon;
+
+                Debug.Log(sprite);
+                
+                image.sprite = sprite;
             }
         }
 

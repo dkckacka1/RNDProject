@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using RPG.Character.Equipment;
 using RPG.Character.Status;
 using RPG.Battle.Core;
-using RPG.Battle.Skill;
+using RPG.Battle.Ability;
 
 namespace RPG.Core
 {

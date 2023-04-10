@@ -6,7 +6,7 @@ using RPG.Battle.UI;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using UnityEditor;
-using RPG.Battle.Skill;
+using RPG.Battle.Ability;
 using RPG.Character.Equipment;
 using RPG.Core;
 
@@ -190,19 +190,19 @@ namespace RPG.Battle.Core
 
         #region Skill
 
-        List<Ability> abilityPool = new List<Ability>();
+        List<Ability.Ability> abilityPool = new List<Ability.Ability>();
 
-        private Ability CreateAbility(int abilityID)
+        private Ability.Ability CreateAbility(int abilityID)
         {
-            Ability prefab = GameManager.Instance.abilityPrefabDic[abilityID];
+            Ability.Ability prefab = GameManager.Instance.abilityPrefabDic[abilityID];
             var ability = Instantiate(prefab, Vector3.zero, Quaternion.identity, abilityParent);
             abilityPool.Add(ability);  
             return ability;
         }
 
-        public Ability GetAbility(int abilityID)
+        public Ability.Ability GetAbility(int abilityID)
         {
-            Ability getAbility;
+            Ability.Ability getAbility;
 
             if (abilityPool.Count > 0)
             {
@@ -221,7 +221,7 @@ namespace RPG.Battle.Core
             return getAbility;
         }
 
-        public void ReturnAbility(Ability ability)
+        public void ReturnAbility(Ability.Ability ability)
         {
             ability.transform.position = Vector3.zero;
             ability.gameObject.SetActive(false);

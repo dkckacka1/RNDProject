@@ -15,3 +15,5 @@ MonoBehaviour:
   ID: 4
   className: Stone
   itemType: 0
+  isIncantAbility: 1
+  abilityIcon: {fileID: 21300000, guid: fe9dc0d664df44341bdf24de016e03ed, type: 3}

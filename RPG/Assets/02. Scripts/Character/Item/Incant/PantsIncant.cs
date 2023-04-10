@@ -7,12 +7,13 @@ namespace RPG.Character.Equipment
 {
     public abstract class PantsIncant : Incant
     {
+        public float skillCoolTime;
         public virtual void MoveEvent(BattleStatus player)
         {
             Debug.Log("MoveEvent is Nothing");
         }
 
-        public virtual void ActiveSkill()
+        public virtual void ActiveSkill(BattleStatus player)
         {
             Debug.Log("Pants ActiveSkill is Nothing");
         }

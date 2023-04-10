@@ -8,5 +8,4 @@ namespace RPG.Battle.Event
     public class PerSecondEvent : UnityEvent<BattleStatus> { }
     public class CriticalAttackEvent : UnityEvent<BattleStatus, BattleStatus> { }
     public class MoveEvent : UnityEvent<BattleStatus> { }
-
 }

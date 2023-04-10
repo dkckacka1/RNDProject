@@ -7,13 +7,14 @@ namespace RPG.Character.Equipment
 {
     public abstract class HelmetIncant : Incant
     {
+        public float skillCoolTime;
 
         public virtual void criticalAttackEvent(BattleStatus player, BattleStatus enemy)
         {
             Debug.Log("criticalAttackEvent is Nothing");
         }
 
-        public virtual void ActiveSkill()
+        public virtual void ActiveSkill(BattleStatus player)
         {
             Debug.Log("Helmet ActiveSkill is Nothing");
         }

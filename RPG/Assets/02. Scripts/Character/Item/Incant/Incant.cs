@@ -22,8 +22,8 @@ namespace RPG.Character.Equipment
         public string minusDesc;
 
         // 인챈트 된 스킬
-        public bool isIncantSkill;
-        public int skillID;
+        public bool isIncantAbility;
+        public Sprite abilityIcon;
 
 
         public abstract void IncantEquipment(Equipment equipment);
