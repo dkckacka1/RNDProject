@@ -6,7 +6,7 @@ namespace RPG.Character.Equipment
 {
     public class Heavy_Pants : PantsIncant
     {
-        public Heavy_Pants()
+        public Heavy_Pants(int incantID) : base(incantID)
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Pants;

@@ -6,6 +6,8 @@ using RPG.Character.Status;
 
 public abstract class Incant
 {
+    public int incantID;
+
     // 어느장비에 붙을 수 있는가?
     public EquipmentItemType itemType;
     // 접두인가? 접미인가?
@@ -21,6 +23,11 @@ public abstract class Incant
     // 인챈트 된 스킬
     public bool isIncantSkill;
     public int skillID;
+
+    public Incant(int incantID)
+    {
+        this.incantID = incantID;
+    }
 
     public abstract void IncantEquipment(Equipment equipment);
     public abstract void RemoveIncant(Equipment equipment);

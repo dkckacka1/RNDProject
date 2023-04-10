@@ -47,10 +47,10 @@ namespace RPG.Character.Status
             ArmorData a_data;
             HelmetData h_data;
             PantsData p_data;
-            GameManager.Instance.GetEquipmentData(userInfo.lastedWeapon, out w_data);
-            GameManager.Instance.GetEquipmentData(userInfo.lastedArmor, out a_data);
-            GameManager.Instance.GetEquipmentData(userInfo.lastedHelmet, out h_data);
-            GameManager.Instance.GetEquipmentData(userInfo.lastedPants, out p_data);
+            GameManager.Instance.GetEquipmentData(userInfo.lastedWeaponID, out w_data);
+            GameManager.Instance.GetEquipmentData(userInfo.lastedArmorID, out a_data);
+            GameManager.Instance.GetEquipmentData(userInfo.lastedHelmetID, out h_data);
+            GameManager.Instance.GetEquipmentData(userInfo.lastedPantsID, out p_data);
 
             // 1-1. 장비에 강화 수치 적용
             // 1-2. 장비에 인챈트 적용
@@ -61,9 +61,9 @@ namespace RPG.Character.Status
                 Weapon weapon = new Weapon(w_data);
                 weapon.reinforceCount = userInfo.weaponReinforceCount;
 
-                if (userInfo.weaponPreifxIncantID != -1)
+                if (userInfo.weaponPrefixIncantID != -1)
                 {
-                    Incant prefixIncant = GameManager.Instance.incantDic[userInfo.weaponPreifxIncantID];
+                    Incant prefixIncant = GameManager.Instance.incantDic[userInfo.weaponPrefixIncantID];
                     weapon.Incant(prefixIncant);
                 }
 

@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Regenerative_Armor : ArmorIncant
     {
-        public Regenerative_Armor()
+        public Regenerative_Armor(int incantID) : base(incantID)
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Armor;

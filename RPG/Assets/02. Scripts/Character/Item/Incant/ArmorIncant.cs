@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public abstract class ArmorIncant : Incant
     {
+        protected ArmorIncant(int incantID) : base(incantID)
+        {
+        }
+
         public virtual void PerSecEvent(BattleStatus status)
         {
             Debug.Log("PerSecEvent is Nothing");

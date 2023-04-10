@@ -149,6 +149,26 @@ namespace RPG.Character.Equipment
         }
         #endregion
 
+        public int GetPrefixIncantID()
+        {
+            if (prefix == null)
+            {
+                return -1;
+            }
+
+            return prefix.incantID;
+        }
+
+        public int GetSuffixIncantID()
+        {
+            if (suffix == null)
+            {
+                return -1;
+            }
+
+            return suffix.incantID;
+        }
+
         public bool isReinforce()
         {
             return !(reinforceCount == 0);

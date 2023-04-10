@@ -138,24 +138,24 @@ namespace RPG.Core
             userInfo.itemIncantCount = 10;
             userInfo.itemGachaTicket = 10;
             userInfo.risingTopCount = 1;
-            userInfo.Energy = 0;
+            userInfo.energy = 0;
             
-            userInfo.lastedWeapon = 100;
+            userInfo.lastedWeaponID = 100;
             userInfo.weaponReinforceCount = 0;
-            userInfo.weaponPreifxIncantID = -1;
+            userInfo.weaponPrefixIncantID = -1;
             userInfo.weaponSuffixIncantID = -1;
 
-            userInfo.lastedArmor = 200;
+            userInfo.lastedArmorID = 200;
             userInfo.armorReinforceCount = 0;
             userInfo.armorPrefixIncantID = -1;
             userInfo.armorSuffixIncantID = -1;
 
-            userInfo.lastedHelmet = 300;
+            userInfo.lastedHelmetID = 300;
             userInfo.helmetReinforceCount = 0;
             userInfo.helmetPrefixIncantID = -1;
             userInfo.helmetSuffixIncantID = -1;
 
-            userInfo.lastedPants = 400;
+            userInfo.lastedPantsID = 400;
             userInfo.pantsReinforceCount = 0;
             userInfo.pantsPrefixIncantID = -1;
             userInfo.pantsSuffixIncantID = -1;

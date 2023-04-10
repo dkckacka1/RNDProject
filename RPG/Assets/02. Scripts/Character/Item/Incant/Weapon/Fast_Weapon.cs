@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Fast_Weapon : WeaponIncant
     {
-        public Fast_Weapon()
+        public Fast_Weapon(int incantID) : base(incantID)
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Weapon;

@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
-        public Revenge_Armor()
+        public Revenge_Armor(int incantID) : base(incantID)
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Armor;

@@ -5415,6 +5415,8 @@ MonoBehaviour:
   itemGachaTicketText: {fileID: 2141148068}
   EnergyText: {fileID: 38277995}
   backButton: {fileID: 991454151}
+  stageCanvas: {fileID: 2116948765}
+  statusCanvas: {fileID: 907566256}
 --- !u!1 &2013446474
 GameObject:
   m_ObjectHideFlags: 0

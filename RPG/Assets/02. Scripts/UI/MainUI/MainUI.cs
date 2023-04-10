@@ -11,39 +11,35 @@ namespace RPG.Main.UI
 {
     public class MainUI : MonoBehaviour
     {
-        UserInfo userinfo;
-        PlayerStatus status;
-
+        [Header("UI")]
         public EquipmentWindowUI equipmentUI;
         public PlayerStatusWindowUI statusUI;
         public StageChoiceWindowUI stageChoiceWindowUI;
         public CharacterAppearance appearance;
 
+        [Space()]
         [SerializeField] TextMeshProUGUI reinforceText;
         [SerializeField] TextMeshProUGUI incantText;
         [SerializeField] TextMeshProUGUI itemGachaTicketText;
         [SerializeField] TextMeshProUGUI EnergyText;
-
         [SerializeField] Button backButton;
+
+        [Header("Canvas")]
+        [SerializeField] Canvas stageCanvas;
+        [SerializeField] Canvas statusCanvas;
 
         private void Start()
         {
-            userinfo = GameManager.Instance.UserInfo;
-            status = GameManager.Instance.Player;
-            Init(status, userinfo);
-            UpdateTicketCount();
-
-            equipmentUI.gameObject.SetActive(false);
-            statusUI.gameObject.SetActive(false);
-            stageChoiceWindowUI.gameObject.SetActive(false);
+            Init();
+            UpdateUI();
         }
 
-        public void Init(PlayerStatus status, UserInfo userInfo)
+        public void Init()
         {
-            equipmentUI.Init(userinfo, status);
-            statusUI.Init(userInfo, status);
-            stageChoiceWindowUI.Init(userinfo);
-            appearance.EquipWeapon(status.currentWeapon.weaponLook);
+            equipmentUI.Init();
+            statusUI.Init();
+            stageChoiceWindowUI.Init();
+            appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponLook);
         }
 
         public void UpdateUI()
@@ -58,16 +54,14 @@ namespace RPG.Main.UI
         #region ButtonPlugin
         public void SetActiveFalseUI()
         {
-            equipmentUI.gameObject.SetActive(false);
-            statusUI.gameObject.SetActive(false);
-            stageChoiceWindowUI.gameObject.SetActive(false);
+            stageCanvas.gameObject.SetActive(false);
+            statusCanvas.gameObject.SetActive(false);
             backButton.gameObject.SetActive(false);
         }
 
         public void ShowStatusUI()
         {
-            equipmentUI.gameObject.SetActive(true);
-            statusUI.gameObject.SetActive(true);
+            statusCanvas.gameObject.SetActive(true);
             if (backButton == null)
             {
                 return;
@@ -77,7 +71,7 @@ namespace RPG.Main.UI
 
         public void ShowStageChoiceUI()
         {
-            stageChoiceWindowUI.gameObject.SetActive(true);
+            stageCanvas.gameObject.SetActive(true);
             if (backButton == null)
             {
                 return;
@@ -87,12 +81,12 @@ namespace RPG.Main.UI
 
         public void IncantItem()
         {
-            if(userinfo.itemIncantCount <= 0)
+            if(GameManager.Instance.UserInfo.itemIncantCount <= 0)
             {
                 return;
             }
 
-            userinfo.itemIncantCount--;
+            GameManager.Instance.UserInfo.itemIncantCount--;
 
             Incant incant;
             if (RandomGacha.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
@@ -101,33 +95,35 @@ namespace RPG.Main.UI
             }
 
             equipmentUI.choiceItem.UpdateItem();
-            status.SetEquipment();
+            GameManager.Instance.Player.SetEquipment();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
         }
 
         public void ReinforceItem()
         {
-            if(userinfo.itemReinforceCount <= 0)
+            if(GameManager.Instance.UserInfo.itemReinforceCount <= 0)
             {
                 return;
             }
 
-            userinfo.itemReinforceCount--;
+            GameManager.Instance.UserInfo.itemReinforceCount--;
             equipmentUI.choiceItem.ReinforceItem();
-
             equipmentUI.choiceItem.UpdateItem();
-            status.SetEquipment();
+
+            GameManager.Instance.Player.SetEquipment();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
         }
 
         public void GachaItem()
         {
-            if (userinfo.itemGachaTicket <= 0)
+            if (GameManager.Instance.UserInfo.itemGachaTicket <= 0)
             {
                 return;
             }
 
-            userinfo.itemGachaTicket--;
+            GameManager.Instance.UserInfo.itemGachaTicket--;
             EquipmentItemType type = equipmentUI.choiceItem.equipmentType;
             switch (type)
             {
@@ -136,9 +132,8 @@ namespace RPG.Main.UI
                         WeaponData data;
                         if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
-                            status.currentWeapon.ChangeData(data);
-                            status.currentWeapon.UpdateItem();
-
+                            GameManager.Instance.Player.currentWeapon.ChangeData(data);
+                            GameManager.Instance.Player.currentWeapon.UpdateItem();
                         }
                     }
 
@@ -148,8 +143,8 @@ namespace RPG.Main.UI
                         ArmorData data;
                         if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
-                            status.currentArmor.ChangeData(data);
-                            status.currentArmor.UpdateItem();
+                            GameManager.Instance.Player.currentArmor.ChangeData(data);
+                            GameManager.Instance.Player.currentArmor.UpdateItem();
                         }
                     }
                     break;
@@ -158,8 +153,8 @@ namespace RPG.Main.UI
                         PantsData data;
                         if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
-                            status.currentPants.ChangeData(data);
-                            status.currentPants.UpdateItem();
+                            GameManager.Instance.Player.currentPants.ChangeData(data);
+                            GameManager.Instance.Player.currentPants.UpdateItem();
                         }
                     }
                     break;
@@ -168,13 +163,14 @@ namespace RPG.Main.UI
                         HelmetData data;
                         if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
-                            status.currentHelmet.ChangeData(data);
-                            status.currentHelmet.UpdateItem();
+                            GameManager.Instance.Player.currentHelmet.ChangeData(data);
+                            GameManager.Instance.Player.currentHelmet.UpdateItem();
                         }
                     }
                     break;
             }
-            status.SetEquipment();
+            GameManager.Instance.Player.SetEquipment();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
         }
         #endregion
@@ -185,11 +181,28 @@ namespace RPG.Main.UI
             {
                 return;
             }
-            this.itemGachaTicketText.text = $"{userinfo.itemGachaTicket}";
-            this.reinforceText.text = $"{userinfo.itemReinforceCount}";
-            this.incantText.text = $"{userinfo.itemIncantCount}";
-            this.EnergyText.text = $"{userinfo.Energy}";
+            this.itemGachaTicketText.text = $"{GameManager.Instance.UserInfo.itemGachaTicket}";
+            this.reinforceText.text = $"{GameManager.Instance.UserInfo.itemReinforceCount}";
+            this.incantText.text = $"{GameManager.Instance.UserInfo.itemIncantCount}";
+            this.EnergyText.text = $"{GameManager.Instance.UserInfo.energy}";
         }
 
+        // HACK : TEST
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 10, 80, 80), "게임 저장"))
+            {
+                Debug.Log("게임 저장");
+                GameSLManager.SaveToPlayerPrefs(GameManager.Instance.UserInfo);
+            }
+
+            if (GUI.Button(new Rect(10, 100, 80, 80), "게임 불러오기"))
+            {
+                GameManager.Instance.UserInfo = GameSLManager.LoadToPlayerPrefs();
+                GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
+                Debug.Log(GameManager.Instance.UserInfo);
+                UpdateUI();
+            }
+        }
     }
 }

@@ -9,15 +9,13 @@ namespace RPG.Main.UI
 {
     public class StageChoiceWindowUI : MonoBehaviour
     {
-        UserInfo userInfo;
         List<StageWindowUI> stageWindows = new List<StageWindowUI>();
 
         [SerializeField] StageWindowUI StageWindowUIPrefab;
         [SerializeField] Transform ScrollViewContextLayout;
 
-        public void Init(UserInfo userInfo)
+        public void Init()
         {
-            this.userInfo = userInfo;
             CreateStageWindow();
         }
 
@@ -30,8 +28,8 @@ namespace RPG.Main.UI
             foreach (var stage in stageList)
             {
                 StageWindowUI ui = Instantiate<StageWindowUI>(this.StageWindowUIPrefab, ScrollViewContextLayout);
-                bool isClear = (stage.ID < userInfo.risingTopCount);
-                bool isLast = (stage.ID == userInfo.risingTopCount);
+                bool isClear = (stage.ID < GameManager.Instance.UserInfo.risingTopCount);
+                bool isLast = (stage.ID == GameManager.Instance.UserInfo.risingTopCount);
                 ui.Init(stage, isClear, isLast);
 
                 stageWindows.Add(ui);

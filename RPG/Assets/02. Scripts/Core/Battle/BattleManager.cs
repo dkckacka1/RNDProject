@@ -241,7 +241,7 @@ namespace RPG.Battle.Core
                 userInfo.risingTopCount = currentStageID;
             }
 
-            userInfo.Energy += gainEnergy;
+            userInfo.energy += gainEnergy;
             userInfo.itemGachaTicket += gainGacha;
             userInfo.itemReinforceCount += gainReinforce;
             userInfo.itemIncantCount += gainIncant;

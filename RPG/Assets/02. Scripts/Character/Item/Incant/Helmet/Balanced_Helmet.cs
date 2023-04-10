@@ -6,7 +6,7 @@ namespace RPG.Character.Equipment
 {
     public class Balanced_Helmet : HelmetIncant
     {
-        public Balanced_Helmet()
+        public Balanced_Helmet(int incantID) : base(incantID)
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Helmet;

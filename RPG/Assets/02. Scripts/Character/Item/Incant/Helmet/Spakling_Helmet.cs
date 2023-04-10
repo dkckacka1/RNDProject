@@ -6,7 +6,7 @@ namespace RPG.Character.Equipment
 {
     public class Spakling_Helmet : HelmetIncant
     {
-        public Spakling_Helmet()
+        public Spakling_Helmet(int incantID) : base(incantID)
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Helmet;

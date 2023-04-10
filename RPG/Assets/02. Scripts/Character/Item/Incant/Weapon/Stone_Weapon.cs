@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Stone_Weapon : WeaponIncant
     {
-        public Stone_Weapon()
+        public Stone_Weapon(int incantID) : base(incantID)
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Weapon;

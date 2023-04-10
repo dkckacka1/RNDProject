@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public abstract class HelmetIncant : Incant
     {
+        protected HelmetIncant(int incantID) : base(incantID)
+        {
+        }
+
         public virtual void criticalAttackEvent(BattleStatus player, BattleStatus enemy)
         {
             Debug.Log("criticalAttackEvent is Nothing");

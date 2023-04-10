@@ -11,8 +11,6 @@ namespace RPG.Main.UI
 {
     public class EquipmentWindowUI : MonoBehaviour
     {
-        PlayerStatus status;
-        UserInfo userInfo;
         public Equipment choiceItem;
 
         [Header("Text")]
@@ -37,10 +35,8 @@ namespace RPG.Main.UI
         [SerializeField] TextMeshProUGUI incantCount;
         [SerializeField] TextMeshProUGUI itemTicketCount;
 
-        public void Init(UserInfo userInfo, PlayerStatus status)
+        public void Init()
         {
-            this.status = status;
-            this.userInfo = userInfo;
             UpdateUserScroll();
             ShowWeapon();
         }
@@ -48,22 +44,22 @@ namespace RPG.Main.UI
         #region ButtonPlugin
         public void ShowWeapon()
         {
-            UpdateItem(status.currentWeapon);
+            UpdateItem(GameManager.Instance.Player.currentWeapon);
         }
 
         public void ShowArmor()
         {
-            UpdateItem(status.currentArmor);
+            UpdateItem(GameManager.Instance.Player.currentArmor);
         }
 
         public void ShowHelmet()
         {
-            UpdateItem(status.currentHelmet);
+            UpdateItem(GameManager.Instance.Player.currentHelmet);
         }
 
         public void ShowPants()
         {
-            UpdateItem(status.currentPants);
+            UpdateItem(GameManager.Instance.Player.currentPants);
         }
 
 
@@ -77,16 +73,16 @@ namespace RPG.Main.UI
                 return;
             }
 
-            if (userInfo == null)
+            if (GameManager.Instance.UserInfo == null)
             {
                 Debug.LogError("userinfo ¾øÀ½!");
                 return;
             }
 
 
-            reinforceCount.text = $"X {userInfo.itemReinforceCount}";
-            incantCount.text = $"X {userInfo.itemIncantCount}";
-            itemTicketCount.text = $"X {userInfo.itemGachaTicket}";
+            reinforceCount.text = $"X {GameManager.Instance.UserInfo.itemReinforceCount}";
+            incantCount.text = $"X {GameManager.Instance.UserInfo.itemIncantCount}";
+            itemTicketCount.text = $"X {GameManager.Instance.UserInfo.itemGachaTicket}";
         }
 
         public void UpdateItem(Equipment item)

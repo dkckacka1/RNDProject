@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Sharpness_Weapon : WeaponIncant
     {
-        public Sharpness_Weapon()
+        public Sharpness_Weapon(int incantID) : base(incantID)
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Weapon;

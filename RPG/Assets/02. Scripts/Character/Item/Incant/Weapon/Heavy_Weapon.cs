@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Heavy_Weapon : WeaponIncant
     {
-        public Heavy_Weapon()
+        public Heavy_Weapon(int incantID) : base(incantID)
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Weapon;
