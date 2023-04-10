@@ -19,16 +19,16 @@ namespace RPG.Character.Equipment
         {
             Armor armor = equipment as Armor;
 
-            armor.movementSpeed += 0.5f;
-            armor.defencePoint -= 1;
+            armor.MovementSpeed += 0.5f;
+            armor.DefencePoint -= 1;
         }
 
         public override void RemoveIncant(Equipment equipment)
         {
             Armor armor = equipment as Armor;
 
-            armor.movementSpeed -= 0.5f;
-            armor.defencePoint += 1;
+            armor.MovementSpeed -= 0.5f;
+            armor.DefencePoint += 1;
         }
     } 
 }

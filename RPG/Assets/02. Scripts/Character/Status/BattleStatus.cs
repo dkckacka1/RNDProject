@@ -35,7 +35,7 @@ namespace RPG.Character.Status
             get => currentHp;
             set
             {
-                currentHp = Mathf.Clamp(value, 0, status.maxHp);
+                currentHp = Mathf.Clamp(value, 0, status.MaxHp);
                 if (characterUI != null)
                 {
                     characterUI.UpdateHPUI(currentHp);
@@ -70,7 +70,7 @@ namespace RPG.Character.Status
 
         public virtual void Init()
         {
-            currentHp = status.maxHp;
+            currentHp = status.MaxHp;
             isDead = false;
         }
 

@@ -10,24 +10,33 @@ namespace RPG.Character.Equipment
     {
         public GameObject weaponLook;
 
-        public int attackDamage;
-        public float attackSpeed;
-        public float attackRange;
-        public float movementSpeed;
-        public float criticalChance;
-        public float criticalDamage;
-        public float attackChance;
+        private int attackDamage;
+        private float attackSpeed;
+        private float attackRange;
+        private float movementSpeed;
+        private float criticalChance;
+        private float criticalDamage;
+        private float attackChance;
+
+        // Encapsulation
+        public int AttackDamage { get => attackDamage; set => attackDamage = value; }
+        public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
+        public float AttackRange { get => attackRange; set => attackRange = value; }
+        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+        public float CriticalChance { get => criticalChance; set => criticalChance = value; }
+        public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
+        public float AttackChance { get => attackChance; set => attackChance = value; }
 
         public Weapon(Weapon weapon) : base(weapon)
         {
             weaponLook = weapon.weaponLook;
-            attackDamage = weapon.attackDamage;
-            attackSpeed = weapon.attackSpeed;
-            attackRange = weapon.attackRange;
-            movementSpeed = weapon.movementSpeed;
-            criticalChance = weapon.criticalChance;
-            criticalDamage = weapon.criticalDamage;
-            attackChance = weapon.attackChance;
+            AttackDamage = weapon.AttackDamage;
+            AttackSpeed = weapon.AttackSpeed;
+            AttackRange = weapon.AttackRange;
+            MovementSpeed = weapon.MovementSpeed;
+            CriticalChance = weapon.CriticalChance;
+            CriticalDamage = weapon.CriticalDamage;
+            AttackChance = weapon.AttackChance;
 
             this.UpdateItem();
         }
@@ -35,13 +44,13 @@ namespace RPG.Character.Equipment
         public Weapon(WeaponData data) : base(data)
         {
             weaponLook = data.weaponLook;
-            attackDamage = data.attackDamage;
-            attackSpeed = data.attackSpeed;
-            attackRange = data.attackRange;
-            movementSpeed = data.movementSpeed;
-            criticalChance = data.criticalChance;
-            criticalDamage = data.criticalDamage;
-            attackChance = data.attackChance;
+            AttackDamage = data.attackDamage;
+            AttackSpeed = data.attackSpeed;
+            AttackRange = data.attackRange;
+            MovementSpeed = data.movementSpeed;
+            CriticalChance = data.criticalChance;
+            CriticalDamage = data.criticalDamage;
+            AttackChance = data.attackChance;
         }
 
         public override void ChangeData(EquipmentData data)
@@ -52,24 +61,24 @@ namespace RPG.Character.Equipment
             }
 
             base.ChangeData(data);
-            attackDamage = (data as WeaponData).attackDamage;
-            attackSpeed = (data as WeaponData).attackSpeed;
-            attackRange = (data as WeaponData).attackRange;
-            movementSpeed = (data as WeaponData).movementSpeed;
-            criticalChance = (data as WeaponData).criticalChance;
-            criticalDamage = (data as WeaponData).criticalDamage;
-            attackChance = (data as WeaponData).attackChance;
+            AttackDamage = (data as WeaponData).attackDamage;
+            AttackSpeed = (data as WeaponData).attackSpeed;
+            AttackRange = (data as WeaponData).attackRange;
+            MovementSpeed = (data as WeaponData).movementSpeed;
+            CriticalChance = (data as WeaponData).criticalChance;
+            CriticalDamage = (data as WeaponData).criticalDamage;
+            AttackChance = (data as WeaponData).attackChance;
         }
 
         public override void UpdateReinfoce()
         {
-            attackDamage = (data as WeaponData).attackDamage + (int)((data as WeaponData).attackDamage * 0.1 * reinforceCount);
-            attackSpeed = (data as WeaponData).attackSpeed;
-            attackRange = (data as WeaponData).attackRange;
-            movementSpeed = (data as WeaponData).movementSpeed;
-            criticalChance = (data as WeaponData).criticalChance;
-            criticalDamage = (data as WeaponData).criticalDamage;
-            attackChance = (data as WeaponData).attackChance;
+            AttackDamage = (data as WeaponData).attackDamage + (int)((data as WeaponData).attackDamage * 0.1 * reinforceCount);
+            AttackSpeed = (data as WeaponData).attackSpeed;
+            AttackRange = (data as WeaponData).attackRange;
+            MovementSpeed = (data as WeaponData).movementSpeed;
+            CriticalChance = (data as WeaponData).criticalChance;
+            CriticalDamage = (data as WeaponData).criticalDamage;
+            AttackChance = (data as WeaponData).attackChance;
         }
     }
 }

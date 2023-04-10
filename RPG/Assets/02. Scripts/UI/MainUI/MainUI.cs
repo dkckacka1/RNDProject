@@ -47,7 +47,7 @@ namespace RPG.Main.UI
             UpdateTicketCount();
             statusUI.UpdateStatusText();
             statusUI.UpdateUserText();
-            equipmentUI.UpdateUserScroll();
+            equipmentUI.ShowUserResource();
             equipmentUI.UpdateItem(equipmentUI.choiceItem);
         }
 
@@ -89,7 +89,7 @@ namespace RPG.Main.UI
             GameManager.Instance.UserInfo.itemIncantCount--;
 
             Incant incant;
-            if (RandomGacha.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
+            if (RandomSystem.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
             {
                 equipmentUI.choiceItem.Incant(incant);
             }
@@ -108,9 +108,18 @@ namespace RPG.Main.UI
             }
 
             GameManager.Instance.UserInfo.itemReinforceCount--;
-            equipmentUI.choiceItem.ReinforceItem();
-            equipmentUI.choiceItem.UpdateItem();
+            if (MyUtility.ProbailityCalc(100f - (RandomSystem.ReinforceCalc(equipmentUI.choiceItem)),0f,100f))
+            {
+                equipmentUI.choiceItem.ReinforceItem();
+                Debug.Log("강화 성공!!");
+            }
+            else
+            {
+                Debug.Log("강화 실패!!");
+            }
 
+
+            equipmentUI.choiceItem.UpdateItem();
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
@@ -130,7 +139,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Weapon:
                     {
                         WeaponData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
+                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentWeapon.ChangeData(data);
                             GameManager.Instance.Player.currentWeapon.UpdateItem();
@@ -141,7 +150,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Armor:
                     {
                         ArmorData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
+                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentArmor.ChangeData(data);
                             GameManager.Instance.Player.currentArmor.UpdateItem();
@@ -151,7 +160,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Pants:
                     {
                         PantsData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
+                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentPants.ChangeData(data);
                             GameManager.Instance.Player.currentPants.UpdateItem();
@@ -161,7 +170,7 @@ namespace RPG.Main.UI
                 case EquipmentItemType.Helmet:
                     {
                         HelmetData data;
-                        if (RandomGacha.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
+                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentHelmet.ChangeData(data);
                             GameManager.Instance.Player.currentHelmet.UpdateItem();
@@ -201,6 +210,12 @@ namespace RPG.Main.UI
                 GameManager.Instance.UserInfo = GameSLManager.LoadToPlayerPrefs();
                 GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
                 Debug.Log(GameManager.Instance.UserInfo);
+                UpdateUI();
+            }
+
+            if (GUI.Button(new Rect(10, 190, 80, 80), "강화권 추가"))
+            {
+                GameManager.Instance.UserInfo.itemReinforceCount += 100;
                 UpdateUI();
             }
         }

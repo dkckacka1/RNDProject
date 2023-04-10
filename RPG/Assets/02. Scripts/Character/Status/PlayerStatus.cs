@@ -24,20 +24,20 @@ namespace RPG.Character.Status
                 return;
             }
 
-            attackDamage =          currentWeapon.attackDamage;
-            attackRange =           currentWeapon.attackChance;
-            attackSpeed =           currentWeapon.attackSpeed;
-            criticalChance =        currentWeapon.criticalChance;
-            criticalDamage =        currentWeapon.criticalDamage;
-            attackChance =          currentWeapon.attackChance;
+            AttackDamage =          currentWeapon.AttackDamage;
+            AttackRange =           currentWeapon.AttackChance;
+            AttackSpeed =           currentWeapon.AttackSpeed;
+            CriticalChance =        currentWeapon.CriticalChance;
+            CriticalDamage =        currentWeapon.CriticalDamage;
+            AttackChance =          currentWeapon.AttackChance;
 
-            maxHp =                 currentArmor.hpPoint + currentHelmet.hpPoint + currentPants.hpPoint;
-            defencePoint =          currentArmor.defencePoint + currentHelmet.defencePoint + currentPants.defencePoint;
-            evasionPoint =          currentArmor.evasionPoint;
-            decreseCriticalDamage = currentHelmet.decreseCriticalDamage;
-            evasionCritical =       currentHelmet.evasionCritical;
+            MaxHp =                 currentArmor.HpPoint + currentHelmet.HpPoint + currentPants.HpPoint;
+            DefencePoint =          currentArmor.DefencePoint + currentHelmet.DefencePoint + currentPants.DefencePoint;
+            EvasionPoint =          currentArmor.EvasionPoint;
+            DecreseCriticalDamage = currentHelmet.DecreseCriticalDamage;
+            EvasionCritical =       currentHelmet.EvasionCritical;
 
-            movementSpeed =         currentWeapon.movementSpeed + currentPants.movementSpeed;
+            MovementSpeed =         currentWeapon.MovementSpeed + currentPants.MovementSpeed;
         }
 
         public void SetPlayerStatusFromUserinfo(UserInfo userInfo)
@@ -139,7 +139,7 @@ namespace RPG.Character.Status
 
                 if (userInfo.pantsSuffixIncantID != -1)
                 {
-                    Incant suffixIncant = GameManager.Instance.incantDic[userInfo.pantsPrefixIncantID];
+                    Incant suffixIncant = GameManager.Instance.incantDic[userInfo.pantsSuffixIncantID];
                     pants.Incant(suffixIncant);
                 }
 

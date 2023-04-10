@@ -37,9 +37,9 @@ namespace RPG.Battle.Move
 
         public void UpdateStatus(Controller controller)
         {
-            attackRange = controller.battleStatus.status.attackRange;
-            nav.speed = controller.battleStatus.status.movementSpeed;
-            nav.stoppingDistance = controller.battleStatus.status.attackRange;
+            attackRange = controller.battleStatus.status.AttackRange;
+            nav.speed = controller.battleStatus.status.MovementSpeed;
+            nav.stoppingDistance = controller.battleStatus.status.AttackRange;
         }
 
         public void ResetNav()

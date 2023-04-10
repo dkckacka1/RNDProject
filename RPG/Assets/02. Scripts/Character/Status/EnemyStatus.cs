@@ -15,20 +15,20 @@ namespace RPG.Character.Status
             enemyID = data.ID;
 
             enemyName = data.enemyName;
-            maxHp = data.maxHp;
-            attackDamage = data.attackDamage;
-            attackRange = data.attackRange;
-            attackSpeed = data.attackSpeed;
-            criticalChance = data.criticalChance;
-            criticalDamage = data.criticalDamage;
-            attackChance = data.attackChance;
+            MaxHp = data.maxHp;
+            AttackDamage = data.attackDamage;
+            AttackRange = data.attackRange;
+            AttackSpeed = data.attackSpeed;
+            CriticalChance = data.criticalChance;
+            CriticalDamage = data.criticalDamage;
+            AttackChance = data.attackChance;
 
-            defencePoint = data.defencePoint;
-            evasionPoint = data.evasionPoint;
-            decreseCriticalDamage = data.decreseCriticalDamage;
-            evasionCritical = data.evasionCritical;
+            DefencePoint = data.defencePoint;
+            EvasionPoint = data.evasionPoint;
+            DecreseCriticalDamage = data.decreseCriticalDamage;
+            EvasionCritical = data.evasionCritical;
 
-            movementSpeed = data.movementSpeed;
+            MovementSpeed = data.movementSpeed;
         }
     }
 }

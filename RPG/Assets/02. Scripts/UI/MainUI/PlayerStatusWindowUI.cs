@@ -52,20 +52,20 @@ namespace RPG.Main.UI
         public void UpdateStatusText()
         {
             attackStatusText.text = $"" +
-                $"{MyUtility.returnSideText("공격력 :", GameManager.Instance.Player.attackDamage.ToString())}\n" +
-                $"{MyUtility.returnSideText("공격 속도 :", $"초당 {GameManager.Instance.Player.attackSpeed.ToString()}회 타격")}\n" +
-                $"{MyUtility.returnSideText("공격 범위 :", GameManager.Instance.Player.attackRange.ToString())}\n" +
-                $"{MyUtility.returnSideText("적중률 :", $"{GameManager.Instance.Player.attackChance * 100}%")}\n" +
-                $"{MyUtility.returnSideText("치명타 확률 :", $"{GameManager.Instance.Player.criticalChance * 100}%")}\n" +
-                $"{MyUtility.returnSideText("치명타 데미지 :", $"기본 공격력의 {GameManager.Instance.Player.criticalDamage * 100}%")}\n" +
-                $"{MyUtility.returnSideText("이동 속도 :", GameManager.Instance.Player.movementSpeed.ToString())}\n";
+                $"{MyUtility.returnSideText("공격력 :", GameManager.Instance.Player.AttackDamage.ToString())}\n" +
+                $"{MyUtility.returnSideText("공격 속도 :", $"초당 {GameManager.Instance.Player.AttackSpeed.ToString()}회 타격")}\n" +
+                $"{MyUtility.returnSideText("공격 범위 :", GameManager.Instance.Player.AttackRange.ToString())}\n" +
+                $"{MyUtility.returnSideText("적중률 :", $"{GameManager.Instance.Player.AttackChance * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 확률 :", $"{GameManager.Instance.Player.CriticalChance * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 :", $"기본 공격력의 {GameManager.Instance.Player.CriticalDamage * 100}%")}\n" +
+                $"{MyUtility.returnSideText("이동 속도 :", GameManager.Instance.Player.MovementSpeed.ToString())}\n";
 
             defenceStatusText.text = $"" +
-                $"{MyUtility.returnSideText("체력 :", GameManager.Instance.Player.maxHp.ToString())}\n" +
-                $"{MyUtility.returnSideText("방어력 :", GameManager.Instance.Player.defencePoint.ToString())}\n" +
-                $"{MyUtility.returnSideText("회피율 :", $"{GameManager.Instance.Player.evasionPoint * 100}%")}\n" +
-                $"{MyUtility.returnSideText("치명타 회피율 :", $"{GameManager.Instance.Player.evasionCritical * 100}%")}\n" +
-                $"{MyUtility.returnSideText("치명타 데미지 감소 :", $"{GameManager.Instance.Player.decreseCriticalDamage * 100}% 감소")}"; ;
+                $"{MyUtility.returnSideText("체력 :", GameManager.Instance.Player.MaxHp.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 :", GameManager.Instance.Player.DefencePoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("회피율 :", $"{GameManager.Instance.Player.EvasionPoint * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 회피율 :", $"{GameManager.Instance.Player.EvasionCritical * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 감소 :", $"{GameManager.Instance.Player.DecreseCriticalDamage * 100}% 감소")}"; ;
         }
     }
 }

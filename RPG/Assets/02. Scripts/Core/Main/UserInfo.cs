@@ -44,8 +44,8 @@ namespace RPG.Core
 
             lastedArmorID = status.currentArmor.data.ID;
             armorReinforceCount = status.currentArmor.reinforceCount;
-            armorReinforceCount = status.currentArmor.GetPrefixIncantID();
-            armorReinforceCount = status.currentArmor.GetSuffixIncantID();
+            armorPrefixIncantID = status.currentArmor.GetPrefixIncantID();
+            armorSuffixIncantID = status.currentArmor.GetSuffixIncantID();
 
             lastedHelmetID = status.currentHelmet.data.ID;
             helmetReinforceCount = status.currentHelmet.reinforceCount;

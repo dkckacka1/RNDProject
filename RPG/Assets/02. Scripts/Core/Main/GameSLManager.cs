@@ -73,12 +73,10 @@ namespace RPG.Core
 
         public static void SaveToJSON()
         {
-            // TODO : 추후 작업
         }
 
         public static UserInfo LoadToJSON()
         {
-            // TODO : 추후 작업
             return null;
         }
     }

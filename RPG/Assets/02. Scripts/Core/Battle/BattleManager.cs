@@ -210,7 +210,7 @@ namespace RPG.Battle.Core
         {
             // 승리 연출
             currentStageID++;
-            BattleUI.ShowWinText();
+            BattleUI.ShowWin();
             StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
             SetBattleState(BattleSceneState.Win);
         }
@@ -219,7 +219,7 @@ namespace RPG.Battle.Core
         {
             // 패배 연출
             currentBattleState = BattleSceneState.Defeat;
-            BattleUI.ShowDefeatText();
+            BattleUI.ShowDefeat();
             SetBattleState(BattleSceneState.Defeat);
         }
 

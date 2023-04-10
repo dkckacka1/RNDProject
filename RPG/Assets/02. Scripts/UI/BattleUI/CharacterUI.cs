@@ -34,7 +34,7 @@ namespace RPG.Battle.UI
             if (hpBar != null)
             {
                 hpBar.gameObject.SetActive(true);
-                hpBar.InitHpSlider(status.status.maxHp);
+                hpBar.InitHpSlider(status.status.MaxHp);
             }
         }
 

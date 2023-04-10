@@ -31,9 +31,9 @@ namespace RPG.Character.Equipment
 
         public IEnumerator Revenge(BattleStatus battleStatus, float time)
         {
-            battleStatus.status.attackDamage += 5;
+            battleStatus.status.AttackDamage += 5;
             yield return new WaitForSeconds(time);
-            battleStatus.status.attackDamage -= 5;
+            battleStatus.status.AttackDamage -= 5;
         }
     }
 }

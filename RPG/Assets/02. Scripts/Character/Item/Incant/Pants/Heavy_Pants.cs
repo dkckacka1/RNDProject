@@ -19,16 +19,16 @@ namespace RPG.Character.Equipment
         {
             Pants pants = equipment as Pants;
 
-            pants.defencePoint += 4;
-            pants.movementSpeed -= 3;
+            pants.DefencePoint += 4;
+            pants.MovementSpeed -= 3;
         }
 
         public override void RemoveIncant(Equipment equipment)
         {
             Pants pants = equipment as Pants;
 
-            pants.defencePoint -= 4;
-            pants.movementSpeed += 3;
+            pants.DefencePoint -= 4;
+            pants.MovementSpeed += 3;
         }
     }
 

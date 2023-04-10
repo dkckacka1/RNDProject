@@ -6,27 +6,33 @@ namespace RPG.Character.Equipment
 {
     public class Armor : Equipment
     {
-        public int hpPoint;
-        public int defencePoint;
-        public float movementSpeed;
-        public float evasionPoint;
+        private int hpPoint;
+        private int defencePoint;
+        private float movementSpeed;
+        private float evasionPoint;
+
+        // Encapsulation
+        public int HpPoint { get => hpPoint; set => hpPoint = value; }
+        public int DefencePoint { get => defencePoint; set => defencePoint = value; }
+        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+        public float EvasionPoint { get => evasionPoint; set => evasionPoint = value; }
 
         public Armor(Armor armor) : base(armor)
         {
-            defencePoint = armor.defencePoint;
-            hpPoint = armor.hpPoint;
-            movementSpeed = armor.movementSpeed;
-            evasionPoint = armor.evasionPoint;
+            DefencePoint = armor.DefencePoint;
+            HpPoint = armor.HpPoint;
+            MovementSpeed = armor.MovementSpeed;
+            EvasionPoint = armor.EvasionPoint;
 
             this.UpdateItem();
         }
 
         public Armor(ArmorData data) : base(data)
         {
-            defencePoint = data.defencePoint;
-            hpPoint = data.hpPoint;
-            movementSpeed = data.movementSpeed;
-            evasionPoint = data.evasionPoint;
+            DefencePoint = data.defencePoint;
+            HpPoint = data.hpPoint;
+            MovementSpeed = data.movementSpeed;
+            EvasionPoint = data.evasionPoint;
         }
 
         public override void ChangeData(EquipmentData data)
@@ -37,18 +43,18 @@ namespace RPG.Character.Equipment
             }
 
             base.ChangeData(data);
-            defencePoint = (data as ArmorData).defencePoint;
-            hpPoint = (data as ArmorData).hpPoint;
-            movementSpeed = (data as ArmorData).movementSpeed;
-            evasionPoint = (data as ArmorData).evasionPoint;
+            DefencePoint = (data as ArmorData).defencePoint;
+            HpPoint = (data as ArmorData).hpPoint;
+            MovementSpeed = (data as ArmorData).movementSpeed;
+            EvasionPoint = (data as ArmorData).evasionPoint;
         }
 
         public override void UpdateReinfoce()
         {
-            defencePoint = (data as ArmorData).defencePoint + (int)((data as ArmorData).defencePoint * 0.1 * reinforceCount);
-            hpPoint = (data as ArmorData).hpPoint + (int)((data as ArmorData).hpPoint * 0.1 * reinforceCount);
-            movementSpeed = (data as ArmorData).movementSpeed;
-            evasionPoint = (data as ArmorData).evasionPoint;
+            DefencePoint = (data as ArmorData).defencePoint + (int)((data as ArmorData).defencePoint * 0.1 * reinforceCount);
+            HpPoint = (data as ArmorData).hpPoint + (int)((data as ArmorData).hpPoint * 0.1 * reinforceCount);
+            MovementSpeed = (data as ArmorData).movementSpeed;
+            EvasionPoint = (data as ArmorData).evasionPoint;
         }
     } 
 }

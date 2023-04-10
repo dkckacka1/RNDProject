@@ -15,6 +15,7 @@ namespace RPG.Battle.UI
         public Canvas battleCanvas;
 
         [Header("ReadyUI")]
+        [SerializeField] TextMeshProUGUI floorCountText;
         [SerializeField] TextMeshProUGUI readyText;
         [SerializeField] float removeReadyUITime = 1f;
 
@@ -40,14 +41,14 @@ namespace RPG.Battle.UI
             StartCoroutine(RemoveReadyUI(removeReadyUITime));
         }
 
-        public void ShowWinText()
+        public void ShowWin()
         {
             readyText.text = "승리!";
             readyText.gameObject.SetActive(true);
 
         }
 
-        public void ShowDefeatText()
+        public void ShowDefeat()
         {
             readyText.text = "패배~";
             readyText.gameObject.SetActive(true);
@@ -64,7 +65,5 @@ namespace RPG.Battle.UI
             yield return new WaitForSeconds(duration);
             readyText.gameObject.SetActive(false);
         }
-
-
     }
 }

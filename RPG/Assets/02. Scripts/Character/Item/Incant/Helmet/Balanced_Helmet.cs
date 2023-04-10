@@ -18,14 +18,14 @@ namespace RPG.Character.Equipment
         {
             Helmet helmet = equipment as Helmet;
 
-            helmet.decreseCriticalDamage += 0.2f;
+            helmet.DecreseCriticalDamage += 0.2f;
         }
 
         public override void RemoveIncant(Equipment equipment)
         {
             Helmet helmet = equipment as Helmet;
 
-            helmet.decreseCriticalDamage -= 0.2f;
+            helmet.DecreseCriticalDamage -= 0.2f;
         }
     }
 

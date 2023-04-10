@@ -20,16 +20,16 @@ namespace RPG.Character.Equipment
         {
             Weapon weapon = equipment as Weapon;
 
-            weapon.attackDamage += 30;
-            weapon.attackSpeed -= 2;
+            weapon.AttackDamage += 30;
+            weapon.AttackSpeed -= 2;
         }
 
         public override void RemoveIncant(Equipment equipment)
         {
             Weapon weapon = equipment as Weapon;
 
-            weapon.attackDamage -= 30;
-            weapon.attackSpeed += 2;
+            weapon.AttackDamage -= 30;
+            weapon.AttackSpeed += 2;
         }
     }
 }

@@ -51,8 +51,8 @@ namespace RPG.Battle.Fight
                 }
             }
 
-            controller.animator.SetFloat("AttackSpeed", controller.battleStatus.status.attackSpeed);
-            attackDelay = defaultAttackAnimLength / controller.battleStatus.status.attackSpeed;
+            controller.animator.SetFloat("AttackSpeed", controller.battleStatus.status.AttackSpeed);
+            attackDelay = defaultAttackAnimLength / controller.battleStatus.status.AttackSpeed;
             attackAnimPoint = attackDelay / 2.8f;
         }
 
@@ -76,7 +76,7 @@ namespace RPG.Battle.Fight
             }
 
             // 0. 방어도 계산식
-            float defenceAverage = 1 - (target.status.defencePoint / 100);
+            float defenceAverage = 1 - (target.status.DefencePoint / 100);
             if (defenceAverage >= 1)
                 defenceAverage = 0.9f;
 
@@ -89,19 +89,19 @@ namespace RPG.Battle.Fight
                     // 3. 공격 치명타가 발생한다.
                 {
                     criticalAttackEvent.Invoke(character, target);
-                    int criticalDamage = (int)(character.status.attackDamage * (1 + character.status.criticalDamage));
+                    int criticalDamage = (int)(character.status.AttackDamage * (1 + character.status.CriticalDamage));
                     target.TakeDamage(DamageCalc(criticalDamage,defenceAverage), DamagedType.Ciritical);
                 }
                 else
                     // 3. 공격 치명타가 발생하지 않는다.
                 {
-                    target.TakeDamage(DamageCalc(character.status.attackDamage, defenceAverage), DamagedType.Normal);
+                    target.TakeDamage(DamageCalc(character.status.AttackDamage, defenceAverage), DamagedType.Normal);
                 }
             }
             else
                 // 2. 공격이 실패한다.
             {
-                target.TakeDamage(character.status.attackDamage, DamagedType.MISS);
+                target.TakeDamage(character.status.AttackDamage, DamagedType.MISS);
             }
 
 
@@ -120,7 +120,7 @@ namespace RPG.Battle.Fight
 
         private bool AttackChangeCalc(BattleStatus character, BattleStatus target)
         {
-            float chance = character.status.attackChance * (1 - target.status.evasionPoint);
+            float chance = character.status.AttackChance * (1 - target.status.EvasionPoint);
 
             float random = Random.Range(0, 1f);
 
@@ -142,7 +142,7 @@ namespace RPG.Battle.Fight
 
         private bool AttackCriticalCalc(BattleStatus character, BattleStatus target)
         {
-            float criticalChance = character.status.criticalChance * (1 - target.status.evasionCritical);
+            float criticalChance = character.status.CriticalChance * (1 - target.status.EvasionCritical);
 
             float random = Random.Range(0, 1f);
 

@@ -6,27 +6,33 @@ namespace RPG.Character.Equipment
 {
     public class Helmet : Equipment
     {
-        public int defencePoint;
-        public int hpPoint;
-        public float decreseCriticalDamage;
-        public float evasionCritical;
+        private int defencePoint;
+        private int hpPoint;
+        private float decreseCriticalDamage;
+        private float evasionCritical;
+
+        // Encapsulation
+        public int DefencePoint { get => defencePoint; set => defencePoint = value; }
+        public int HpPoint { get => hpPoint; set => hpPoint = value; }
+        public float DecreseCriticalDamage { get => decreseCriticalDamage; set => decreseCriticalDamage = value; }
+        public float EvasionCritical { get => evasionCritical; set => evasionCritical = value; }
 
         public Helmet(Helmet helmet) : base(helmet)
         {
-            defencePoint = helmet.defencePoint;
-            hpPoint = helmet.hpPoint;
-            decreseCriticalDamage = helmet.decreseCriticalDamage;
-            evasionCritical = helmet.evasionCritical;
+            DefencePoint = helmet.DefencePoint;
+            HpPoint = helmet.HpPoint;
+            DecreseCriticalDamage = helmet.DecreseCriticalDamage;
+            EvasionCritical = helmet.EvasionCritical;
 
             this.UpdateItem();
         }
 
         public Helmet(HelmetData data) : base(data)
         {
-            defencePoint = data.defencePoint;
-            hpPoint = data.hpPoint;
-            decreseCriticalDamage = data.decreseCriticalDamage;
-            evasionCritical = data.evasionCritical;
+            DefencePoint = data.defencePoint;
+            HpPoint = data.hpPoint;
+            DecreseCriticalDamage = data.decreseCriticalDamage;
+            EvasionCritical = data.evasionCritical;
         }
 
         public override void ChangeData(EquipmentData data)
@@ -37,19 +43,19 @@ namespace RPG.Character.Equipment
             }
 
             base.ChangeData(data);
-            defencePoint = (data as HelmetData).defencePoint;
-            hpPoint = (data as HelmetData).hpPoint;
-            decreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
-            evasionCritical = (data as HelmetData).evasionCritical;
+            DefencePoint = (data as HelmetData).defencePoint;
+            HpPoint = (data as HelmetData).hpPoint;
+            DecreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
+            EvasionCritical = (data as HelmetData).evasionCritical;
         }
 
         public override void UpdateReinfoce()
         {
 
-            defencePoint = (data as HelmetData).defencePoint + (int)((data as HelmetData).defencePoint * 0.1 * reinforceCount);
-            hpPoint = (data as HelmetData).hpPoint + (int)((data as HelmetData).hpPoint * 0.1 * reinforceCount);
-            decreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
-            evasionCritical = (data as HelmetData).evasionCritical;
+            DefencePoint = (data as HelmetData).defencePoint + (int)((data as HelmetData).defencePoint * 0.1 * reinforceCount);
+            HpPoint = (data as HelmetData).hpPoint + (int)((data as HelmetData).hpPoint * 0.1 * reinforceCount);
+            DecreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
+            EvasionCritical = (data as HelmetData).evasionCritical;
         }
     }
 }
