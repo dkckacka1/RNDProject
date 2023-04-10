@@ -8,11 +8,11 @@ namespace RPG.Character.Equipment
 {
     public class Stone_Weapon : WeaponIncant
     {
-        public Stone_Weapon(int incantID) : base(incantID)
+        public Stone_Weapon()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Weapon;
-            name = "µπµ¢¿Ã";
+            IncantName = "µπµ¢¿Ã";
             addDesc = "∞¯∞› Ω√ µπµ¢¿Ã ≈ı√¥";
             minusDesc = "";
             isIncantSkill = true;

@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Heavy_Pants : PantsIncant
     {
-        public Heavy_Pants(int incantID) : base(incantID)
+        public Heavy_Pants()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Pants;
-            name = "고중량의 ";
+            IncantName = "고중량의 ";
             addDesc = "방어력 +4";
             minusDesc = "이동속도 -3";
         }

@@ -110,8 +110,8 @@ namespace RPG.Core
 
         private void LoadEquipmentData()
         {
-            ResourcesLoader.LoadEquipmentData("Data/", ref equipmentDataDic);
-            ResourcesLoader.LoadIncant(ref incantDic);
+            ResourcesLoader.LoadEquipmentData("Data/Equipment", ref equipmentDataDic);
+            ResourcesLoader.LoadIncant("Data/Incant", ref incantDic);
         }
 
         private void LoadEnemyData()

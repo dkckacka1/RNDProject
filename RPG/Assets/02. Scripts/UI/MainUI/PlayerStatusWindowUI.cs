@@ -21,23 +21,23 @@ namespace RPG.Main.UI
 
         public void UpdateUserText()
         {
-            string weaponName = $"{(GameManager.Instance.Player.currentWeapon.prefix != null ? $"{GameManager.Instance.Player.currentWeapon.prefix.name} " : "")}" +
-                $"{(GameManager.Instance.Player.currentWeapon.suffix != null ? $"{GameManager.Instance.Player.currentWeapon.suffix.name} " : "")}" +
+            string weaponName = $"{(GameManager.Instance.Player.currentWeapon.prefix != null ? $"{GameManager.Instance.Player.currentWeapon.prefix.IncantName} " : "")}" +
+                $"{(GameManager.Instance.Player.currentWeapon.suffix != null ? $"{GameManager.Instance.Player.currentWeapon.suffix.IncantName} " : "")}" +
                 $"{GameManager.Instance.Player.currentWeapon.itemName} " +
                 $"{((GameManager.Instance.Player.currentWeapon.reinforceCount > 0) ? $"(+{GameManager.Instance.Player.currentWeapon.reinforceCount})" : "")}";
 
-            string armorName = $"{(GameManager.Instance.Player.currentArmor.prefix != null ? $"{GameManager.Instance.Player.currentArmor.prefix.name} " : "")}" +
-                $"{(GameManager.Instance.Player.currentArmor.suffix != null ? $"{GameManager.Instance.Player.currentArmor.suffix.name} " : "")}" +
+            string armorName = $"{(GameManager.Instance.Player.currentArmor.prefix != null ? $"{GameManager.Instance.Player.currentArmor.prefix.IncantName} " : "")}" +
+                $"{(GameManager.Instance.Player.currentArmor.suffix != null ? $"{GameManager.Instance.Player.currentArmor.suffix.IncantName} " : "")}" +
                 $"{GameManager.Instance.Player.currentArmor.itemName} " +
                 $"{((GameManager.Instance.Player.currentArmor.reinforceCount > 0) ? $"(+{GameManager.Instance.Player.currentArmor.reinforceCount})" : "")}";
 
-            string helmetName = $"{(GameManager.Instance.Player.currentHelmet.prefix != null ? $"{GameManager.Instance.Player.currentHelmet.prefix.name} " : "")}" +
-                $"{(GameManager.Instance.Player.currentHelmet.suffix != null ? $"{GameManager.Instance.Player.currentHelmet.suffix.name} " : "")}" +
+            string helmetName = $"{(GameManager.Instance.Player.currentHelmet.prefix != null ? $"{GameManager.Instance.Player.currentHelmet.prefix.IncantName} " : "")}" +
+                $"{(GameManager.Instance.Player.currentHelmet.suffix != null ? $"{GameManager.Instance.Player.currentHelmet.suffix.IncantName} " : "")}" +
                 $"{GameManager.Instance.Player.currentHelmet.itemName} " +
                 $"{((GameManager.Instance.Player.currentHelmet.reinforceCount > 0) ? $"(+{GameManager.Instance.Player.currentHelmet.reinforceCount})" : "")}";
 
-            string pantsName = $"{(GameManager.Instance.Player.currentPants.prefix != null ? $"{GameManager.Instance.Player.currentPants.prefix.name} " : "")}" +
-                $"{(GameManager.Instance.Player.currentPants.suffix != null ? $"{GameManager.Instance.Player.currentPants.suffix.name} " : "")}" +
+            string pantsName = $"{(GameManager.Instance.Player.currentPants.prefix != null ? $"{GameManager.Instance.Player.currentPants.prefix.IncantName} " : "")}" +
+                $"{(GameManager.Instance.Player.currentPants.suffix != null ? $"{GameManager.Instance.Player.currentPants.suffix.IncantName} " : "")}" +
                 $"{GameManager.Instance.Player.currentPants.itemName} " +
                 $"{((GameManager.Instance.Player.currentPants.reinforceCount > 0) ? $"(+{GameManager.Instance.Player.currentPants.reinforceCount})" : "")}";
 

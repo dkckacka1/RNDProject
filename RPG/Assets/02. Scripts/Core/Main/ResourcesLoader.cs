@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Character.Equipment;
 using RPG.Battle.Core;
 using RPG.Battle.Skill;
+using System;
 
 namespace RPG.Core
 {
@@ -54,21 +55,22 @@ namespace RPG.Core
             }
         }
 
-        public static void LoadIncant(ref Dictionary<int, Incant> dic)
+        public static void LoadIncant(string path ,ref Dictionary<int, Incant> dic)
         {
-            int id = 1;
-            dic.Add(id, new Sharpness_Weapon(id++));
-            dic.Add(id, new Fast_Weapon(id++));
-            dic.Add(id, new Heavy_Weapon(id++));
-            dic.Add(id, new Stone_Weapon(id++));
-            dic.Add(id, new Hard_Armor(id++));
-            dic.Add(id, new Smooth_Armor(id++));
-            dic.Add(id, new Balanced_Helmet(id++));
-            dic.Add(id, new Spakling_Helmet(id++));
-            dic.Add(id, new Heavy_Pants(id++));
-            dic.Add(id, new Quick_Pants(id++));
-            dic.Add(id, new Regenerative_Armor(id++));
-            dic.Add(id, new Revenge_Armor(id++));
+            var list = Resources.LoadAll<IncantData>(path);
+
+            foreach (var incant in list)
+            {
+                // 클래스이름 만들기
+                string class_name = $"RPG.Character.Equipment.{incant.className}_{incant.itemType}";
+                // 클래스 이름을 통한 타입 만들기
+                Type incantType = Type.GetType(class_name);
+                // Activator.CreateInstance를 통하여 매개변수 없는 생성자를 통한 Incant만들기
+                var incantInstance = Activator.CreateInstance(incantType) as Incant;
+
+                incantInstance.incantID = incant.ID;
+                dic.Add(incantInstance.incantID, incantInstance);
+            }
         }
 
         public static void LoadSkillPrefab(string path, ref Dictionary<int, Ability> dic)
@@ -79,5 +81,40 @@ namespace RPG.Core
                 dic.Add(skill.abilityID, skill);
             }
         }
-    } 
+
+
+        #region UnUsed
+        public static void LoadIncant2(ref Dictionary<int, Incant> dic)
+        {
+            //int id = 1;
+            //dic.Add(id, new Sharpness_Weapon(id++));
+            //dic.Add(id, new Fast_Weapon(id++));
+            //dic.Add(id, new Heavy_Weapon(id++));
+            //dic.Add(id, new Stone_Weapon(id++));
+            //dic.Add(id, new Hard_Armor(id++));
+            //dic.Add(id, new Smooth_Armor(id++));
+            //dic.Add(id, new Balanced_Helmet(id++));
+            //dic.Add(id, new Spakling_Helmet(id++));
+            //dic.Add(id, new Heavy_Pants(id++));
+            //dic.Add(id, new Quick_Pants(id++));
+            //dic.Add(id, new Regenerative_Armor(id++));
+            //dic.Add(id, new Revenge_Armor(id++));
+
+            int id = 1;
+            dic.Add(id++, new Sharpness_Weapon());
+            dic.Add(id++, new Fast_Weapon());
+            dic.Add(id++, new Heavy_Weapon());
+            dic.Add(id++, new Stone_Weapon());
+            dic.Add(id++, new Hard_Armor());
+            dic.Add(id++, new Smooth_Armor());
+            dic.Add(id++, new Balanced_Helmet());
+            dic.Add(id++, new Spakling_Helmet());
+            dic.Add(id++, new Heavy_Pants());
+            dic.Add(id++, new Quick_Pants());
+            dic.Add(id++, new Regenerative_Armor());
+            dic.Add(id++, new Revenge_Armor());
+        }
+        #endregion
+
+    }
 }

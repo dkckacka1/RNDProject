@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Balanced_Helmet : HelmetIncant
     {
-        public Balanced_Helmet(int incantID) : base(incantID)
+        public Balanced_Helmet()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Helmet;
-            name = "균형의 ";
+            IncantName = "균형의 ";
             addDesc = "치명타 피해 감소 +20%";
         }
 

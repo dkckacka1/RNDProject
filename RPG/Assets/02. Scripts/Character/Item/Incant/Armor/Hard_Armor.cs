@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Hard_Armor : ArmorIncant
     {
-        public Hard_Armor(int incantID) : base(incantID)
+        public Hard_Armor()
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Armor;
-            name = "단단한 ";
+            IncantName = "단단한 ";
             addDesc = "방어력 +3 체력 +100";
             minusDesc = "이동속도 -1";
 

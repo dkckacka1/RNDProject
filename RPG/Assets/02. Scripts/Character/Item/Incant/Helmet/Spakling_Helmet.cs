@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Spakling_Helmet : HelmetIncant
     {
-        public Spakling_Helmet(int incantID) : base(incantID)
+        public Spakling_Helmet()
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Helmet;
-            name = "반짝이는 ";
+            IncantName = "반짝이는 ";
             addDesc = "치명타 회피율 +20%";
             minusDesc = "방어력 -2";
         }

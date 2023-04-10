@@ -7,11 +7,11 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
-        public Revenge_Armor(int incantID) : base(incantID)
+        public Revenge_Armor()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Armor;
-            name = "복수 ";
+            IncantName = "복수 ";
             addDesc = "피격시 2초간 데미지 5 상승(중첩 가능)";
             minusDesc = "";
         }

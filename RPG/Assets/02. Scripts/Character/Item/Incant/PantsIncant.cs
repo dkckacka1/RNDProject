@@ -7,10 +7,6 @@ namespace RPG.Character.Equipment
 {
     public abstract class PantsIncant : Incant
     {
-        protected PantsIncant(int incantID) : base(incantID)
-        {
-        }
-
         public virtual void MoveEvent(BattleStatus player)
         {
             Debug.Log("MoveEvent is Nothing");

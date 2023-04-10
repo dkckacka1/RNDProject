@@ -7,11 +7,11 @@ namespace RPG.Character.Equipment
 {
     public class Heavy_Weapon : WeaponIncant
     {
-        public Heavy_Weapon(int incantID) : base(incantID)
+        public Heavy_Weapon()
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Weapon;
-            name = "무거운 ";
+            IncantName = "무거운 ";
             addDesc = "공격력 +30";
             minusDesc = "공격속도 -2";
         }

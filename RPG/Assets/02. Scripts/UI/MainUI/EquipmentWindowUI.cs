@@ -127,8 +127,8 @@ namespace RPG.Main.UI
             {
                 name = "\n" + name;
             }
-            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.name, suffixColor) + name : name;
-            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.name, prefixColor) + name : name;
+            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.IncantName, suffixColor) + name : name;
+            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.IncantName, prefixColor) + name : name;
             equipmentName.text = name;
         }
 

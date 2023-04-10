@@ -73,7 +73,7 @@ namespace RPG.Core
 
             if (incant.itemType != type)
             {
-                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
+                Debug.LogError($"잘못된 인챈트 형식 : {incant.IncantName}은 {type}에 인챈트할 수 없습니다!");
                 incant = null;
                 return false;
             }
@@ -99,7 +99,7 @@ namespace RPG.Core
 
             if (incant.itemType != type)
             {
-                Debug.LogError($"잘못된 인챈트 형식 : {incant.name}은 {type}에 인챈트할 수 없습니다!");
+                Debug.LogError($"잘못된 인챈트 형식 : {incant.IncantName}은 {type}에 인챈트할 수 없습니다!");
                 incant = null;
                 return false;
             }

@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Smooth_Armor : ArmorIncant
     {
-        public Smooth_Armor(int incantID) : base(incantID)
+        public Smooth_Armor()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Armor;
-            name = "매끈 ";
+            IncantName = "매끈 ";
             addDesc = "이동속도 +0.5";
             minusDesc = "방어력 -1";
         }

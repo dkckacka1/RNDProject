@@ -6,11 +6,11 @@ namespace RPG.Character.Equipment
 {
     public class Quick_Pants : PantsIncant
     {
-        public Quick_Pants(int incantID) : base(incantID)
-        {
+        public Quick_Pants()
+        { 
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Pants;
-            name = "재빠른 ";
+            IncantName = "재빠른 ";
             addDesc = "이동속도 +1.5";
         }
 

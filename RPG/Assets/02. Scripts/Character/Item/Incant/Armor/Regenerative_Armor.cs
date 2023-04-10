@@ -7,11 +7,11 @@ namespace RPG.Character.Equipment
 {
     public class Regenerative_Armor : ArmorIncant
     {
-        public Regenerative_Armor(int incantID) : base(incantID)
+        public Regenerative_Armor()
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Armor;
-            name = "재생의 ";
+            IncantName = "재생의 ";
             addDesc = "초당 체력이 1만큼 재생됩니다.";
             minusDesc = "";
         }

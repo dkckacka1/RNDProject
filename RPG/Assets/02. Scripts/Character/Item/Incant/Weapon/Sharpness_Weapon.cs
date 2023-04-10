@@ -7,11 +7,11 @@ namespace RPG.Character.Equipment
 {
     public class Sharpness_Weapon : WeaponIncant
     {
-        public Sharpness_Weapon(int incantID) : base(incantID)
+        public Sharpness_Weapon()
         {
             incantType = IncantType.prefix;
             itemType = EquipmentItemType.Weapon;
-            name = "날카로운 ";
+            IncantName = "날카로운 ";
             addDesc = "공격력 +10";
             minusDesc = "";
         }

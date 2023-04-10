@@ -7,11 +7,11 @@ namespace RPG.Character.Equipment
 {
     public class Fast_Weapon : WeaponIncant
     {
-        public Fast_Weapon(int incantID) : base(incantID)
+        public Fast_Weapon()
         {
             incantType = IncantType.suffix;
             itemType = EquipmentItemType.Weapon;
-            name = "신속의 ";
+            IncantName = "신속의 ";
             addDesc = "공격속도 +1";
             minusDesc = "공격력 -1";
         }
