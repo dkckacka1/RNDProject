@@ -14,7 +14,7 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public Image image;
+        public GameObject target;
 
         private void Start()
         {
@@ -25,15 +25,8 @@ namespace RPG.Core
         {
             if (GUI.Button(new Rect(10, 10, 200, 60), "스킬 사용"))
             {
-                var list = GameManager.Instance.incantDic.Where(incant => incant.Value.isIncantAbility == true).ToList();
+                BattleManager.ObjectPool.GetText("1000", target.transform.position);
 
-
-                var random = Random.Range(0, list.Count);
-                var sprite = list[random].Value.abilityIcon;
-
-                Debug.Log(sprite);
-                
-                image.sprite = sprite;
             }
         }
 

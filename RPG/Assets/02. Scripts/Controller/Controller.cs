@@ -108,6 +108,7 @@ namespace RPG.Battle.Control
             nav.enabled = true;
             animator.Rebind();
             UpdateStatus();
+            state = CombatState.Default;
         }
 
         public virtual void Release()
@@ -116,11 +117,15 @@ namespace RPG.Battle.Control
 
         public void Win()
         {
+            target = null;
+            movement.ResetNav();
             StopCoroutine(battleStatus.perSecCoroutine);
         }
 
         public void Defeat()
         {
+            target = null;
+            movement.ResetNav();
             StopCoroutine(battleStatus.perSecCoroutine);
         }
 
@@ -128,6 +133,7 @@ namespace RPG.Battle.Control
         {
             target = null;
             movement.ResetNav();
+            state = CombatState.Ready;
         }
 
         public void Battle()
@@ -142,7 +148,7 @@ namespace RPG.Battle.Control
             animator.speed = 0;
             StopCoroutine(battleStatus.perSecCoroutine);
             StopCoroutine(movement.moveEventCorotine);
-            nav.ResetPath();
+            movement.ResetNav();
         }
 
         public bool CheckDeadState()

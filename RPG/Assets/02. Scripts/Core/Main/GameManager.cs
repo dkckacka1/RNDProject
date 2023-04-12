@@ -93,6 +93,8 @@ namespace RPG.Core
 
             DontDestroyOnLoad(this.gameObject);
 
+            Application.targetFrameRate = 60;
+
             LoadEquipmentData();
             LoadEnemyData();
             LoadStageData();

@@ -100,8 +100,28 @@ namespace RPG.Battle.UI
 
         }
 
-        public void ShowResultUI()
+        public void ShowResultUI(BattleSceneState state)
         {
+            switch (state)
+            {
+                case BattleSceneState.Pause:
+                    {
+                        resultUI.ShowPauseUI();
+                        break;
+                    }
+
+                case BattleSceneState.Defeat:
+                    {
+                        resultUI.ShowDefeatUI();
+                        break;
+                    }
+
+                case BattleSceneState.Win:
+                    {
+                        break;
+                    }
+            }
+
             resultCanvas.gameObject.SetActive(true);
         }
 

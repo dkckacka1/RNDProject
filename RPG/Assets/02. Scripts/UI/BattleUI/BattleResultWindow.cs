@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using RPG.Battle.Core;
 
 namespace RPG.Battle.UI
 {
@@ -13,6 +15,12 @@ namespace RPG.Battle.UI
         [SerializeField] TextMeshProUGUI gainGachaText;
         [SerializeField] TextMeshProUGUI gainReinforceText;
         [SerializeField] TextMeshProUGUI gainIncantText;
+
+        [Header("ChangeBattleState")]
+        [SerializeField] TextMeshProUGUI titleText;
+        [SerializeField] Button reStartBtn;
+        [SerializeField] TextMeshProUGUI btnText;
+
 
         [SerializeField] float scaleSpeedTime;
 
@@ -38,6 +46,22 @@ namespace RPG.Battle.UI
             gainGachaText.text = gainGacha.ToString();
             gainReinforceText.text = gainReinfoce.ToString();
             gainIncantText.text = gainIncant.ToString();
+        }
+
+        public void ShowDefeatUI()
+        {
+            titleText.text = "전투 결과";
+            btnText.text = "현재 층\n재도전";
+            reStartBtn.onClick.RemoveAllListeners();
+            reStartBtn.onClick.AddListener(()=> { BattleManager.Instance.ReStartBattle(); });
+        }
+
+        public void ShowPauseUI()
+        {
+            titleText.text = "전투 중지";
+            btnText.text = "전투로\n돌아가기";
+            reStartBtn.onClick.RemoveAllListeners();
+            reStartBtn.onClick.AddListener(() => { BattleManager.Instance.ReturnBattle(); });
         }
     }
 

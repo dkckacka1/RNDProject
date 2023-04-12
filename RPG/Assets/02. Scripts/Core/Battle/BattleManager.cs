@@ -8,6 +8,7 @@ using RPG.Core;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 using RPG.Battle.UI;
+using DG.Tweening;
 
 namespace RPG.Battle.Core
 {
@@ -28,7 +29,8 @@ namespace RPG.Battle.Core
             }
         }
         private static BattleManager instance;
-        public static BattleUI BattleUI { 
+        public static BattleUI BattleUI
+        {
             get
             {
                 if (instance == null)
@@ -37,7 +39,7 @@ namespace RPG.Battle.Core
                     return null;
                 }
                 return battleUI;
-            } 
+            }
         }
         public static ObjectPooling ObjectPool
         {
@@ -66,6 +68,10 @@ namespace RPG.Battle.Core
 
         [Header("Stage")]
         public int currentStageFloor = 1;
+        public float battleReadyTime = 2f;
+        public float playerCreatePositionXOffset = 15f;
+        public float EnemyCreatePositionXOffset = -18f;
+
         private StageData stageData;
 
         private int gainEnergy = 0;
@@ -94,7 +100,7 @@ namespace RPG.Battle.Core
                 return;
             }
 
-            
+
 
             ObjectPool.SetUp(BattleUI.battleCanvas);
         }
@@ -107,24 +113,24 @@ namespace RPG.Battle.Core
             }
 
             currentStageFloor = GameManager.Instance.choiceStageID;
-            ReadyNextBattle(2f);
+            ReadyNextBattle();
         }
 
 
         #region 전투 준비
 
-        private void ReadyNextBattle(float startTime)
+        private void ReadyNextBattle()
         {
             BattleUI.ShowFloor(currentStageFloor);
             LoadCurrentStage();
-            BattleUI.ShowReady();
+            //BattleUI.ShowReady();
             SetBattleState(BattleSceneState.Ready);
             objectPool.ReleaseAllAbility();
             StartCoroutine(MethodCallTimer(() =>
             {
-                BattleUI.ShowStart();
+                //BattleUI.ShowStart();
                 Battle();
-            }, startTime));
+            }, battleReadyTime + 1f));
         }
 
 
@@ -155,9 +161,9 @@ namespace RPG.Battle.Core
                 var enemy = controller as EnemyController;
                 // 아이템 루팅
                 EnemyData enemyData;
-                if (GameManager.Instance.enemyDataDic.TryGetValue((controller.battleStatus.status as EnemyStatus).enemyID, out enemyData))
+                if (GameManager.Instance.enemyDataDic.TryGetValue((enemy.battleStatus.status as EnemyStatus).enemyID, out enemyData))
                 {
-                    ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(controller.transform.position), DropItemType.Energy, BattleUI.backpack.transform);
+                    ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), DropItemType.Energy, BattleUI.backpack.transform);
                     gainItem(DropItemType.Energy, enemyData.dropEnergy);
 
                     foreach (var dropTable in enemyData.dropitems)
@@ -165,7 +171,7 @@ namespace RPG.Battle.Core
                         float random = Random.Range(0f, 100f);
                         if (random <= dropTable.percent)
                         {
-                            ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(controller.transform.position), dropTable.itemType, BattleUI.backpack.transform);
+                            ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), dropTable.itemType, BattleUI.backpack.transform);
                             switch (dropTable.itemType)
                             {
                                 case DropItemType.GachaItemScroll:
@@ -191,7 +197,7 @@ namespace RPG.Battle.Core
             }
         }
 
-        private void gainItem(DropItemType type,int count)
+        private void gainItem(DropItemType type, int count)
         {
             switch (type)
             {
@@ -213,10 +219,12 @@ namespace RPG.Battle.Core
         private void Win()
         {
             // 승리 연출
-            currentStageFloor++;
-            BattleUI.ShowWin();
-            StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
             SetBattleState(BattleSceneState.Win);
+            currentStageFloor++;
+            //BattleUI.ShowWin();
+            livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
+            livePlayer.animator.SetBool("isMove", true);
+            livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { ReadyNextBattle(); });
         }
 
         private void Defeat()
@@ -225,6 +233,8 @@ namespace RPG.Battle.Core
             currentBattleState = BattleSceneState.Defeat;
             BattleUI.ShowDefeat();
             SetBattleState(BattleSceneState.Defeat);
+            BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
+            BattleUI.ShowResultUI(BattleSceneState.Defeat);
         }
 
         private void Battle()
@@ -284,16 +294,18 @@ namespace RPG.Battle.Core
         private void SetUpStage(ref StageData stage)
         {
             // PlayerSetting
+
             if (livePlayer == null)
             // 플레이어가 없다면 생성
             {
                 livePlayer = BattleManager.ObjectPool.CreatePlayer(GameManager.Instance.Player);
             }
-            else
-            // 있다면 위치값 세팅
-            {
-                livePlayer.transform.position = stage.playerSpawnPosition;
-            }
+
+            Vector3 playerPosition = new Vector3(playerCreatePositionXOffset, stage.playerSpawnPosition.y, stage.playerSpawnPosition.z);
+            livePlayer.transform.position = playerPosition;
+            livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
+            livePlayer.animator.SetBool("isMove", true);
+            livePlayer.transform.DOMoveX(stage.playerSpawnPosition.x, battleReadyTime).OnComplete(() => { livePlayer.animator.SetBool("isMove", false); });
 
             // EnemiesSetting
             foreach (var enemySpawnData in stage.enemyDatas)
@@ -301,7 +313,11 @@ namespace RPG.Battle.Core
                 EnemyData enemyData;
                 if (GameManager.Instance.enemyDataDic.TryGetValue(enemySpawnData.enemyID, out enemyData))
                 {
-                    EnemyController enemy = ObjectPool.GetEnemyController(enemyData, enemySpawnData.position);
+                    Vector3 enemyPosition = new Vector3(EnemyCreatePositionXOffset, enemySpawnData.position.y, enemySpawnData.position.z);
+                    EnemyController enemy = ObjectPool.GetEnemyController(enemyData, enemyPosition);
+                    enemy.transform.LookAt(enemy.transform.position + Vector3.right);
+                    enemy.animator.SetBool("isMove", true);
+                    enemy.transform.DOMoveX(enemySpawnData.position.x, battleReadyTime).OnComplete(() => { enemy.animator.SetBool("isMove", false); });
                     liveEnemies.Add(enemy);
                 }
             }
@@ -354,6 +370,10 @@ namespace RPG.Battle.Core
             }
         }
 
+
+
+
+
         #endregion
 
         /// <summary>
@@ -403,14 +423,20 @@ namespace RPG.Battle.Core
         {
             Pause();
             BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
-            BattleUI.ShowResultUI();
+            BattleUI.ShowResultUI(BattleSceneState.Pause);
         }
 
         public void ToMainScene()
         {
             UpdateUserinfo();
             ResetStage();
-            SceneManager.LoadScene(0);
+            SceneLoader.LoadMainScene();
+        }
+
+        public void ReStartBattle()
+        {
+            ResetStage();
+            SceneLoader.LoadBattleScene(currentStageFloor);
         }
 
         public void ReturnBattle()

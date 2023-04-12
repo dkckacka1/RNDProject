@@ -44,7 +44,8 @@ namespace RPG.Battle.Move
 
         public void ResetNav()
         {
-            nav.ResetPath();
+            if (nav.enabled == true)
+                nav.ResetPath();
         }
 
         public void MoveNav(Transform target)

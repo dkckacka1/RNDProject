@@ -13,13 +13,12 @@ public enum BattleSceneState
 
 public enum CombatState
 {
+    Default,
     Idle,
-    CHASESTART,
     Chase,
-    CHASEEND,
-    BATTLESTART,
     Attack,
-    Dead
+    Dead,
+    Ready
 }
 
 // 행동 트리 상태(미사용)
