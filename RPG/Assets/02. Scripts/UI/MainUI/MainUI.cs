@@ -30,6 +30,7 @@ namespace RPG.Main.UI
 
         private void Start()
         {
+            stageChoiceWindowUI.SetUp();
             Init();
             UpdateUI();
         }
@@ -211,6 +212,7 @@ namespace RPG.Main.UI
                 GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
                 Debug.Log(GameManager.Instance.UserInfo);
                 UpdateUI();
+                stageChoiceWindowUI.Init();
             }
 
             if (GUI.Button(new Rect(10, 190, 80, 80), "강화권 추가"))

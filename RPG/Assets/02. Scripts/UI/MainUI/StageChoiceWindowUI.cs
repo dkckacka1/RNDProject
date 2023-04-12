@@ -14,9 +14,19 @@ namespace RPG.Main.UI
         [SerializeField] StageWindowUI StageWindowUIPrefab;
         [SerializeField] Transform ScrollViewContextLayout;
 
-        public void Init()
+        public void SetUp()
         {
             CreateStageWindow();
+        }
+
+        public void Init()
+        {
+            foreach (var window in stageWindows)
+            {
+                bool isClear = (window.Data.ID < GameManager.Instance.UserInfo.risingTopCount);
+                bool isLast = (window.Data.ID == GameManager.Instance.UserInfo.risingTopCount);
+                window.Init(isClear, isLast);
+            }
         }
 
         public void CreateStageWindow()
@@ -28,10 +38,7 @@ namespace RPG.Main.UI
             foreach (var stage in stageList)
             {
                 StageWindowUI ui = Instantiate<StageWindowUI>(this.StageWindowUIPrefab, ScrollViewContextLayout);
-                bool isClear = (stage.ID < GameManager.Instance.UserInfo.risingTopCount);
-                bool isLast = (stage.ID == GameManager.Instance.UserInfo.risingTopCount);
-                ui.Init(stage, isClear, isLast);
-
+                ui.Setup(stage);
                 stageWindows.Add(ui);
             }
         }

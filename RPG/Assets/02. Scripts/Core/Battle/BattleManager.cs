@@ -65,7 +65,7 @@ namespace RPG.Battle.Core
 
 
         [Header("Stage")]
-        public int currentStageID = 0;
+        public int currentStageFloor = 1;
         private StageData stageData;
 
         private int gainEnergy = 0;
@@ -105,6 +105,8 @@ namespace RPG.Battle.Core
             {
                 return;
             }
+
+            currentStageFloor = GameManager.Instance.choiceStageID;
             ReadyNextBattle(2f);
         }
 
@@ -113,6 +115,7 @@ namespace RPG.Battle.Core
 
         private void ReadyNextBattle(float startTime)
         {
+            BattleUI.ShowFloor(currentStageFloor);
             LoadCurrentStage();
             BattleUI.ShowReady();
             SetBattleState(BattleSceneState.Ready);
@@ -132,11 +135,12 @@ namespace RPG.Battle.Core
         {
             StageData stage;
 
-            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageID, out stage))
+            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageFloor, out stage))
             {
                 return stage;
             }
 
+            Debug.Log("Stage Data in NULL!");
             return null;
         }
 
@@ -209,7 +213,7 @@ namespace RPG.Battle.Core
         private void Win()
         {
             // ½Â¸® ¿¬Ãâ
-            currentStageID++;
+            currentStageFloor++;
             BattleUI.ShowWin();
             StartCoroutine(MethodCallTimer(() => { ReadyNextBattle(3f); }, 3f));
             SetBattleState(BattleSceneState.Win);
@@ -236,9 +240,9 @@ namespace RPG.Battle.Core
         private void UpdateUserinfo()
         {
             UserInfo userInfo = GameManager.Instance.UserInfo;
-            if (userInfo.risingTopCount < currentStageID)
+            if (userInfo.risingTopCount < currentStageFloor)
             {
-                userInfo.risingTopCount = currentStageID;
+                userInfo.risingTopCount = currentStageFloor;
             }
 
             userInfo.energy += gainEnergy;
@@ -398,7 +402,7 @@ namespace RPG.Battle.Core
         public void ShowResultUI()
         {
             Pause();
-            BattleUI.resultUI.InitUI(currentStageID, gainEnergy, gainGacha, gainReinforce, gainIncant);
+            BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
             BattleUI.ShowResultUI();
         }
 
@@ -407,6 +411,12 @@ namespace RPG.Battle.Core
             UpdateUserinfo();
             ResetStage();
             SceneManager.LoadScene(0);
+        }
+
+        public void ReturnBattle()
+        {
+            Battle();
+            BattleUI.ReleaseResultUI();
         }
         #endregion
 

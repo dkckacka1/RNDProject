@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using RPG.Battle.Core;
 
-namespace RPG.Battle.Ability
+namespace RPG.Battle.UI
 {
     public class AbilityButton : MonoBehaviour
     {
@@ -37,14 +38,17 @@ namespace RPG.Battle.Ability
             SetCool();
             while (true)
             {
-                AbilityCoolTimeImage.fillAmount -= Time.deltaTime / abilityCoolTime;
-                currentCoolTime -= Time.deltaTime;
-                AbilityCoolTimeText.text = currentCoolTime.ToString("N1");
-                yield return null;
-                if (AbilityCoolTimeImage.fillAmount <= 0)
+                if (BattleManager.Instance.currentBattleState == BattleSceneState.Battle)
                 {
-                    break;
+                    AbilityCoolTimeImage.fillAmount -= Time.deltaTime / abilityCoolTime;
+                    currentCoolTime -= Time.deltaTime;
+                    AbilityCoolTimeText.text = currentCoolTime.ToString("N1");
+                    if (AbilityCoolTimeImage.fillAmount <= 0)
+                    {
+                        break;
+                    }
                 }
+                yield return null;
             }
             CanSkill();
         }

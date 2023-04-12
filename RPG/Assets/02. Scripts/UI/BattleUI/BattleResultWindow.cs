@@ -18,13 +18,11 @@ namespace RPG.Battle.UI
 
         private void OnEnable()
         {
-            Debug.Log("OnEnable");
             this.gameObject.transform.DOScale(1, scaleSpeedTime).SetEase(Ease.OutBack);
         }
 
         private void OnDisable()
         {
-            Debug.Log("OnDisable");
             this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
 

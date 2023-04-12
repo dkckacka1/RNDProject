@@ -30,28 +30,40 @@ namespace RPG.Main.UI
             }
         }
 
-        public void Init(StageData data, bool isClear, bool isLast)
+        public void Setup(StageData data)
         {
             this.data = data;
             floorText.text = $"{this.data.ID}층";
 
             ConsumeEnergyText.text = $"-{data.ConsumEnergy}";
+        }
+
+        public void Init(bool isClear, bool isLast)
+        {
+            if (isLast == true)
+            {
+                isClearText.gameObject.SetActive(false);
+                isLastText.gameObject.SetActive(true);
+                stageBaltteButton.interactable = true;
+                unClickedImage.gameObject.SetActive(false);
+            }
+
 
             if (isClear == true)
             {
                 isClearText.gameObject.SetActive(true);
+                isLastText.gameObject.SetActive(false);
+                stageBaltteButton.interactable = true;
+                unClickedImage.gameObject.SetActive(false);
             }
 
-            if (isLast == true)
-            {
-                isLastText.gameObject.SetActive(true);
-            }
 
             if (isClear == false && isLast == false)
             {
+                isClearText.gameObject.SetActive(false);
+                isLastText.gameObject.SetActive(false);
                 stageBaltteButton.interactable = false;
                 unClickedImage.gameObject.SetActive(true);
-
             }
         }
 
@@ -62,7 +74,7 @@ namespace RPG.Main.UI
             {
                 Debug.LogError("스테이지 데이터가 없습니다.");
             }
-            SceneLoader.LoadBattleScene(this.data);
+            SceneLoader.LoadBattleScene(this.data.ID);
         }
 
 

@@ -17,6 +17,9 @@ namespace RPG.Battle.UI
     {
         public Canvas battleCanvas;
 
+        [Header("BattleUI")]
+        [SerializeField] TextMeshProUGUI floorText;
+
         [Header("ReadyUI")]
         [SerializeField] TextMeshProUGUI floorCountText;
         [SerializeField] TextMeshProUGUI readyText;
@@ -29,7 +32,8 @@ namespace RPG.Battle.UI
         // PlayerUI
         public PlayerHPBar playerHPBar;
 
-        [Header("BattleResultUI")]
+        [Header("BattleResult")]
+        public Canvas resultCanvas;
         public BattleResultWindow resultUI;
 
         [Header("AbilityButton")]
@@ -65,6 +69,11 @@ namespace RPG.Battle.UI
             }
         }
 
+        public void ShowFloor(int floor)
+        {
+            floorText.text = $"현재 {floor}층 등반중!";
+        }
+
         public void ShowReady()
         {
             readyText.text = "준비";
@@ -93,7 +102,12 @@ namespace RPG.Battle.UI
 
         public void ShowResultUI()
         {
-            resultUI.gameObject.SetActive(true);
+            resultCanvas.gameObject.SetActive(true);
+        }
+
+        public void ReleaseResultUI()
+        {
+            resultCanvas.gameObject.SetActive(false);
         }
 
         private IEnumerator RemoveReadyUI(float duration)
