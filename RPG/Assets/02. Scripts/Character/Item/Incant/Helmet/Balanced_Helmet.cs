@@ -6,14 +6,6 @@ namespace RPG.Character.Equipment
 {
     public class Balanced_Helmet : HelmetIncant
     {
-        public Balanced_Helmet()
-        {
-            incantType = IncantType.suffix;
-            itemType = EquipmentItemType.Helmet;
-            IncantName = "균형의 ";
-            addDesc = "치명타 피해 감소 +20%";
-        }
-
         public override void IncantEquipment(Equipment equipment)
         {
             Helmet helmet = equipment as Helmet;

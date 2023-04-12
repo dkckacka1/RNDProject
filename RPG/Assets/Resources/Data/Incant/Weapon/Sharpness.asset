@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   className: Sharpness
+  incantType: 0
   itemType: 0
+  incantName: "\uB0A0\uCE74\uB85C\uC6B4 "
+  addDesc: "\uACF5\uACA9\uB825 +10"
+  minusDesc: 
   isIncantAbility: 0
+  abilityDesc: 
   abilityIcon: {fileID: 0}

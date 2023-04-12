@@ -169,6 +169,27 @@ namespace RPG.Character.Equipment
             return suffix.incantID;
         }
 
+        public bool isAbilitySkill()
+        {
+            return (isPrefixAbilitySkill() || isSuffixAbilitySkill());
+        }
+
+        public bool isPrefixAbilitySkill()
+        {
+            if (prefix == null)             return false;
+            if (!prefix.isIncantAbility)    return false;
+
+            return true;
+        }
+
+        public bool isSuffixAbilitySkill()
+        {
+            if (suffix == null)             return false;
+            if (!suffix.isIncantAbility)    return false;
+
+            return true;
+        }
+
         public bool isReinforce()
         {
             return !(reinforceCount == 0);
@@ -211,8 +232,8 @@ namespace RPG.Character.Equipment
                 $"장비이름 : {itemName}\n" +
                 $"장비티어 : {equipmentTier}\n" +
                 $"장비유형 : {equipmentType}\n" +
-                $"접두인챈트 : {(prefix != null ? prefix.IncantName : "없음")}\n" +
-                $"접미인챈트 : {(suffix != null ? suffix.IncantName : "없음")}";
+                $"접두인챈트 : {(prefix != null ? prefix.incantName : "없음")}\n" +
+                $"접미인챈트 : {(suffix != null ? suffix.incantName : "없음")}";
         }
     }
 

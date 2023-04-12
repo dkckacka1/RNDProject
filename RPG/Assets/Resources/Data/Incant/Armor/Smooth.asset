@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 103
   className: Smooth
+  incantType: 0
   itemType: 1
+  incantName: "\uBD80\uB4DC\uB7EC\uC6B4 "
+  addDesc: "\uC774\uB3D9\uC18D\uB3C4 +0.5"
+  minusDesc: "\uBC29\uC5B4\uB825 -1"
   isIncantAbility: 0
+  abilityDesc: 
   abilityIcon: {fileID: 0}

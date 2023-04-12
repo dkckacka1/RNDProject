@@ -218,6 +218,12 @@ namespace RPG.Main.UI
                 GameManager.Instance.UserInfo.itemReinforceCount += 100;
                 UpdateUI();
             }
+
+            if (GUI.Button(new Rect(10, 280, 80, 80), "¿Œ√¶∆Æ √ﬂ∞°"))
+            {
+                GameManager.Instance.UserInfo.itemIncantCount += 100;
+                UpdateUI();
+            }
         }
     }
 }

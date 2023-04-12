@@ -15,7 +15,7 @@ namespace RPG.Character.Equipment
         public IncantType incantType;
 
         // 인챈트의 이름
-        public string IncantName;
+        public string incantName;
 
         // 인챈트의 설명
         public string addDesc;
@@ -23,6 +23,7 @@ namespace RPG.Character.Equipment
 
         // 인챈트 된 스킬
         public bool isIncantAbility;
+        public string abilityDesc;
         public Sprite abilityIcon;
 
 
@@ -32,7 +33,7 @@ namespace RPG.Character.Equipment
 
         public string ShowDesc()
         {
-            return $"{IncantName}\t{MyUtility.returnColorText(addDesc, Color.green)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red)}";
+            return $"{incantName}\t{MyUtility.returnColorText(addDesc, Color.green)} \n\t\t {MyUtility.returnColorText(minusDesc, Color.red)}";
         }
     }
 

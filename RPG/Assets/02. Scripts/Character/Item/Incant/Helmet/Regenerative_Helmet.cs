@@ -9,11 +9,6 @@ namespace RPG.Character.Equipment
     {
         public Regenerative_Helmet()
         {
-            incantType = IncantType.suffix;
-            itemType = EquipmentItemType.Helmet;
-            IncantName = "재생의 ";
-            addDesc = "사용시 체력을 100 회복하는 액티브 스킬 부여";
-            minusDesc = "";
             skillCoolTime = 20f;
         }
 

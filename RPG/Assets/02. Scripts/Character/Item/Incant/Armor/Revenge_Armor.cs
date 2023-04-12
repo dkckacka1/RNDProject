@@ -7,14 +7,6 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
-        public Revenge_Armor()
-        {
-            incantType = IncantType.suffix;
-            itemType = EquipmentItemType.Armor;
-            IncantName = "복수 ";
-            addDesc = "피격시 2초간 데미지 5 상승(중첩 가능)";
-            minusDesc = "";
-        }
 
         public override void IncantEquipment(Equipment equipment)
         {

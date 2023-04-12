@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   className: Fast
+  incantType: 1
   itemType: 0
+  incantName: "\uC2E0\uC18D "
+  addDesc: "\uACF5\uACA9\uC18D\uB3C4 +1"
+  minusDesc: "\uACF5\uACA9\uB825 -1"
   isIncantAbility: 0
+  abilityDesc: 
   abilityIcon: {fileID: 0}

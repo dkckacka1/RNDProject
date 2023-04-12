@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 200
   className: Balanced
+  incantType: 0
   itemType: 3
+  incantName: "\uADE0\uD615\uC758 "
+  addDesc: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uAC10\uC18C 20%"
+  minusDesc: 
   isIncantAbility: 0
+  abilityDesc: 
   abilityIcon: {fileID: 0}

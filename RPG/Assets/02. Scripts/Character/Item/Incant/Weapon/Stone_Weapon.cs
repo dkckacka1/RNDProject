@@ -8,15 +8,6 @@ namespace RPG.Character.Equipment
 {
     public class Stone_Weapon : WeaponIncant
     {
-        public Stone_Weapon()
-        {
-            incantType = IncantType.suffix;
-            itemType = EquipmentItemType.Weapon;
-            IncantName = "µπµ¢¿Ã";
-            addDesc = "∞¯∞› Ω√ µπµ¢¿Ã ≈ı√¥";
-            minusDesc = "";
-        }
-
         public override void IncantEquipment(Equipment equipment)
         {
         }

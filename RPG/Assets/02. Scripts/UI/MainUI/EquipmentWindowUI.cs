@@ -19,6 +19,11 @@ namespace RPG.Main.UI
         [SerializeField] TextMeshProUGUI equipmentStatus;
         [SerializeField] TextMeshProUGUI equipmentReinforce;
 
+        [Header("Ability")]
+        [SerializeField] EquipmentIncantAbilityUI prefixIncantUI;
+        [SerializeField] EquipmentIncantAbilityUI suffixIncantUI;
+        [SerializeField] TextMeshProUGUI incantAbilityDescText;
+
         [Header("ButtonText")]
         [SerializeField] TextMeshProUGUI reinforceCount;
         [SerializeField] TextMeshProUGUI reinforceProbailityText;
@@ -111,6 +116,38 @@ namespace RPG.Main.UI
                     ShowItemStatus((choiceItem as Helmet));
                     break;
             }
+
+            if (item.isAbilitySkill())
+            {
+                if (item.isPrefixAbilitySkill())
+                {
+                    prefixIncantUI.gameObject.SetActive(true);
+                    prefixIncantUI.InitAbility(item.prefix, () => { incantAbilityDescText.text = $"{item.prefix.abilityDesc}"; });
+                }
+                else
+                {
+                    prefixIncantUI.gameObject.SetActive(false);
+                }
+
+                if (item.isSuffixAbilitySkill())
+                {
+                    suffixIncantUI.gameObject.SetActive(true);
+                    suffixIncantUI.InitAbility(item.suffix, () => { incantAbilityDescText.text = $"{item.suffix.abilityDesc}"; });
+                }
+                else
+                {
+                    suffixIncantUI.gameObject.SetActive(false);
+                }
+
+                incantAbilityDescText.text = "인챈트 이미지를 누르시면 인챈트 설명이 나옵니다.";
+            }
+            else
+            {
+                prefixIncantUI.gameObject.SetActive(false);
+                suffixIncantUI.gameObject.SetActive(false);
+                incantAbilityDescText.text = "인챈트 스킬이 없습니다.";
+            }
+
             ShowReinforceCount(choiceItem);
             ShowReinforceSuccessProbaility();
         }
@@ -127,8 +164,8 @@ namespace RPG.Main.UI
             {
                 name = "\n" + name;
             }
-            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.IncantName, suffixColor) + name : name;
-            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.IncantName, prefixColor) + name : name;
+            name = (equipment.suffix != null) ? MyUtility.returnColorText(equipment.suffix.incantName, suffixColor) + name : name;
+            name = (equipment.prefix != null) ? MyUtility.returnColorText(equipment.prefix.incantName, prefixColor) + name : name;
             equipmentName.text = name;
         }
 
