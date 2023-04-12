@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
   m_Name: Spakling
   m_EditorClassIdentifier: 
-  ID: 8
+  ID: 202
   className: Spakling
   itemType: 3
+  isIncantAbility: 0
+  abilityIcon: {fileID: 0}

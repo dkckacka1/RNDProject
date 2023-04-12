@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
   m_Name: Fast
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 0
   className: Fast
   itemType: 0
+  isIncantAbility: 0
+  abilityIcon: {fileID: 0}

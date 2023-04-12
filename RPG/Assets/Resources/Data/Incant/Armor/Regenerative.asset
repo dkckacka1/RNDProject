@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
   m_Name: Regenerative
   m_EditorClassIdentifier: 
-  ID: 11
+  ID: 101
   className: Regenerative
   itemType: 1
   isIncantAbility: 1

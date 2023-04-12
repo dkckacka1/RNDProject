@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
   m_Name: Heavy
   m_EditorClassIdentifier: 
-  ID: 9
+  ID: 300
   className: Heavy
   itemType: 2
+  isIncantAbility: 0
+  abilityIcon: {fileID: 0}
