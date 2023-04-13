@@ -7,17 +7,26 @@ namespace RPG.Battle.AI
 {
     public class DeadState : State, IState
     {
+        float deadTime = 0f;
+        float deadEventTiming = 2f;
+        bool callDeadEvent = true;
+
         public DeadState(Controller controller) : base(controller)
         {
         }
 
         public void OnStart()
         {
-            controller.battleStatus.currentState = CombatState.Dead;
-            //Debug.Log(controller.name + "이 죽었습니다.");
-            //controller.DeadEvent();
-            //controller.StopAttack();
+            deadTime = 0f;
+            callDeadEvent = true;
+            controller.StopAttack();
             controller.animator.SetTrigger("Dead");
+            controller.nav.enabled = false;
+
+            if (controller is EnemyController)
+            {
+                (controller as EnemyController).LootingItem();
+            }
         }
 
         public void OnEnd()
@@ -26,6 +35,12 @@ namespace RPG.Battle.AI
 
         public void OnUpdate()
         {
+            deadTime += Time.deltaTime;
+            if (callDeadEvent && deadTime > deadEventTiming)
+            {
+                callDeadEvent = false;
+                controller.DeadEvent();
+            }
         }
     }
 }

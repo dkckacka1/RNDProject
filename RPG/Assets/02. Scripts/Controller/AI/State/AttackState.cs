@@ -10,6 +10,8 @@ namespace RPG.Battle.AI
     public class AttackState : State, IState
     {
         Attack attack;
+        public Coroutine attackDelayCheckCoroutine;
+        public Coroutine waitAttackTimeCoroutine;
 
         public AttackState(Controller controller) : base(controller)
         {
@@ -31,7 +33,8 @@ namespace RPG.Battle.AI
             controller.animator.SetTrigger("Attack");
             controller.transform.LookAt(controller.target.transform);
             attack.AttackTarget();
-            controller.AttackEvent();
+            attackDelayCheckCoroutine = controller.StartCoroutine(attack.WaitAttackDelay());
+            waitAttackTimeCoroutine = controller.StartCoroutine(attack.WaitAttackTime());
         }
     }
 }

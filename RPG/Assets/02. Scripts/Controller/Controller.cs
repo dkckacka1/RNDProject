@@ -37,10 +37,6 @@ namespace RPG.Battle.Control
         // Battle
         public Controller target;
 
-        private Coroutine attackDelayCheckCoroutine;
-        private Coroutine waitAttackTimeCoroutine;
-
-
         private void Awake()
         {
             SetUp();
@@ -80,14 +76,7 @@ namespace RPG.Battle.Control
             if (BattleManager.Instance == null) return;
             if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle) return;
 
-            //CheckState();
-
-            // AI 수행
-            if (CheckDeadState()) { stateContext.SetState(deadState); }
-            else if (CheckChaseState()) { stateContext.SetState(chaseState); }
-            else if (CheckAttackState()) { stateContext.SetState(attackState); }
-            else if (CheckIdleState()) { stateContext.SetState(idleState); }
-
+            stateContext.SetState(CheckState());
             stateContext.Update();
         }
 
@@ -161,97 +150,56 @@ namespace RPG.Battle.Control
         #endregion
 
         #region CheckState
-        private void CheckState()
+        private IState CheckState()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckDeadState()
-        {
-            // 나는 죽어있는가?
             if (battleStatus.isDead)
+                // 나는 죽어있는가?
             {
-                Debug.Log(name + "은 죽어있는 상태");
-                DeadEvent();
-                StopAttack();
-                return true;
+                return deadState;
             }
 
-            return false;
-        }
+            if (battleStatus.currentState == CombatState.Actunable)
+                // 행동 불가 상태인가?
+            {
+                return debuffState;
+            }
 
-        public bool CheckChaseState()
-        {
-            // 타겟된 적이 없는가?
             if (target == null)
+                // 타겟된 적이 없는가?
             {
-                // 다른 적이 있는가?
                 if (!SetTarget(out target))
-                {
-                    return false;
-                }
-            }
-
-            // 타겟된 적이 있는가?
-            if (target != null)
-            {
-                // 타겟이 죽었는가?
-                if (target.battleStatus.isDead)
-                {
-                    StopAttack();
-                    target = null;
                     // 다른 적이 있는가?
-                    if (!SetTarget(out target))
-                    {
-                        return false;
-                    }
-                }
-
-                // 적과의 거리가 나의 공격 사거리보다 먼가?
-                if (movement.MoveDistanceResult(target.transform))
                 {
-                    return true;
+                    return idleState;
                 }
             }
 
-            return false;
-        }
-
-        public bool CheckAttackState()
-        {
-            // 타겟된 적이 있는가?
-            if (target != null)
+            if (movement.MoveDistanceResult(target.transform))
+            // 적과의 거리가 나의 공격 사거리보다 먼가?
+            {
+                return chaseState;
+            }
+            else
             {
                 //타겟이 살아있는가?
                 if (!target.battleStatus.isDead)
                 {
-                    return true;
+                    return attackState;
                 }
             }
 
-            return false;
+            return idleState;
         }
 
-        public bool CheckIdleState()
-        {
-            return true;
-        } 
         #endregion
-
-        public void AttackEvent()
-        {
-            attackDelayCheckCoroutine = StartCoroutine(attack.WaitAttackDelay());
-            waitAttackTimeCoroutine = StartCoroutine(attack.WaitAttackTime());
-        }
 
         public void StopAttack()
         {
-            StopCoroutine(waitAttackTimeCoroutine);
+            StopCoroutine(attackState.waitAttackTimeCoroutine);
         }
 
         public virtual void DeadEvent()
         {
-            nav.enabled = false;
             BattleManager.Instance.CharacterDead(this);
         }
 

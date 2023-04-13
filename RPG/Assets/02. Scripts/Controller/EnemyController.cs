@@ -39,5 +39,10 @@ namespace RPG.Battle.Control
         {
             base.DeadEvent();
         }
+
+        public void LootingItem()
+        {
+            BattleManager.Instance.LootingItem(this);
+        }
     }
 }

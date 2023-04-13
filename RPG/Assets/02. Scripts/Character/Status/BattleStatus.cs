@@ -132,7 +132,6 @@ namespace RPG.Character.Status
 
         public void Dead()
         {
-            Debug.Log(name + "ю╨ ав╬З╢ы");
             currentState = CombatState.Dead;
             isDead = true;
         }

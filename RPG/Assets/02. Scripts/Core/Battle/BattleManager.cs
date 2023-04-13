@@ -157,40 +157,42 @@ namespace RPG.Battle.Core
             else if (controller is EnemyController)
             {
                 var enemy = controller as EnemyController;
-                // 아이템 루팅
-                EnemyData enemyData;
-                if (GameManager.Instance.enemyDataDic.TryGetValue((enemy.battleStatus.status as EnemyStatus).enemyID, out enemyData))
-                {
-                    ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), DropItemType.Energy, BattleUI.backpack.transform);
-                    gainItem(DropItemType.Energy, enemyData.dropEnergy);
-
-                    foreach (var dropTable in enemyData.dropitems)
-                    {
-                        float random = Random.Range(0f, 100f);
-                        if (random <= dropTable.percent)
-                        {
-                            ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), dropTable.itemType, BattleUI.backpack.transform);
-                            switch (dropTable.itemType)
-                            {
-                                case DropItemType.GachaItemScroll:
-                                    gainItem(DropItemType.GachaItemScroll, 1);
-                                    break;
-                                case DropItemType.reinfoceScroll:
-                                    gainItem(DropItemType.reinfoceScroll, 1);
-                                    break;
-                                case DropItemType.IncantScroll:
-                                    gainItem(DropItemType.IncantScroll, 1);
-                                    break;
-                            }
-                        }
-                    }
-                }
-
                 liveEnemies.Remove(enemy);
                 ObjectPool.ReturnEnemy((controller as EnemyController));
                 if (liveEnemies.Count <= 0)
                 {
                     Win();
+                }
+            }
+        }
+
+        public void LootingItem(EnemyController enemy)
+        {
+            EnemyData enemyData;
+            if (GameManager.Instance.enemyDataDic.TryGetValue((enemy.battleStatus.status as EnemyStatus).enemyID, out enemyData))
+            {
+                ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), DropItemType.Energy, BattleUI.backpack.transform);
+                gainItem(DropItemType.Energy, enemyData.dropEnergy);
+
+                foreach (var dropTable in enemyData.dropitems)
+                {
+                    float random = Random.Range(0f, 100f);
+                    if (random <= dropTable.percent)
+                    {
+                        ObjectPool.GetLootingItem(Camera.main.WorldToScreenPoint(enemy.transform.position), dropTable.itemType, BattleUI.backpack.transform);
+                        switch (dropTable.itemType)
+                        {
+                            case DropItemType.GachaItemScroll:
+                                gainItem(DropItemType.GachaItemScroll, 1);
+                                break;
+                            case DropItemType.reinfoceScroll:
+                                gainItem(DropItemType.reinfoceScroll, 1);
+                                break;
+                            case DropItemType.IncantScroll:
+                                gainItem(DropItemType.IncantScroll, 1);
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -391,30 +393,27 @@ namespace RPG.Battle.Core
             }
             else if (typeof(T) == typeof(EnemyController))
             {
-            }
-            else
-            {
-                return null;
-            }
+                List<EnemyController> list = liveEnemies.Where(enemy => !enemy.battleStatus.isDead).ToList();
+                if (list.Count == 0) return null;
 
-            List<T> list = liveEnemies as List<T>;
-            if (list.Count == 0) return null;
+                Controller nearTarget = list[0];
+                float distance = Vector3.Distance(nearTarget.transform.position, transform.position);
 
-            Controller nearTarget = list[0];
-            float distance = Vector3.Distance(nearTarget.transform.position, transform.position);
-
-            for (int i = 1; i < list.Count; i++)
-            {
-                float newDistance = Vector3.Distance(list[i].transform.position, transform.position);
-
-                if (distance > newDistance)
+                for (int i = 1; i < list.Count; i++)
                 {
-                    nearTarget = list[i];
-                    distance = newDistance;
+                    float newDistance = Vector3.Distance(list[i].transform.position, transform.position);
+
+                    if (distance > newDistance)
+                    {
+                        nearTarget = list[i];
+                        distance = newDistance;
+                    }
                 }
+
+                return (T)nearTarget;
             }
 
-            return (T)nearTarget;
+            return null;
         }
 
         #region ButtonPlugin
