@@ -39,23 +39,6 @@ namespace RPG.Battle.Fight
             criticalAttackEvent.AddListener(action);
         }
 
-        public void UpdateStatus(Controller controller)
-        {
-            RuntimeAnimatorController rc = controller.animator.runtimeAnimatorController;
-            foreach (var item in rc.animationClips)
-            {
-                if (item.name == "MeleeAttack_OneHanded")
-                {
-                    defaultAttackAnimLength = item.length;
-                    break;
-                }
-            }
-
-            controller.animator.SetFloat("AttackSpeed", controller.battleStatus.status.AttackSpeed);
-            attackDelay = defaultAttackAnimLength / controller.battleStatus.status.AttackSpeed;
-            attackAnimPoint = attackDelay / 2.8f;
-        }
-
         public void SetTarget(BattleStatus target)
         {
             this.target = target;

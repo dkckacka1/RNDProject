@@ -168,7 +168,26 @@ namespace RPG.Character.Status
                 ap.EquipWeapon(currentWeapon.weaponLook);
             }
 
-            this.SetEquipment();
+            SetPlayerDefaultStatus(status);
+        }
+
+        public void SetPlayerDefaultStatus(PlayerStatus status)
+        {
+            MaxHp = status.MaxHp;
+
+            AttackDamage = status.AttackDamage;
+            AttackRange = status.AttackRange;
+            AttackSpeed = status.AttackSpeed;
+            CriticalChance = status.CriticalChance;
+            CriticalDamage = status.CriticalDamage;
+            AttackChance = status.AttackChance;
+
+            DefencePoint = status.DefencePoint;
+            EvasionPoint = status.EvasionPoint;
+            DecreseCriticalDamage = status.DecreseCriticalDamage;
+            EvasionCritical = status.EvasionCritical;
+
+            MovementSpeed = status.MovementSpeed;
         }
 
         #region ¿Â∫Ò_¿Â¬¯

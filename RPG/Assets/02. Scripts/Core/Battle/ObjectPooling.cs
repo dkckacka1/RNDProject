@@ -66,7 +66,6 @@ namespace RPG.Battle.Core
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, enemyParent);
             enemy.gameObject.name = "고블리나 " + count++;
-            (enemy.battleStatus.status as EnemyStatus).Init(data);
             return enemy;
         }
 
@@ -86,6 +85,7 @@ namespace RPG.Battle.Core
             }
 
             SetLook(ref enemy, data);
+            (enemy.battleStatus.status as EnemyStatus).Init(data);
             enemy.gameObject.transform.position = position;
             enemy.gameObject.SetActive(true);
 

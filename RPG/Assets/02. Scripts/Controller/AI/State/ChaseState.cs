@@ -20,14 +20,14 @@ namespace RPG.Battle.AI
         public void OnEnd()
         {
             movement.isMove = false;
-            controller.animator.SetBool("isMove", movement.isMove);
+            controller.animator.ResetTrigger("Move");
         }
 
         public void OnStart()
         {
             controller.currentAIState = AIState.Chase;
             movement.isMove = true;
-            controller.animator.SetBool("isMove", movement.isMove);
+            controller.animator.SetTrigger("Move");
         }
 
         public void OnUpdate()

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.Battle.UI;
-using RPG.Character.Equipment;
-using RPG.Battle.Event;
 using UnityEngine.Events;
+using RPG.Character.Equipment;
+using RPG.Battle.UI;
+using RPG.Battle.Event;
+using RPG.Battle.Control;
 
 namespace RPG.Character.Status
 {
@@ -29,6 +30,14 @@ namespace RPG.Character.Status
         public CombatState currentState;
         public DebuffType currentDebuff;
         public bool isActunableDebuff; // 현재 행동 불가 디버프 상태인가?
+
+        // TODO
+        //public Coroutine sternCoroutine;
+        //public Coroutine paralysisCoroutine;
+        //public Coroutine temptationCoroutine;
+        //public Coroutine fearCoroutine;
+        //public List<Coroutine> bloodyCoroutines = new List<IEnumerator>();
+        //public List<Coroutine> CurseCoroutine = new List<IEnumerator>();
 
         // Event
         PerSecondEvent perSecEvent;
@@ -148,24 +157,28 @@ namespace RPG.Character.Status
             {
                 case DebuffType.Stern:
                     if (isActunableDebuff) return;
-                    StartCoroutine(TakeStern(duration));
+
                     break;
                 case DebuffType.Fear:
                     if (isActunableDebuff) return;
-                    StartCoroutine(TakeFear(duration));
+
                     break;
                 case DebuffType.Temptation:
                     if (isActunableDebuff) return;
                     StartCoroutine(TakeTemptation(duration));
+
                     break;
                 case DebuffType.Paralysis:
                     StartCoroutine(TakeParalysis(duration));
+
                     break;
                 case DebuffType.Bloody:
                     StartCoroutine(TakeBloody(duration));
+
                     break;
                 case DebuffType.Curse:
                     StartCoroutine(TakeCurse(duration));
+
                     break;
             }
         }
@@ -190,26 +203,32 @@ namespace RPG.Character.Status
         // 시간만큼 천천히 대상에게서 멀어짐
         // 중첩 불가
         {
+            float defaultMovementSpeed = status.MovementSpeed;
             currentState = CombatState.Actunable;
             isActunableDebuff = true;
             currentDebuff = DebuffType.Fear;
+            UpdateMovementSpeed(status.MovementSpeed * 0.7f);
             yield return new WaitForSeconds(duration);
             currentState = CombatState.Actable;
             isActunableDebuff = false;
             currentDebuff = DebuffType.Defualt;
+            UpdateMovementSpeed(defaultMovementSpeed);
         }
         public IEnumerator TakeTemptation(float duration)
         // 유혹 당할 수 있다.
         // 시간만큼 천천히 걸어옴 (공격X)
         // 중첩 불가
         {
+            float defaultMovementSpeed = status.MovementSpeed;
             currentState = CombatState.Actunable;
             isActunableDebuff = true;
             currentDebuff = DebuffType.Temptation;
+            UpdateMovementSpeed(status.MovementSpeed * 0.3f);
             yield return new WaitForSeconds(duration);
             currentState = CombatState.Actable;
             isActunableDebuff = false;
             currentDebuff = DebuffType.Defualt;
+            UpdateMovementSpeed(defaultMovementSpeed);
         }
 
         public IEnumerator TakeParalysis(float duration)
@@ -218,10 +237,9 @@ namespace RPG.Character.Status
         // 중첩 가능
         {
             float defaultMovementSpeed = status.MovementSpeed;
-            // TODO : nav의 스피드도 조절해주어야함
-            status.MovementSpeed = 0;
+            UpdateMovementSpeed(0);
             yield return new WaitForSeconds(duration);
-            status.MovementSpeed = defaultMovementSpeed;
+            UpdateMovementSpeed(defaultMovementSpeed);
         }
 
         public IEnumerator TakeBloody(float duration)
@@ -255,5 +273,43 @@ namespace RPG.Character.Status
             status.AttackDamage += decreseDamage;
         }
         #endregion
+
+        public void UpdateBehaviour()
+        {
+            NavMeshAgent nav = GetComponent<NavMeshAgent>();
+            nav.speed = status.MovementSpeed;
+            nav.stoppingDistance = status.AttackRange;
+
+            Controller controller = GetComponent<Controller>();
+            controller.animator.SetFloat("AttackSpeed", status.AttackSpeed);
+            controller.attack.attackDelay = controller.attack.defaultAttackAnimLength / status.AttackSpeed;
+            controller.attack.attackAnimPoint = controller.attack.attackDelay / 2.8f;
+        }
+
+        public void UpdateMovementSpeed(float speed)
+        {
+            status.MovementSpeed = speed;
+
+            NavMeshAgent nav = GetComponent<NavMeshAgent>();
+            nav.speed = status.MovementSpeed;
+        }
+
+        public void UpdateAttackRange(float range)
+        {
+            status.AttackRange = range;
+
+            NavMeshAgent nav = GetComponent<NavMeshAgent>();
+            nav.stoppingDistance = status.AttackRange;
+        }
+
+        public void UpdateAttackSpeed(float speed)
+        {
+            status.AttackSpeed = speed;
+
+            Controller controller = GetComponent<Controller>();
+            controller.animator.SetFloat("AttackSpeed", status.AttackSpeed);
+            controller.attack.attackDelay = controller.attack.defaultAttackAnimLength / status.AttackSpeed;
+            controller.attack.attackAnimPoint = controller.attack.attackDelay / 2.8f;
+        }
     }
 }

@@ -128,7 +128,7 @@ namespace RPG.Battle.Core
             StartCoroutine(MethodCallTimer(() =>
             {
                 Battle();
-            }, battleReadyTime + 1f));
+            }, battleReadyTime + 3f));
         }
 
 
@@ -224,7 +224,7 @@ namespace RPG.Battle.Core
             currentStageFloor++;
             //BattleUI.ShowWin();
             livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
-            livePlayer.animator.SetBool("isMove", true);
+            livePlayer.animator.SetTrigger("Move");
             livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { ReadyNextBattle(); });
         }
 
@@ -305,10 +305,16 @@ namespace RPG.Battle.Core
             }
 
             Vector3 playerPosition = new Vector3(playerCreatePositionXOffset, stage.playerSpawnPosition.y, stage.playerSpawnPosition.z);
+            (livePlayer.battleStatus.status as PlayerStatus).SetPlayerDefaultStatus(GameManager.Instance.Player);
+            livePlayer.battleStatus.UpdateBehaviour();
             livePlayer.transform.position = playerPosition;
             livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
-            livePlayer.animator.SetBool("isMove", true);
-            livePlayer.transform.DOMoveX(stage.playerSpawnPosition.x, battleReadyTime).OnComplete(() => { livePlayer.animator.SetBool("isMove", false); });
+            livePlayer.animator.SetTrigger("Move");
+            livePlayer.transform.DOMoveX(stage.playerSpawnPosition.x, battleReadyTime).OnComplete(() => 
+            {
+                livePlayer.animator.ResetTrigger("Move");
+                livePlayer.animator.SetTrigger("Idle");
+            });
 
             // EnemiesSetting
             foreach (var enemySpawnData in stage.enemyDatas)
@@ -319,8 +325,12 @@ namespace RPG.Battle.Core
                     Vector3 enemyPosition = new Vector3(EnemyCreatePositionXOffset, enemySpawnData.position.y, enemySpawnData.position.z);
                     EnemyController enemy = ObjectPool.GetEnemyController(enemyData, enemyPosition);
                     enemy.transform.LookAt(enemy.transform.position + Vector3.right);
-                    enemy.animator.SetBool("isMove", true);
-                    enemy.transform.DOMoveX(enemySpawnData.position.x, battleReadyTime).OnComplete(() => { enemy.animator.SetBool("isMove", false); });
+                    enemy.animator.SetTrigger("Move");
+                    enemy.transform.DOMoveX(enemySpawnData.position.x, battleReadyTime).OnComplete(() => 
+                    {
+                        enemy.animator.ResetTrigger("Move");
+                        enemy.animator.SetTrigger("Idle");
+                    });
                     enemy.battleStatus.currentState = CombatState.Actable;
                     liveEnemies.Add(enemy);
                 }
@@ -487,6 +497,26 @@ namespace RPG.Battle.Core
                 foreach (var enemy in liveEnemies)
                 {
                     enemy.battleStatus.TakeDebuff(DebuffType.Curse, 3f);
+                }
+            }
+
+            if (GUI.Button(new Rect(10, 320, 60, 60), "모든 컨트롤러 유혹 시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Temptation, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Temptation, 3f);
+                }
+            }
+
+            if (GUI.Button(new Rect(10, 400, 60, 60), "모든 컨트롤러 공포 시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Fear, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Fear, 3f);
                 }
             }
         }

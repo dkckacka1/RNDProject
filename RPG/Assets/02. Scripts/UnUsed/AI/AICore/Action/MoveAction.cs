@@ -19,7 +19,7 @@ namespace RPG.UnUsed
 
         public override Stats OnUpdate()
         {
-            context.movement.Move(target);
+            context.movement.MovePos(target);
             return Stats.SUCCESS;
         }
     }

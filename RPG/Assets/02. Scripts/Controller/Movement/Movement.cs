@@ -35,13 +35,6 @@ namespace RPG.Battle.Move
             moveEvent.AddListener(action);
         }
 
-        public void UpdateStatus(Controller controller)
-        {
-            attackRange = controller.battleStatus.status.AttackRange;
-            nav.speed = controller.battleStatus.status.MovementSpeed;
-            nav.stoppingDistance = controller.battleStatus.status.AttackRange;
-        }
-
         public void ResetNav()
         {
             if (nav.enabled == true)
@@ -53,11 +46,22 @@ namespace RPG.Battle.Move
             nav.SetDestination(target.position);
         }
 
-        public void Move(Transform target)
+        public void MoveNav(Vector3 target)
+        {
+            nav.SetDestination(target);
+        }
+
+        public void MovePos(Transform target)
         {
             Vector3 movementVector = new Vector3(target.position.x, 0, target.position.z);
             character.transform.LookAt(movementVector);
             //transform.Translate(Vector3.forward * status.movementSpeed * Time.deltaTime);
+        }
+
+        public void MovePos(Vector3 target)
+        {
+            character.transform.LookAt(target);
+            character.transform.Translate(Vector3.forward * character.status.MovementSpeed * Time.deltaTime);
         }
 
         /// <summary>
@@ -67,7 +71,7 @@ namespace RPG.Battle.Move
         /// <returns></returns>
         public bool MoveDistanceResult(Transform target)
         {
-            return Vector3.Distance(target.transform.position, this.character.transform.position) > attackRange;
+            return Vector3.Distance(target.transform.position, this.character.transform.position) > character.status.AttackRange;
         }
 
         IEnumerator MoveEvent()

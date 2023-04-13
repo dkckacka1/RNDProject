@@ -103,7 +103,18 @@ namespace RPG.Battle.Control
             attack.canAttack = true;
             nav.enabled = true;
             animator.Rebind();
-            UpdateStatus();
+
+            RuntimeAnimatorController rc = animator.runtimeAnimatorController;
+            foreach (var item in rc.animationClips)
+            {
+                if (item.name == "MeleeAttack_OneHanded")
+                {
+                    attack.defaultAttackAnimLength = item.length;
+                    break;
+                }
+            }
+
+            battleStatus.UpdateBehaviour();
             battleStatus.currentState = CombatState.Default;
         }
 
@@ -185,7 +196,9 @@ namespace RPG.Battle.Control
                 //타겟이 살아있는가?
                 if (!target.battleStatus.isDead)
                 {
-                    return attackState;
+                    if(attack.canAttack)
+                        // 공격할 수 있는가?
+                        return attackState;
                 }
             }
 
@@ -210,13 +223,5 @@ namespace RPG.Battle.Control
         /// <param name="controller"></param>
         /// <returns></returns>
         public abstract bool SetTarget(out Controller controller);
-
-        #region Update Status
-        public void UpdateStatus()
-        {
-            attack.UpdateStatus(this);
-            movement.UpdateStatus(this);
-        }
-        #endregion
     }
 }
