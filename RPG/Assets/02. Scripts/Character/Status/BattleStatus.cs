@@ -218,6 +218,7 @@ namespace RPG.Character.Status
         // 중첩 가능
         {
             float defaultMovementSpeed = status.MovementSpeed;
+            // TODO : nav의 스피드도 조절해주어야함
             status.MovementSpeed = 0;
             yield return new WaitForSeconds(duration);
             status.MovementSpeed = defaultMovementSpeed;

@@ -25,6 +25,7 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.currentAIState = AIState.Chase;
             movement.isMove = true;
             controller.animator.SetBool("isMove", movement.isMove);
         }

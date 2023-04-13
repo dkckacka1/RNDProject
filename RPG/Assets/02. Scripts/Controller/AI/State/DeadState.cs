@@ -17,6 +17,7 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.currentAIState = AIState.Dead;
             deadTime = 0f;
             callDeadEvent = true;
             controller.StopAttack();

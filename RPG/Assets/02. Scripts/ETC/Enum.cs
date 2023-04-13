@@ -18,7 +18,16 @@ public enum CombatState
     Actable,
     Actunable,
     Dead,
+}
 
+public enum AIState
+{
+    Default,
+    Attack,
+    Chase,
+    Dead,
+    Debuff,
+    Idle
 }
 
 // 행동 트리 상태(미사용)

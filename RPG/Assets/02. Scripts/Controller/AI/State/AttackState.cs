@@ -24,6 +24,7 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
+            controller.currentAIState = AIState.Attack;
         }
 
         public void OnUpdate()

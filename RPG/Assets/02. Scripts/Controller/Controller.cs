@@ -36,6 +36,7 @@ namespace RPG.Battle.Control
 
         // Battle
         public Controller target;
+        public AIState currentAIState;
 
         private void Awake()
         {
@@ -164,8 +165,8 @@ namespace RPG.Battle.Control
                 return debuffState;
             }
 
-            if (target == null)
-                // 타겟된 적이 없는가?
+            if (target == null || target.battleStatus.isDead)
+                // 타겟된 적이 없거나 죽었는가?
             {
                 if (!SetTarget(out target))
                     // 다른 적이 있는가?

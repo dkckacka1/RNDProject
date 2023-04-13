@@ -215,6 +215,7 @@ namespace RPG.Battle.Core
                     break;
             }
         }
+        #region BattleSceneStateEvent
 
         private void Win()
         {
@@ -247,6 +248,7 @@ namespace RPG.Battle.Core
             SetBattleState(BattleSceneState.Pause);
         }
 
+        #endregion
         private void UpdateUserinfo()
         {
             UserInfo userInfo = GameManager.Instance.UserInfo;
@@ -444,6 +446,50 @@ namespace RPG.Battle.Core
             BattleUI.ReleaseResultUI();
         }
         #endregion
+
+        // Test
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 10, 60, 60), "모든 컨트롤러 기절시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Stern, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Stern, 3f);
+                }
+            }
+
+            if (GUI.Button(new Rect(10, 80, 60, 60), "모든 컨트롤러 출혈 시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Bloody, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Bloody, 3f);
+                }
+            }
+
+            if (GUI.Button(new Rect(10, 160, 60, 60), "모든 컨트롤러 마비 시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Paralysis, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Paralysis, 3f);
+                }
+            }
+
+            if (GUI.Button(new Rect(10, 240, 60, 60), "모든 컨트롤러 저주 시키기"))
+            {
+                Debug.Log("버튼 누름");
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Curse, 3f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Curse, 3f);
+                }
+            }
+        }
 
         #region 사용되지 않는 함수 모음
 
