@@ -8,7 +8,7 @@ using RPG.Battle.Control;
 
 namespace RPG.Battle.AI
 {
-    public class State
+    public abstract class State
     {
         protected Controller controller;
 

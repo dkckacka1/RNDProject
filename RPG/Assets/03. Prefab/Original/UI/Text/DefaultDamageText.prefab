@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 8300747611102187824}
-  speed: 0.5
-  deleteTiming: 1
+  speed: 200
+  deleteTiming: 1.5
   materials:
   - type: 0
     material: {fileID: 2100000, guid: f3d30c51ebd0afc46b08e3bc8cf38acc, type: 2}

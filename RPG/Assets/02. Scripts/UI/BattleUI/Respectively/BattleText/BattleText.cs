@@ -15,21 +15,20 @@ namespace RPG.Battle.UI
         [SerializeField] float deleteTiming;
         [SerializeField] List<DamageTextMaterial> materials;
 
+
+
         private void OnEnable()
         {
+
             text.DOFade(0, deleteTiming).OnComplete(() => { ReleaseText(); });
         }
 
         private void Update()
         {
-            transform.position += (Vector3.up * speed);
+            transform.position += (Vector3.up * speed * Time.deltaTime);
         }
 
-        public void ReleaseText()
-        {
-            BattleManager.ObjectPool.ReturnText(this);
-        }
-
+        #region Initialize
         public void Init(string textStr, Vector3 position, DamagedType type = DamagedType.Normal)
         {
             try
@@ -46,5 +45,13 @@ namespace RPG.Battle.UI
             this.transform.position = Camera.main.WorldToScreenPoint(position);
             this.text.text = textStr;
         }
+
+        public void ReleaseText()
+        {
+            BattleManager.ObjectPool.ReturnText(this);
+        } 
+        #endregion
+
+
     }
 }

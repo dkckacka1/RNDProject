@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPG.Battle.Control;
+using UnityEngine;
 
 namespace RPG.Battle.AI
 {
@@ -26,7 +27,9 @@ namespace RPG.Battle.AI
         public void SetState(IState state)
         {
             if (CurrentState == state)
+            {
                 return;
+            }
 
             if(CurrentState != null)
                 CurrentState.OnEnd();

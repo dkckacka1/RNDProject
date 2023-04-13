@@ -123,12 +123,10 @@ namespace RPG.Battle.Core
         {
             BattleUI.ShowFloor(currentStageFloor);
             LoadCurrentStage();
-            //BattleUI.ShowReady();
             SetBattleState(BattleSceneState.Ready);
             objectPool.ReleaseAllAbility();
             StartCoroutine(MethodCallTimer(() =>
             {
-                //BattleUI.ShowStart();
                 Battle();
             }, battleReadyTime + 1f));
         }
@@ -299,6 +297,7 @@ namespace RPG.Battle.Core
             // 플레이어가 없다면 생성
             {
                 livePlayer = BattleManager.ObjectPool.CreatePlayer(GameManager.Instance.Player);
+                livePlayer.battleStatus.currentState = CombatState.Actable;
             }
 
             Vector3 playerPosition = new Vector3(playerCreatePositionXOffset, stage.playerSpawnPosition.y, stage.playerSpawnPosition.z);
@@ -318,6 +317,7 @@ namespace RPG.Battle.Core
                     enemy.transform.LookAt(enemy.transform.position + Vector3.right);
                     enemy.animator.SetBool("isMove", true);
                     enemy.transform.DOMoveX(enemySpawnData.position.x, battleReadyTime).OnComplete(() => { enemy.animator.SetBool("isMove", false); });
+                    enemy.battleStatus.currentState = CombatState.Actable;
                     liveEnemies.Add(enemy);
                 }
             }

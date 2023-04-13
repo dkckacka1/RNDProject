@@ -20,15 +20,15 @@ namespace RPG.Battle.UI
         [SerializeField] float moveTime;
         [SerializeField] List<LootingImage> lootings;
 
-        bool canMove = false;
         public float jumpPower;
+        
+        float i, rate; 
+        bool canMove = false;
 
         private void OnEnable()
         {
-            //Debug.Log(name + " : 생성 위치 : " + transform.position +"\n" +
-            //    "가야할 위치 : " + (this.transform.position.y - bouncePointY));
-            //transform.DOMoveY(this.transform.position.y, moveTime).SetEase(Ease.OutBounce);
-            //transform.DOMoveX(this.transform.position.x + Random.Range(-bouncePointX, bouncePointX), moveTime).OnComplete(() => { canMove = true; });
+            i = 0;
+            rate = 0;
 
             Vector3 jumpPosition = new Vector3(transform.position.x + Random.Range(-bouncePointX, bouncePointX), transform.position.y);
             transform.DOJump(jumpPosition, jumpPower, 3, moveTime).OnComplete(() => { canMove = true; });
@@ -40,7 +40,8 @@ namespace RPG.Battle.UI
             {
                 if (targetPos == null) return;
 
-                transform.position = Vector3.Lerp(transform.position, targetPos.position, rootspeed);
+                //transform.position = Vector3.Lerp(transform.position, targetPos.position, rootspeed);
+                MoveLerp(this.transform, transform.position, targetPos.position, 2f);
                 if (Vector3.Distance(transform.position, targetPos.position) < minDistance)
                 {
                     canMove = false;
@@ -65,6 +66,16 @@ namespace RPG.Battle.UI
             catch
             {
                 Debug.Log($"찾는 {type}의 이미지가 없습니다.");
+            }
+        }
+
+        private void MoveLerp(Transform transform, Vector3 startPos, Vector3 endPos, float time)
+        {
+            rate = 1.0f / time;
+            if (i < 1.0f)
+            {
+                i += Time.deltaTime * rate;
+                transform.position = Vector3.Lerp(startPos, endPos, i);
             }
         }
     }

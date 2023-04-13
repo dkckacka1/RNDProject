@@ -1,4 +1,4 @@
-﻿// 현재 스테이지 상태
+﻿#region 전투 관련
 
 // UI에 의해 보여지는 State
 public enum BattleSceneState
@@ -11,14 +11,14 @@ public enum BattleSceneState
     Win
 }
 
+// 컨트롤러의 현재 상태
 public enum CombatState
 {
     Default,
-    Idle,
-    Chase,
-    Attack,
+    Actable,
+    Actunable,
     Dead,
-    Ready
+
 }
 
 // 행동 트리 상태(미사용)
@@ -29,6 +29,7 @@ public enum Stats
     SUCCESS
 }
 
+// 데미지 유형
 public enum DamagedType
 {
     Normal,
@@ -36,6 +37,21 @@ public enum DamagedType
     MISS
 }
 
+// 상태이상
+public enum DebuffType
+{
+    Defualt,
+    Stern,
+    Bloody,
+    Paralysis,
+    Temptation,
+    Fear,
+    Curse
+
+}
+#endregion
+
+#region 아이템 관련
 // 장비아이템 타입
 public enum EquipmentItemType
 {
@@ -59,6 +75,16 @@ public enum IncantType
     prefix,
     suffix
 }
+public enum DropItemType
+{
+    Energy,
+    GachaItemScroll,
+    reinfoceScroll,
+    IncantScroll
+}
+#endregion
+
+#region 기타
 
 public enum alignmentType
 {
@@ -69,10 +95,5 @@ public enum alignmentType
     flush
 }
 
-public enum DropItemType
-{
-    Energy,
-    GachaItemScroll,
-    reinfoceScroll,
-    IncantScroll
-}
+
+#endregion

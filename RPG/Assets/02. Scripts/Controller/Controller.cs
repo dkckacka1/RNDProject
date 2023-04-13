@@ -28,6 +28,7 @@ namespace RPG.Battle.Control
         public ChaseState chaseState;
         public AttackState attackState;
         public DeadState deadState;
+        public DebuffState debuffState;
 
         // Behaviour
         public Movement movement;
@@ -35,7 +36,6 @@ namespace RPG.Battle.Control
 
         // Battle
         public Controller target;
-        public CombatState state;
 
         private Coroutine attackDelayCheckCoroutine;
         private Coroutine waitAttackTimeCoroutine;
@@ -80,14 +80,19 @@ namespace RPG.Battle.Control
             if (BattleManager.Instance == null) return;
             if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle) return;
 
+            //CheckState();
+
             // AI 수행
-            if (CheckDeadState())           { stateContext.SetState(deadState); }
-            else if (CheckChaseState())     { stateContext.SetState(chaseState); }
-            else if (CheckAttackState())    { stateContext.SetState(attackState); }
-            else if (CheckIdleState())      { stateContext.SetState(idleState); }
+            if (CheckDeadState()) { stateContext.SetState(deadState); }
+            else if (CheckChaseState()) { stateContext.SetState(chaseState); }
+            else if (CheckAttackState()) { stateContext.SetState(attackState); }
+            else if (CheckIdleState()) { stateContext.SetState(idleState); }
 
             stateContext.Update();
         }
+
+
+        #region Initialize
 
         // 생성 시 초기화 단계
         public virtual void SetUp()
@@ -100,6 +105,7 @@ namespace RPG.Battle.Control
             chaseState = new ChaseState(this);
             attackState = new AttackState(this);
             deadState = new DeadState(this);
+            debuffState = new DebuffState(this);
         }
 
         public virtual void Init()
@@ -108,13 +114,15 @@ namespace RPG.Battle.Control
             nav.enabled = true;
             animator.Rebind();
             UpdateStatus();
-            state = CombatState.Default;
+            battleStatus.currentState = CombatState.Default;
         }
 
         public virtual void Release()
         {
-        }
+        } 
+        #endregion
 
+        #region BattleSceneState EventMethod
         public void Win()
         {
             target = null;
@@ -133,7 +141,6 @@ namespace RPG.Battle.Control
         {
             target = null;
             movement.ResetNav();
-            state = CombatState.Ready;
         }
 
         public void Battle()
@@ -151,11 +158,20 @@ namespace RPG.Battle.Control
             movement.ResetNav();
         }
 
+        #endregion
+
+        #region CheckState
+        private void CheckState()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CheckDeadState()
         {
             // 나는 죽어있는가?
             if (battleStatus.isDead)
             {
+                Debug.Log(name + "은 죽어있는 상태");
                 DeadEvent();
                 StopAttack();
                 return true;
@@ -192,7 +208,7 @@ namespace RPG.Battle.Control
                 }
 
                 // 적과의 거리가 나의 공격 사거리보다 먼가?
-                if(movement.MoveDistanceResult(target.transform))
+                if (movement.MoveDistanceResult(target.transform))
                 {
                     return true;
                 }
@@ -207,7 +223,7 @@ namespace RPG.Battle.Control
             if (target != null)
             {
                 //타겟이 살아있는가?
-                if(!target.battleStatus.isDead)
+                if (!target.battleStatus.isDead)
                 {
                     return true;
                 }
@@ -219,7 +235,8 @@ namespace RPG.Battle.Control
         public bool CheckIdleState()
         {
             return true;
-        }
+        } 
+        #endregion
 
         public void AttackEvent()
         {

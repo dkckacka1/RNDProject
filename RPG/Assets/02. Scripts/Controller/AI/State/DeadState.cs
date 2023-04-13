@@ -13,7 +13,10 @@ namespace RPG.Battle.AI
 
         public void OnStart()
         {
-            controller.state = CombatState.Dead;
+            controller.battleStatus.currentState = CombatState.Dead;
+            //Debug.Log(controller.name + "이 죽었습니다.");
+            //controller.DeadEvent();
+            //controller.StopAttack();
             controller.animator.SetTrigger("Dead");
         }
 
