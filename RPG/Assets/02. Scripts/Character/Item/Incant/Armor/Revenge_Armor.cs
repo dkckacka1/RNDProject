@@ -16,9 +16,9 @@ namespace RPG.Character.Equipment
         {
         }
 
-        public override void TakeDamageEvent(BattleStatus status)
+        public override void TakeDamageEvent(BattleStatus mine, BattleStatus whoHitMe)
         {
-            status.StartCoroutine(Revenge(status, 2f));
+            mine.StartCoroutine(Revenge(mine, 2f));
         }
 
         public IEnumerator Revenge(BattleStatus battleStatus, float time)

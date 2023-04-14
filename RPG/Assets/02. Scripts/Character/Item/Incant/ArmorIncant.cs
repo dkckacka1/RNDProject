@@ -12,7 +12,7 @@ namespace RPG.Character.Equipment
             Debug.Log("PerSecEvent is Nothing");
         }
 
-        public virtual void TakeDamageEvent(BattleStatus status)
+        public virtual void TakeDamageEvent(BattleStatus character, BattleStatus target)
         {
             Debug.Log("TakeDamageEvent is Nothing");
         }

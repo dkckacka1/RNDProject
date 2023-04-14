@@ -66,6 +66,7 @@ namespace RPG.Core
                 // 클래스 이름을 통한 타입 만들기
                 Type incantType = Type.GetType(class_name);
                 // Activator.CreateInstance를 통하여 매개변수 없는 생성자를 통한 Incant만들기
+                //Debug.Log(class_name);
                 var incantInstance = Activator.CreateInstance(incantType) as Incant;
 
                 incantInstance.incantID = incant.ID;

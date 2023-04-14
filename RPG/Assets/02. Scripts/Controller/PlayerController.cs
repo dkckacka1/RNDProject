@@ -41,17 +41,17 @@ namespace RPG.Battle.Control
 
             if (status.currentArmor.suffix != null)
             {
-                battleStatus.AddPerSecAction((status.currentArmor.suffix as ArmorIncant).TakeDamageEvent);
+                battleStatus.AddTakeDamageAction((status.currentArmor.suffix as ArmorIncant).TakeDamageEvent);
             }
 
             if (status.currentHelmet.prefix != null)
             {
-                attack.AddCriticalAttackEvent((status.currentHelmet.suffix as HelmetIncant).criticalAttackEvent);
+                attack.AddCriticalAttackEvent((status.currentHelmet.prefix as HelmetIncant).criticalAttackEvent);
             }
 
             if (status.currentPants.prefix != null)
             {
-                movement.AddMoveEvent((status.currentPants.suffix as PantsIncant).MoveEvent);
+                movement.AddMoveEvent((status.currentPants.prefix as PantsIncant).MoveEvent);
             }
 
             BattleManager.BattleUI.InitAbility(status.currentHelmet, status.currentPants, battleStatus);

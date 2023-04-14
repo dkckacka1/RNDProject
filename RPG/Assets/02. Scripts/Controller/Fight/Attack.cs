@@ -66,24 +66,25 @@ namespace RPG.Battle.Fight
 
             // 1. 공격한다
             if (AttackChangeCalc(character, target))
-                // 2. 공격이 적중한다.
+            // 2. 공격이 적중한다.
             {
-                attackEvent.Invoke(character, target);
+                target.takeDamageEvent.Invoke(target, character);
+                attackEvent.Invoke(target, character);
                 if (AttackCriticalCalc(character, target))
-                    // 3. 공격 치명타가 발생한다.
+                // 3. 공격 치명타가 발생한다.
                 {
                     criticalAttackEvent.Invoke(character, target);
                     int criticalDamage = (int)(character.status.AttackDamage * (1 + character.status.CriticalDamage));
-                    target.TakeDamage(DamageCalc(criticalDamage,defenceAverage), DamagedType.Ciritical);
+                    target.TakeDamage(DamageCalc(criticalDamage, defenceAverage), DamagedType.Ciritical);
                 }
                 else
-                    // 3. 공격 치명타가 발생하지 않는다.
+                // 3. 공격 치명타가 발생하지 않는다.
                 {
                     target.TakeDamage(DamageCalc(character.status.AttackDamage, defenceAverage), DamagedType.Normal);
                 }
             }
             else
-                // 2. 공격이 실패한다.
+            // 2. 공격이 실패한다.
             {
                 target.TakeDamage(character.status.AttackDamage, DamagedType.MISS);
             }
@@ -130,12 +131,12 @@ namespace RPG.Battle.Fight
 
             float random = Random.Range(0, 1f);
 
-    //        Debug.Log($"{character.name}가 공격하여 {target.name}을 타격했습니다.\n" +
-    //$"{character.name}의 치명타 적중률 : {character.status.attackChance * 100}%\n" +
-    //$"{target.name}의 치명타 회피율 : {target.status.evasionPoint * 100}%\n" +
-    //$"공격이 치명타가 발생할 확률은 {criticalChance * 100}% 입니다.\n" +
-    //$"치명타 데미지는 {(int)(character.status.attackDamage * (1 + character.status.criticalDamage))} 입니다.\n" +
-    //$"주사위는 {random * 100}이 나왔습니다.");
+            //        Debug.Log($"{character.name}가 공격하여 {target.name}을 타격했습니다.\n" +
+            //$"{character.name}의 치명타 적중률 : {character.status.attackChance * 100}%\n" +
+            //$"{target.name}의 치명타 회피율 : {target.status.evasionPoint * 100}%\n" +
+            //$"공격이 치명타가 발생할 확률은 {criticalChance * 100}% 입니다.\n" +
+            //$"치명타 데미지는 {(int)(character.status.attackDamage * (1 + character.status.criticalDamage))} 입니다.\n" +
+            //$"주사위는 {random * 100}이 나왔습니다.");
 
             if (criticalChance > random)
             {

@@ -36,8 +36,8 @@ namespace RPG.Character.Status
 
 
         // Event
-        PerSecondEvent perSecEvent;
-        TakeDamageEvent takeDamageEvent;
+        public PerSecondEvent perSecEvent;
+        public TakeDamageEvent takeDamageEvent;
 
         // Encapsule
         public int CurrentHp
@@ -92,7 +92,7 @@ namespace RPG.Character.Status
 
         #region BattleEvent
 
-        public void AddTakeDamageAction(UnityAction action)
+        public void AddTakeDamageAction(UnityAction<BattleStatus, BattleStatus> action)
         {
             takeDamageEvent.AddListener(action);
         }
@@ -116,8 +116,6 @@ namespace RPG.Character.Status
         public void TakeDamage(int damage, DamagedType type = DamagedType.Normal)
         {
             if (isDead) return;
-
-            takeDamageEvent.Invoke();
 
             int totalDamage = 0;
             totalDamage += damage;
