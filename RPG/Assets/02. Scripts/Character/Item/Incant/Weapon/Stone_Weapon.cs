@@ -19,7 +19,12 @@ namespace RPG.Character.Equipment
         public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
             var ability = BattleManager.ObjectPool.GetAbility(1);
-            ability.InitAbility(player.transform);
+            ability.InitAbility(player.transform, HitStone );
+        }
+
+        public void HitStone(BattleStatus target)
+        {
+            target.TakeDamage(10);
         }
     }
 }

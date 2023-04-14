@@ -1,29 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using RPG.Battle.Control;
-using RPG.Character.Status;
 
 namespace RPG.Battle.Ability
 {
-    public class ProjectileAbility : Ability
+    public class ExplosionAbility : Ability
     {
-        [SerializeField] float speed;
-
-
-
-        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> action)
-        {
-            this.transform.rotation = startPos.rotation;
-            base.InitAbility(startPos, action);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -36,8 +19,6 @@ namespace RPG.Battle.Ability
                     action.Invoke(enemyStatus);
                 }
             }
-
         }
-    }
-
+    } 
 }

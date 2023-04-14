@@ -31,7 +31,7 @@ namespace RPG.Character.Status
         public DebuffType currentDebuff;
         public bool isActunableDebuff; // 현재 행동 불가 디버프 상태인가?
         private bool isCursed;
-        private List<IEnumerator> debuffList = new List<IEnumerator>(); // 현재 디버프 리스트
+        public List<IEnumerator> debuffList = new List<IEnumerator>(); // 현재 디버프 리스트
 
 
 

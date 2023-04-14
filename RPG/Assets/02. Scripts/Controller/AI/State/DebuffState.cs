@@ -26,6 +26,10 @@ namespace RPG.Battle.AI
         public void OnStart()
         {
             controller.currentAIState = AIState.Debuff;
+            controller.animator.ResetTrigger("Attack");
+            controller.animator.ResetTrigger("Move");
+            controller.animator.ResetTrigger("Idle");
+            controller.StopAttack();
             switch (controller.battleStatus.currentDebuff)
             {
                 case DebuffType.Stern:

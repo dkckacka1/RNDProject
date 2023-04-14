@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Battle.Core;
 using RPG.Character.Status;
+using RPG.Battle.Core;
 
 namespace RPG.Character.Equipment
 {
-    public class Regenerative_Helmet : HelmetIncant
+    public class Fear_Pants : PantsIncant
     {
-        public Regenerative_Helmet()
+        public Fear_Pants()
         {
-            skillCoolTime = 20f;
+            skillCoolTime = 30f;
         }
 
         public override void IncantEquipment(Equipment equipment)
         {
+
         }
 
         public override void RemoveIncant(Equipment equipment)
@@ -23,9 +24,13 @@ namespace RPG.Character.Equipment
 
         public override void ActiveSkill(BattleStatus player)
         {
-            player.Heal(100);
+            var ability = BattleManager.ObjectPool.GetAbility(2);
+            ability.InitAbility(player.transform, Fear);
         }
 
-
+        public void Fear(BattleStatus character)
+        {
+            character.TakeFear(4f);
+        }
     }
 }
