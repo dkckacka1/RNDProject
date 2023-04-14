@@ -10,7 +10,7 @@ namespace RPG.Character.Equipment
     {
         public Fear_Pants()
         {
-            skillCoolTime = 30f;
+            skillCoolTime = 2f;
         }
 
         public override void IncantEquipment(Equipment equipment)
@@ -24,13 +24,15 @@ namespace RPG.Character.Equipment
 
         public override void ActiveSkill(BattleStatus player)
         {
-            var ability = BattleManager.ObjectPool.GetAbility(2);
-            ability.InitAbility(player.transform, Fear);
+            var ability = BattleManager.ObjectPool.GetAbility(2, player.transform, Fear);
         }
 
         public void Fear(BattleStatus character)
         {
-            character.TakeFear(4f);
+            if (character.status is EnemyStatus)
+            {
+                character.TakeDebuff(DebuffType.Fear, 4f);
+            }
         }
     }
 }

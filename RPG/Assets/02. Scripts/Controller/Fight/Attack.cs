@@ -11,6 +11,7 @@ namespace RPG.Battle.Fight
     public class Attack
     {
         public bool canAttack = true;
+        public bool isAttack = false;
         public float attackDelay = 1;
         public float attackAnimPoint = 1.2f;
         public float defaultAttackAnimLength;
@@ -148,8 +149,10 @@ namespace RPG.Battle.Fight
 
         public IEnumerator WaitAttackDelay()
         {
+            isAttack = true;
             yield return new WaitForSeconds(attackDelay);
             canAttack = true;
+            isAttack = false;
         }
 
         public IEnumerator WaitAttackTime()

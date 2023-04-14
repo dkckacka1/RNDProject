@@ -15,7 +15,7 @@ namespace RPG.Battle.UI
         public Button AbilityBtn;
         [SerializeField] Image AbilityIconImage;
         [SerializeField] TextMeshProUGUI AbilityCoolTimeText;
-        [SerializeField] Image AbilityCoolTimeImage;
+        [SerializeField] Image abilityCoolTimeImage;
 
         [SerializeField] bool canUse;
 
@@ -27,6 +27,9 @@ namespace RPG.Battle.UI
 
         public void UseAbility()
         {
+            if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle)
+                return;
+
             if (canUse)
             {
                 StartCoroutine(CheckCoolTime());
@@ -40,10 +43,10 @@ namespace RPG.Battle.UI
             {
                 if (BattleManager.Instance.currentBattleState == BattleSceneState.Battle)
                 {
-                    AbilityCoolTimeImage.fillAmount -= Time.deltaTime / abilityCoolTime;
+                    abilityCoolTimeImage.fillAmount -= Time.deltaTime / abilityCoolTime;
                     currentCoolTime -= Time.deltaTime;
                     AbilityCoolTimeText.text = currentCoolTime.ToString("N1");
-                    if (AbilityCoolTimeImage.fillAmount <= 0)
+                    if (abilityCoolTimeImage.fillAmount <= 0)
                     {
                         break;
                     }
@@ -56,7 +59,7 @@ namespace RPG.Battle.UI
         public void CanSkill()
         {
             canUse = true;
-            AbilityCoolTimeImage.gameObject.SetActive(false);
+            abilityCoolTimeImage.gameObject.SetActive(false);
             AbilityCoolTimeText.gameObject.SetActive(false);
             AbilityBtn.interactable = true;
         }
@@ -64,9 +67,9 @@ namespace RPG.Battle.UI
         private void SetCool()
         {
             canUse = false;
-            AbilityCoolTimeImage.fillAmount = 1;
+            abilityCoolTimeImage.fillAmount = 1;
             currentCoolTime = abilityCoolTime;
-            AbilityCoolTimeImage.gameObject.SetActive(true);
+            abilityCoolTimeImage.gameObject.SetActive(true);
             AbilityCoolTimeText.gameObject.SetActive(true);
             AbilityBtn.interactable = false;
         }

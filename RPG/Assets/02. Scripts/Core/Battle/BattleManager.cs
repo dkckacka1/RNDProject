@@ -459,7 +459,14 @@ namespace RPG.Battle.Core
 
         private void OnGUI()
         {
-
+            if (GUI.Button(new Rect(10, 10, 80, 80), ""))
+            {
+                livePlayer.battleStatus.TakeDebuff(DebuffType.Fear, 5f);
+                foreach (var enemy in liveEnemies)
+                {
+                    enemy.battleStatus.TakeDebuff(DebuffType.Fear, 5f);
+                }
+            }
         }
 
         #region 사용되지 않는 함수 모음

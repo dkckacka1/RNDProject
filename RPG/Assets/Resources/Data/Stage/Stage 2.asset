@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Stage 2
   m_EditorClassIdentifier: 
   ID: 2
-  playerSpawnPosition: {x: 8, y: 0, z: 0}
+  playerSpawnPosition: {x: 22, y: 0, z: 0}
   enemyDatas:
-  - position: {x: -8, y: 0, z: 1}
+  - position: {x: 5, y: 0, z: 1}
     enemyID: 1
-  - position: {x: -8, y: 0, z: -4}
+  - position: {x: 5, y: 0, z: -1}
     enemyID: 1
   ConsumEnergy: 10

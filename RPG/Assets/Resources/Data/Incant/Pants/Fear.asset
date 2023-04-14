@@ -16,9 +16,10 @@ MonoBehaviour:
   className: Fear
   incantType: 1
   itemType: 2
-  incantName: 
+  incantName: "\uACF5\uD3EC"
   addDesc: 
   minusDesc: 
-  isIncantAbility: 0
-  abilityDesc: 
-  abilityIcon: {fileID: 0}
+  isIncantAbility: 1
+  abilityDesc: "\uC8FC\uBCC0\uC758 \uC801\uC744 4\uCD08 \uB3D9\uC548 \uACF5\uD3EC\uC5D0
+    \uC9C8\uB9AC\uAC8C \uD569\uB2C8\uB2E4."
+  abilityIcon: {fileID: 21300000, guid: 1afbd7446b6a88e4babbd5acfd121c7f, type: 3}

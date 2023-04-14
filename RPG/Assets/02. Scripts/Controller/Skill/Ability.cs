@@ -17,7 +17,7 @@ namespace RPG.Battle.Ability
         public float abilityTime;
 
         protected UnityAction<BattleStatus> action;
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             StartCoroutine(ReleaseTimer());
         }

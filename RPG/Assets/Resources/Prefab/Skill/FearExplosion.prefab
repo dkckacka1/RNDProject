@@ -4731,14 +4731,13 @@ GameObject:
   - component: {fileID: 73985856956717366}
   - component: {fileID: 73985856970388072}
   - component: {fileID: 73985856981936842}
-  - component: {fileID: 9066008591338926557}
   m_Layer: 0
   m_Name: FearExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &73985856975032338
 Transform:
   m_ObjectHideFlags: 0
@@ -4773,6 +4772,7 @@ MonoBehaviour:
   abilityDesc: "\uACF5\uD3EC \uD3ED\uBC1C"
   abilityTime: 2
   abilityPositionOffset: {x: 0, y: 1, z: 0}
+  explosionRange: 4
 --- !u!199 &73985856956918138
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9675,20 +9675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPercent: 50
---- !u!136 &9066008591338926557
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73985856974835632}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 3
-  m_Height: 6
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &73985856974861310
 GameObject:
   m_ObjectHideFlags: 0

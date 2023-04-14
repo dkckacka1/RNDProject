@@ -48,7 +48,12 @@ namespace RPG.Battle.UI
 
                 helmetAbility.gameObject.SetActive(true);
                 helmetAbility.Init(helmet.suffix.abilityIcon, incant.skillCoolTime);
-                helmetAbility.AbilityBtn.onClick.AddListener(() => { incant.ActiveSkill(status); });
+                helmetAbility.AbilityBtn.onClick.AddListener(() => 
+                {
+                    if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle) return;
+
+                    incant.ActiveSkill(status);
+                });
             }
             else
             {
@@ -57,11 +62,16 @@ namespace RPG.Battle.UI
 
             if (pants.suffix != null && pants.suffix.isIncantAbility)
             {
-                PantsIncant incant = helmet.suffix as PantsIncant;
+                PantsIncant incant = pants.suffix as PantsIncant;
 
                 PantsAbility.gameObject.SetActive(true);
-                PantsAbility.Init(helmet.suffix.abilityIcon, incant.skillCoolTime);
-                PantsAbility.AbilityBtn.onClick.AddListener(() => { incant.ActiveSkill(status); });
+                PantsAbility.Init(pants.suffix.abilityIcon, incant.skillCoolTime);
+                PantsAbility.AbilityBtn.onClick.AddListener(() => 
+                {
+                    if (BattleManager.Instance.currentBattleState != BattleSceneState.Battle) return;
+
+                    incant.ActiveSkill(status);
+                });
             }
             else
             {

@@ -25,7 +25,5 @@ namespace RPG.Character.Equipment
         {
             player.Heal(100);
         }
-
-
     }
 }

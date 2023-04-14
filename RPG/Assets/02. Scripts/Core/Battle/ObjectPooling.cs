@@ -9,6 +9,7 @@ using UnityEditor;
 using RPG.Battle.Ability;
 using RPG.Character.Equipment;
 using RPG.Core;
+using UnityEngine.Events;
 
 namespace RPG.Battle.Core
 {
@@ -217,6 +218,28 @@ namespace RPG.Battle.Core
                 getAbility = CreateAbility(abilityID);
             }
 
+            getAbility.gameObject.SetActive(true);
+            return getAbility;
+        }
+
+        public Ability.Ability GetAbility(int abilityID, Transform starPos, UnityAction<BattleStatus> action)
+        {
+            Ability.Ability getAbility;
+
+            if (abilityPool.Count > 0)
+            {
+                if ((getAbility = abilityPool.Find(ability => (ability.abilityID == abilityID) && (!ability.gameObject.activeInHierarchy))) == null)
+                {
+                    getAbility = CreateAbility(abilityID);
+
+                }
+            }
+            else
+            {
+                getAbility = CreateAbility(abilityID);
+            }
+
+            getAbility.InitAbility(starPos, action);
             getAbility.gameObject.SetActive(true);
             return getAbility;
         }

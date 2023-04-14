@@ -120,7 +120,7 @@ namespace RPG.Battle.Control
 
         public virtual void Release()
         {
-        } 
+        }
         #endregion
 
         #region BattleSceneState EventMethod
@@ -171,25 +171,27 @@ namespace RPG.Battle.Control
         private IState CheckState()
         {
             if (battleStatus.isDead)
-                // 나는 죽어있는가?
+            // 나는 죽어있는가?
             {
                 return deadState;
             }
 
             if (battleStatus.currentState == CombatState.Actunable)
-                // 행동 불가 상태인가?
+            // 행동 불가 상태인가?
             {
                 return debuffState;
             }
 
-            if (target == null || target.battleStatus.isDead)
-                // 타겟된 적이 없거나 죽었는가?
+            if (!SetTarget(out target))
+            // 다른 적이 있는가?
             {
-                if (!SetTarget(out target))
-                    // 다른 적이 있는가?
-                {
-                    return idleState;
-                }
+                return idleState;
+            }
+
+            if (attack.isAttack)
+                // 공격중인가?
+            {
+                return attackState;
             }
 
             if (movement.MoveDistanceResult(target.transform))
@@ -202,7 +204,7 @@ namespace RPG.Battle.Control
                 //타겟이 살아있는가?
                 if (!target.battleStatus.isDead)
                 {
-                    if(attack.canAttack)
+                    if (attack.canAttack)
                         // 공격할 수 있는가?
                         return attackState;
                 }
@@ -215,7 +217,11 @@ namespace RPG.Battle.Control
 
         public void StopAttack()
         {
-            StopCoroutine(attackState.waitAttackTimeCoroutine);
+            if (attack.isAttack)
+            {
+                StopCoroutine(attackState.waitAttackTimeCoroutine);
+                attack.isAttack = false;
+            }
         }
 
         public virtual void DeadEvent()

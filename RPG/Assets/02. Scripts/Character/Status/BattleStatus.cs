@@ -235,7 +235,7 @@ namespace RPG.Character.Status
             debuffList.Clear();
         }
 
-        public IEnumerator TakeStern(float duration)
+        private IEnumerator TakeStern(float duration)
         // 기절할 수 있다.
         // 시간만큼 행동 불가
         // 중첩불가
@@ -250,7 +250,7 @@ namespace RPG.Character.Status
         }
 
 
-        public IEnumerator TakeFear(float duration)
+        private IEnumerator TakeFear(float duration)
         // 공포 당할 수 있다.
         // 시간만큼 천천히 대상에게서 멀어짐
         // 중첩 불가
@@ -266,7 +266,7 @@ namespace RPG.Character.Status
             currentDebuff = DebuffType.Defualt;
             UpdateMovementSpeed(defaultMovementSpeed);
         }
-        public IEnumerator TakeTemptation(float duration)
+        private IEnumerator TakeTemptation(float duration)
         // 유혹 당할 수 있다.
         // 시간만큼 천천히 걸어옴 (공격X)
         // 중첩 불가
@@ -283,7 +283,7 @@ namespace RPG.Character.Status
             UpdateMovementSpeed(defaultMovementSpeed);
         }
 
-        public IEnumerator TakeParalysis(float duration)
+        private IEnumerator TakeParalysis(float duration)
         // 마비할 수 있다.
         // 시간만큼 이동 불가
         // 중첩 가능
@@ -294,7 +294,7 @@ namespace RPG.Character.Status
             UpdateMovementSpeed(defaultMovementSpeed);
         }
 
-        public IEnumerator TakeBloody(float duration)
+        private IEnumerator TakeBloody(float duration)
         // 출혈할 수 있다.
         // 초당 체력 2% 감소
         // 중첩 가능
@@ -314,7 +314,7 @@ namespace RPG.Character.Status
         }
 
 
-        public IEnumerator TakeCurse(float duration)
+        private IEnumerator TakeCurse(float duration)
         // 저주 당할 수 있다.
         // 받는 데미지 증가
         // 중첩 불가
