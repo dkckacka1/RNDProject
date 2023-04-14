@@ -30,14 +30,10 @@ namespace RPG.Character.Status
         public CombatState currentState;
         public DebuffType currentDebuff;
         public bool isActunableDebuff; // 현재 행동 불가 디버프 상태인가?
+        private bool isCursed;
+        private List<IEnumerator> debuffList = new List<IEnumerator>(); // 현재 디버프 리스트
 
-        // TODO
-        //public Coroutine sternCoroutine;
-        //public Coroutine paralysisCoroutine;
-        //public Coroutine temptationCoroutine;
-        //public Coroutine fearCoroutine;
-        //public List<Coroutine> bloodyCoroutines = new List<IEnumerator>();
-        //public List<Coroutine> CurseCoroutine = new List<IEnumerator>();
+
 
         // Event
         PerSecondEvent perSecEvent;
@@ -123,15 +119,22 @@ namespace RPG.Character.Status
 
             takeDamageEvent.Invoke();
 
+            int totalDamage = 0;
+            totalDamage += damage;
+            if (isCursed)
+            {
+                totalDamage += (int)(damage * 0.5f);
+            }
+
             switch (type)
             {
                 case DamagedType.Normal:
-                    CurrentHp -= damage;
-                    characterUI.TakeDamageText(damage.ToString(), type);
+                    CurrentHp -= totalDamage;
+                    characterUI.TakeDamageText(totalDamage.ToString(), type);
                     break;
                 case DamagedType.Ciritical:
-                    CurrentHp -= damage;
-                    characterUI.TakeDamageText(damage.ToString() + "!!", type);
+                    CurrentHp -= totalDamage;
+                    characterUI.TakeDamageText(totalDamage.ToString() + "!!", type);
                     break;
                 case DamagedType.MISS:
                     characterUI.TakeDamageText("MISS~", type);
@@ -141,6 +144,8 @@ namespace RPG.Character.Status
 
         public void Dead()
         {
+            StopAllDebuff();
+            RemoveAllDebuff();
             currentState = CombatState.Dead;
             isDead = true;
         }
@@ -157,30 +162,77 @@ namespace RPG.Character.Status
             {
                 case DebuffType.Stern:
                     if (isActunableDebuff) return;
+                    { 
+                        IEnumerator debuff = TakeStern(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
                 case DebuffType.Fear:
                     if (isActunableDebuff) return;
+                    {
+                        IEnumerator debuff = TakeFear(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
                 case DebuffType.Temptation:
                     if (isActunableDebuff) return;
-                    StartCoroutine(TakeTemptation(duration));
+                    {
+                        IEnumerator debuff = TakeTemptation(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
                 case DebuffType.Paralysis:
-                    StartCoroutine(TakeParalysis(duration));
+                    {
+                        IEnumerator debuff = TakeParalysis(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
                 case DebuffType.Bloody:
-                    StartCoroutine(TakeBloody(duration));
+                    {
+                        IEnumerator debuff = TakeBloody(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
                 case DebuffType.Curse:
-                    StartCoroutine(TakeCurse(duration));
+                    {
+                        IEnumerator debuff = TakeCurse(duration);
+                        StartCoroutine(debuff);
+                        debuffList.Add(debuff);
+                    }
 
                     break;
             }
+        }
+
+        public void ReStartAllDebuff()
+        {
+            foreach (var debuff in debuffList)
+            {
+                StartCoroutine(debuff);
+            }
+        }
+
+        public void StopAllDebuff()
+        {
+            foreach (var debuff in debuffList)
+            {
+                StopCoroutine(debuff);
+            }
+        }
+
+        public void RemoveAllDebuff()
+        {
+            debuffList.Clear();
         }
 
         public IEnumerator TakeStern(float duration)
@@ -264,13 +316,12 @@ namespace RPG.Character.Status
 
         public IEnumerator TakeCurse(float duration)
         // 저주 당할 수 있다.
-        // 시간만큼 현재 공격력 감소(15%씩)
-        // 중첩 가능
+        // 받는 데미지 증가
+        // 중첩 불가
         {
-            int decreseDamage = (int)(status.AttackDamage * 0.15f);
-            status.AttackDamage -= decreseDamage;
+            isCursed = true;
             yield return new WaitForSeconds(duration);
-            status.AttackDamage += decreseDamage;
+            isCursed = false;
         }
         #endregion
 

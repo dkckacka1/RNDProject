@@ -14,50 +14,68 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public Animator animator;
+        List<IEnumerator> list = new List<IEnumerator>();
+        IEnumerator test;
 
         private void Start()
         {
+            test = Test();
+            StartCoroutine(test);
+            list.Add(test);
+        }
 
+        private void Update()
+        {
+            if (test != null)
+            {
+                //Debug.Log("test != NULL");
+            }
+            else
+            {
+                //Debug.Log("test == NULL");
+            }
+        }
+        IEnumerator Test()
+        {
+            float Time = 0;
+            while (true)
+            {
+                Time += 1;
+                Debug.Log(Time);
+                if (Time > 5)
+                {
+                    break;
+                }
+                yield return new WaitForSeconds(1f);
+            }
+            Debug.Log("메소드 종료");
+            test = null;
         }
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 200, 60), "스킬 사용"))
+            if (GUI.Button(new Rect(100, 10, 80, 80), "Test"))
             {
-                animator.SetTrigger("Idle");
+                StopCoroutine(test);
             }
 
-            if (GUI.Button(new Rect(10, 80, 200, 60), "스킬 사용"))
+            if (GUI.Button(new Rect(100, 100, 80, 80), "Test"))
             {
-                animator.SetTrigger("TemptationWalk");
+                test.Reset();
             }
 
-            if (GUI.Button(new Rect(10, 140, 200, 60), "스킬 사용"))
+            if (GUI.Button(new Rect(100, 200, 80, 80), "Test"))
             {
-                animator.SetTrigger("TemptationWalk");
-            }
-
-            if (GUI.Button(new Rect(10, 220, 200, 60), "스킬 사용"))
-            {
-                animator.SetTrigger("Stern");
-            }
-
-            if (GUI.Button(new Rect(10, 300, 200, 60), "스킬 사용"))
-            {
-                animator.SetTrigger("TemptationWalk");
-            }
-
-            if (GUI.Button(new Rect(10, 380, 200, 60), "스킬 사용"))
-            {
-                animator.SetTrigger("FearRun");
-            }
-
-            if (GUI.Button(new Rect(10, 460, 200, 60), "스킬 사용"))
-            {
-                animator.SetTrigger("Dead");
+                foreach (var item in list)
+                {
+                    if (item == test)
+                    {
+                        Debug.Log("있음");
+                    }
+                }
             }
         }
+
 
     }
 }

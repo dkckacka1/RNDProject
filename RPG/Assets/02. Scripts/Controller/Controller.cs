@@ -128,6 +128,8 @@ namespace RPG.Battle.Control
         {
             target = null;
             movement.ResetNav();
+            battleStatus.StopAllDebuff();
+            battleStatus.RemoveAllDebuff();
             StopCoroutine(battleStatus.perSecCoroutine);
         }
 
@@ -135,6 +137,8 @@ namespace RPG.Battle.Control
         {
             target = null;
             movement.ResetNav();
+            battleStatus.StopAllDebuff();
+            battleStatus.RemoveAllDebuff();
             StopCoroutine(battleStatus.perSecCoroutine);
         }
 
@@ -149,6 +153,7 @@ namespace RPG.Battle.Control
             animator.speed = 1;
             StartCoroutine(battleStatus.perSecCoroutine);
             StartCoroutine(movement.moveEventCorotine);
+            battleStatus.ReStartAllDebuff();
         }
 
         public void Pause()
@@ -156,6 +161,7 @@ namespace RPG.Battle.Control
             animator.speed = 0;
             StopCoroutine(battleStatus.perSecCoroutine);
             StopCoroutine(movement.moveEventCorotine);
+            battleStatus.StopAllDebuff();
             movement.ResetNav();
         }
 
