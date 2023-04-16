@@ -15,6 +15,7 @@ MonoBehaviour:
   battleCanvas: {fileID: 0}
   status: {fileID: 0}
   hpBar: {fileID: 0}
+  debuffUI: {fileID: 0}
   battleTextOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &2545512943107213724
 MonoBehaviour:
@@ -33,7 +34,7 @@ MonoBehaviour:
   nav: {fileID: 7051127263331252068}
   battleStatus: {fileID: 8491972388946292377}
   target: {fileID: 0}
-  state: 0
+  currentAIState: 0
 --- !u!114 &8668303703841679543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: -3547984684722416041}
     - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_AutoBraking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 92664260114829191, guid: 085ee3da6ed4e564fb5547886ce6e1ca, type: 3}
       propertyPath: m_AngularSpeed

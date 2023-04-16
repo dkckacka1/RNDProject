@@ -10,7 +10,8 @@ public class PlayerCharacterUI : CharacterUI
     public override void SetUp()
     {
         base.SetUp();
-        hpBar = BattleManager.BattleUI.playerHPBar;
+        hpBar = BattleManager.BattleUI.playerHPBarUI;
+        debuffUI = BattleManager.BattleUI.playerDebuffUI;
     }
 
     public override void Init()

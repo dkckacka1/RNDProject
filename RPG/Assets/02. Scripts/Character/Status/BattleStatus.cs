@@ -160,7 +160,7 @@ namespace RPG.Character.Status
             {
                 case DebuffType.Stern:
                     if (isActunableDebuff) return;
-                    { 
+                    {
                         IEnumerator debuff = TakeStern(duration);
                         StartCoroutine(debuff);
                         debuffList.Add(debuff);
@@ -231,6 +231,7 @@ namespace RPG.Character.Status
         public void RemoveAllDebuff()
         {
             debuffList.Clear();
+            characterUI.debuffUI.ResetAllDebuff();
         }
 
         private IEnumerator TakeStern(float duration)
@@ -241,10 +242,24 @@ namespace RPG.Character.Status
             currentState = CombatState.Actunable;
             isActunableDebuff = true;
             currentDebuff = DebuffType.Stern;
-            yield return new WaitForSeconds(duration);
+            characterUI.debuffUI.InitDebuff(DebuffType.Stern);
+
+            float time = 0;
+            while (true)
+            {
+                characterUI.debuffUI.ShowDebuff(DebuffType.Stern, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
+                {
+                    break;
+                }
+            }
+
             currentState = CombatState.Actable;
             isActunableDebuff = false;
             currentDebuff = DebuffType.Defualt;
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Stern);
         }
 
 
@@ -258,11 +273,25 @@ namespace RPG.Character.Status
             isActunableDebuff = true;
             currentDebuff = DebuffType.Fear;
             UpdateMovementSpeed(status.MovementSpeed * 0.7f);
-            yield return new WaitForSeconds(duration);
+            characterUI.debuffUI.InitDebuff(DebuffType.Fear);
+
+            float time = 0;
+            while (true)
+            {
+                characterUI.debuffUI.ShowDebuff(DebuffType.Fear, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
+                {
+                    break;
+                }
+            }
+
             currentState = CombatState.Actable;
             isActunableDebuff = false;
             currentDebuff = DebuffType.Defualt;
             UpdateMovementSpeed(defaultMovementSpeed);
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Fear);
         }
         private IEnumerator TakeTemptation(float duration)
         // 유혹 당할 수 있다.
@@ -274,11 +303,25 @@ namespace RPG.Character.Status
             isActunableDebuff = true;
             currentDebuff = DebuffType.Temptation;
             UpdateMovementSpeed(status.MovementSpeed * 0.3f);
-            yield return new WaitForSeconds(duration);
+            characterUI.debuffUI.InitDebuff(DebuffType.Temptation);
+
+            float time = 0;
+            while (true)
+            {
+                characterUI.debuffUI.ShowDebuff(DebuffType.Temptation, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
+                {
+                    break;
+                }
+            }
+
             currentState = CombatState.Actable;
             isActunableDebuff = false;
             currentDebuff = DebuffType.Defualt;
             UpdateMovementSpeed(defaultMovementSpeed);
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Temptation);
         }
 
         private IEnumerator TakeParalysis(float duration)
@@ -288,8 +331,22 @@ namespace RPG.Character.Status
         {
             float defaultMovementSpeed = status.MovementSpeed;
             UpdateMovementSpeed(0);
-            yield return new WaitForSeconds(duration);
+            characterUI.debuffUI.InitDebuff(DebuffType.Paralysis);
+
+            float time = 0;
+            while (true)
+            {
+                characterUI.debuffUI.ShowDebuff(DebuffType.Paralysis, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
+                {
+                    break;
+                }
+            }
+
             UpdateMovementSpeed(defaultMovementSpeed);
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Paralysis);
         }
 
         private IEnumerator TakeBloody(float duration)
@@ -297,18 +354,26 @@ namespace RPG.Character.Status
         // 초당 체력 2% 감소
         // 중첩 가능
         {
-            float time = 0;
             int bloodyDamage = status.MaxHp / 50;
+            characterUI.debuffUI.InitDebuff(DebuffType.Bloody);
+
+            float time = 0;
             while (true)
             {
-                TakeDamage(bloodyDamage);
-                yield return new WaitForSeconds(1f);
-                time += 1;
-                if (time > duration)
+                if (time % 1 == 0)
+                {
+                    TakeDamage(bloodyDamage);
+                }
+
+                characterUI.debuffUI.ShowDebuff(DebuffType.Bloody, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
                 {
                     break;
                 }
             }
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Bloody);
         }
 
 
@@ -318,8 +383,22 @@ namespace RPG.Character.Status
         // 중첩 불가
         {
             isCursed = true;
-            yield return new WaitForSeconds(duration);
+            characterUI.debuffUI.InitDebuff(DebuffType.Curse);
+
+            float time = 0;
+            while (true)
+            {
+                characterUI.debuffUI.ShowDebuff(DebuffType.Curse, duration - time);
+                yield return new WaitForSeconds(0.1f);
+                time += 0.1f;
+                if (time >= duration)
+                {
+                    break;
+                }
+            }
+
             isCursed = false;
+            characterUI.debuffUI.ReleaseDebuff(DebuffType.Curse);
         }
         #endregion
 

@@ -83,7 +83,7 @@ namespace RPG.Battle.Core
         private delegate void voidFunc();
         private delegate IEnumerator IEnumeratorFunc();
 
-        [Space()]
+        [Header("Test")]
         [SerializeField] bool isTest;
 
         private void Awake()
@@ -219,6 +219,11 @@ namespace RPG.Battle.Core
 
         private void Win()
         {
+            if (isTest)
+            {
+                return;
+            }
+
             // 승리 연출
             SetBattleState(BattleSceneState.Win);
             currentStageFloor++;
@@ -230,6 +235,11 @@ namespace RPG.Battle.Core
 
         private void Defeat()
         {
+            if (isTest)
+            {
+                return;
+            }
+
             // 패배 연출
             currentBattleState = BattleSceneState.Defeat;
             BattleUI.ShowDefeat();
@@ -459,14 +469,6 @@ namespace RPG.Battle.Core
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 80, 80), ""))
-            {
-                livePlayer.battleStatus.TakeDebuff(DebuffType.Fear, 5f);
-                foreach (var enemy in liveEnemies)
-                {
-                    enemy.battleStatus.TakeDebuff(DebuffType.Fear, 5f);
-                }
-            }
         }
 
         #region 사용되지 않는 함수 모음

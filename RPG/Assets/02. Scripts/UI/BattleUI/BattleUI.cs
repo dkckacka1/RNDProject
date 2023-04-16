@@ -30,7 +30,8 @@ namespace RPG.Battle.UI
 
         [Header("PlayerUI")]
         // PlayerUI
-        public PlayerHPBar playerHPBar;
+        public PlayerHPBar playerHPBarUI;
+        public DebuffUI playerDebuffUI;
 
         [Header("BattleResult")]
         public Canvas resultCanvas;

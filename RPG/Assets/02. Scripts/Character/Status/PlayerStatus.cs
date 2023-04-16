@@ -25,7 +25,7 @@ namespace RPG.Character.Status
             }
 
             AttackDamage =          currentWeapon.AttackDamage;
-            AttackRange =           currentWeapon.AttackChance;
+            AttackRange =           currentWeapon.AttackRange;
             AttackSpeed =           currentWeapon.AttackSpeed;
             CriticalChance =        currentWeapon.CriticalChance;
             CriticalDamage =        currentWeapon.CriticalDamage;

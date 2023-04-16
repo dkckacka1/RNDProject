@@ -6,12 +6,14 @@ using RPG.Character.Status;
 
 public class EnemyCharacterUI : CharacterUI
 {
-    public Vector3 hpBarOffset = new Vector3(0, 1.5f, 0);
+    public GameObject battleStatusUIPrefab;
+    public GameObject battleStatusUI;
+    public Vector3 battleStatusOffset = new Vector3(0, 1.5f, 0);
 
     public override void SetUp()
     {
         base.SetUp();
-        SetUpHPUI();
+        SetUpBattleStatusUI();
     }
 
     public override void Init()
@@ -22,20 +24,22 @@ public class EnemyCharacterUI : CharacterUI
 
     private void LateUpdate()
     {
-        UpdateHPBarPosition(transform.position + hpBarOffset);
+        UpdateBattleStatusUI(transform.position + battleStatusOffset);
     }
 
-    public void UpdateHPBarPosition(Vector3 position)
+    public void UpdateBattleStatusUI(Vector3 position)
     {
-        hpBar.transform.transform.position = Camera.main.WorldToScreenPoint(position);
+        battleStatusUI.transform.transform.position = Camera.main.WorldToScreenPoint(position);
     }
 
-    public void SetUpHPUI()
+    public void SetUpBattleStatusUI()
     {
         if (battleCanvas == null)
         {
             return;
         }
-        hpBar = Instantiate(hpBar, battleCanvas.transform);
+        battleStatusUI = Instantiate(battleStatusUIPrefab, battleCanvas.transform);
+        hpBar = battleStatusUI.GetComponentInChildren<HPBar>();
+        debuffUI = battleStatusUI.GetComponentInChildren<DebuffUI>();
     }
 }

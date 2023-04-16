@@ -21,6 +21,7 @@ namespace RPG.Battle.AI
         {
             movement.isMove = false;
             controller.animator.ResetTrigger("Move");
+            movement.ResetNav();
         }
 
         public void OnStart()

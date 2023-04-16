@@ -14,6 +14,9 @@ namespace RPG.Battle.UI
         [Header("HPUI")]
         public HPBar hpBar;
 
+        [Header("DebuffUI")]
+        public DebuffUI debuffUI;
+
         [Header("BattleText")]
         public Vector3 battleTextOffset;
 

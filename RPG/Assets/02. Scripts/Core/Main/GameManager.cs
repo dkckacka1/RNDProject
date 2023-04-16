@@ -79,6 +79,8 @@ namespace RPG.Core
         public Dictionary<int, Ability> abilityPrefabDic = new Dictionary<int, Ability>();
         #endregion
 
+        [Header("TEST")]
+        [SerializeField] bool isTest;
 
         private void Awake()
         {
