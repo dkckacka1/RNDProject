@@ -10,33 +10,186 @@ namespace RPG.Character.Equipment
     {
         public GameObject weaponLook;
 
-        private int attackDamage;
-        private float attackSpeed;
-        private float attackRange;
-        private float movementSpeed;
-        private float criticalChance;
-        private float criticalDamage;
-        private float attackChance;
+        public int attackDamage;
+        public float attackSpeed;
+        public float attackRange;
+        public float movementSpeed;
+        public float criticalChance;
+        public float criticalDamage;
+        public float attackChance;
 
         // Encapsulation
-        public int AttackDamage { get => attackDamage; set => attackDamage = value; }
-        public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
-        public float AttackRange { get => attackRange; set => attackRange = value; }
-        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
-        public float CriticalChance { get => criticalChance; set => criticalChance = value; }
-        public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
-        public float AttackChance { get => attackChance; set => attackChance = value; }
+        public int AttackDamage
+        {
+            get
+            {
+                int value = 0;
+                value += attackDamage;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).attackDamage;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).attackDamage;
+                }
+
+                value += (int)(attackDamage * reinforceCount * 0.1);
+
+                return value;
+            }
+
+            set => attackDamage = value;
+        }
+        public float AttackSpeed 
+        {
+            get
+            {
+                float value = 0f;
+                value += attackSpeed;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).attackSpeed;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).attackSpeed;
+                }
+
+                return value;
+            }
+
+            set => attackSpeed = value; 
+        }
+        public float AttackRange 
+        {
+            get
+            {
+                float value = 0f;
+                value += attackRange;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).attackRange;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).attackRange;
+                }
+
+                return value;
+            }
+
+            set => attackRange = value; 
+        }
+        public float MovementSpeed 
+        {
+            get
+            {
+                float value = 0f;
+                value += movementSpeed;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).movementSpeed;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).movementSpeed;
+                }
+
+                return value;
+            }
+            set => movementSpeed = value; 
+        }
+        public float CriticalChance 
+        {
+            get
+            {
+                float value = 0f;
+                value += criticalChance;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).criticalChance;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).criticalChance;
+                }
+
+                return value;
+            }
+
+            set => criticalChance = value; 
+        }
+        public float CriticalDamage 
+        {
+            get
+            {
+                float value = 0f;
+                value += criticalDamage;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).criticalDamage;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).criticalDamage;
+                }
+
+                return value;
+            }
+
+            set => criticalDamage = value; 
+        }
+        public float AttackChance
+        { 
+            get
+            {
+                float value = 0f;
+                value += attackChance;
+
+                if (prefix != null)
+                {
+                    value += (prefix as WeaponIncant).attackChance;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as WeaponIncant).attackChance;
+                }
+
+                return value;
+            }
+
+            set => attackChance = value; 
+        }
 
         public Weapon(Weapon weapon) : base(weapon)
         {
             weaponLook = weapon.weaponLook;
-            AttackDamage = weapon.AttackDamage;
-            AttackSpeed = weapon.AttackSpeed;
-            AttackRange = weapon.AttackRange;
-            MovementSpeed = weapon.MovementSpeed;
-            CriticalChance = weapon.CriticalChance;
-            CriticalDamage = weapon.CriticalDamage;
-            AttackChance = weapon.AttackChance;
+            attackDamage = weapon.attackDamage;
+            attackSpeed = weapon.attackSpeed;
+            attackRange = weapon.attackRange;
+            movementSpeed = weapon.movementSpeed;
+            criticalChance = weapon.criticalChance;
+            criticalDamage = weapon.criticalDamage;
+            attackChance = weapon.attackChance;
+
+            prefix = weapon.prefix;
+            suffix = weapon.suffix;
+
+            reinforceCount = weapon.reinforceCount;
 
             this.UpdateItem();
         }
@@ -80,5 +233,6 @@ namespace RPG.Character.Equipment
             CriticalDamage = (data as WeaponData).criticalDamage;
             AttackChance = (data as WeaponData).attackChance;
         }
+
     }
 }

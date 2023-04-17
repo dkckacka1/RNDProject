@@ -12,10 +12,96 @@ namespace RPG.Character.Equipment
         private float evasionCritical;
 
         // Encapsulation
-        public int DefencePoint { get => defencePoint; set => defencePoint = value; }
-        public int HpPoint { get => hpPoint; set => hpPoint = value; }
-        public float DecreseCriticalDamage { get => decreseCriticalDamage; set => decreseCriticalDamage = value; }
-        public float EvasionCritical { get => evasionCritical; set => evasionCritical = value; }
+        public int DefencePoint 
+        { 
+            get
+            {
+                int value = 0;
+                value += defencePoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as HelmetIncant).defencePoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as HelmetIncant).defencePoint;
+                }
+                value += (int)(defencePoint * 0.1 * reinforceCount);
+
+                return value;
+            }
+
+            set => defencePoint = value; 
+        }
+        public int HpPoint 
+        {
+            get
+            {
+                int value = 0;
+                value += hpPoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as HelmetIncant).hpPoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as HelmetIncant).hpPoint;
+                }
+                value += (int)(hpPoint * 0.1 * reinforceCount);
+
+                return value;
+            }
+
+            set => hpPoint = value; 
+        }
+        public float DecreseCriticalDamage 
+        {
+            get
+            {
+                float value = 0;
+                value += decreseCriticalDamage;
+
+                if (prefix != null)
+                {
+                    value += (prefix as HelmetIncant).decreseCriticalDamage;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as HelmetIncant).decreseCriticalDamage;
+                }
+
+                return value;
+            }
+
+            set => decreseCriticalDamage = value; 
+        }
+        public float EvasionCritical 
+        {
+            get
+            {
+                float value = 0;
+                value += evasionCritical;
+
+                if (prefix != null)
+                {
+                    value += (prefix as HelmetIncant).evasionCritical;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as HelmetIncant).evasionCritical;
+                }
+
+                return value;
+            }
+
+            set => evasionCritical = value; 
+        }
 
         public Helmet(Helmet helmet) : base(helmet)
         {
@@ -23,8 +109,6 @@ namespace RPG.Character.Equipment
             HpPoint = helmet.HpPoint;
             DecreseCriticalDamage = helmet.DecreseCriticalDamage;
             EvasionCritical = helmet.EvasionCritical;
-
-            this.UpdateItem();
         }
 
         public Helmet(HelmetData data) : base(data)
@@ -45,15 +129,6 @@ namespace RPG.Character.Equipment
             base.ChangeData(data);
             DefencePoint = (data as HelmetData).defencePoint;
             HpPoint = (data as HelmetData).hpPoint;
-            DecreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
-            EvasionCritical = (data as HelmetData).evasionCritical;
-        }
-
-        public override void UpdateReinfoce()
-        {
-
-            DefencePoint = (data as HelmetData).defencePoint + (int)((data as HelmetData).defencePoint * 0.1 * reinforceCount);
-            HpPoint = (data as HelmetData).hpPoint + (int)((data as HelmetData).hpPoint * 0.1 * reinforceCount);
             DecreseCriticalDamage = (data as HelmetData).decreseCriticalDamage;
             EvasionCritical = (data as HelmetData).evasionCritical;
         }

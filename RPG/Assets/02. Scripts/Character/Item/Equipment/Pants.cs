@@ -11,17 +11,79 @@ namespace RPG.Character.Equipment
         private float movementSpeed;
 
         // Encapsulation
-        public int DefencePoint { get => defencePoint; set => defencePoint = value; }
-        public int HpPoint { get => hpPoint; set => hpPoint = value; }
-        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+        public int DefencePoint 
+        { 
+            get
+            {
+                int value = 0;
+                value += defencePoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as PantsIncant).defencePoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as PantsIncant).defencePoint;
+                }
+                value += (int)(defencePoint * 0.1 * reinforceCount);
+
+                return value;
+            }
+
+            set => defencePoint = value; 
+        }
+        public int HpPoint 
+        { 
+            get
+            {
+                int value = 0;
+                value += hpPoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as PantsIncant).hpPoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as PantsIncant).hpPoint;
+                }
+                value += (int)(hpPoint * 0.1 * reinforceCount);
+
+                return value;
+            }
+
+            set => hpPoint = value; 
+        }
+        public float MovementSpeed 
+        {
+            get
+            {
+                float value = 0;
+                value += movementSpeed;
+
+                if (prefix != null)
+                {
+                    value += (prefix as PantsIncant).movementSpeed;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as PantsIncant).movementSpeed;
+                }
+
+                return value;
+            }
+            set => movementSpeed = value; 
+        }
 
         public Pants(Pants pants) : base(pants)
         {
             DefencePoint = pants.DefencePoint;
             HpPoint = pants.HpPoint;
             MovementSpeed = pants.MovementSpeed;
-
-            this.UpdateItem();
         }
 
         public Pants(PantsData data) : base(data)
@@ -44,12 +106,6 @@ namespace RPG.Character.Equipment
             MovementSpeed = (data as PantsData).movementSpeed;
         }
 
-        public override void UpdateReinfoce()
-        {
-            DefencePoint = (data as PantsData).defencePoint + (int)((data as PantsData).defencePoint * 0.1 * reinforceCount);
-            HpPoint = (data as PantsData).hpPoint + (int)((data as PantsData).hpPoint * 0.1 * reinforceCount);
-            MovementSpeed = (data as PantsData).movementSpeed;
-        }
 
 
     }

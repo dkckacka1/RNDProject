@@ -12,10 +12,96 @@ namespace RPG.Character.Equipment
         private float evasionPoint;
 
         // Encapsulation
-        public int HpPoint { get => hpPoint; set => hpPoint = value; }
-        public int DefencePoint { get => defencePoint; set => defencePoint = value; }
-        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
-        public float EvasionPoint { get => evasionPoint; set => evasionPoint = value; }
+        public int HpPoint 
+        { 
+            get
+            {
+                int value = 0;
+                value += hpPoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as ArmorIncant).hpPoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as ArmorIncant).hpPoint;
+                }
+
+                value += (int)(hpPoint * 0.1 * reinforceCount);
+                return value;
+            }
+
+            set => hpPoint = value; 
+        }
+        public int DefencePoint 
+        {
+            get
+            {
+                int value = 0;
+                value += defencePoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as ArmorIncant).defencePoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as ArmorIncant).defencePoint;
+                }
+
+                value += (int)(defencePoint * 0.1 * reinforceCount);
+                return value;
+            }
+
+            set => defencePoint = value; 
+        }
+        public float MovementSpeed 
+        {
+            get
+            {
+                float value = 0;
+                value += movementSpeed;
+
+                if (prefix != null)
+                {
+                    value += (prefix as ArmorIncant).movementSpeed;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as ArmorIncant).movementSpeed;
+                }
+
+                return value;
+            }
+
+            set => movementSpeed = value; 
+        }
+        public float EvasionPoint 
+        {
+            get
+            {
+                float value = 0;
+                value += evasionPoint;
+
+                if (prefix != null)
+                {
+                    value += (prefix as ArmorIncant).evasionPoint;
+                }
+
+                if (suffix != null)
+                {
+                    value += (suffix as ArmorIncant).evasionPoint;
+                }
+
+                return value;
+            }
+
+            set => evasionPoint = value; 
+        }
 
         public Armor(Armor armor) : base(armor)
         {
@@ -23,8 +109,6 @@ namespace RPG.Character.Equipment
             HpPoint = armor.HpPoint;
             MovementSpeed = armor.MovementSpeed;
             EvasionPoint = armor.EvasionPoint;
-
-            this.UpdateItem();
         }
 
         public Armor(ArmorData data) : base(data)
@@ -45,14 +129,6 @@ namespace RPG.Character.Equipment
             base.ChangeData(data);
             DefencePoint = (data as ArmorData).defencePoint;
             HpPoint = (data as ArmorData).hpPoint;
-            MovementSpeed = (data as ArmorData).movementSpeed;
-            EvasionPoint = (data as ArmorData).evasionPoint;
-        }
-
-        public override void UpdateReinfoce()
-        {
-            DefencePoint = (data as ArmorData).defencePoint + (int)((data as ArmorData).defencePoint * 0.1 * reinforceCount);
-            HpPoint = (data as ArmorData).hpPoint + (int)((data as ArmorData).hpPoint * 0.1 * reinforceCount);
             MovementSpeed = (data as ArmorData).movementSpeed;
             EvasionPoint = (data as ArmorData).evasionPoint;
         }

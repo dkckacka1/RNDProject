@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using RPG.Character.Equipment;
+using RPG.Core;
 
 namespace RPG.Main.UI
 {
@@ -34,6 +35,13 @@ namespace RPG.Main.UI
         [SerializeField] Image prefixAbilityImage;
         [SerializeField] TextMeshProUGUI prefixAbilityDescText;
 
+        private VerticalLayoutGroup[] groups;
+
+        private void Awake()
+        {
+            groups = GetComponentsInChildren<VerticalLayoutGroup>();
+        }
+
         public void InitGacha()
         {
             TodoText.fontSize = 18.5f;
@@ -49,8 +57,8 @@ namespace RPG.Main.UI
         public void InitIncant()
         {
             TodoText.fontSize = 22;
-            TodoText.text = @$"아이템에 인챈트를 적용하시겠습니까?" +
-                $"(접두와 접미 인챈트 둘중에 하나만 인챈트" +
+            TodoText.text = $"아이템에 인챈트를 적용하시겠습니까?\n" +
+                $"(접두와 접미 인챈트 둘중에 하나만 인챈트\n" +
                 $"되며 기존의 인챈트는 대체됩니다.)";
 
             excuteBtn.onClick.RemoveAllListeners();
@@ -59,8 +67,8 @@ namespace RPG.Main.UI
 
         public void InitReinforce()
         {
-            //TodoText.text = $"아이템을 강화하시겠습니까?\n" +
-            //    $"(아이템 강화확률 : {})";
+            TodoText.text = $"아이템을 강화하시겠습니까?\n" +
+                $"(아이템 강화확률 : {RandomSystem.ReinforceCalc(choiceItem)}%)";
 
             excuteBtn.onClick.RemoveAllListeners();
             excuteBtn.onClick.AddListener(() => Reinforce());
@@ -68,17 +76,56 @@ namespace RPG.Main.UI
 
         public void Incant()
         {
+            Incant incant;
+            RandomSystem.GachaIncant(choiceItem.equipmentType, GameManager.Instance.incantDic, out incant);
 
+            choiceItem.Incant(incant);
+
+            ShowItem(choiceItem);
+
+            Debug.Log("버튼 누름");
         }
 
         public void Gacha()
         {
+            EquipmentData data;
+            RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, choiceItem.equipmentType, out data);
+            if (data == null)
+            {
+                return;
+            }
 
+            switch (choiceItem.equipmentType)
+            {
+                case EquipmentItemType.Weapon:
+                    
+                    break;
+                case EquipmentItemType.Armor:
+                    break;
+                case EquipmentItemType.Pants:
+                    break;
+                case EquipmentItemType.Helmet:
+                    break;
+            }
+
+            choiceItem.ChangeData(data);
+
+            ShowItem(choiceItem);
+        }
+
+        public void Exit()
+        {
+            transform.parent.gameObject.SetActive(false);
         }
 
         public void Reinforce()
         {
+            choiceItem.ReinforceItem();
 
+            TodoText.text = $"아이템을 강화하시겠습니까?\n" +
+    $"(아이템 강화확률 : {RandomSystem.ReinforceCalc(choiceItem)}%)";
+
+            ShowItem(choiceItem);
         }
 
         public void ChoiceItem(Equipment item)
@@ -91,7 +138,7 @@ namespace RPG.Main.UI
         {
             equipmentImage.sprite = item.data.equipmentSprite;
             equipmentDescText.text = $"" +
-                $"{MyUtility.returnSideText("장비 이름 : ", item.itemName)}\n" +
+                $"{MyUtility.returnSideText("장비 이름 : ", $"{((item.reinforceCount > 0) ? $"+{item.reinforceCount} " : "")}{item.itemName}")}\n" +
                 $"{MyUtility.returnSideText("장비 유형 : ", item.ToStringEquipmentType())}\n" +
                 $"{MyUtility.returnSideText("장비 등급 : ", item.ToStringTier())}\n" +
                 $"{MyUtility.returnSideText("접두 인챈트 : ", item.ToStringIncant(IncantType.prefix))}\n" +
@@ -113,8 +160,12 @@ namespace RPG.Main.UI
                     break;
             }
 
+            equipmentStatusText.gameObject.SetActive(false);
+            equipmentStatusText.gameObject.SetActive(true);
+
             if (item.prefix != null)
             {
+                prefixIncantDescObject.SetActive(true);
                 ShowIncant(item.prefix);
             }
             else
@@ -124,6 +175,7 @@ namespace RPG.Main.UI
 
             if (item.suffix != null)
             {
+                suffixIncantDescObject.SetActive(true);
                 ShowIncant(item.suffix);
             }
             else
@@ -155,6 +207,7 @@ namespace RPG.Main.UI
 
                         if (incant.isIncantAbility)
                         {
+                            prefixAbilityDescObject.SetActive(true);
                             prefixAbilityImage.sprite = incant.abilityIcon;
                             prefixAbilityDescText.text = $"{incant.abilityDesc}";
                         }
@@ -183,6 +236,7 @@ namespace RPG.Main.UI
 
                         if (incant.isIncantAbility)
                         {
+                            suffixAbilityDescObject.SetActive(true);
                             suffixAbilityImage.sprite = incant.abilityIcon;
                             suffixAbilityDescText.text = $"{incant.abilityDesc}";
                         }
@@ -197,22 +251,36 @@ namespace RPG.Main.UI
 
         private void ShowWeaponText(Weapon weapon)
         {
-            
+            equipmentStatusText.text = $"{MyUtility.returnSideText("공격력 : ",weapon.AttackDamage.ToString())}\n" +
+                $"{MyUtility.returnSideText("공격속도 : ", $"초당 {weapon.AttackSpeed}회 타격")}\n" +
+                $"{MyUtility.returnSideText("공격범위 : ", weapon.AttackRange.ToString())}\n" +
+                $"{MyUtility.returnSideText("이동속도 : ", weapon.MovementSpeed.ToString())}\n" +
+                $"{MyUtility.returnSideText("치명타 확률 : ", $"{weapon.CriticalChance * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 : ", $"공격력의 {weapon.CriticalDamage * 100}%")}\n" +
+                $"{MyUtility.returnSideText("적중률 : ", $"{weapon.AttackChance * 100}%")}";
         }
 
         private void ShowArmorText(Armor armor)
         {
-
+            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", armor.HpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 : ", $"{armor.DefencePoint}회 타격")}\n" +
+                $"{MyUtility.returnSideText("이동속도 : ", armor.MovementSpeed.ToString())}\n" +
+                $"{MyUtility.returnSideText("회피율 : ", $"{armor.EvasionPoint}%")}";
         }
 
         private void ShowHelmetText(Helmet helmet)
         {
-
+            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", helmet.HpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 : ", $"{helmet.DefencePoint}")}\n" +
+                $"{MyUtility.returnSideText("치명타 데미지 감소율 : ", $"{helmet.DecreseCriticalDamage * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 회피율 : ", $"{helmet.EvasionCritical * 100}%")}";
         }
 
         private void ShowPantsText(Pants pants)
         {
-
+            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", pants.HpPoint.ToString())}\n" +
+                $"{MyUtility.returnSideText("방어력 : ", $"{pants.DefencePoint}")}\n" +
+                $"{MyUtility.returnSideText("이동속도 : ", $"{pants.MovementSpeed}")}";
         }
     }
 }

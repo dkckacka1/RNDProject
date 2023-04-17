@@ -72,7 +72,6 @@ namespace RPG.Character.Status
                     Incant suffixIncant = GameManager.Instance.incantDic[userInfo.weaponSuffixIncantID];
                     weapon.Incant(suffixIncant);
                 }
-                weapon.UpdateItem();
 
                 this.EquipItem(weapon);
             }
@@ -95,7 +94,6 @@ namespace RPG.Character.Status
                     Incant suffixIncant = GameManager.Instance.incantDic[userInfo.armorSuffixIncantID];
                     armor.Incant(suffixIncant);
                 }
-                armor.UpdateItem();
 
                 this.EquipItem(armor);
             }
@@ -118,7 +116,6 @@ namespace RPG.Character.Status
                     Incant suffixIncant = GameManager.Instance.incantDic[userInfo.helmetSuffixIncantID];
                     helmet.Incant(suffixIncant);
                 }
-                helmet.UpdateItem();
 
                 this.EquipItem(helmet);
             }
@@ -142,9 +139,6 @@ namespace RPG.Character.Status
                     Incant suffixIncant = GameManager.Instance.incantDic[userInfo.pantsSuffixIncantID];
                     pants.Incant(suffixIncant);
                 }
-
-                pants.UpdateItem();
-
                 this.EquipItem(pants);
             }
             else

@@ -134,19 +134,15 @@ namespace RPG.Test
                     {
                         case EquipmentItemType.Weapon:
                             gameManager.Player.currentWeapon.ChangeData(data);
-                            gameManager.Player.currentWeapon.UpdateItem();
                             break;
                         case EquipmentItemType.Armor:
                             gameManager.Player.currentArmor.ChangeData(data);
-                            gameManager.Player.currentArmor.UpdateItem();
                             break;
                         case EquipmentItemType.Pants:
                             gameManager.Player.currentPants.ChangeData(data);
-                            gameManager.Player.currentPants.UpdateItem();
                             break;
                         case EquipmentItemType.Helmet:
                             gameManager.Player.currentHelmet.ChangeData(data);
-                            gameManager.Player.currentHelmet.UpdateItem();
                             break;
                     }
 

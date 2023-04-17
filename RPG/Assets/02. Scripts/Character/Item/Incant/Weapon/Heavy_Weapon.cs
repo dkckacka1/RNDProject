@@ -7,20 +7,18 @@ namespace RPG.Character.Equipment
 {
     public class Heavy_Weapon : WeaponIncant
     {
+        public Heavy_Weapon()
+        {
+            attackDamage = 30;
+            attackSpeed = -1;
+        }
+
         public override void IncantEquipment(Equipment equipment)
         {
-            Weapon weapon = equipment as Weapon;
-
-            weapon.AttackDamage += 30;
-            weapon.AttackSpeed -= 2;
         }
 
         public override void RemoveIncant(Equipment equipment)
         {
-            Weapon weapon = equipment as Weapon;
-
-            weapon.AttackDamage -= 30;
-            weapon.AttackSpeed += 2;
         }
     }
 }

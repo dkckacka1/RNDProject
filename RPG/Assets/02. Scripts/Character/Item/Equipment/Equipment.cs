@@ -205,27 +205,6 @@ namespace RPG.Character.Equipment
             reinforceCount = 0;
         }
 
-        public void UpdateItem()
-        {
-            UpdateReinfoce();
-            UpdateIncant();
-        }
-
-        public void UpdateIncant()
-        {
-            if (prefix != null)
-            {
-                prefix.IncantEquipment(this);
-            }
-
-            if (suffix != null)
-            {
-                suffix.IncantEquipment(this);
-            }
-        }
-
-        public abstract void UpdateReinfoce();
-
         public override string ToString()
         {
             return

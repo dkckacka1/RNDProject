@@ -55,22 +55,22 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint < 0)
             {
-                returnStr += $"체력(-{hpPoint})";
+                returnStr += $"체력({hpPoint})";
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력(-{defencePoint})";
+                returnStr += $"방어력({defencePoint})";
             }
 
             if (decreseCriticalDamage < 0)
             {
-                returnStr += $"치명타데미지감소(-{decreseCriticalDamage * 100}%)";
+                returnStr += $"치명타데미지감소({decreseCriticalDamage * 100}%)";
             }
 
             if (evasionCritical < 0)
             {
-                returnStr += $"치명타회피율(-{evasionCritical * 100}%)";
+                returnStr += $"치명타회피율({evasionCritical * 100}%)";
             }
 
             return returnStr;

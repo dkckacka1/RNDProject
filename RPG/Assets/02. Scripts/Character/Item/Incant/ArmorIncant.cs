@@ -56,22 +56,22 @@ namespace RPG.Character.Equipment
 
             if (hpPoint < 0)
             {
-                returnStr += $"체력(-{hpPoint})";
+                returnStr += $"체력({hpPoint})";
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력(-{defencePoint})";
+                returnStr += $"방어력({defencePoint})";
             }
 
             if (movementSpeed < 0)
             {
-                returnStr += $"이동 속도(-{movementSpeed})";
+                returnStr += $"이동 속도({movementSpeed})";
             }
 
             if (evasionPoint < 0)
             {
-                returnStr += $"회피율(-{evasionPoint * 100}%)";
+                returnStr += $"회피율({evasionPoint * 100}%)";
             }
 
 

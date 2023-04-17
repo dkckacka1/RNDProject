@@ -48,17 +48,17 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint < 0)
             {
-                returnStr += $"체력(-{hpPoint})";
+                returnStr += $"체력({hpPoint})";
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력(-{defencePoint})";
+                returnStr += $"방어력({defencePoint})";
             }
 
             if (movementSpeed < 0)
             {
-                returnStr += $"이동속도(-{movementSpeed})";
+                returnStr += $"이동속도({movementSpeed})";
             }
 
             return returnStr;
