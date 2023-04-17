@@ -121,19 +121,19 @@ namespace RPG.Core
 
         private static EquipmentItemTier GetRandomTier(int tex)
         {
-            if (tex <= 60)
+            if (tex <= Constant.getNormalPercent)
             {
                 return EquipmentItemTier.Normal;
             }
-            else if (tex <= 90)
+            else if (tex <= Constant.getNormalPercent + Constant.getRarelPercent)
             {
                 return EquipmentItemTier.Rare;
             }
-            else if (tex <= 98)
+            else if (tex <= Constant.getNormalPercent + Constant.getRarelPercent + Constant.getUniquePercent)
             {
                 return EquipmentItemTier.Unique;
             }
-            else if (tex <= 100)
+            else if (tex <= Constant.getNormalPercent + Constant.getRarelPercent + Constant.getUniquePercent + Constant.getLegendaryPercent)
             {
                 return EquipmentItemTier.Legendary;
             }

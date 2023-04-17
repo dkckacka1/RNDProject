@@ -9,6 +9,7 @@ namespace RPG.Character.Equipment
         public string EquipmentName;
         public EquipmentItemType equipmentType;
         public EquipmentItemTier equipmentTier;
+        public Sprite equipmentSprite;
         [Space()]
         [TextArea()]
         public string description;

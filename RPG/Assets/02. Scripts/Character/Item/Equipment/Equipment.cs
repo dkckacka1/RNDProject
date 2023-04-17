@@ -176,16 +176,16 @@ namespace RPG.Character.Equipment
 
         public bool isPrefixAbilitySkill()
         {
-            if (prefix == null)             return false;
-            if (!prefix.isIncantAbility)    return false;
+            if (prefix == null) return false;
+            if (!prefix.isIncantAbility) return false;
 
             return true;
         }
 
         public bool isSuffixAbilitySkill()
         {
-            if (suffix == null)             return false;
-            if (!suffix.isIncantAbility)    return false;
+            if (suffix == null) return false;
+            if (!suffix.isIncantAbility) return false;
 
             return true;
         }
@@ -228,12 +228,73 @@ namespace RPG.Character.Equipment
 
         public override string ToString()
         {
-            return 
+            return
                 $"장비이름 : {itemName}\n" +
                 $"장비티어 : {equipmentTier}\n" +
                 $"장비유형 : {equipmentType}\n" +
                 $"접두인챈트 : {(prefix != null ? prefix.incantName : "없음")}\n" +
                 $"접미인챈트 : {(suffix != null ? suffix.incantName : "없음")}";
+        }
+
+        public string ToStringTier()
+        {
+            switch (equipmentTier)
+            {
+                case EquipmentItemTier.Normal:
+                    return "노말";
+                case EquipmentItemTier.Rare:
+                    return "레어";
+                case EquipmentItemTier.Unique:
+                    return "유니크";
+                case EquipmentItemTier.Legendary:
+                    return "전설";
+            }
+
+            return "";
+        }
+
+        public string ToStringEquipmentType()
+        {
+            switch (equipmentType)
+            {
+                case EquipmentItemType.Weapon:
+                    return "무기";
+                case EquipmentItemType.Armor:
+                    return "갑옷";
+                case EquipmentItemType.Pants:
+                    return "바지";
+                case EquipmentItemType.Helmet:
+                    return "투구";
+            }
+
+            return "";
+        }
+
+        public string ToStringIncant(IncantType type)
+        {
+            switch (type)
+            {
+                case IncantType.prefix:
+                    {
+                        if (prefix == null)
+                        {
+                            return "없음";
+                        }
+
+                        return prefix.incantName;
+                    }
+                case IncantType.suffix:
+                    {
+                        if (suffix == null)
+                        {
+                            return "없음";
+                        }
+
+                        return suffix.incantName;
+                    }
+            }
+
+            return "";
         }
     }
 
