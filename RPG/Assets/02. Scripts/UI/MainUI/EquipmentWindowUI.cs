@@ -141,8 +141,8 @@ namespace RPG.Main.UI
         public void ShowDescText(Equipment equipment)
         {
             string desc = equipment.description;
-            desc = (equipment.prefix != null) ? $"{desc}\n{equipment.prefix.ShowDesc()}" : desc;
-            desc = (equipment.suffix != null) ? $"{desc}\n{equipment.suffix.ShowDesc()}" : desc;
+            //desc = (equipment.prefix != null) ? $"{desc}\n{equipment.prefix.ShowDesc()}" : desc;
+            //desc = (equipment.suffix != null) ? $"{desc}\n{equipment.suffix.ShowDesc()}" : desc;
             equipmentDesc.text = desc;
 
         }

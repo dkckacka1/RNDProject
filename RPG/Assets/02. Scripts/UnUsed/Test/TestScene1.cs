@@ -14,10 +14,13 @@ namespace RPG.Core
 {
     public class TestScene1 : MonoBehaviour
     {
-        public GameObject target;
-
+        public ItemPopupUI ui;
         private void Start()
         {
+            Incant incant = GameManager.Instance.incantDic[0];
+            GameManager.Instance.Player.currentWeapon.Incant(incant);
+            ui.InitGacha();
+            ui.ChoiceItem(GameManager.Instance.Player.currentWeapon);
             
         }
 
@@ -29,26 +32,6 @@ namespace RPG.Core
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(100, 10, 80, 80), "Test"))
-            {
-                var ability = BattleManager.ObjectPool.GetAbility(2);
-                ability.InitAbility(target.transform, Nothing);
-            }
-
-            if (GUI.Button(new Rect(100, 100, 80, 80), "Test"))
-            {
-                
-            }
-
-            if (GUI.Button(new Rect(100, 200, 80, 80), "Test"))
-            {
-            }
-
-        }
-
-        public void Nothing(BattleStatus status)
-        {
-
         }
     }
 }

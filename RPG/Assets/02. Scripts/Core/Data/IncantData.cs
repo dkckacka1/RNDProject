@@ -9,8 +9,6 @@ public class IncantData : Data
     public IncantType incantType;
     public EquipmentItemType itemType;
     public string incantName;
-    public string addDesc;
-    public string minusDesc;
     [Header("Ability")]
     public bool isIncantAbility;
     [TextArea()]

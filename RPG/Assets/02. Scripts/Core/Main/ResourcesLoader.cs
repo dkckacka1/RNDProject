@@ -73,8 +73,6 @@ namespace RPG.Core
                 incantInstance.incantType = incant.incantType;
                 incantInstance.itemType = incant.itemType;
                 incantInstance.incantName = incant.incantName;
-                incantInstance.addDesc = incant.addDesc;
-                incantInstance.minusDesc = incant.minusDesc;
                 incantInstance.isIncantAbility = incant.isIncantAbility;
                 incantInstance.abilityDesc = incant.abilityDesc;
                 incantInstance.abilityIcon = incant.abilityIcon;
