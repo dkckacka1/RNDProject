@@ -24,12 +24,6 @@ namespace RPG.Main.UI
         [SerializeField] EquipmentIncantAbilityUI suffixIncantUI;
         [SerializeField] TextMeshProUGUI incantAbilityDescText;
 
-        [Header("ButtonText")]
-        [SerializeField] TextMeshProUGUI reinforceCount;
-        [SerializeField] TextMeshProUGUI reinforceProbailityText;
-        [SerializeField] TextMeshProUGUI incantCount;
-        [SerializeField] TextMeshProUGUI itemTicketCount;
-
         [Header("IncantColor")]
         [SerializeField] Color suffixColor; // 접두 표현 컬러
         [SerializeField] Color prefixColor; // 접미 표현 컬러
@@ -48,7 +42,6 @@ namespace RPG.Main.UI
 
         public void Init()
         {
-            ShowUserResource();
             ShowWeapon();
         }
 
@@ -75,25 +68,6 @@ namespace RPG.Main.UI
 
 
         #endregion
-
-        public void ShowUserResource()
-        {
-            if (reinforceCount == null)
-            {
-                Debug.LogError("UI 미적용");
-                return;
-            }
-
-            if (GameManager.Instance.UserInfo == null)
-            {
-                Debug.LogError("userinfo 없음!");
-                return;
-            }
-
-            reinforceCount.text = $"X {GameManager.Instance.UserInfo.itemReinforceCount}";
-            incantCount.text = $"X {GameManager.Instance.UserInfo.itemIncantCount}";
-            itemTicketCount.text = $"X {GameManager.Instance.UserInfo.itemGachaTicket}";
-        }
 
         public void UpdateItem(Equipment item)
         {
@@ -149,13 +123,8 @@ namespace RPG.Main.UI
             }
 
             ShowReinforceCount(choiceItem);
-            ShowReinforceSuccessProbaility();
         }
 
-        private void ShowReinforceSuccessProbaility()
-        {
-            reinforceProbailityText.text = $"(강화확률:{RandomSystem.ReinforceCalc(choiceItem)}%)";
-        }
 
         public void ShowNameText(Equipment equipment)
         {

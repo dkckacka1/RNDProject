@@ -48,7 +48,6 @@ namespace RPG.Main.UI
             UpdateTicketCount();
             statusUI.UpdateStatusText();
             statusUI.UpdateUserText();
-            equipmentUI.ShowUserResource();
             equipmentUI.UpdateItem(equipmentUI.choiceItem);
         }
 
