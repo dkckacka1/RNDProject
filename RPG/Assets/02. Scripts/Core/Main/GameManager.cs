@@ -138,8 +138,8 @@ namespace RPG.Core
         public UserInfo CreateUserInfo()
         {
             UserInfo userInfo = new UserInfo();
-            userInfo.itemReinforceCount = 10;
-            userInfo.itemIncantCount = 10;
+            userInfo.itemReinforceTicket = 10;
+            userInfo.itemIncantTicket = 10;
             userInfo.itemGachaTicket = 10;
             userInfo.risingTopCount = 1;
             userInfo.energy = 0;

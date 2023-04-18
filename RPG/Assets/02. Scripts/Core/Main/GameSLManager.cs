@@ -8,8 +8,8 @@ namespace RPG.Core
     {
         public static void SaveToPlayerPrefs(UserInfo userinfo)
         {
-            PlayerPrefs.SetInt("itemReinforceCount", userinfo.itemReinforceCount);
-            PlayerPrefs.SetInt("itemIncantCount", userinfo.itemIncantCount);
+            PlayerPrefs.SetInt("itemReinforceCount", userinfo.itemReinforceTicket);
+            PlayerPrefs.SetInt("itemIncantCount", userinfo.itemIncantTicket);
             PlayerPrefs.SetInt("itemGachaTicket", userinfo.itemGachaTicket);
             PlayerPrefs.SetInt("risingTopCount", userinfo.risingTopCount);
             PlayerPrefs.SetInt("Energy", userinfo.energy);
@@ -42,8 +42,8 @@ namespace RPG.Core
         {
             UserInfo userData = new UserInfo();
 
-            userData.itemReinforceCount = PlayerPrefs.GetInt("itemReinforceCount");
-            userData.itemIncantCount = PlayerPrefs.GetInt("itemIncantCount");
+            userData.itemReinforceTicket = PlayerPrefs.GetInt("itemReinforceCount");
+            userData.itemIncantTicket = PlayerPrefs.GetInt("itemIncantCount");
             userData.itemGachaTicket = PlayerPrefs.GetInt("itemGachaTicket");
             userData.risingTopCount = PlayerPrefs.GetInt("risingTopCount");
             userData.energy = PlayerPrefs.GetInt("Energy");

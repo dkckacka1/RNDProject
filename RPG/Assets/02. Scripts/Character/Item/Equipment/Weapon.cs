@@ -190,8 +190,6 @@ namespace RPG.Character.Equipment
             suffix = weapon.suffix;
 
             reinforceCount = weapon.reinforceCount;
-
-            this.UpdateItem();
         }
 
         public Weapon(WeaponData data) : base(data)
@@ -222,17 +220,5 @@ namespace RPG.Character.Equipment
             CriticalDamage = (data as WeaponData).criticalDamage;
             AttackChance = (data as WeaponData).attackChance;
         }
-
-        public override void UpdateReinfoce()
-        {
-            AttackDamage = (data as WeaponData).attackDamage + (int)((data as WeaponData).attackDamage * 0.1 * reinforceCount);
-            AttackSpeed = (data as WeaponData).attackSpeed;
-            AttackRange = (data as WeaponData).attackRange;
-            MovementSpeed = (data as WeaponData).movementSpeed;
-            CriticalChance = (data as WeaponData).criticalChance;
-            CriticalDamage = (data as WeaponData).criticalDamage;
-            AttackChance = (data as WeaponData).attackChance;
-        }
-
     }
 }

@@ -81,12 +81,12 @@ namespace RPG.Main.UI
 
         public void IncantItem()
         {
-            if(GameManager.Instance.UserInfo.itemIncantCount <= 0)
+            if(GameManager.Instance.UserInfo.itemIncantTicket <= 0)
             {
                 return;
             }
 
-            GameManager.Instance.UserInfo.itemIncantCount--;
+            GameManager.Instance.UserInfo.itemIncantTicket--;
 
             Incant incant;
             if (RandomSystem.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
@@ -94,7 +94,6 @@ namespace RPG.Main.UI
                 equipmentUI.choiceItem.Incant(incant);
             }
 
-            equipmentUI.choiceItem.UpdateItem();
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
@@ -102,12 +101,12 @@ namespace RPG.Main.UI
 
         public void ReinforceItem()
         {
-            if(GameManager.Instance.UserInfo.itemReinforceCount <= 0)
+            if(GameManager.Instance.UserInfo.itemReinforceTicket <= 0)
             {
                 return;
             }
 
-            GameManager.Instance.UserInfo.itemReinforceCount--;
+            GameManager.Instance.UserInfo.itemReinforceTicket--;
             if (MyUtility.ProbailityCalc(100f - (RandomSystem.ReinforceCalc(equipmentUI.choiceItem)),0f,100f))
             {
                 equipmentUI.choiceItem.ReinforceItem();
@@ -119,7 +118,6 @@ namespace RPG.Main.UI
             }
 
 
-            equipmentUI.choiceItem.UpdateItem();
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
@@ -142,7 +140,6 @@ namespace RPG.Main.UI
                         if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentWeapon.ChangeData(data);
-                            GameManager.Instance.Player.currentWeapon.UpdateItem();
                         }
                     }
 
@@ -153,7 +150,6 @@ namespace RPG.Main.UI
                         if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentArmor.ChangeData(data);
-                            GameManager.Instance.Player.currentArmor.UpdateItem();
                         }
                     }
                     break;
@@ -163,7 +159,6 @@ namespace RPG.Main.UI
                         if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentPants.ChangeData(data);
-                            GameManager.Instance.Player.currentPants.UpdateItem();
                         }
                     }
                     break;
@@ -173,7 +168,6 @@ namespace RPG.Main.UI
                         if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
                         {
                             GameManager.Instance.Player.currentHelmet.ChangeData(data);
-                            GameManager.Instance.Player.currentHelmet.UpdateItem();
                         }
                     }
                     break;
@@ -191,9 +185,14 @@ namespace RPG.Main.UI
                 return;
             }
             this.itemGachaTicketText.text = $"{GameManager.Instance.UserInfo.itemGachaTicket}";
-            this.reinforceText.text = $"{GameManager.Instance.UserInfo.itemReinforceCount}";
-            this.incantText.text = $"{GameManager.Instance.UserInfo.itemIncantCount}";
+            this.reinforceText.text = $"{GameManager.Instance.UserInfo.itemReinforceTicket}";
+            this.incantText.text = $"{GameManager.Instance.UserInfo.itemIncantTicket}";
             this.EnergyText.text = $"{GameManager.Instance.UserInfo.energy}";
+        }
+
+        public void ShowBlackSmithUI(Canvas blackSmithCanvas)
+        {
+            blackSmithCanvas.gameObject.SetActive(true);
         }
 
         // HACK : TEST
@@ -216,13 +215,13 @@ namespace RPG.Main.UI
 
             if (GUI.Button(new Rect(10, 190, 80, 80), "강화권 추가"))
             {
-                GameManager.Instance.UserInfo.itemReinforceCount += 100;
+                GameManager.Instance.UserInfo.itemReinforceTicket += 100;
                 UpdateUI();
             }
 
             if (GUI.Button(new Rect(10, 280, 80, 80), "인챈트 추가"))
             {
-                GameManager.Instance.UserInfo.itemIncantCount += 100;
+                GameManager.Instance.UserInfo.itemIncantTicket += 100;
                 UpdateUI();
             }
         }

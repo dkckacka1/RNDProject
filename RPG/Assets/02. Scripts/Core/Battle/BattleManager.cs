@@ -269,8 +269,8 @@ namespace RPG.Battle.Core
 
             userInfo.energy += gainEnergy;
             userInfo.itemGachaTicket += gainGacha;
-            userInfo.itemReinforceCount += gainReinforce;
-            userInfo.itemIncantCount += gainIncant;
+            userInfo.itemReinforceTicket += gainReinforce;
+            userInfo.itemIncantTicket += gainIncant;
         }
 
         private void ResetStage()

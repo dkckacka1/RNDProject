@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using RPG.Character.Equipment;
 using RPG.Core;
+using UnityEngine.Events;
 
 namespace RPG.Main.UI
 {
@@ -13,7 +14,9 @@ namespace RPG.Main.UI
         public Equipment choiceItem;
 
         [Header("itemPopupProperty")]
-        [SerializeField] Button excuteBtn;
+        [SerializeField] Button incantExcuteBtn;
+        [SerializeField] Button reinforceExcuteBtn;
+        [SerializeField] Button gachaExcuteBtn;
         [SerializeField] TextMeshProUGUI TodoText;
 
         [Header("EquipmentData")]
@@ -50,8 +53,13 @@ namespace RPG.Main.UI
                 $"(적용된 인챈트와 강화 수치가 사라집니다.)\n" +
                 $"(노말 : {Constant.getNormalPercent}%, 레어 : {Constant.getRarelPercent}%, 유니크 : {Constant.getUniquePercent}%, 전설 : {Constant.getLegendaryPercent}%)";
 
-            excuteBtn.onClick.RemoveAllListeners();
-            excuteBtn.onClick.AddListener(() => Gacha());
+            InitExcuteBtn();
+
+            incantExcuteBtn.gameObject.SetActive(false);
+            reinforceExcuteBtn.gameObject.SetActive(false);
+            gachaExcuteBtn.gameObject.SetActive(true);
+
+            
         }
 
         public void InitIncant()
@@ -61,8 +69,12 @@ namespace RPG.Main.UI
                 $"(접두와 접미 인챈트 둘중에 하나만 인챈트\n" +
                 $"되며 기존의 인챈트는 대체됩니다.)";
 
-            excuteBtn.onClick.RemoveAllListeners();
-            excuteBtn.onClick.AddListener(() => Incant());
+            InitExcuteBtn();
+
+            incantExcuteBtn.gameObject.SetActive(true);
+            reinforceExcuteBtn.gameObject.SetActive(false);
+            gachaExcuteBtn.gameObject.SetActive(false);
+
         }
 
         public void InitReinforce()
@@ -70,24 +82,47 @@ namespace RPG.Main.UI
             TodoText.text = $"아이템을 강화하시겠습니까?\n" +
                 $"(아이템 강화확률 : {RandomSystem.ReinforceCalc(choiceItem)}%)";
 
-            excuteBtn.onClick.RemoveAllListeners();
-            excuteBtn.onClick.AddListener(() => Reinforce());
+            InitExcuteBtn();
+
+            incantExcuteBtn.gameObject.SetActive(false);
+            reinforceExcuteBtn.gameObject.SetActive(true);
+            gachaExcuteBtn.gameObject.SetActive(false);
         }
 
+        public void InitExcuteBtn()
+        {
+            if (GameManager.Instance.UserInfo.itemIncantTicket <= 0)
+            {
+                incantExcuteBtn.interactable = false;
+            }
+
+            if (GameManager.Instance.UserInfo.itemReinforceTicket <= 0)
+            {
+                reinforceExcuteBtn.interactable = false;
+            }
+
+            if (GameManager.Instance.UserInfo.itemGachaTicket <= 0)
+            {
+                gachaExcuteBtn.interactable = false;
+            }
+        }
         public void Incant()
         {
+            GameManager.Instance.UserInfo.itemIncantTicket--;
+
             Incant incant;
             RandomSystem.GachaIncant(choiceItem.equipmentType, GameManager.Instance.incantDic, out incant);
 
             choiceItem.Incant(incant);
 
             ShowItem(choiceItem);
-
-            Debug.Log("버튼 누름");
+            InitIncant();
         }
 
         public void Gacha()
         {
+            GameManager.Instance.UserInfo.itemGachaTicket--;
+
             EquipmentData data;
             RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, choiceItem.equipmentType, out data);
             if (data == null)
@@ -111,21 +146,22 @@ namespace RPG.Main.UI
             choiceItem.ChangeData(data);
 
             ShowItem(choiceItem);
-        }
-
-        public void Exit()
-        {
-            transform.parent.gameObject.SetActive(false);
+            InitGacha();
         }
 
         public void Reinforce()
         {
+            GameManager.Instance.UserInfo.itemReinforceTicket--;
+
             choiceItem.ReinforceItem();
 
-            TodoText.text = $"아이템을 강화하시겠습니까?\n" +
-    $"(아이템 강화확률 : {RandomSystem.ReinforceCalc(choiceItem)}%)";
-
             ShowItem(choiceItem);
+            InitReinforce();
+        }
+
+        public void Exit(Canvas canvas)
+        {
+            canvas.gameObject.SetActive(false);
         }
 
         public void ChoiceItem(Equipment item)

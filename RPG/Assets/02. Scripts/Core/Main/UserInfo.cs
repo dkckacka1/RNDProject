@@ -7,8 +7,8 @@ namespace RPG.Core
 {
     public class UserInfo
     {
-        public int itemReinforceCount; // 장비 강화권
-        public int itemIncantCount; // 장비 인챈트권
+        public int itemReinforceTicket; // 장비 강화권
+        public int itemIncantTicket; // 장비 인챈트권
         public int itemGachaTicket; // 장비 뽑기권
         public int risingTopCount;
         public int energy;
@@ -61,8 +61,8 @@ namespace RPG.Core
         public override string ToString()
         {
             string str =
-                $"itemReinforceCount : {this.itemReinforceCount}\n" +
-                $"itemIncantCount : {this.itemIncantCount}\n" +
+                $"itemReinforceCount : {this.itemReinforceTicket}\n" +
+                $"itemIncantCount : {this.itemIncantTicket}\n" +
                 $"itemGachaTicket : {this.itemGachaTicket}\n" +
                 $"risingTopCount : {this.risingTopCount}\n" +
                 $"Energy : {this.energy}\n" +
