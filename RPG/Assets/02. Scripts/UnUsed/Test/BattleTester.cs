@@ -47,7 +47,7 @@ namespace RPG.Test
                     player.transform.position = playerPos.position;
                 }
 
-                if (GUI.Button(new Rect(10, 130, 100, 100), "CreateEnemy"))
+                if (GUI.Button(new Rect(10, 110, 100, 100), "CreateEnemy"))
                 {
                     for (int i = 1; i <= enemyCreateNum; i++)
                     {
@@ -63,7 +63,7 @@ namespace RPG.Test
                     }
                 }
 
-                if (GUI.Button(new Rect(10, 230, 100, 100), "RemoveAllController"))
+                if (GUI.Button(new Rect(10, 210, 100, 100), "RemoveAllController"))
                 {
                     if (battleManager.livePlayer != null)
                     {
@@ -77,7 +77,7 @@ namespace RPG.Test
                     battleManager.liveEnemies.Clear();
                 }
 
-                if (GUI.Button(new Rect(10, 330, 100, 100), "CreateStage"))
+                if (GUI.Button(new Rect(10, 310, 100, 100), "CreateStage"))
                 {
                     StageData data;
                     if (!gameManager.stageDataDic.TryGetValue(stageDataID, out data))
@@ -106,12 +106,12 @@ namespace RPG.Test
 
             if (battleStateButton)
             {
-                if (GUI.Button(new Rect(10, 10, 100, 100), "Battle"))
+                if (GUI.Button(new Rect(110, 10, 100, 100), "Battle"))
                 {
                     battleManager.SetBattleState(BattleSceneState.Battle);
                 }
 
-                if (GUI.Button(new Rect(10, 130, 100, 100), "Pause"))
+                if (GUI.Button(new Rect(110, 110, 100, 100), "Pause"))
                 {
                     battleManager.SetBattleState(BattleSceneState.Pause);
                 }
@@ -119,7 +119,7 @@ namespace RPG.Test
 
             if (changeEquipmentButton)
             {
-                if (GUI.Button(new Rect(10, 10, 100, 100), "ChangeEquipment"))
+                if (GUI.Button(new Rect(210, 10, 100, 100), "ChangeEquipment"))
                 {
                     EquipmentData data;
                     if (!gameManager.equipmentDataDic.TryGetValue(equipmentDataID, out data))
@@ -152,7 +152,7 @@ namespace RPG.Test
                     gameManager.Player.SetEquipment();
                 }
 
-                if (GUI.Button(new Rect(10, 130, 100, 100), "ChangeIncant"))
+                if (GUI.Button(new Rect(210, 110, 100, 100), "ChangeIncant"))
                 {
                     Incant incant;
                     if (!gameManager.incantDic.TryGetValue(incantDataID, out incant))

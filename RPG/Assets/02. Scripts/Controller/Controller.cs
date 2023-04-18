@@ -219,7 +219,6 @@ namespace RPG.Battle.Control
         {
             if (attack.isAttack)
             {
-                StopCoroutine(attackState.waitAttackTimeCoroutine);
                 attack.isAttack = false;
             }
         }
@@ -235,5 +234,11 @@ namespace RPG.Battle.Control
         /// <param name="controller"></param>
         /// <returns></returns>
         public abstract bool SetTarget(out Controller controller);
+
+        public void AttackEvent()
+        {
+            attack.TargetTakeDamage();
+            Debug.Log("Attack");
+        }
     }
 }

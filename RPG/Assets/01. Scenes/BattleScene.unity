@@ -3567,8 +3567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d805674394191944a8a239066998806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 2545512943107213724, guid: 57e515bb8a1aebc429885151eba3a70d, type: 3}
-  enemyController: {fileID: 3723077782627438012, guid: 300ff0e0cc2bd2248bb2d0478a4c0147, type: 3}
+  playerController: {fileID: 6471102310372898922, guid: cddad722f754e6649a4c1f9daf316f72, type: 3}
+  enemyController: {fileID: 7873226645759585779, guid: 7b1e1921e5196124c97c4de953cf4fa2, type: 3}
   battleTextPrefab: {fileID: 2480299213312425241, guid: 5bee2b86b499ef44e85fe612f4de0dbe, type: 3}
   lootingItem: {fileID: 779879815347689431, guid: 5d87c57dceb5d2f42b69018decc4f020, type: 3}
   playerParent: {fileID: 1421559899}

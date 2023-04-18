@@ -95,17 +95,15 @@ namespace RPG.Battle.Core
 
         public void SetLook(ref EnemyController enemy, EnemyData data)
         {
-            if (enemy.enemyLooks == null)
-                enemy.enemyLooks = Instantiate(data.enemyLook, enemy.gameObject.transform);
-
-            enemy.enemyLooks.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
+            enemy.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
+            enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weapon);
         }
 
 
         public void ReturnEnemy(EnemyController enemy)
         {
             enemyControllerPool.Enqueue(enemy);
-            enemy.enemyLooks.transform.GetChild((enemy.battleStatus.status as EnemyStatus).apperenceNum).gameObject.SetActive(false);
+            enemy.transform.GetChild((enemy.battleStatus.status as EnemyStatus).apperenceNum).gameObject.SetActive(false);
             enemy.gameObject.SetActive(false);
         }
 

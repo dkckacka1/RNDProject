@@ -22,6 +22,11 @@ public class EnemyCharacterUI : CharacterUI
         this.gameObject.SetActive(true);
     }
 
+    public override void ReleaseUI()
+    {
+        battleStatusUI.gameObject.SetActive(false);
+    }
+
     private void LateUpdate()
     {
         UpdateBattleStatusUI(transform.position + battleStatusOffset);
@@ -42,4 +47,6 @@ public class EnemyCharacterUI : CharacterUI
         hpBar = battleStatusUI.GetComponentInChildren<HPBar>();
         debuffUI = battleStatusUI.GetComponentInChildren<DebuffUI>();
     }
+
+
 }

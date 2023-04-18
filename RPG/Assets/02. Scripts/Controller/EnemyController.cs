@@ -10,8 +10,6 @@ namespace RPG.Battle.Control
 {
     public class EnemyController : Controller
     {
-        public GameObject enemyLooks;
-
         public override void SetUp()
         {
             base.SetUp();
@@ -19,7 +17,6 @@ namespace RPG.Battle.Control
 
         public override void Init()
         {
-            this.animator = GetComponentInChildren<Animator>();
             base.Init();
         }
 

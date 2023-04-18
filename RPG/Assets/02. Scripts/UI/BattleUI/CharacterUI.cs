@@ -22,18 +22,18 @@ namespace RPG.Battle.UI
 
         private void Awake()
         {
+            status = GetComponent<BattleStatus>();
             SetUp();
         }
-
-
         public virtual void SetUp()
         {
-            this.status = GetComponent<BattleStatus>();
             battleCanvas = BattleManager.BattleUI.battleCanvas;
         }
 
         public virtual void Init()
         {
+            Debug.Log(hpBar == null);
+
             if (hpBar != null)
             {
                 hpBar.gameObject.SetActive(true);

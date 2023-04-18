@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "CreateScriptableObject/CreateEnemy", order = 6)]
 public class EnemyData : Data
 {
-    public GameObject enemyLook;
     public int apperenceNum;
     public string enemyName;
 
@@ -34,6 +33,5 @@ public class EnemyData : Data
     public List<DropTable> dropitems;
 
     [Header("Equipment")]
-    public Transform weaponHandle;
     public GameObject weapon;
 }

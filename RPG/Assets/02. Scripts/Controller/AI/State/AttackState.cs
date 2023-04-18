@@ -11,7 +11,6 @@ namespace RPG.Battle.AI
     {
         Attack attack;
         public Coroutine attackDelayCheckCoroutine;
-        public Coroutine waitAttackTimeCoroutine;
 
         public AttackState(Controller controller) : base(controller)
         {
@@ -35,7 +34,6 @@ namespace RPG.Battle.AI
             controller.transform.LookAt(controller.target.transform);
             attack.AttackTarget();
             attackDelayCheckCoroutine = controller.StartCoroutine(attack.WaitAttackDelay());
-            waitAttackTimeCoroutine = controller.StartCoroutine(attack.WaitAttackTime());
         }
     }
 }

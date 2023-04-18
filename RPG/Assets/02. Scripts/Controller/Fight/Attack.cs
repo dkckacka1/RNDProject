@@ -13,7 +13,6 @@ namespace RPG.Battle.Fight
         public bool canAttack = true;
         public bool isAttack = false;
         public float attackDelay = 1;
-        public float attackAnimPoint = 1.2f;
         public float defaultAttackAnimLength;
 
         // AttackEvent
@@ -154,12 +153,6 @@ namespace RPG.Battle.Fight
             yield return new WaitForSeconds(attackDelay);
             canAttack = true;
             isAttack = false;
-        }
-
-        public IEnumerator WaitAttackTime()
-        {
-            yield return new WaitForSeconds(attackAnimPoint);
-            TargetTakeDamage();
         }
     }
 }

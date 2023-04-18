@@ -411,7 +411,6 @@ namespace RPG.Character.Status
             Controller controller = GetComponent<Controller>();
             controller.animator.SetFloat("AttackSpeed", status.AttackSpeed);
             controller.attack.attackDelay = controller.attack.defaultAttackAnimLength / status.AttackSpeed;
-            controller.attack.attackAnimPoint = controller.attack.attackDelay / 2.8f;
         }
 
         public void UpdateMovementSpeed(float speed)
@@ -437,7 +436,6 @@ namespace RPG.Character.Status
             Controller controller = GetComponent<Controller>();
             controller.animator.SetFloat("AttackSpeed", status.AttackSpeed);
             controller.attack.attackDelay = controller.attack.defaultAttackAnimLength / status.AttackSpeed;
-            controller.attack.attackAnimPoint = controller.attack.attackDelay / 2.8f;
         }
     }
 }
