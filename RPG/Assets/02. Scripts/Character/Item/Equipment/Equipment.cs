@@ -169,12 +169,12 @@ namespace RPG.Character.Equipment
             return suffix.incantID;
         }
 
-        public bool isAbilitySkill()
+        public bool hasAbilitySkill()
         {
-            return (isPrefixAbilitySkill() || isSuffixAbilitySkill());
+            return (hasPrefixAbilitySkill() || hasSuffixAbilitySkill());
         }
 
-        public bool isPrefixAbilitySkill()
+        public bool hasPrefixAbilitySkill()
         {
             if (prefix == null) return false;
             if (!prefix.isIncantAbility) return false;
@@ -182,7 +182,7 @@ namespace RPG.Character.Equipment
             return true;
         }
 
-        public bool isSuffixAbilitySkill()
+        public bool hasSuffixAbilitySkill()
         {
             if (suffix == null) return false;
             if (!suffix.isIncantAbility) return false;

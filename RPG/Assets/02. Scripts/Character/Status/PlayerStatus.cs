@@ -184,6 +184,16 @@ namespace RPG.Character.Status
             MovementSpeed = status.MovementSpeed;
         }
 
+        public bool hasAbility()
+        {
+            Debug.Log($"" +
+                $"currentWeapon.hasAbilitySkill() : {currentWeapon.hasAbilitySkill()}\n" + 
+                $"currentArmor.hasAbilitySkill() : {currentArmor.hasAbilitySkill()}\n" + 
+                $"currentHelmet.hasAbilitySkill() : {currentHelmet.hasAbilitySkill()}\n" + 
+                $"currentPants.hasAbilitySkill() : {currentPants.hasAbilitySkill()}");
+            return currentWeapon.hasAbilitySkill() || currentArmor.hasAbilitySkill() || currentHelmet.hasAbilitySkill() || currentPants.hasAbilitySkill();
+        }
+
         #region ¿Â∫Ò_¿Â¬¯
         public void EquipItem(Weapon weapon)
         {

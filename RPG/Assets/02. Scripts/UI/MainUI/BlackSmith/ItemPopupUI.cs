@@ -116,6 +116,7 @@ namespace RPG.Main.UI
             choiceItem.Incant(incant);
 
             ShowItem(choiceItem);
+            GameManager.Instance.Player.SetEquipment();
             InitIncant();
         }
 
@@ -145,6 +146,7 @@ namespace RPG.Main.UI
 
             choiceItem.ChangeData(data);
 
+            GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
             InitGacha();
         }
@@ -155,6 +157,7 @@ namespace RPG.Main.UI
 
             choiceItem.ReinforceItem();
 
+            GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
             InitReinforce();
         }

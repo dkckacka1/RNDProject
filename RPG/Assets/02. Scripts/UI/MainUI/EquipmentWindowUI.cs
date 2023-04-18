@@ -91,9 +91,9 @@ namespace RPG.Main.UI
                     break;
             }
 
-            if (item.isAbilitySkill())
+            if (item.hasAbilitySkill())
             {
-                if (item.isPrefixAbilitySkill())
+                if (item.hasPrefixAbilitySkill())
                 {
                     prefixIncantUI.gameObject.SetActive(true);
                     prefixIncantUI.InitAbility(item.prefix, () => { incantAbilityDescText.text = $"{item.prefix.abilityDesc}"; });
@@ -103,7 +103,7 @@ namespace RPG.Main.UI
                     prefixIncantUI.gameObject.SetActive(false);
                 }
 
-                if (item.isSuffixAbilitySkill())
+                if (item.hasSuffixAbilitySkill())
                 {
                     suffixIncantUI.gameObject.SetActive(true);
                     suffixIncantUI.InitAbility(item.suffix, () => { incantAbilityDescText.text = $"{item.suffix.abilityDesc}"; });

@@ -12,8 +12,6 @@ namespace RPG.Main.UI
     public class MainUI : MonoBehaviour
     {
         [Header("UI")]
-        public EquipmentWindowUI equipmentUI;
-        public PlayerStatusWindowUI statusUI;
         public StageChoiceWindowUI stageChoiceWindowUI;
         public CharacterAppearance appearance;
 
@@ -37,18 +35,12 @@ namespace RPG.Main.UI
 
         public void Init()
         {
-            equipmentUI.Init();
-            statusUI.Init();
-            stageChoiceWindowUI.Init();
             appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponLook);
         }
 
         public void UpdateUI()
         {
             UpdateTicketCount();
-            statusUI.UpdateStatusText();
-            statusUI.UpdateUserText();
-            equipmentUI.UpdateItem(equipmentUI.choiceItem);
         }
 
         #region ButtonPlugin
@@ -89,10 +81,6 @@ namespace RPG.Main.UI
             GameManager.Instance.UserInfo.itemIncantTicket--;
 
             Incant incant;
-            if (RandomSystem.GachaIncant(equipmentUI.choiceItem.equipmentType, GameManager.Instance.incantDic, out incant))
-            {
-                equipmentUI.choiceItem.Incant(incant);
-            }
 
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
@@ -105,18 +93,6 @@ namespace RPG.Main.UI
             {
                 return;
             }
-
-            GameManager.Instance.UserInfo.itemReinforceTicket--;
-            if (MyUtility.ProbailityCalc(100f - (RandomSystem.ReinforceCalc(equipmentUI.choiceItem)),0f,100f))
-            {
-                equipmentUI.choiceItem.ReinforceItem();
-                Debug.Log("강화 성공!!");
-            }
-            else
-            {
-                Debug.Log("강화 실패!!");
-            }
-
 
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
@@ -131,47 +107,7 @@ namespace RPG.Main.UI
             }
 
             GameManager.Instance.UserInfo.itemGachaTicket--;
-            EquipmentItemType type = equipmentUI.choiceItem.equipmentType;
-            switch (type)
-            {
-                case EquipmentItemType.Weapon:
-                    {
-                        WeaponData data;
-                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
-                        {
-                            GameManager.Instance.Player.currentWeapon.ChangeData(data);
-                        }
-                    }
-
-                    break;
-                case EquipmentItemType.Armor:
-                    {
-                        ArmorData data;
-                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
-                        {
-                            GameManager.Instance.Player.currentArmor.ChangeData(data);
-                        }
-                    }
-                    break;
-                case EquipmentItemType.Pants:
-                    {
-                        PantsData data;
-                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
-                        {
-                            GameManager.Instance.Player.currentPants.ChangeData(data);
-                        }
-                    }
-                    break;
-                case EquipmentItemType.Helmet:
-                    {
-                        HelmetData data;
-                        if (RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, type, out data))
-                        {
-                            GameManager.Instance.Player.currentHelmet.ChangeData(data);
-                        }
-                    }
-                    break;
-            }
+            
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
