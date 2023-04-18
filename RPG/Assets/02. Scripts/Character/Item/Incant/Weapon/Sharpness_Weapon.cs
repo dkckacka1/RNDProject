@@ -11,12 +11,5 @@ namespace RPG.Character.Equipment
         {
             attackDamage = 10;
         }
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
     }
 }

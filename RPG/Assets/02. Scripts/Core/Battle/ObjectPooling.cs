@@ -97,12 +97,15 @@ namespace RPG.Battle.Core
         {
             if (enemy.enemyLooks == null)
                 enemy.enemyLooks = Instantiate(data.enemyLook, enemy.gameObject.transform);
+
+            enemy.enemyLooks.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
         }
 
 
         public void ReturnEnemy(EnemyController enemy)
         {
             enemyControllerPool.Enqueue(enemy);
+            enemy.enemyLooks.transform.GetChild((enemy.battleStatus.status as EnemyStatus).apperenceNum).gameObject.SetActive(false);
             enemy.gameObject.SetActive(false);
         }
 

@@ -13,14 +13,6 @@ namespace RPG.Character.Equipment
             skillCoolTime = 20f;
         }
 
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
-
         public override void ActiveSkill(BattleStatus player)
         {
             player.Heal(100);

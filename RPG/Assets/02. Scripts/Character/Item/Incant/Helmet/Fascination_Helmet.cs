@@ -16,14 +16,6 @@ namespace RPG.Character.Equipment
             skillCoolTime = 10f;
         }
 
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
-
         public override void ActiveSkill(BattleStatus player)
         {
             var enemy = BattleManager.Instance.liveEnemies.Where(enemy => enemy).OrderByDescending(enemy => Vector3.Distance(player.transform.position, enemy.transform.position));

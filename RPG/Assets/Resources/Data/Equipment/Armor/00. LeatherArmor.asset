@@ -16,6 +16,7 @@ MonoBehaviour:
   EquipmentName: "\uAC00\uC8FD \uAC11\uC637"
   equipmentType: 1
   equipmentTier: 0
+  equipmentSprite: {fileID: 21300000, guid: 3efb77d7706c98144be55abfd2f6fb4c, type: 3}
   description: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uAC11\uC637\uC774\uB2E4."
   defencePoint: 10
   hpPoint: 100

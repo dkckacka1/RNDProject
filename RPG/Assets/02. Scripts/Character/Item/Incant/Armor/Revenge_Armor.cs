@@ -7,15 +7,6 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
-
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
-
         public override void TakeDamageEvent(BattleStatus mine, BattleStatus whoHitMe)
         {
             mine.StartCoroutine(Revenge(mine, 2f));

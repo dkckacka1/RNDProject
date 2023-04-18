@@ -65,8 +65,11 @@ namespace RPG.Test
 
                 if (GUI.Button(new Rect(10, 230, 100, 100), "RemoveAllController"))
                 {
-                    Destroy(battleManager.livePlayer.gameObject);
-                    battleManager.livePlayer = null;
+                    if (battleManager.livePlayer != null)
+                    {
+                        Destroy(battleManager.livePlayer.gameObject);
+                        battleManager.livePlayer = null;
+                    }
                     foreach (var enemy in battleManager.liveEnemies)
                     {
                         BattleManager.ObjectPool.ReturnEnemy(enemy);

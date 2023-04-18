@@ -16,6 +16,7 @@ MonoBehaviour:
   EquipmentName: "\uB808\uC774\uD53C\uC5B4"
   equipmentType: 0
   equipmentTier: 1
+  equipmentSprite: {fileID: 21300000, guid: 48449537681a23d4d941a345352029e7, type: 3}
   description: "\uCC0C\uB974\uAE30\uC5D0 \uD2B9\uD654\uB41C \uBB34\uAE30\uC774\uB2E4."
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
   attackDamage: 20

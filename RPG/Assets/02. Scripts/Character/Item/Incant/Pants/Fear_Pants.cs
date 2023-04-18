@@ -13,15 +13,6 @@ namespace RPG.Character.Equipment
             skillCoolTime = 2f;
         }
 
-        public override void IncantEquipment(Equipment equipment)
-        {
-
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
-
         public override void ActiveSkill(BattleStatus player)
         {
             var ability = BattleManager.ObjectPool.GetAbility(2, player.transform, Fear);

@@ -8,11 +8,13 @@ namespace RPG.Character.Status
     public class EnemyStatus : Status
     {
         public int enemyID;
+        public int apperenceNum;
         public string enemyName;
 
         public void Init(EnemyData data)
         {
             enemyID = data.ID;
+            apperenceNum = data.apperenceNum;
 
             enemyName = data.enemyName;
             MaxHp = data.maxHp;

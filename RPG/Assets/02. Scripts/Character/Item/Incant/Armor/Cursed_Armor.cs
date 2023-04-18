@@ -7,14 +7,6 @@ namespace RPG.Character.Equipment
 {
     public class Cursed_Armor : ArmorIncant
     {
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
-
         public override void TakeDamageEvent(BattleStatus mine, BattleStatus whoHitMe)
         {
             whoHitMe.TakeDebuff(DebuffType.Curse, 5f);

@@ -74,22 +74,12 @@ namespace RPG.Character.Equipment
             switch (incant.incantType)
             {
                 case IncantType.prefix:
-                    if (prefix != null)
-                    {
-                        prefix.RemoveIncant(this);
-                    }
                     prefix = incant;
                     break;
                 case IncantType.suffix:
-                    if (suffix != null)
-                    {
-                        suffix.RemoveIncant(this);
-                    }
                     suffix = incant;
                     break;
             }
-
-            incant.IncantEquipment(this);
         }
 
         public void Incant(Incant incant)
@@ -110,35 +100,23 @@ namespace RPG.Character.Equipment
             switch (incant.incantType)
             {
                 case IncantType.prefix:
-                    if (prefix != null)
-                    {
-                        prefix.RemoveIncant(this);
-                    }
                     prefix = incant;
                     break;
                 case IncantType.suffix:
-                    if (suffix != null)
-                    {
-                        suffix.RemoveIncant(this);
-                    }
                     suffix = incant;
                     break;
             }
-
-            incant.IncantEquipment(this);
         }
 
         public void RemoveAllIncant()
         {
             if (prefix != null)
             {
-                prefix.RemoveIncant(this);
                 prefix = null;
             }
 
             if (suffix != null)
             {
-                suffix.RemoveIncant(this);
                 suffix = null;
             }
         }

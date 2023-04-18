@@ -6,19 +6,9 @@ namespace RPG.Character.Equipment
 {
     public class Balanced_Helmet : HelmetIncant
     {
-        public override void IncantEquipment(Equipment equipment)
+        public Balanced_Helmet()
         {
-            Helmet helmet = equipment as Helmet;
-
-            helmet.DecreseCriticalDamage += 0.2f;
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-            Helmet helmet = equipment as Helmet;
-
-            helmet.DecreseCriticalDamage -= 0.2f;
+            decreseCriticalDamage = 0.2f;
         }
     }
-
 }

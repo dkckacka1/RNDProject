@@ -79,9 +79,7 @@ namespace RPG.Main.UI
             }
 
             GameManager.Instance.UserInfo.itemIncantTicket--;
-
-            Incant incant;
-
+            
             GameManager.Instance.Player.SetEquipment();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();

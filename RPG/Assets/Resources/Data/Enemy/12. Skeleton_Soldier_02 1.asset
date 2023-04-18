@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a57d2035d1462964b953766c08bdbf0c, type: 3}
-  m_Name: 00. Gobline
+  m_Name: 12. Skeleton_Soldier_02 1
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 12
   enemyLook: {fileID: 1084090695722338, guid: 5c64e2d4a76bb6c41b1ce4fcdffe63f5, type: 3}
+  apperenceNum: 12
   enemyName: "\uACE0\uBE14\uB9B0 \uC804\uC0AC"
   maxHp: 100
   attackDamage: 10

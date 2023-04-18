@@ -4149,7 +4149,7 @@ MonoBehaviour:
   - {fileID: 1342591442}
   enemyCreateNum: 3
   stageDataID: 0
-  enemyDataID: 1
+  enemyDataID: 0
   equipmentDataID: 199
   incantDataID: 303
 --- !u!1001 &1128943186

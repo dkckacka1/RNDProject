@@ -12,13 +12,5 @@ namespace RPG.Character.Equipment
             attackDamage = 30;
             attackSpeed = -1;
         }
-
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
     }
 }

@@ -11,14 +11,5 @@ namespace RPG.Character.Equipment
         {
             enemy.TakeDebuff(DebuffType.Bloody, 10f);
         }
-
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
     }
-
 }

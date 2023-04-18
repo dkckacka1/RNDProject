@@ -16,6 +16,7 @@ MonoBehaviour:
   EquipmentName: "\uB300\uAC80"
   equipmentType: 0
   equipmentTier: 1
+  equipmentSprite: {fileID: 21300000, guid: 7cbb2c7f0afc31b48ab178904c1872c7, type: 3}
   description: "\uD55C \uC190\uC73C\uB85C \uD718\uB450\uB974\uAE34 \uBC84\uAC70\uC6CC
     \uBCF4\uC774\uB294 \uAC80\uC774\uB2E4."
   weaponLook: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}

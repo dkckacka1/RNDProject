@@ -20,14 +20,6 @@ namespace RPG.Character.Equipment
                 enemy.battleStatus.TakeDebuff(DebuffType.Paralysis, 5f);
             }
         }
-
-        public override void IncantEquipment(Equipment equipment)
-        {
-        }
-
-        public override void RemoveIncant(Equipment equipment)
-        {
-        }
     }
 
 }
