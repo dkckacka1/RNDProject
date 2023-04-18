@@ -42,15 +42,21 @@ namespace RPG.Main.UI.StatusUI
             attackStatusText.text = $"" +
                 $"{MyUtility.returnSideText("공격력 : ", $"{status.AttackDamage}")}\n" +
                 $"{MyUtility.returnSideText("공격범위 : ", $"{status.AttackRange}")}\n" +
-                $"{MyUtility.returnSideText("공격속도 : ", $"초당 {status.AttackSpeed}")}회 타격\n" +
+                $"{MyUtility.returnSideText("공격속도 : ", $"초당 {status.AttackSpeed}회 타격")}\n" +
                 $"{MyUtility.returnSideText("치명타 확률 : ", $"{status.CriticalChance * 100}%")}\n" +
                 $"{MyUtility.returnSideText("치명타 공격력 : ", $"공격력의 {status.CriticalDamage * 100}%")}\n" +
-                $"{MyUtility.returnSideText("적중률 : ", $"{status.AttackChance}%")}";
+                $"{MyUtility.returnSideText("적중률 : ", $"{status.AttackChance * 100}%")}";
         }
 
         private void ShowDefenceStatus(PlayerStatus status)
         {
-            defenceStatusText.text = status.DefencePoint.ToString();
+            defenceStatusText.text = $"" +
+                $"{MyUtility.returnSideText("체력 : ", $"{status.MaxHp}")}\n" +
+                $"{MyUtility.returnSideText("방어력 : ", $"{status.DefencePoint}")}\n" +
+                $"{MyUtility.returnSideText("회피율 : ", $"{status.EvasionPoint * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 회피율 : ", $"{status.EvasionCritical * 100}%")}\n" +
+                $"{MyUtility.returnSideText("치명타 감소율 : ", $"치명타 공격력의 {status.DecreseCriticalDamage * 100}% 감소")}\n" +
+                $"{MyUtility.returnSideText("이동속도 : ", $"{status.MovementSpeed}")}";
         }
 
         private void ShowPlayerAbility(PlayerStatus status)

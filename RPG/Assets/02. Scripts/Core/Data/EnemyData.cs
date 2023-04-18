@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyData : Data
 {
     public GameObject enemyLook;
+    public string enemyApperName;
     public string enemyName;
 
     [Header("Health")]

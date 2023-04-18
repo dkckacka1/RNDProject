@@ -28,7 +28,7 @@ namespace RPG.Main.UI
 
         public void ChoiceArmor(ItemPopupUI ui)
         {
-            ui.ChoiceItem(GameManager.Instance.Player.currentHelmet);
+            ui.ChoiceItem(GameManager.Instance.Player.currentArmor);
         }
 
         public void ChoiceHelmet(ItemPopupUI ui)

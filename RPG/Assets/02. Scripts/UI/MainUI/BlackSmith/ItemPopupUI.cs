@@ -95,15 +95,27 @@ namespace RPG.Main.UI
             {
                 incantExcuteBtn.interactable = false;
             }
+            else
+            {
+                incantExcuteBtn.interactable = true;
+            }
 
             if (GameManager.Instance.UserInfo.itemReinforceTicket <= 0)
             {
                 reinforceExcuteBtn.interactable = false;
             }
+            else
+            {
+                reinforceExcuteBtn.interactable = true;
+            }
 
             if (GameManager.Instance.UserInfo.itemGachaTicket <= 0)
             {
                 gachaExcuteBtn.interactable = false;
+            }
+            else
+            {
+                gachaExcuteBtn.interactable = true;
             }
         }
         public void Incant()

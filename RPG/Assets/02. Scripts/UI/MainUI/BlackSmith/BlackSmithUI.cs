@@ -22,14 +22,11 @@ namespace RPG.Main.UI
         {
             choiceUI.InitButtonImage();
             choiceUI.ChoiceWeapon(popupUI);
+            popupUI.InitIncant();
             InitRemainText();
 
-            transform.DOScale(Vector3.one, scaleAnimDuration).SetEase(Ease.InOutBounce); 
-        }
-
-        private void OnDisable()
-        {
             transform.localScale = Vector3.zero;
+            transform.DOScale(Vector3.one, scaleAnimDuration).SetEase(Ease.InOutBounce);
         }
 
         public void InitRemainText()

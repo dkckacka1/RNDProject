@@ -18,22 +18,6 @@ namespace RPG.Main.UI.StatusUI
 
             string text = "";
 
-            switch (equipment.equipmentType)
-            {
-                case EquipmentItemType.Weapon:
-                    text += "¹«±â : ";
-                    break;
-                case EquipmentItemType.Armor:
-                    text += "°©¿Ê : ";
-                    break;
-                case EquipmentItemType.Pants:
-                    text += "¹ÙÁö : ";
-                    break;
-                case EquipmentItemType.Helmet:
-                    text += "Çï¸ä : ";
-                    break;
-            }
-
             if (equipment.prefix != null)
             {
                 text += equipment.prefix.incantName + " ";
