@@ -19,7 +19,7 @@ public class EnemyCharacterUI : CharacterUI
     public override void Init()
     {
         base.Init();
-        this.gameObject.SetActive(true);
+        this.battleStatusUI.SetActive(true);
     }
 
     public override void ReleaseUI()
