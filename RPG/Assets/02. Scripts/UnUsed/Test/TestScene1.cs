@@ -14,5 +14,9 @@ namespace RPG.UnUsed
 {
     public class TestScene1 : MonoBehaviour
     {
+        public void Test()
+        {
+            Debug.Log("Test");
+        }
     }
 }

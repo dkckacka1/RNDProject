@@ -20,7 +20,7 @@ namespace RPG.Core
             {
                 if (instance == null)
                 {
-                    Debug.LogError("GameManager is null");
+                    Debug.Log("GameManager is null");
                     return null;
                 }
 

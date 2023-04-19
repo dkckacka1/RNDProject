@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.UnUsed
 {
-    public class TestScrollViewController : UIRecycleViewController<UICellSampleDate>
+    public class UIRecycleViewControllerSample : UIRecycleViewController<UICellSampleDate>
     {
         private void LoadData()
         {
