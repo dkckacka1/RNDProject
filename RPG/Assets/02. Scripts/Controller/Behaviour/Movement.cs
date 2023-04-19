@@ -7,7 +7,7 @@ using RPG.Battle.Control;
 using RPG.Battle.Event;
 using UnityEngine.Events;
 
-namespace RPG.Battle.Move
+namespace RPG.Battle.Behaviour
 {
     public class Movement
     {

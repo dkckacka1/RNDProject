@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPG.Battle.Control;
-using RPG.Battle.Move;
+using RPG.Battle.Behaviour;
 
 namespace RPG.Battle.AI
 {

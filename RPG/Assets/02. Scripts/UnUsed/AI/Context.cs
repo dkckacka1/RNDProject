@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Battle.Move;
-using RPG.Battle.Fight;
+using RPG.Battle.Behaviour;
 using RPG.Battle.Control;
 using RPG.Character.Status;
 

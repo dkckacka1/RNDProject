@@ -5,7 +5,7 @@ using RPG.Character.Status;
 
 namespace RPG.Character.Equipment
 {
-    public abstract class Incant : ScriptableObject
+    public abstract class Incant
     {
         public int incantID;
 

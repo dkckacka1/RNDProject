@@ -6,7 +6,7 @@ using RPG.Battle.Control;
 using RPG.Character.Status;
 using RPG.Battle.Event;
 
-namespace RPG.Battle.Fight
+namespace RPG.Battle.Behaviour
 {
     public class Attack
     {

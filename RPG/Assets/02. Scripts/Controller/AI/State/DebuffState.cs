@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using RPG.Battle.Control;
-using RPG.Battle.Move;
+using RPG.Battle.Behaviour;
 using RPG.Character.Status;
 
 namespace RPG.Battle.AI

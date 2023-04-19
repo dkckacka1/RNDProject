@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Battle.Behaviour;
 using RPG.Battle.Control;
-using RPG.Battle.Fight;
 
 namespace RPG.Battle.AI
 {
