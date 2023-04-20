@@ -1,6 +1,7 @@
 using RPG.Battle.Core;
 using RPG.Core;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,6 @@ namespace RPG.Stage.UI
         protected List<StageData> stageDataList = new List<StageData>(); // 리스트 항목의 데이터를 저장
         [SerializeField]
         protected GameObject cellBase = null; // 복사 원본 셀
-        [SerializeField]
-        private RectOffset padding; // 스크롤할 내용의 패딩
         [SerializeField]
         private float spacingHeight = 4.0f; // 각 셀의 간격
         [SerializeField]
@@ -44,7 +43,13 @@ namespace RPG.Stage.UI
 
             if (GameManager.Instance != null)
             {
+                var list = GameManager.Instance.stageDataDic.ToList();
+                foreach (var stageData in list)
+                {
+                    stageDataList.Add(stageData.Value);
+                }
 
+                CachedScrollRect.SetLayoutHorizontal();
             }
             else
             {
@@ -56,9 +61,37 @@ namespace RPG.Stage.UI
 
                 CachedScrollRect.SetLayoutHorizontal();
             }
+
             InitializeTableView();
 
             CachedScrollRect.verticalNormalizedPosition = 0f;
+        }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            Vector3[] corners = new Vector3[4];
+            corners[0].x = visibleRect.x;
+            corners[0].y = visibleRect.y;
+
+            corners[1].x = visibleRect.x;
+            corners[1].y = visibleRect.y + visibleRect.height;
+
+            corners[2].x = visibleRect.xMax;
+            corners[2].y = visibleRect.y + visibleRect.height;
+
+            corners[3].x = visibleRect.xMax;
+            corners[3].y = visibleRect.y;
+
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(corners[0],100f);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(corners[1],100f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(corners[2],100f);
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(corners[3],100f);
         }
 
         /// <summary>
@@ -73,7 +106,7 @@ namespace RPG.Stage.UI
             {
                 // 셀이 하나도 없을 때는 visibleRect의 범위에 들어가는 첫 번째 리스트 항목을 찾아서
                 // 그에 대응하는 셀을 작성한다.
-                Vector2 cellTop = new Vector2(0.0f, -padding.top);
+                Vector2 cellTop = new Vector2(0.0f, 0.0f);
                 for (int i = 0; i < stageDataList.Count; i++)
                 {
                     float cellHeight = GetCellHeightAtIndex(i);
@@ -143,7 +176,7 @@ namespace RPG.Stage.UI
 
             // 스크롤할 내용의 높이를 설정한다.
             Vector2 sizeDelta = CachedScrollRect.content.sizeDelta;
-            sizeDelta.y = padding.top + contentHeight + padding.bottom;
+            sizeDelta.y = contentHeight;
             CachedScrollRect.content.sizeDelta = sizeDelta;
         }
 
@@ -213,11 +246,11 @@ namespace RPG.Stage.UI
         private void UpdateVisibleRect()
         {
             // visibleRect의 위치는 스크롤할 내용의 기준으로부터 상대적인 위치다.
-            visibleRect.x = CachedScrollRect.content.anchoredPosition.x + visibleRectPadding.left;
-            visibleRect.y = CachedScrollRect.content.anchoredPosition.y + visibleRectPadding.top;
+            visibleRect.x = CachedScrollRect.content.anchoredPosition.x + CachedRectTransform.rect.width;
+            visibleRect.y = CachedScrollRect.content.anchoredPosition.y;
 
-            visibleRect.width = CachedRectTransform.rect.width + visibleRectPadding.left + visibleRectPadding.right;
-            visibleRect.height = CachedRectTransform.rect.height + visibleRectPadding.top + visibleRectPadding.bottom;
+            visibleRect.width = CachedRectTransform.rect.width;
+            visibleRect.height = CachedRectTransform.rect.height;
         }
 
 
@@ -303,6 +336,7 @@ namespace RPG.Stage.UI
                 SetFillVisibleRectWithCells();
             }
         }
+
     }
 
 }
