@@ -24,6 +24,11 @@ namespace RPG.Core
         {
             SceneManager.LoadScene("MainScene");
         }
+
+        public static void LoadStageChoiceScene()
+        {
+            SceneManager.LoadScene("StageChoiceScene");
+        }
     }
 
 }

@@ -1,8 +1,10 @@
 using RPG.Battle.Core;
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Stage.UI
 {
@@ -10,8 +12,11 @@ namespace RPG.Stage.UI
     public class StageFloorUI : MonoBehaviour
     {
         public RectTransform CachedRectTrasnfrom => GetComponent<RectTransform>();
+        public Button SceneLoadBtn; 
 
         [SerializeField] TextMeshProUGUI stageFloorText;
+
+        private StageData stageData;
 
         // 셀에 대응하는 리스트 항목의 인덱스
         public int Index { get; set; }
@@ -30,7 +35,17 @@ namespace RPG.Stage.UI
 
         public void UpdateContent(StageData stageData)
         {
+            this.stageData = stageData;
             stageFloorText.text = stageData.ID.ToString() + "층!";
+
+            if (GameManager.Instance.UserInfo.risingTopCount < this.stageData.ID)
+            {
+                SceneLoadBtn.interactable = false;
+            }
+            else
+            {
+                SceneLoadBtn.interactable = true;
+            }
         }
 
         // 셀의 위쪽 끝의 위치
@@ -65,6 +80,11 @@ namespace RPG.Stage.UI
                 CachedRectTrasnfrom.GetLocalCorners(corners);
                 CachedRectTrasnfrom.anchoredPosition = value - new Vector2(0.0f, corners[3].y);
             }
+        }
+
+        public void LoadScene()
+        {
+            SceneLoader.LoadBattleScene(this.stageData.ID);
         }
     }
 }

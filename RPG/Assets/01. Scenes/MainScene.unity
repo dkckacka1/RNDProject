@@ -15372,7 +15372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5839337816651348067, guid: e0d1e4b36b0b3b8419c6bb6cb8c57631, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowStageChoiceUI
+      value: LoadStageChoiceScene
       objectReference: {fileID: 0}
     - target: {fileID: 5839337816651348067, guid: e0d1e4b36b0b3b8419c6bb6cb8c57631, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

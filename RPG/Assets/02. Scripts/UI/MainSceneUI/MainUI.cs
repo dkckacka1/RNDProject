@@ -110,6 +110,11 @@ namespace RPG.Main.UI
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
             UpdateUI();
         }
+       
+        public void LoadStageChoiceScene()
+        {
+            SceneLoader.LoadStageChoiceScene();
+        }
         #endregion
 
         public void UpdateTicketCount()
