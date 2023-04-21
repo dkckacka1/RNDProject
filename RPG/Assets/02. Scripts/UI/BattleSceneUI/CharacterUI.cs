@@ -32,8 +32,6 @@ namespace RPG.Battle.UI
 
         public virtual void Init()
         {
-            Debug.Log(hpBar == null);
-
             if (hpBar != null)
             {
                 hpBar.gameObject.SetActive(true);

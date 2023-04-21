@@ -5,6 +5,9 @@ using RPG;
 using RPG.Core;
 using RPG.Battle.Core;
 using RPG.Character.Equipment;
+using UnityEditor;
+using TMPro;
+using RPG.Battle.Control;
 
 namespace RPG.Test
 {
@@ -21,7 +24,7 @@ namespace RPG.Test
 
         [Header("SpawnPosition")]
         [SerializeField] Transform playerPos;
-        [SerializeField] List<Transform> enemiesPos;
+        [SerializeField] Transform enemyPosParent;
         [Range(1, 3)]
         [SerializeField] int enemyCreateNum;
 
@@ -36,6 +39,9 @@ namespace RPG.Test
         [SerializeField] int enemyDataID;
         [SerializeField] int equipmentDataID;
         [SerializeField] int incantDataID;
+
+        [Header("InputField")]
+        [SerializeField] TMP_InputField inputField;
 
         private void Start()
         {
@@ -55,6 +61,12 @@ namespace RPG.Test
 
                 if (GUI.Button(new Rect(10, 110, 100, 100), "CreateEnemy"))
                 {
+                    List<Transform> enemiesPos = new List<Transform>();
+                    for (int i = 0; i < enemyPosParent.childCount; i++)
+                    {
+                        enemiesPos.Add(enemyPosParent.GetChild(i));
+                    }
+
                     for (int i = 1; i <= enemyCreateNum; i++)
                     {
                         EnemyData data;
@@ -96,17 +108,51 @@ namespace RPG.Test
                     battleManager.livePlayer = player;
                     player.transform.position = data.playerSpawnPosition;
 
-                    foreach (var enemySpawnData in data.enemyDatas)
+                    Fomation fomation = BattleManager.Instance.stageFomation.FomationList.Find(temp => temp.fomationEnemyCount == data.enemyDatas.Length);
+                    for (int i = 0; i < data.enemyDatas.Length; i++)
                     {
                         EnemyData enemyData;
-                        if (!gameManager.enemyDataDic.TryGetValue(enemySpawnData.enemyID, out enemyData))
+                        if (GameManager.Instance.enemyDataDic.TryGetValue(data.enemyDatas[i].enemyID, out enemyData))
                         {
-                            Debug.Log("EnemyData is NULL");
-                            return;
+                            EnemyController enemy = BattleManager.ObjectPool.GetEnemyController(enemyData, fomation.positions[i]);
+                            battleManager.liveEnemies.Add(enemy);
                         }
-                        var enemy = BattleManager.ObjectPool.GetEnemyController(enemyData, enemySpawnData.position);
-                        battleManager.liveEnemies.Add(enemy);
                     }
+                }
+
+                if (GUI.Button(new Rect(10, 410, 100, 100), "CreateStage"))
+                {
+                    var stageFomation = AssetDatabase.LoadAssetAtPath<StageFomation>("Assets/98. CreateAssets/FomationAsset.asset");
+                    if (stageFomation == null)
+                    {
+                        Debug.Log("없음");
+                        stageFomation = ScriptableObject.CreateInstance<StageFomation>();
+
+                        AssetDatabase.CreateAsset(stageFomation, "Assets/98. CreateAssets/FomationAsset.asset");
+                        AssetDatabase.Refresh();
+                    }
+
+                    List<Transform> enemiesPos = new List<Transform>();
+                    for (int i = 0; i < enemyPosParent.childCount; i++)
+                    {
+                        enemiesPos.Add(enemyPosParent.GetChild(i));
+                    }
+
+                    if (stageFomation.FomationList.Find(fomation => fomation.fomationEnemyCount == enemiesPos.Count) != null)
+                    {
+                        Debug.Log("이미 에너미 숫자에 맞는 포메이션이 존재합니다.");
+                        return;
+                    }
+
+                    Fomation newFomation = new Fomation();
+                    newFomation.fomationName = inputField.text;
+                    newFomation.fomationEnemyCount = enemiesPos.Count;
+                    foreach (var pos in enemiesPos)
+                    {
+                        newFomation.positions.Add(pos.localPosition);
+                    }
+                    stageFomation.FomationList.Add(newFomation);
+
                 }
             }
 
@@ -264,6 +310,8 @@ namespace RPG.Test
             }
 
             gameManager.Player.SetEquipment();
+
+
         }
     }
 }

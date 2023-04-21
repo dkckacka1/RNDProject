@@ -71,6 +71,7 @@ namespace RPG.Battle.Core
         public float battleReadyTime = 2f;
         public float playerCreatePositionXOffset = 15f;
         public float EnemyCreatePositionXOffset = -18f;
+        public StageFomation stageFomation;
 
         private StageData stageData;
 
@@ -300,10 +301,10 @@ namespace RPG.Battle.Core
         private void LoadCurrentStage()
         {
             stageData = LoadStageData();
-            SetUpStage(ref stageData);
+            SetUpStage(stageData);
         }
 
-        private void SetUpStage(ref StageData stage)
+        private void SetUpStage(StageData stage)
         {
             // PlayerSetting
 
@@ -320,23 +321,25 @@ namespace RPG.Battle.Core
             livePlayer.transform.position = playerPosition;
             livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
             livePlayer.animator.SetTrigger("Move");
-            livePlayer.transform.DOMoveX(stage.playerSpawnPosition.x, battleReadyTime).OnComplete(() => 
+            livePlayer.transform.DOMoveX(stage.playerSpawnPosition.x, battleReadyTime).OnComplete(() =>
             {
                 livePlayer.animator.ResetTrigger("Move");
                 livePlayer.animator.SetTrigger("Idle");
             });
 
             // EnemiesSetting
-            foreach (var enemySpawnData in stage.enemyDatas)
+            Fomation fomation = stageFomation.FomationList.Find(temp => temp.fomationEnemyCount == stage.enemyDatas.Length);
+            Debug.Log(fomation.fomationName);
+            for (int i = 0; i < stage.enemyDatas.Length; i++)
             {
                 EnemyData enemyData;
-                if (GameManager.Instance.enemyDataDic.TryGetValue(enemySpawnData.enemyID, out enemyData))
+                if (GameManager.Instance.enemyDataDic.TryGetValue(stage.enemyDatas[i].enemyID, out enemyData))
                 {
-                    Vector3 enemyPosition = new Vector3(EnemyCreatePositionXOffset, enemySpawnData.position.y, enemySpawnData.position.z);
+                    Vector3 enemyPosition = new Vector3(EnemyCreatePositionXOffset, fomation.positions[i].y, fomation.positions[i].z);
                     EnemyController enemy = ObjectPool.GetEnemyController(enemyData, enemyPosition);
                     enemy.transform.LookAt(enemy.transform.position + Vector3.right);
                     enemy.animator.SetTrigger("Move");
-                    enemy.transform.DOMoveX(enemySpawnData.position.x, battleReadyTime).OnComplete(() => 
+                    enemy.transform.DOLocalMoveX(fomation.positions[i].x, battleReadyTime).OnComplete(() =>
                     {
                         enemy.animator.ResetTrigger("Move");
                         enemy.animator.SetTrigger("Idle");

@@ -15,11 +15,11 @@ MonoBehaviour:
   ID: 7
   playerSpawnPosition: {x: 23, y: 0, z: 0}
   enemyDatas:
-  - position: {x: 2, y: 0, z: -3}
+  - position: {x: 4, y: 0, z: -3}
     enemyID: 2
-  - position: {x: 2, y: 0, z: 3}
+  - position: {x: 4, y: 0, z: 3}
     enemyID: 2
-  - position: {x: 0, y: 0, z: 3}
+  - position: {x: 0, y: 0, z: -3}
     enemyID: 2
   - position: {x: 0, y: 0, z: 3}
     enemyID: 2

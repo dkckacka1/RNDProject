@@ -66,7 +66,6 @@ namespace RPG.Battle.Core
         private EnemyController CreateController(EnemyData data)
         {
             EnemyController enemy = Instantiate<EnemyController>(enemyController, enemyParent);
-            enemy.gameObject.name = "고블리나 " + count++;
             return enemy;
         }
 
@@ -85,15 +84,19 @@ namespace RPG.Battle.Core
                 enemy = CreateController(data);
             }
 
-            SetLook(ref enemy, data);
-            (enemy.battleStatus.status as EnemyStatus).Init(data);
-            enemy.gameObject.transform.position = position;
+            // 데이터 변경
+            (enemy.battleStatus.status as EnemyStatus).ChangeEnemyData(data);
+            // 외형 변경
+            SetEnemyLook(ref enemy,ref data);
+            // 위치값 변경
+            enemy.gameObject.transform.localPosition= position;
+            // 활성화
             enemy.gameObject.SetActive(true);
 
             return enemy;
         }
 
-        public void SetLook(ref EnemyController enemy, EnemyData data)
+        public void SetEnemyLook(ref EnemyController enemy,ref EnemyData data)
         {
             enemy.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
             enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weaponApparenceID);
@@ -103,7 +106,9 @@ namespace RPG.Battle.Core
         public void ReturnEnemy(EnemyController enemy)
         {
             enemyControllerPool.Enqueue(enemy);
+
             enemy.transform.GetChild((enemy.battleStatus.status as EnemyStatus).apperenceNum).gameObject.SetActive(false);
+
             enemy.gameObject.SetActive(false);
         }
 

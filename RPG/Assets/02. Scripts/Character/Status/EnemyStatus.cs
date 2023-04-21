@@ -10,7 +10,7 @@ namespace RPG.Character.Status
         public int enemyID;
         public int apperenceNum;
 
-        public void Init(EnemyData data)
+        public void ChangeEnemyData(EnemyData data)
         {
             enemyID = data.ID;
             apperenceNum = data.apperenceNum;
