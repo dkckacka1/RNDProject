@@ -25,6 +25,12 @@ namespace RPG.Test
         [Range(1, 3)]
         [SerializeField] int enemyCreateNum;
 
+        [Header("DefaultPlayerEquipment")]
+        [SerializeField] int defaultWeaponID;
+        [SerializeField] int defaultArmorId;
+        [SerializeField] int defaultHelmetID;
+        [SerializeField] int defaultPantsID;
+
         [Header("DataID")]
         [SerializeField] int stageDataID;
         [SerializeField] int enemyDataID;
@@ -33,7 +39,7 @@ namespace RPG.Test
 
         private void Start()
         {
-
+            SetDefaultEquipment();
         }
 
         private void OnGUI()
@@ -184,6 +190,80 @@ namespace RPG.Test
                     gameManager.Player.SetEquipment();
                 }
             }
+        }
+
+        private void SetDefaultEquipment()
+        {
+            EquipmentData data;
+            if (!gameManager.equipmentDataDic.TryGetValue(defaultWeaponID, out data))
+            {
+                Debug.Log("EquipmentData is NULL");
+                return;
+            }
+            else
+            {
+                if ((data as WeaponData) != null)
+                {
+                    gameManager.Player.currentWeapon.ChangeData(data);
+                }
+                else
+                {
+                    Debug.Log("EquipmentData is Not WeaponData");
+                }
+            }
+
+            if (!gameManager.equipmentDataDic.TryGetValue(defaultArmorId, out data))
+            {
+                Debug.Log("EquipmentData is NULL");
+                return;
+            }
+            else
+            {
+                if ((data as ArmorData) != null)
+                {
+                    gameManager.Player.currentArmor.ChangeData(data);
+                }
+                else
+                {
+                    Debug.Log("EquipmentData is Not ArmorData");
+                }
+            }
+
+            if (!gameManager.equipmentDataDic.TryGetValue(defaultHelmetID, out data))
+            {
+                Debug.Log("EquipmentData is NULL");
+                return;
+            }
+            else
+            {
+                if ((data as HelmetData) != null)
+                {
+                    gameManager.Player.currentHelmet.ChangeData(data);
+                }
+                else
+                {
+                    Debug.Log("EquipmentData is Not HelmetDataID");
+                }
+            }
+
+            if (!gameManager.equipmentDataDic.TryGetValue(defaultPantsID, out data))
+            {
+                Debug.Log("EquipmentData is NULL");
+                return;
+            }
+            else
+            {
+                if ((data as PantsData) != null)
+                {
+                    gameManager.Player.currentPants.ChangeData(data);
+                }
+                else
+                {
+                    Debug.Log("EquipmentData is Not PantsID");
+                }
+            }
+
+            gameManager.Player.SetEquipment();
         }
     }
 }

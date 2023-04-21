@@ -15,8 +15,10 @@ MonoBehaviour:
   ID: 3
   playerSpawnPosition: {x: 23, y: 0, z: 0}
   enemyDatas:
-  - position: {x: 2, y: 0, z: -3}
+  - position: {x: 2, y: 0, z: -2}
+    enemyID: 10
+  - position: {x: 2, y: 0, z: 2}
+    enemyID: 0
+  - position: {x: 0, y: 0, z: 0}
     enemyID: 1
-  - position: {x: 2, y: 0, z: 3}
-    enemyID: 1
-  ConsumEnergy: 10
+  ConsumEnergy: 40

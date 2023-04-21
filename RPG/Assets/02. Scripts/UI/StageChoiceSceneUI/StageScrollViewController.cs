@@ -19,8 +19,6 @@ namespace RPG.Stage.UI
         protected GameObject cellBase = null; // 복사 원본 셀
         [SerializeField]
         private float spacingHeight = 4.0f; // 각 셀의 간격
-        [SerializeField]
-        private RectOffset visibleRectPadding = null;   //visibleRect의 패딩
 
         private LinkedList<StageFloorUI> cells = new LinkedList<StageFloorUI>(); // 셀 저장 리스트
 

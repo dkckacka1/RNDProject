@@ -33,5 +33,5 @@ public class EnemyData : Data
     public List<DropTable> dropitems;
 
     [Header("Equipment")]
-    public GameObject weapon;
+    public int weaponApparenceID;
 }

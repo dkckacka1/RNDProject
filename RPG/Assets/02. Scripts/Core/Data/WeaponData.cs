@@ -9,7 +9,7 @@ namespace RPG.Character.Equipment
     [CreateAssetMenu(fileName = "NewWeapon", menuName = "CreateScriptableObject/CreateWeapon", order = 1)]
     public class WeaponData : EquipmentData
     {
-        public GameObject weaponLook;
+        public int weaponApparenceID;
 
         public int attackDamage;
         [Range(1, 2.5f)] public float attackSpeed;

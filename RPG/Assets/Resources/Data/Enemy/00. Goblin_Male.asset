@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: 00. Goblin_Male
   m_EditorClassIdentifier: 
   ID: 0
-  enemyLook: {fileID: 1084090695722338, guid: 5c64e2d4a76bb6c41b1ce4fcdffe63f5, type: 3}
-  ApperenceNum: 0
+  apperenceNum: 0
   enemyName: "\uACE0\uBE14\uB9B0 \uC804\uC0AC"
   maxHp: 100
   attackDamage: 10
@@ -32,5 +31,4 @@ MonoBehaviour:
   dropitems:
   - itemType: 1
     percent: 100
-  weaponHandle: {fileID: 0}
-  weapon: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
+  weapon: {fileID: 137386, guid: c8c2ad01ac831bc47a871eaa92d7a5f3, type: 3}

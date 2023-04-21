@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Weapon : Equipment
     {
-        public GameObject weaponLook;
+        public int weaponApparenceID;
 
         public int attackDamage;
         public float attackSpeed;
@@ -177,7 +177,7 @@ namespace RPG.Character.Equipment
 
         public Weapon(Weapon weapon) : base(weapon)
         {
-            weaponLook = weapon.weaponLook;
+            weaponApparenceID = weapon.weaponApparenceID;
             attackDamage = weapon.attackDamage;
             attackSpeed = weapon.attackSpeed;
             attackRange = weapon.attackRange;
@@ -194,7 +194,7 @@ namespace RPG.Character.Equipment
 
         public Weapon(WeaponData data) : base(data)
         {
-            weaponLook = data.weaponLook;
+            weaponApparenceID = data.weaponApparenceID;
             AttackDamage = data.attackDamage;
             AttackSpeed = data.attackSpeed;
             AttackRange = data.attackRange;
@@ -212,6 +212,7 @@ namespace RPG.Character.Equipment
             }
 
             base.ChangeData(data);
+            weaponApparenceID = (data as WeaponData).weaponApparenceID;
             AttackDamage = (data as WeaponData).attackDamage;
             AttackSpeed = (data as WeaponData).attackSpeed;
             AttackRange = (data as WeaponData).attackRange;

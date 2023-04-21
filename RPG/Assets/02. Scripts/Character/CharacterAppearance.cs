@@ -12,6 +12,12 @@ namespace RPG.Character.Equipment
         {
             Instantiate(item, weaponHandle);
         }
+
+        public void EquipWeapon(int weaponApparenceID)
+        {
+            var childCount =  weaponHandle.childCount;
+            weaponHandle.GetChild(weaponApparenceID).gameObject.SetActive(true);
+        }
     }
 
 }

@@ -96,7 +96,7 @@ namespace RPG.Battle.Core
         public void SetLook(ref EnemyController enemy, EnemyData data)
         {
             enemy.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
-            enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weapon);
+            enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weaponApparenceID);
         }
 
 
