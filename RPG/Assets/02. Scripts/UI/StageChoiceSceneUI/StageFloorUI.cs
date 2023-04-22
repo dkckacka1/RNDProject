@@ -38,6 +38,11 @@ namespace RPG.Stage.UI
             this.stageData = stageData;
             stageFloorText.text = stageData.ID.ToString() + "Ãþ!";
 
+            if (GameManager.Instance == null)
+            {
+                return;
+            }
+
             if (GameManager.Instance.UserInfo.risingTopCount < this.stageData.ID)
             {
                 SceneLoadBtn.interactable = false;
