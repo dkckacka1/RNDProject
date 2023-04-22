@@ -26,12 +26,8 @@ namespace RPG.Battle.UI
 
         private void OnEnable()
         {
-            this.gameObject.transform.DOScale(1, scaleSpeedTime).SetEase(Ease.OutBack);
-        }
-
-        private void OnDisable()
-        {
             this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+            this.gameObject.transform.DOScale(1, scaleSpeedTime).SetEase(Ease.OutBack);
         }
 
         public void InitUI(int floor, int gainEnergy, int gainGacha, int gainReinfoce, int gainIncant)
