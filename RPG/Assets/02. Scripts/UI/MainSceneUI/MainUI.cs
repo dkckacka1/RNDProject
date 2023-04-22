@@ -20,7 +20,6 @@ namespace RPG.Main.UI
         [SerializeField] TextMeshProUGUI incantText;
         [SerializeField] TextMeshProUGUI itemGachaTicketText;
         [SerializeField] TextMeshProUGUI EnergyText;
-        [SerializeField] Button backButton;
 
         [Header("Canvas")]
         [SerializeField] Canvas stageCanvas;
@@ -48,27 +47,16 @@ namespace RPG.Main.UI
         {
             stageCanvas.gameObject.SetActive(false);
             statusCanvas.gameObject.SetActive(false);
-            backButton.gameObject.SetActive(false);
         }
 
         public void ShowStatusUI()
         {
             statusCanvas.gameObject.SetActive(true);
-            if (backButton == null)
-            {
-                return;
-            }
-            backButton.gameObject.SetActive(true);
         }
 
         public void ShowStageChoiceUI()
         {
             stageCanvas.gameObject.SetActive(true);
-            if (backButton == null)
-            {
-                return;
-            }
-            backButton.gameObject.SetActive(true);
         }
 
         public void IncantItem()
