@@ -237,7 +237,6 @@ namespace RPG.Battle.Control
         public void AttackEvent()
         {
             attack.TargetTakeDamage();
-            Debug.Log("Attack");
         }
     }
 }

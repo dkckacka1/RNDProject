@@ -115,6 +115,7 @@ namespace RPG.Test
                         if (GameManager.Instance.enemyDataDic.TryGetValue(data.enemyDatas[i].enemyID, out enemyData))
                         {
                             EnemyController enemy = BattleManager.ObjectPool.GetEnemyController(enemyData, fomation.positions[i]);
+                            enemy.name = $"{enemyData.name} {i}";
                             battleManager.liveEnemies.Add(enemy);
                         }
                     }

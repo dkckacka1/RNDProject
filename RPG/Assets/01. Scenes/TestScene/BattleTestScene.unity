@@ -4213,7 +4213,7 @@ MonoBehaviour:
   stageDataID: 7
   enemyDataID: 0
   equipmentDataID: 199
-  incantDataID: 303
+  incantDataID: 304
   inputField: {fileID: 1817347158}
 --- !u!1001 &1128943186
 PrefabInstance:
