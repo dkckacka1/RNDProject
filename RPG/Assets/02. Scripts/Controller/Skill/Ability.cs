@@ -31,7 +31,6 @@ namespace RPG.Battle.Ability
 
         // 처음에 스킬이 어디서 나타날 것인가?
         public Vector3 abilityPositionOffset;
-        public Vector3 abilityRotationOffset;
         public virtual void InitAbility(Transform startPos, UnityAction<BattleStatus> action, Space space = Space.Self)
         {
             if (space == Space.Self)
@@ -45,8 +44,6 @@ namespace RPG.Battle.Ability
 
 
             this.transform.Translate(abilityPositionOffset);
-            Quaternion rotation = Quaternion.Euler(abilityRotationOffset);
-            this.transform.rotation = rotation;
             this.action = action;
         }
 

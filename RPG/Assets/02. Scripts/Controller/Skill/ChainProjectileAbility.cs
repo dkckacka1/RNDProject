@@ -10,6 +10,7 @@ namespace RPG.Battle.Ability
     {
         [SerializeField] float speed;
         [SerializeField] float distanceCheck;
+        [SerializeField] int actionEffectNum = -1;
 
         EnemyController currentTarget;
 
@@ -34,6 +35,10 @@ namespace RPG.Battle.Ability
 
             if (Vector3.Distance(this.transform.position, currentTarget.transform.position + abilityPositionOffset) < distanceCheck)
             {
+                if (actionEffectNum != -1)
+                {
+                    BattleManager.ObjectPool.GetAbility(actionEffectNum, this.transform, null,Space.World);
+                }
                 action.Invoke(currentTarget.battleStatus);
                 index++;
                 if (targetList.Count == index)

@@ -202,7 +202,7 @@ namespace RPG.Battle.Core
         private Ability.Ability CreateAbility(int abilityID)
         {
             Ability.Ability prefab = GameManager.Instance.abilityPrefabDic[abilityID];
-            var ability = Instantiate(prefab, Vector3.zero, Quaternion.identity, abilityParent);
+            var ability = Instantiate(prefab, abilityParent);
             abilityPool.Add(ability);  
             return ability;
         }
@@ -237,7 +237,6 @@ namespace RPG.Battle.Core
                 if ((getAbility = abilityPool.Find(ability => (ability.abilityID == abilityID) && (!ability.gameObject.activeInHierarchy))) == null)
                 {
                     getAbility = CreateAbility(abilityID);
-
                 }
             }
             else

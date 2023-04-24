@@ -14,7 +14,11 @@ namespace RPG.Stage.UI
         public RectTransform CachedRectTrasnfrom => GetComponent<RectTransform>();
         public Button SceneLoadBtn; 
 
+        [Header("UnLockObject")]
+        [SerializeField] GameObject unLockObject;
         [SerializeField] TextMeshProUGUI stageFloorText;
+        [Header("LockObject")]
+        [SerializeField] GameObject lockObject;
 
         private StageData stageData;
 
@@ -40,10 +44,14 @@ namespace RPG.Stage.UI
 
             if (GameManager.Instance.UserInfo.risingTopCount < this.stageData.ID)
             {
+                lockObject.SetActive(true);
+                unLockObject.SetActive(false);
                 SceneLoadBtn.interactable = false;
             }
             else
             {
+                lockObject.SetActive(false);
+                unLockObject.SetActive(true);
                 SceneLoadBtn.interactable = true;
             }
         }

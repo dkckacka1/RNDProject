@@ -42,6 +42,7 @@ namespace RPG.Stage.UI
             if (GameManager.Instance != null)
             {
                 var list = GameManager.Instance.stageDataDic.ToList();
+                list.Sort((value1, value2) => { return (value1.Value.ID > value2.Value.ID) ? 1 : -1; });
                 foreach (var stageData in list)
                 {
                     stageDataList.Add(stageData.Value);

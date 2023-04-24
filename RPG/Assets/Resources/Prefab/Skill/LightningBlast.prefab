@@ -14540,6 +14540,6 @@ MonoBehaviour:
   abilityDesc: 
   abilityTime: 1
   particle: {fileID: 0}
-  abilityPositionOffset: {x: 0, y: 0.5, z: 0}
+  abilityPositionOffset: {x: 0, y: 1, z: 0}
   abilityRotationOffset: {x: -90, y: 0, z: 0}
   explosionRange: 1
