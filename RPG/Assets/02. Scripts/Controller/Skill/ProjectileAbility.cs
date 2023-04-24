@@ -11,12 +11,10 @@ namespace RPG.Battle.Ability
     {
         [SerializeField] float speed;
 
-
-
-        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> action)
+        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> action, Space space = Space.Self)
         {
             this.transform.rotation = startPos.rotation;
-            base.InitAbility(startPos, action);
+            base.InitAbility(startPos, action, space);
         }
 
         // Update is called once per frame

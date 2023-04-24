@@ -16,7 +16,13 @@ namespace RPG.Battle.Ability
         public string abilityDesc;
         public float abilityTime;
 
+        public ParticleSystem particle;
         protected UnityAction<BattleStatus> action;
+
+        private void Awake()
+        {
+            particle = GetComponent<ParticleSystem>();
+        }
 
         protected virtual void OnEnable()
         {
@@ -25,10 +31,22 @@ namespace RPG.Battle.Ability
 
         // 처음에 스킬이 어디서 나타날 것인가?
         public Vector3 abilityPositionOffset;
-        public virtual void InitAbility(Transform startPos, UnityAction<BattleStatus> action)
+        public Vector3 abilityRotationOffset;
+        public virtual void InitAbility(Transform startPos, UnityAction<BattleStatus> action, Space space = Space.Self)
         {
-            this.transform.localPosition = startPos.localPosition;
+            if (space == Space.Self)
+            {
+                this.transform.localPosition = startPos.localPosition;
+            }
+            else
+            {
+                this.transform.localPosition = startPos.position;
+            }
+
+
             this.transform.Translate(abilityPositionOffset);
+            Quaternion rotation = Quaternion.Euler(abilityRotationOffset);
+            this.transform.rotation = rotation;
             this.action = action;
         }
 

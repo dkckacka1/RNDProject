@@ -228,7 +228,7 @@ namespace RPG.Battle.Core
             return getAbility;
         }
 
-        public Ability.Ability GetAbility(int abilityID, Transform starPos, UnityAction<BattleStatus> action)
+        public Ability.Ability GetAbility(int abilityID, Transform starPos, UnityAction<BattleStatus> action, Space space = Space.Self)
         {
             Ability.Ability getAbility;
 
@@ -245,7 +245,7 @@ namespace RPG.Battle.Core
                 getAbility = CreateAbility(abilityID);
             }
 
-            getAbility.InitAbility(starPos, action);
+            getAbility.InitAbility(starPos, action, space);
             getAbility.gameObject.SetActive(true);
             return getAbility;
         }

@@ -19,7 +19,7 @@ namespace RPG.Character.Equipment
         {
             var nearlyTarget = BattleManager.Instance.ReturnNearDistanceController<EnemyController>(player.transform);
             var ability = BattleManager.ObjectPool.GetAbility(3, nearlyTarget.transform, (status) => { status.TakeDamage(10); });
-            (ability as ChainAbility).SetTarget(BattleManager.Instance.ReturnNearDistanceController<EnemyController>(player.transform));
+            (ability as ChainAbility).SetTarget(nearlyTarget);
             player.StartCoroutine((ability as ChainAbility).delayCoroutine());
         }
 

@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 04. Goblin_Shaman
   m_EditorClassIdentifier: 
   ID: 4
-  enemyLook: {fileID: 1084090695722338, guid: 5c64e2d4a76bb6c41b1ce4fcdffe63f5, type: 3}
   apperenceNum: 4
   enemyName: "\uACE0\uBE14\uB9B0 \uC804\uC0AC"
-  maxHp: 100
-  attackDamage: 10
-  attackRange: 2
+  maxHp: 1000
+  attackDamage: 1
+  attackRange: 8
   attackSpeed: 1
   criticalChance: 0
   criticalDamage: 0
@@ -32,5 +31,4 @@ MonoBehaviour:
   dropitems:
   - itemType: 1
     percent: 100
-  weaponHandle: {fileID: 0}
-  weapon: {fileID: 5185617695843602025, guid: b51b6e331126815419693271bf988158, type: 3}
+  weaponApparenceID: 0

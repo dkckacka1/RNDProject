@@ -47,6 +47,10 @@ namespace RPG.Battle.Control
             battleStatus.Init();
             ui.Init();
             Init();
+            if (BattleManager.Instance == null)
+            {
+                return;
+            }
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, Defeat);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Ready, Ready);
@@ -59,6 +63,10 @@ namespace RPG.Battle.Control
             battleStatus.Release();
             ui.ReleaseUI();
             Release();
+            if (BattleManager.Instance == null)
+            {
+                return;
+            }
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Win, Win);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Defeat, Defeat);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ready, Ready);

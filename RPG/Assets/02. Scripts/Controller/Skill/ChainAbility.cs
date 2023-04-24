@@ -10,27 +10,22 @@ namespace RPG.Battle.Ability
 {
     public class ChainAbility : Ability
     {
-        [SerializeField] float chainDelay = 0.1f; // √º¿Œ µÙ∑π¿Ã
-        [SerializeField] float chainRange = 1f; // √º¿Œ π›∞Ê
-        [SerializeField] int ChainCount = 3; // ≈∏∞Ÿ¿« ∞πºˆ
+        [SerializeField] protected float chainDelay = 0.1f; // √º¿Œ µÙ∑π¿Ã
+        [SerializeField] protected float chainRange = 1f; // √º¿Œ π›∞Ê
+        [SerializeField] protected int chainCount = 3; // ≈∏∞Ÿ¿« ∞πºˆ
 
-        List<EnemyController> targetList = new List<EnemyController>();
-
-        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> action)
-        {
-            base.InitAbility(startPos, action);
-        }
+        protected List<EnemyController> targetList = new List<EnemyController>();
 
         public override void ReleaseAbility()
         {
             base.ReleaseAbility();
         }
 
-        public void SetTarget(EnemyController target)
+        public virtual void SetTarget(EnemyController target)
         {
             var currentTarget = target;
             targetList.Add(currentTarget);
-            for (int i = 0; i < ChainCount; i++)
+            for (int i = 0; i < chainCount; i++)
             {
                 EnemyController nextTarget;
                 if (TryCheckNearlyTarget(currentTarget, out nextTarget))
@@ -54,9 +49,9 @@ namespace RPG.Battle.Ability
                 float distance2 = Vector3.Distance(enemy2.transform.position, target.transform.position);
 
                 if (distance1 > distance2)
-                    return -1;
-                else
                     return 1;
+                else
+                    return -1;
             });
 
             foreach (var enemycontroller in BattleManager.Instance.liveEnemies)
@@ -74,18 +69,16 @@ namespace RPG.Battle.Ability
 
         public IEnumerator delayCoroutine()
         {
-            foreach (var enemy in targetList)
-            {
-                Debug.Log(enemy.name);
-            }
-
             foreach (var target in targetList)
             {
                 var newEffect = BattleManager.ObjectPool.GetAbility(this.abilityID, target.transform, action);
                 newEffect.transform.position = target.transform.position;
+                newEffect.particle.Play();
                 action.Invoke(target.battleStatus);
                 yield return new WaitForSeconds(chainDelay);
             }
+
+            targetList.Clear();
         }
     }
 }
