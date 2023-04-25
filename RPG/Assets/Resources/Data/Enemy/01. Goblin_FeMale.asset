@@ -31,4 +31,4 @@ MonoBehaviour:
   dropitems:
   - itemType: 1
     percent: 100
-  weaponApparenceID: 1
+  weaponApparenceID: 2

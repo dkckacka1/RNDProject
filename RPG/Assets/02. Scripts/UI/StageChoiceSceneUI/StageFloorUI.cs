@@ -12,7 +12,7 @@ namespace RPG.Stage.UI
     public class StageFloorUI : MonoBehaviour
     {
         public RectTransform CachedRectTrasnfrom => GetComponent<RectTransform>();
-        public Button SceneLoadBtn; 
+        public Button ShowStageBtn; 
 
         [Header("UnLockObject")]
         [SerializeField] GameObject unLockObject;
@@ -46,13 +46,13 @@ namespace RPG.Stage.UI
             {
                 lockObject.SetActive(true);
                 unLockObject.SetActive(false);
-                SceneLoadBtn.interactable = false;
+                ShowStageBtn.interactable = false;
             }
             else
             {
                 lockObject.SetActive(false);
                 unLockObject.SetActive(true);
-                SceneLoadBtn.interactable = true;
+                ShowStageBtn.interactable = true;
             }
         }
 
@@ -90,9 +90,9 @@ namespace RPG.Stage.UI
             }
         }
 
-        public void LoadScene()
+        public void ShowStage(StageInfomationUI ui)
         {
-            SceneLoader.LoadBattleScene(this.stageData.ID);
+            ui.ShowStageInfomation(stageData);
         }
     }
 }

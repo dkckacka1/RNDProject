@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using RPG.Battle.Core;
+using RPG.Core;
 
 namespace RPG.Battle.UI
 {
@@ -46,10 +47,24 @@ namespace RPG.Battle.UI
 
         public void ShowDefeatUI()
         {
+            int consumeEnergy = GameManager.Instance.stageDataDic[BattleManager.Instance.currentStageFloor].ConsumEnergy;
             titleText.text = "전투 결과";
-            btnText.text = "현재 층\n재도전";
+            btnText.text = $"현재 층\n재도전 (-{consumeEnergy})";
             reStartBtn.onClick.RemoveAllListeners();
-            reStartBtn.onClick.AddListener(()=> { BattleManager.Instance.ReStartBattle(); });
+            reStartBtn.onClick.AddListener(()=> 
+            {
+                GameManager.Instance.UserInfo.energy -= consumeEnergy;
+                BattleManager.Instance.ReStartBattle();
+            });
+
+            if (GameManager.Instance.UserInfo.energy < consumeEnergy)
+            {
+                reStartBtn.interactable = false;
+            }
+            else
+            {
+                reStartBtn.interactable = true;
+            }
         }
 
         public void ShowPauseUI()

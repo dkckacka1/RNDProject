@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Stage 9
   m_EditorClassIdentifier: 
   ID: 9
-  playerSpawnPosition: {x: 23, y: 0, z: 0}
+  playerSpawnPosition: {x: 20, y: 0, z: 0}
   enemyDatas:
-  - position: {x: 0, y: 0, z: 0}
-    enemyID: 4
+  - enemyID: 4
   ConsumEnergy: 10

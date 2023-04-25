@@ -2220,7 +2220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754993048048615318, guid: bef3b9c7bf80f664c9c492f63477baa9, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 54.5
       objectReference: {fileID: 0}
     - target: {fileID: 3754993048048615318, guid: bef3b9c7bf80f664c9c492f63477baa9, type: 3}
       propertyPath: m_fontAsset
@@ -21610,6 +21610,10 @@ PrefabInstance:
     - target: {fileID: 2870251430358979697, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
       propertyPath: m_Name
       value: GahcaExcuteButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870251430358979697, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2870251430358979699, guid: c64149a3f1112ba478f84b01af25e797, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

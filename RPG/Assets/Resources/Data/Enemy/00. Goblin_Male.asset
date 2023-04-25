@@ -31,4 +31,4 @@ MonoBehaviour:
   dropitems:
   - itemType: 1
     percent: 100
-  weapon: {fileID: 137386, guid: c8c2ad01ac831bc47a871eaa92d7a5f3, type: 3}
+  weaponApparenceID: 2

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using RPG.Core;
+using RPG.Character.Equipment;
 
 namespace RPG.Main.UI
 {

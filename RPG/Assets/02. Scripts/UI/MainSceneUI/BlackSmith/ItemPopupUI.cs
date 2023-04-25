@@ -39,10 +39,12 @@ namespace RPG.Main.UI
         [SerializeField] TextMeshProUGUI prefixAbilityDescText;
 
         private VerticalLayoutGroup[] groups;
+        CharacterAppearance appearance;
 
         private void Awake()
         {
             groups = GetComponentsInChildren<VerticalLayoutGroup>();
+            appearance = FindObjectOfType<CharacterAppearance>();
         }
 
         public void InitGacha()
@@ -143,20 +145,11 @@ namespace RPG.Main.UI
                 return;
             }
 
-            switch (choiceItem.equipmentType)
-            {
-                case EquipmentItemType.Weapon:
-                    
-                    break;
-                case EquipmentItemType.Armor:
-                    break;
-                case EquipmentItemType.Pants:
-                    break;
-                case EquipmentItemType.Helmet:
-                    break;
-            }
-
             choiceItem.ChangeData(data);
+            if (choiceItem.equipmentType == EquipmentItemType.Weapon)
+            {
+                appearance.EquipWeapon((data as WeaponData).weaponApparenceID);
+            }
 
             GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
@@ -167,7 +160,11 @@ namespace RPG.Main.UI
         {
             GameManager.Instance.UserInfo.itemReinforceTicket--;
 
-            choiceItem.ReinforceItem();
+            if (MyUtility.ProbailityCalc(100 - RandomSystem.ReinforceCalc(choiceItem), 0, 100))
+            {
+                choiceItem.ReinforceItem();
+            }
+
 
             GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);

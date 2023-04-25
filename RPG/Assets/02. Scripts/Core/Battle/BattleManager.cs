@@ -129,7 +129,7 @@ namespace RPG.Battle.Core
             StartCoroutine(MethodCallTimer(() =>
             {
                 Battle();
-            }, battleReadyTime + 3f));
+            }, battleReadyTime));
         }
 
 

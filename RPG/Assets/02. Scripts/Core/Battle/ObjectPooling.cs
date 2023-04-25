@@ -61,7 +61,6 @@ namespace RPG.Battle.Core
         #region Enemy
         // Pool
         Queue<EnemyController> enemyControllerPool = new Queue<EnemyController>();
-        static int count = 1;
 
         private EnemyController CreateController(EnemyData data)
         {
