@@ -15,17 +15,17 @@ namespace RPG.Battle.UI
         [SerializeField] float deleteTiming;
         [SerializeField] List<DamageTextMaterial> materials;
 
-
+        float dir;
 
         private void OnEnable()
         {
-
+            dir = Random.Range(-0.2f, 0.2f);
             text.DOFade(0, deleteTiming).OnComplete(() => { ReleaseText(); });
         }
 
         private void Update()
         {
-            transform.position += (Vector3.up * speed * Time.deltaTime);
+            transform.position += (new Vector3(dir, 1, 0) * speed * Time.deltaTime);
         }
 
         #region Initialize
@@ -49,7 +49,7 @@ namespace RPG.Battle.UI
         public void ReleaseText()
         {
             BattleManager.ObjectPool.ReturnText(this);
-        } 
+        }
         #endregion
 
 

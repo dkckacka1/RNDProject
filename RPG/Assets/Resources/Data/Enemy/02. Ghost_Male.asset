@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   apperenceNum: 2
-  enemyName: "\uACE0\uBE14\uB9B0 \uC804\uC0AC"
-  maxHp: 100
-  attackDamage: 10
+  enemyName: "\uC720\uB839(\uB0A8)"
+  maxHp: 200
+  attackDamage: 20
   attackRange: 2
-  attackSpeed: 1
+  attackSpeed: 1.5
   criticalChance: 0
   criticalDamage: 0
   attackChance: 0.9
@@ -27,8 +27,12 @@ MonoBehaviour:
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 10
+  dropEnergy: 25
   dropitems:
-  - itemType: 1
+  - itemType: 3
     percent: 100
+  - itemType: 2
+    percent: 60
+  - itemType: 1
+    percent: 20
   weaponApparenceID: 2

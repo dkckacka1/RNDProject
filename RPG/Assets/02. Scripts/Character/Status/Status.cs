@@ -35,19 +35,19 @@ namespace RPG.Character.Status
         public float AttackRange { get => attackRange; set => attackRange = value; }
         public int AttackDamage { get => attackDamage; set => attackDamage = value; }
         public float AttackSpeed 
-        { 
-            get => attackSpeed;
-            set
+        {
+            get
             {
-                if (value < Constant.minimumAttackSpeed)
+                if (attackSpeed < Constant.minimumAttackSpeed)
                 {
-                    attackSpeed = Constant.minimumAttackSpeed;
+                    return Constant.minimumAttackSpeed;
                 }
                 else
                 {
-                    attackSpeed = value;
+                    return attackSpeed;
                 }
             }
+            set => attackSpeed = value;
         }
 
         public float CriticalChance { get => criticalChance; set => criticalChance = value; }
@@ -59,21 +59,19 @@ namespace RPG.Character.Status
         public float EvasionCritical { get => evasionCritical; set => evasionCritical = value; }
         public float MovementSpeed 
         { 
-            get => movementSpeed; 
-            set
+            get
             {
-                if (value < Constant.minimumMovementSpeed)
+                if (movementSpeed < Constant.minimumMovementSpeed)
                 {
-                    movementSpeed = Constant.minimumMovementSpeed;
+                    return Constant.minimumMovementSpeed;
                 }
                 else
                 {
-                    movementSpeed = value;
+                    return movementSpeed;
                 }
             }
+            set => movementSpeed = value;
         }
-
-        
     }
 }
 

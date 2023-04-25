@@ -29,7 +29,7 @@ namespace RPG.Battle.Core
             }
         }
         private static BattleManager instance;
-        public static BattleUI BattleUI
+        public static BattleSceneUIManager BattleUI
         {
             get
             {
@@ -57,7 +57,7 @@ namespace RPG.Battle.Core
         [Header("BattleCore")]
         // Component
         public BattleSceneState currentBattleState = BattleSceneState.Default;
-        private static BattleUI battleUI;
+        private static BattleSceneUIManager battleUI;
         private static ObjectPooling objectPool;
 
 
@@ -92,7 +92,7 @@ namespace RPG.Battle.Core
             if (instance == null)
             {
                 instance = this;
-                battleUI = GetComponentInChildren<BattleUI>();
+                battleUI = GetComponentInChildren<BattleSceneUIManager>();
                 objectPool = GetComponentInChildren<ObjectPooling>();
             }
             else
@@ -329,7 +329,6 @@ namespace RPG.Battle.Core
 
             // EnemiesSetting
             Fomation fomation = stageFomation.FomationList.Find(temp => temp.fomationEnemyCount == stage.enemyDatas.Length);
-            Debug.Log(fomation.fomationName);
             for (int i = 0; i < stage.enemyDatas.Length; i++)
             {
                 EnemyData enemyData;
