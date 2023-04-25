@@ -132,6 +132,7 @@ namespace RPG.Main.UI
             ShowItem(choiceItem);
             GameManager.Instance.Player.SetEquipment();
             InitIncant();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
         }
 
         public void Gacha()
@@ -154,6 +155,7 @@ namespace RPG.Main.UI
             GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
             InitGacha();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
         }
 
         public void Reinforce()
@@ -169,8 +171,8 @@ namespace RPG.Main.UI
             GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
             InitReinforce();
+            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
         }
-
         public void Exit(Canvas canvas)
         {
             canvas.gameObject.SetActive(false);

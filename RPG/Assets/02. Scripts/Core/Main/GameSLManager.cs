@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace RPG.Core
@@ -71,13 +72,26 @@ namespace RPG.Core
             return userData;
         }
 
-        public static void SaveToJSON()
+        public static void SaveToJSON(UserInfo userinfo, string path)
         {
+            var json = JsonUtility.ToJson(userinfo, true);
+            File.WriteAllText(path, json);
         }
 
-        public static UserInfo LoadToJSON()
+        public static UserInfo LoadFromJson(string path)
         {
-            return null;
+            string json;
+            if (!File.Exists(path))
+            {
+                json = "";
+            }
+            else
+            {
+                json = File.ReadAllText(path);
+            }
+            UserInfo user = JsonUtility.FromJson<UserInfo>(json);
+
+            return user;
         }
     }
 }

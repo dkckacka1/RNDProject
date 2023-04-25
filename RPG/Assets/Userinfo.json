@@ -1,0 +1,23 @@
+{
+    "itemReinforceTicket": 500,
+    "itemIncantTicket": 7,
+    "itemGachaTicket": 9,
+    "risingTopCount": 1,
+    "energy": 0,
+    "lastedWeaponID": 101,
+    "weaponReinforceCount": 5,
+    "weaponPrefixIncantID": 2,
+    "weaponSuffixIncantID": -1,
+    "lastedArmorID": 200,
+    "armorReinforceCount": 0,
+    "armorPrefixIncantID": 103,
+    "armorSuffixIncantID": -1,
+    "lastedHelmetID": 300,
+    "helmetReinforceCount": 0,
+    "helmetPrefixIncantID": -1,
+    "helmetSuffixIncantID": -1,
+    "lastedPantsID": 400,
+    "pantsReinforceCount": 0,
+    "pantsPrefixIncantID": -1,
+    "pantsSuffixIncantID": -1
+}

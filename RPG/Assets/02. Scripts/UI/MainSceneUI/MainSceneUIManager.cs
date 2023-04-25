@@ -123,15 +123,14 @@ namespace RPG.Main.UI
         {
             if (GUI.Button(new Rect(10, 10, 80, 80), "게임 저장"))
             {
-                Debug.Log("게임 저장");
-                GameSLManager.SaveToPlayerPrefs(GameManager.Instance.UserInfo);
+                //GameSLManager.SaveToPlayerPrefs(GameManager.Instance.UserInfo);
+                GameSLManager.SaveToJSON(GameManager.Instance.UserInfo,Application.dataPath + @"\Userinfo.json");
             }
 
             if (GUI.Button(new Rect(10, 100, 80, 80), "게임 불러오기"))
             {
-                GameManager.Instance.UserInfo = GameSLManager.LoadToPlayerPrefs();
+                GameManager.Instance.UserInfo = GameSLManager.LoadFromJson(Application.dataPath + @"\Userinfo.json");
                 GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
-                Debug.Log(GameManager.Instance.UserInfo);
                 UpdateUI();
                 stageChoiceWindowUI.Init();
             }
