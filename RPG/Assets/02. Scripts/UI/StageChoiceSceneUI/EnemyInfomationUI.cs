@@ -20,7 +20,7 @@ namespace RPG.Stage.UI
             enemyNameTxt.text = data.enemyName;
             if (enemyCount > 1)
             {
-                enemyNameTxt.text += $"\nX {enemyCount}";
+                enemyNameTxt.text += $"X {enemyCount}";
             }
 
             earnEnergyTxt.text = data.dropEnergy.ToString();

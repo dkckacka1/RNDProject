@@ -64,7 +64,7 @@ public enum DebuffType
 // 장비아이템 타입
 public enum EquipmentItemType
 {
-    Weapon,
+    Weapon = 0,
     Armor,
     Pants,
     Helmet,
@@ -73,7 +73,7 @@ public enum EquipmentItemType
 // 장비아이템 등급
 public enum EquipmentItemTier
 {
-    Normal,
+    Normal = 0,
     Rare,
     Unique,
     Legendary

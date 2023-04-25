@@ -30,10 +30,9 @@ namespace RPG.Stage.UI
 
             foreach (var enemy in data.enemyDatas)
             {
-                int count;
-                if (stageEnemy.TryGetValue(enemy.enemyID, out count))
+                if (stageEnemy.ContainsKey(enemy.enemyID))
                 {
-                    count++;
+                    stageEnemy[enemy.enemyID]++;
                 }
                 else
                 {
