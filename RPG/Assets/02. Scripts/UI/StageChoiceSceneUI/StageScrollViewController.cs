@@ -29,6 +29,10 @@ namespace RPG.Stage.UI
         public RectTransform CachedRectTransform => GetComponent<RectTransform>();
         public ScrollRect CachedScrollRect => GetComponent<ScrollRect>();
 
+        public RawImage BackGroundImage;
+
+        [SerializeField] float contentBackGroundSpeed;
+
         private int nameIndex = 0;
 
         protected virtual void Start()
@@ -84,13 +88,13 @@ namespace RPG.Stage.UI
 
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(corners[0],100f);
+            Gizmos.DrawSphere(corners[0], 100f);
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(corners[1],100f);
+            Gizmos.DrawSphere(corners[1], 100f);
             Gizmos.color = Color.green;
-            Gizmos.DrawSphere(corners[2],100f);
+            Gizmos.DrawSphere(corners[2], 100f);
             Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(corners[3],100f);
+            Gizmos.DrawSphere(corners[3], 100f);
         }
 
         /// <summary>
@@ -287,6 +291,9 @@ namespace RPG.Stage.UI
         /// <param name="scrollPos">Scroll position.</param>
         private void OnScrollPosChanged(Vector2 scrollPos)
         {
+            Rect uvRect = BackGroundImage.uvRect;
+            uvRect.y = scrollPos.y * (CachedScrollRect.content.rect.height / contentBackGroundSpeed);
+            BackGroundImage.uvRect = uvRect;
             UpdateVisibleRect();
             UpdateCells((scrollPos.y < prevScrollPos.y) ? 1 : -1);
             prevScrollPos = scrollPos;
