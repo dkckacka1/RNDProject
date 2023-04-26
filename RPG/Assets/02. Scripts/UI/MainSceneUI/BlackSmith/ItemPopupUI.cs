@@ -23,6 +23,7 @@ namespace RPG.Main.UI
         [SerializeField] Image equipmentImage;
         [SerializeField] TextMeshProUGUI equipmentDescText;
         [SerializeField] TextMeshProUGUI equipmentStatusText;
+        [SerializeField] ScrollRect descScrollRect;
 
         [Header("SuffixIncant")]
         [SerializeField] GameObject suffixIncantDescObject;
@@ -125,7 +126,7 @@ namespace RPG.Main.UI
             GameManager.Instance.UserInfo.itemIncantTicket--;
 
             Incant incant;
-            RandomSystem.GachaIncant(choiceItem.equipmentType, GameManager.Instance.incantDic, out incant);
+            RandomSystem.TryGachaIncant(choiceItem.equipmentType, GameManager.Instance.incantDic, out incant);
 
             choiceItem.Incant(incant);
 
@@ -140,7 +141,7 @@ namespace RPG.Main.UI
             GameManager.Instance.UserInfo.itemGachaTicket--;
 
             EquipmentData data;
-            RandomSystem.GachaRandomData(GameManager.Instance.equipmentDataDic, choiceItem.equipmentType, out data);
+            RandomSystem.TryGachaRandomData(GameManager.Instance.equipmentDataDic, choiceItem.equipmentType, out data);
             if (data == null)
             {
                 return;
@@ -232,6 +233,9 @@ namespace RPG.Main.UI
             {
                 suffixIncantDescObject.SetActive(false);
             }
+
+            descScrollRect.gameObject.SetActive(false);
+            descScrollRect.gameObject.SetActive(true);
         }
 
         private void ShowIncant(Incant incant)

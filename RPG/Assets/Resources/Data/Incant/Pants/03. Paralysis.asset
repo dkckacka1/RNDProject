@@ -16,9 +16,8 @@ MonoBehaviour:
   className: Paralysis
   incantType: 1
   itemType: 2
+  incantTier: 1
   incantName: "\uB9C8\uBE44"
-  addDesc: 
-  minusDesc: 
   isIncantAbility: 1
   abilityDesc: "\uBAA8\uB4E0 \uC801\uC744 5\uCD08\uAC04 \uB9C8\uBE44\uC2DC\uD0B5\uB2C8\uB2E4."
   abilityIcon: {fileID: 21300000, guid: 8daca0da4a854e446b4e0b94831b781c, type: 3}

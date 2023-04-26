@@ -16,6 +16,7 @@ MonoBehaviour:
   className: Lighting
   incantType: 1
   itemType: 2
+  incantTier: 2
   incantName: "\uBC88\uAC1C"
   isIncantAbility: 1
   abilityDesc: "\uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801\uC744 \uD3EC\uD568\uD558\uC5EC

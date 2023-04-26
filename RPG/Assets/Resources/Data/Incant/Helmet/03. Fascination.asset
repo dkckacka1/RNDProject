@@ -16,9 +16,8 @@ MonoBehaviour:
   className: Fascination
   incantType: 1
   itemType: 3
+  incantTier: 1
   incantName: "\uB9E4\uD639"
-  addDesc: 
-  minusDesc: 
   isIncantAbility: 1
   abilityDesc: "\uAC00\uC7A5 \uBA40\uB9AC\uC788\uB294 \uB300\uC0C1\uC744 5\uCD08
     \uB3D9\uC548 \uC720\uD639\uD569\uB2C8\uB2E4."

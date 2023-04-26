@@ -16,6 +16,7 @@ MonoBehaviour:
   className: Electronic
   incantType: 0
   itemType: 0
+  incantTier: 2
   incantName: "\uC804\uB958\uC758 "
   isIncantAbility: 1
   abilityDesc: "\uACF5\uACA9\uC2DC \uCD5C\uB300 4\uBA85\uAE4C\uC9C0 \uC804\uB958\uB97C

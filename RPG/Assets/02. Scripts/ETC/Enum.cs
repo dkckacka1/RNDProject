@@ -71,7 +71,7 @@ public enum EquipmentItemType
 }
 
 // 장비아이템 등급
-public enum EquipmentItemTier
+public enum TierType
 {
     Normal = 0,
     Rare,

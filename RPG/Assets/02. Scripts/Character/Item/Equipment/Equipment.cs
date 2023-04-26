@@ -10,7 +10,7 @@ namespace RPG.Character.Equipment
         public int reinforceCount = 0;
         public string itemName;
         public EquipmentItemType equipmentType;
-        public EquipmentItemTier equipmentTier;
+        public TierType equipmentTier;
         public string description;
 
         public EquipmentData data;
@@ -197,13 +197,13 @@ namespace RPG.Character.Equipment
         {
             switch (equipmentTier)
             {
-                case EquipmentItemTier.Normal:
+                case TierType.Normal:
                     return "노말";
-                case EquipmentItemTier.Rare:
+                case TierType.Rare:
                     return "레어";
-                case EquipmentItemTier.Unique:
+                case TierType.Unique:
                     return "유니크";
-                case EquipmentItemTier.Legendary:
+                case TierType.Legendary:
                     return "전설";
             }
 
@@ -238,7 +238,7 @@ namespace RPG.Character.Equipment
                             return "없음";
                         }
 
-                        return prefix.incantName;
+                        return prefix.incantName + $"({prefix.incantTier})";
                     }
                 case IncantType.suffix:
                     {
@@ -247,7 +247,7 @@ namespace RPG.Character.Equipment
                             return "없음";
                         }
 
-                        return suffix.incantName;
+                        return suffix.incantName + $"({suffix.incantTier})";
                     }
             }
 

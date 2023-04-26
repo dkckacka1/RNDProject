@@ -1812,7 +1812,7 @@ MonoBehaviour:
   livePlayer: {fileID: 0}
   liveEnemies: []
   currentStageFloor: 1
-  battleReadyTime: 0.3
+  battleReadyTime: 1
   playerCreatePositionXOffset: 28
   EnemyCreatePositionXOffset: -3
   stageFomation: {fileID: 11400000, guid: 248a4d1ccfc3bc9419e73baec67dbd52, type: 2}

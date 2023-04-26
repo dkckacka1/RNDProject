@@ -16,9 +16,8 @@ MonoBehaviour:
   className: Regenerative
   incantType: 0
   itemType: 1
+  incantTier: 1
   incantName: "\uC7AC\uC0DD\uC758 "
-  addDesc: 
-  minusDesc: 
   isIncantAbility: 1
   abilityDesc: "\uB9E4 \uCD08\uB9C8\uB2E4 \uCCB4\uB825\uC774 1\uD68C\uBCF5\uB429\uB2C8\uB2E4."
   abilityIcon: {fileID: 21300000, guid: 9368da30495f648499d95d0250db71f2, type: 3}

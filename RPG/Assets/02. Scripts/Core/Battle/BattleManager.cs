@@ -237,9 +237,10 @@ namespace RPG.Battle.Core
             currentStageFloor++;
             BattleUI.InitResultBtn(false);
             livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
+            livePlayer.animator.ResetTrigger("Idle");
             livePlayer.animator.SetTrigger("Move");
-            UpdateUserinfo();
             livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { ReadyNextBattle(); });
+            UpdateUserinfo();
         }
 
         private void Defeat()
