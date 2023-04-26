@@ -203,12 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 301917548}
   floorText: {fileID: 364384560}
-  floorCountText: {fileID: 364384560}
-  readyText: {fileID: 1376864162}
-  removeReadyUITime: 1
   backpack: {fileID: 273321825}
   playerHPBarUI: {fileID: 673606777}
   playerDebuffUI: {fileID: 673606776}
+  ResultBtn: {fileID: 485131330}
   resultCanvas: {fileID: 2000058497}
   resultUI: {fileID: 3456866442992345792}
   helmetAbility: {fileID: 1202341304}

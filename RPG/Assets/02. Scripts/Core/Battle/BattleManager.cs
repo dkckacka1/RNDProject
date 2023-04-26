@@ -75,6 +75,12 @@ namespace RPG.Battle.Core
 
         private StageData stageData;
 
+        // Looting
+        private int currentStageGainEnergy = 0;
+        private int currentStageGainGacha = 0;
+        private int currentStageGainReinforce = 0;
+        private int currentStageGainIncant = 0;
+
         private int gainEnergy = 0;
         private int gainGacha = 0;
         private int gainReinforce = 0;
@@ -122,6 +128,7 @@ namespace RPG.Battle.Core
 
         private void ReadyNextBattle()
         {
+            BattleUI.InitResultBtn(false);
             BattleUI.ShowFloor(currentStageFloor);
             LoadCurrentStage();
             SetBattleState(BattleSceneState.Ready);
@@ -203,16 +210,16 @@ namespace RPG.Battle.Core
             switch (type)
             {
                 case DropItemType.Energy:
-                    gainEnergy += count;
+                    currentStageGainEnergy += count;
                     break;
                 case DropItemType.GachaItemScroll:
-                    gainGacha += count;
+                    currentStageGainGacha += count;
                     break;
                 case DropItemType.reinfoceScroll:
-                    gainReinforce += count;
+                    currentStageGainReinforce += count;
                     break;
                 case DropItemType.IncantScroll:
-                    gainIncant += count;
+                    currentStageGainIncant += count;
                     break;
             }
         }
@@ -228,9 +235,10 @@ namespace RPG.Battle.Core
             // 승리 연출
             SetBattleState(BattleSceneState.Win);
             currentStageFloor++;
-            //BattleUI.ShowWin();
+            BattleUI.InitResultBtn(false);
             livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
             livePlayer.animator.SetTrigger("Move");
+            UpdateUserinfo();
             livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { ReadyNextBattle(); });
         }
 
@@ -243,7 +251,7 @@ namespace RPG.Battle.Core
 
             // 패배 연출
             currentBattleState = BattleSceneState.Defeat;
-            BattleUI.ShowDefeat();
+            BattleUI.InitResultBtn(false);
             SetBattleState(BattleSceneState.Defeat);
             BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
             BattleUI.ShowResultUI(BattleSceneState.Defeat);
@@ -251,11 +259,13 @@ namespace RPG.Battle.Core
 
         private void Battle()
         {
+            BattleUI.InitResultBtn(true);
             SetBattleState(BattleSceneState.Battle);
         }
 
         private void Pause()
         {
+            BattleUI.InitResultBtn(false);
             SetBattleState(BattleSceneState.Pause);
         }
 
@@ -268,10 +278,21 @@ namespace RPG.Battle.Core
                 userInfo.risingTopCount = currentStageFloor;
             }
 
-            userInfo.energy += gainEnergy;
-            userInfo.itemGachaTicket += gainGacha;
-            userInfo.itemReinforceTicket += gainReinforce;
-            userInfo.itemIncantTicket += gainIncant;
+            userInfo.energy += currentStageGainEnergy;
+            userInfo.itemGachaTicket += currentStageGainGacha;
+            userInfo.itemIncantTicket += currentStageGainIncant;
+            userInfo.itemReinforceTicket += currentStageGainReinforce;
+
+            gainEnergy += currentStageGainEnergy;
+            gainGacha += currentStageGainGacha;
+            gainIncant += currentStageGainIncant;
+            gainReinforce += currentStageGainReinforce;
+
+            currentStageGainEnergy = 0;
+            currentStageGainGacha = 0;
+            currentStageGainIncant = 0;
+            currentStageGainReinforce = 0;
+
         }
 
         private void ResetStage()
@@ -451,7 +472,6 @@ namespace RPG.Battle.Core
 
         public void ToMainScene()
         {
-            UpdateUserinfo();
             ResetStage();
             SceneLoader.LoadMainScene();
         }

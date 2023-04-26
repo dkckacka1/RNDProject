@@ -20,11 +20,6 @@ namespace RPG.Battle.UI
         [Header("BattleUI")]
         [SerializeField] TextMeshProUGUI floorText;
 
-        [Header("ReadyUI")]
-        [SerializeField] TextMeshProUGUI floorCountText;
-        [SerializeField] TextMeshProUGUI readyText;
-        [SerializeField] float removeReadyUITime = 1f;
-
         [Header("looting")]
         public Image backpack;
 
@@ -34,6 +29,7 @@ namespace RPG.Battle.UI
         public DebuffUI playerDebuffUI;
 
         [Header("BattleResult")]
+        public Button ResultBtn;
         public Canvas resultCanvas;
         public BattleResultWindow resultUI;
 
@@ -85,32 +81,6 @@ namespace RPG.Battle.UI
             floorText.text = $"현재 {floor}층 등반중!";
         }
 
-        public void ShowReady()
-        {
-            readyText.text = "준비";
-            readyText.gameObject.SetActive(true);
-        }
-
-        public void ShowStart()
-        {
-            readyText.text = "시작";
-            StartCoroutine(RemoveReadyUI(removeReadyUITime));
-        }
-
-        public void ShowWin()
-        {
-            readyText.text = "승리!";
-            readyText.gameObject.SetActive(true);
-
-        }
-
-        public void ShowDefeat()
-        {
-            readyText.text = "패배~";
-            readyText.gameObject.SetActive(true);
-
-        }
-
         public void ShowResultUI(BattleSceneState state)
         {
             switch (state)
@@ -141,10 +111,9 @@ namespace RPG.Battle.UI
             resultCanvas.gameObject.SetActive(false);
         }
 
-        private IEnumerator RemoveReadyUI(float duration)
+        public void InitResultBtn(bool isActive)
         {
-            yield return new WaitForSeconds(duration);
-            readyText.gameObject.SetActive(false);
+            ResultBtn.interactable = isActive;
         }
     }
 }
