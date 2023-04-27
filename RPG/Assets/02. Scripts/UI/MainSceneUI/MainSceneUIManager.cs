@@ -12,7 +12,6 @@ namespace RPG.Main.UI
     public class MainSceneUIManager : MonoBehaviour
     {
         [Header("UI")]
-        public StageChoiceWindowUI stageChoiceWindowUI;
         public CharacterAppearance appearance;
 
         [Space()]
@@ -22,12 +21,10 @@ namespace RPG.Main.UI
         [SerializeField] TextMeshProUGUI EnergyText;
 
         [Header("Canvas")]
-        [SerializeField] Canvas stageCanvas;
         [SerializeField] Canvas statusCanvas;
 
         private void Start()
         {
-            stageChoiceWindowUI.SetUp();
             Init();
             UpdateUI();
         }
@@ -45,18 +42,12 @@ namespace RPG.Main.UI
         #region ButtonPlugin
         public void SetActiveFalseUI()
         {
-            stageCanvas.gameObject.SetActive(false);
             statusCanvas.gameObject.SetActive(false);
         }
 
         public void ShowStatusUI()
         {
             statusCanvas.gameObject.SetActive(true);
-        }
-
-        public void ShowStageChoiceUI()
-        {
-            stageCanvas.gameObject.SetActive(true);
         }
 
         public void IncantItem()
@@ -132,7 +123,6 @@ namespace RPG.Main.UI
                 GameManager.Instance.UserInfo = GameSLManager.LoadFromJson(Application.dataPath + @"\Userinfo.json");
                 GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
                 UpdateUI();
-                stageChoiceWindowUI.Init();
             }
 
             if (GUI.Button(new Rect(10, 190, 80, 80), "강화권 추가"))

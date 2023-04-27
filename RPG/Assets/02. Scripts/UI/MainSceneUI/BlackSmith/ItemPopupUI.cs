@@ -39,6 +39,9 @@ namespace RPG.Main.UI
         [SerializeField] Image prefixAbilityImage;
         [SerializeField] TextMeshProUGUI prefixAbilityDescText;
 
+        [Header("Effecter")]
+        [SerializeField] UIEffecter reinforceEffecter;
+
         private VerticalLayoutGroup[] groups;
         CharacterAppearance appearance;
 
@@ -166,8 +169,8 @@ namespace RPG.Main.UI
             if (MyUtility.ProbailityCalc(100 - RandomSystem.ReinforceCalc(choiceItem), 0, 100))
             {
                 choiceItem.ReinforceItem();
+                reinforceEffecter.Play();
             }
-
 
             GameManager.Instance.Player.SetEquipment();
             ShowItem(choiceItem);
