@@ -651,6 +651,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHandle: {fileID: 7479282750524250316}
+  oneHandedWeaponAniamtor: {fileID: 22100000, guid: 7efb535916905c24ca82aba0c1e5f28f, type: 2}
+  twoHandedWeaponAttackAnimator: {fileID: 22100000, guid: 16e924540c3aa7d40a38a5a99a16ce68, type: 2}
 --- !u!1 &1089044951310790
 GameObject:
   m_ObjectHideFlags: 0

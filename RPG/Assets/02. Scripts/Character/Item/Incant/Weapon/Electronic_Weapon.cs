@@ -17,7 +17,7 @@ namespace RPG.Character.Equipment
             {
                 BattleManager.ObjectPool.GetAbility(5, status.transform, (status) =>
                 {
-                }, Space.World);
+                }, null, Space.World);
                 status.TakeDamage(15); 
             });
 

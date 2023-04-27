@@ -18,6 +18,8 @@ namespace RPG.Character.Equipment
         public float criticalDamage;
         public float attackChance;
 
+        public weaponHandleType handleType;
+
         // Encapsulation
         public int AttackDamage
         {
@@ -190,6 +192,8 @@ namespace RPG.Character.Equipment
             suffix = weapon.suffix;
 
             reinforceCount = weapon.reinforceCount;
+
+            handleType = weapon.handleType;
         }
 
         public Weapon(WeaponData data) : base(data)
@@ -202,6 +206,8 @@ namespace RPG.Character.Equipment
             CriticalChance = data.criticalChance;
             CriticalDamage = data.criticalDamage;
             AttackChance = data.attackChance;
+
+            handleType = data.weaponHandleType;
         }
 
         public override void ChangeData(EquipmentData data)

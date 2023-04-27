@@ -27,3 +27,4 @@ MonoBehaviour:
   criticalChance: 0.5
   criticalDamage: 0.1
   attackChance: 0.8
+  weaponHandleType: 1

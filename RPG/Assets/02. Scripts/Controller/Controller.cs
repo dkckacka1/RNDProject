@@ -114,7 +114,7 @@ namespace RPG.Battle.Control
             RuntimeAnimatorController rc = animator.runtimeAnimatorController;
             foreach (var item in rc.animationClips)
             {
-                if (item.name == "MeleeAttack_OneHanded")
+                if (item.name == "Attack")
                 {
                     attack.defaultAttackAnimLength = item.length;
                     break;

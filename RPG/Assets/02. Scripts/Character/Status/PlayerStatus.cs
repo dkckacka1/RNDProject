@@ -159,7 +159,7 @@ namespace RPG.Character.Status
 
             if (ap != null)
             {
-                ap. EquipWeapon(currentWeapon.weaponApparenceID);
+                ap. EquipWeapon(currentWeapon.weaponApparenceID, currentWeapon.handleType);
             }
 
             SetPlayerDefaultStatus(status);

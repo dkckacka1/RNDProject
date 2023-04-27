@@ -150,7 +150,7 @@ namespace RPG.Main.UI
             choiceItem.ChangeData(data);
             if (choiceItem.equipmentType == EquipmentItemType.Weapon)
             {
-                appearance.EquipWeapon((data as WeaponData).weaponApparenceID);
+                appearance.EquipWeapon((data as WeaponData).weaponApparenceID, (data as WeaponData).weaponHandleType);
             }
 
             GameManager.Instance.Player.SetEquipment();

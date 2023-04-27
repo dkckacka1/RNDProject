@@ -34,7 +34,7 @@ namespace RPG.Main.UI
 
         public void Init()
         {
-            appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponApparenceID);
+            appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponApparenceID, GameManager.Instance.Player.currentWeapon.handleType);
         }
 
         public void UpdateUI()

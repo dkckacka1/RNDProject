@@ -91,6 +91,12 @@ public enum DropItemType
     reinfoceScroll,
     IncantScroll
 }
+
+public enum weaponHandleType
+{
+    OneHandedWeapon,
+    TwoHandedWeapon
+}
 #endregion
 
 #region 기타

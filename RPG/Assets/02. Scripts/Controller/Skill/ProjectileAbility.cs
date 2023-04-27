@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 using RPG.Battle.Control;
 using RPG.Character.Status;
+using RPG.Battle.Core;
 
 namespace RPG.Battle.Ability
 {
     public class ProjectileAbility : Ability
     {
         [SerializeField] float speed;
+        [SerializeField] bool isPiercing = false;
 
-        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> action, Space space = Space.Self)
+        [SerializeField] int hitEffectID = -1;
+
+        public override void InitAbility(Transform startPos, UnityAction<BattleStatus> hitAction, UnityAction<BattleStatus> chainAction = null, Space space = Space.Self)
         {
             this.transform.rotation = startPos.rotation;
-            base.InitAbility(startPos, action, space);
+            base.InitAbility(startPos, hitAction, chainAction, space);
         }
 
         // Update is called once per frame
@@ -31,7 +35,16 @@ namespace RPG.Battle.Ability
                 var enemyStatus = enemyController.battleStatus;
                 if (enemyStatus != null)
                 {
-                    action.Invoke(enemyStatus);
+                    hitAction.Invoke(enemyStatus);
+                    if (hitEffectID > 0)
+                    {
+                        BattleManager.ObjectPool.GetAbility(hitEffectID, transform, chainAction);
+                    }
+
+                    if (isPiercing == false)
+                    {
+                        BattleManager.ObjectPool.ReturnAbility(this);
+                    }
                 }
             }
 

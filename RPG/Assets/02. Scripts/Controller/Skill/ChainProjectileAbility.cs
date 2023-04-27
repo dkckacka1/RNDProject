@@ -37,9 +37,9 @@ namespace RPG.Battle.Ability
             {
                 if (actionEffectNum != -1)
                 {
-                    BattleManager.ObjectPool.GetAbility(actionEffectNum, this.transform, null,Space.World);
+                    BattleManager.ObjectPool.GetAbility(actionEffectNum, this.transform, chainAction, null, Space.World);
                 }
-                action.Invoke(currentTarget.battleStatus);
+                hitAction.Invoke(currentTarget.battleStatus);
                 index++;
                 if (targetList.Count == index)
                 {

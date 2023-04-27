@@ -17,7 +17,7 @@ namespace RPG.Battle.Ability
             var list = CheckInsideExplosionController();
             foreach (var controller in list)
             {
-                action.Invoke(controller.battleStatus);
+                hitAction.Invoke(controller.battleStatus);
             }
         }
 

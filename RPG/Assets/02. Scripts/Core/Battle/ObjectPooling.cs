@@ -98,7 +98,7 @@ namespace RPG.Battle.Core
         public void SetEnemyLook(ref EnemyController enemy,ref EnemyData data)
         {
             enemy.transform.GetChild(data.apperenceNum).gameObject.SetActive(true);
-            enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weaponApparenceID);
+            enemy.GetComponent<CharacterAppearance>().EquipWeapon(data.weaponApparenceID, data.handleType);
         }
 
 
@@ -227,7 +227,7 @@ namespace RPG.Battle.Core
             return getAbility;
         }
 
-        public Ability.Ability GetAbility(int abilityID, Transform starPos, UnityAction<BattleStatus> action, Space space = Space.Self)
+        public Ability.Ability GetAbility(int abilityID, Transform starPos, UnityAction<BattleStatus> hitAction = null, UnityAction<BattleStatus> chainAction = null, Space space = Space.Self)
         {
             Ability.Ability getAbility;
 
@@ -243,7 +243,7 @@ namespace RPG.Battle.Core
                 getAbility = CreateAbility(abilityID);
             }
 
-            getAbility.InitAbility(starPos, action, space);
+            getAbility.InitAbility(starPos, hitAction, chainAction, space);
             getAbility.gameObject.SetActive(true);
             return getAbility;
         }

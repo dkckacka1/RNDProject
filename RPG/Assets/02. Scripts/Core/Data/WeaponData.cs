@@ -18,5 +18,7 @@ namespace RPG.Character.Equipment
         [Range(0, 1f)] public float criticalChance;
         [Range(0, 1f)] public float criticalDamage;
         [Range(0.6f, 1.2f)] public float attackChance;
+
+        public weaponHandleType weaponHandleType = weaponHandleType.OneHandedWeapon; 
     }
 }

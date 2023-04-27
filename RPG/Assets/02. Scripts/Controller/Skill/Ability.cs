@@ -16,8 +16,9 @@ namespace RPG.Battle.Ability
         public string abilityDesc;
         public float abilityTime;
 
-        public ParticleSystem particle;
-        protected UnityAction<BattleStatus> action;
+        [HideInInspector] public ParticleSystem particle;
+        protected UnityAction<BattleStatus> hitAction;
+        protected UnityAction<BattleStatus> chainAction;
 
         private void Awake()
         {
@@ -31,7 +32,7 @@ namespace RPG.Battle.Ability
 
         // 처음에 스킬이 어디서 나타날 것인가?
         public Vector3 abilityPositionOffset;
-        public virtual void InitAbility(Transform startPos, UnityAction<BattleStatus> action, Space space = Space.Self)
+        public virtual void InitAbility(Transform startPos, UnityAction<BattleStatus> hitAction = null, UnityAction<BattleStatus> chainAction = null, Space space = Space.Self)
         {
             if (space == Space.Self)
             {
@@ -44,7 +45,8 @@ namespace RPG.Battle.Ability
 
 
             this.transform.Translate(abilityPositionOffset);
-            this.action = action;
+            this.hitAction = hitAction;
+            this.chainAction = chainAction;
         }
 
         public virtual void ReleaseAbility()

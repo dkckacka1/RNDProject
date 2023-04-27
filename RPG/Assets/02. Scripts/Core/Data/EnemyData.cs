@@ -34,4 +34,5 @@ public class EnemyData : Data
 
     [Header("Equipment")]
     public int weaponApparenceID;
+    public weaponHandleType handleType;
 }

@@ -71,10 +71,10 @@ namespace RPG.Battle.Ability
         {
             foreach (var target in targetList)
             {
-                var newEffect = BattleManager.ObjectPool.GetAbility(this.abilityID, target.transform, action);
+                var newEffect = BattleManager.ObjectPool.GetAbility(this.abilityID, target.transform, hitAction);
                 newEffect.transform.position = target.transform.position;
                 newEffect.particle.Play();
-                action.Invoke(target.battleStatus);
+                hitAction.Invoke(target.battleStatus);
                 yield return new WaitForSeconds(chainDelay);
             }
 

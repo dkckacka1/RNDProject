@@ -316,12 +316,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleCanvas: {fileID: 301917548}
   floorText: {fileID: 364384560}
-  floorCountText: {fileID: 364384560}
-  readyText: {fileID: 1376864162}
-  removeReadyUITime: 1
   backpack: {fileID: 273321825}
   playerHPBarUI: {fileID: 2050634334}
   playerDebuffUI: {fileID: 1030014260}
+  ResultBtn: {fileID: 0}
   resultCanvas: {fileID: 2000058497}
   resultUI: {fileID: 3456866442992345792}
   helmetAbility: {fileID: 1202341304}
@@ -4206,14 +4204,14 @@ MonoBehaviour:
   playerPos: {fileID: 903593894}
   enemyPosParent: {fileID: 1840531244}
   enemyCreateNum: 3
-  defaultWeaponID: 101
+  defaultWeaponID: 199
   defaultArmorId: 200
   defaultHelmetID: 300
   defaultPantsID: 400
-  stageDataID: 10
+  stageDataID: 99
   enemyDataID: 0
   equipmentDataID: 199
-  incantDataID: 304
+  incantDataID: 6
   inputField: {fileID: 1817347158}
 --- !u!1001 &1128943186
 PrefabInstance:
