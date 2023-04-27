@@ -270,6 +270,9 @@ namespace RPG.Main.UI
                             prefixAbilityDescObject.SetActive(false);
                         }
                     }
+
+                    prefixIncantDescObject.SetActive(false);
+                    prefixIncantDescObject.SetActive(true);
                     break;
                 case IncantType.suffix:
                     {
@@ -299,6 +302,9 @@ namespace RPG.Main.UI
                             suffixAbilityDescObject.SetActive(false);
                         }
                     }
+
+                    suffixIncantDescObject.SetActive(false);
+                    suffixIncantDescObject.SetActive(true);
                     break;
             }
         }

@@ -67,8 +67,8 @@ namespace RPG.Battle.Behaviour
             if (AttackChangeCalc(character, target))
             // 2. 공격이 적중한다.
             {
-                target.takeDamageEvent.Invoke(target, character);
                 attackEvent.Invoke(character, target);
+                target.takeDamageEvent.Invoke(target, character);
                 if (AttackCriticalCalc(character, target))
                 // 3. 공격 치명타가 발생한다.
                 {
