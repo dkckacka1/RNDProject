@@ -28,10 +28,11 @@ namespace RPG.Battle.UI
         public PlayerHPBar playerHPBarUI;
         public DebuffUI playerDebuffUI;
 
-        [Header("BattleResult")]
-        public Button ResultBtn;
+        [Header("WindodUI")]
+        public Button PauseBtn;
         public Canvas resultCanvas;
         public BattleResultWindow resultUI;
+        public PauseUI pauseUI;
 
         [Header("AbilityButton")]
         public AbilityButton helmetAbility;
@@ -77,8 +78,9 @@ namespace RPG.Battle.UI
             {
                 Debug.Log($"Pause UI");
                 InitResultBtn(false);
-                resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
-                ShowResultUI(BattleSceneState.Pause);
+                pauseUI.Init();
+                //resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
+                //ShowResultUI(BattleSceneState.Pause);
             });
         }
 
@@ -158,7 +160,7 @@ namespace RPG.Battle.UI
 
         public void InitResultBtn(bool isActive)
         {
-            ResultBtn.interactable = isActive;
+            PauseBtn.interactable = isActive;
         }
     }
 }
