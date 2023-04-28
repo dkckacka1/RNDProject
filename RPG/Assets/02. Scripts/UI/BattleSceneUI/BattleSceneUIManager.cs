@@ -37,6 +37,51 @@ namespace RPG.Battle.UI
         public AbilityButton helmetAbility;
         public AbilityButton PantsAbility;
 
+        private void Awake()
+        {
+            StartCoroutine(SetEvent());
+        }
+
+        IEnumerator SetEvent()
+        {
+            while (true)
+            {
+                if (BattleManager.Instance != null)
+                {
+                    break;
+                }
+                yield return null;
+            }
+
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, () =>
+            {
+                Debug.Log($"Win UI");
+                InitResultBtn(false);
+            });
+
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, () =>
+            {
+                Debug.Log($"Defeat UI");
+                InitResultBtn(false);
+                resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
+                ShowResultUI(BattleSceneState.Defeat);
+            });
+
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Battle, () =>
+            {
+                Debug.Log($"Battle UI");
+                InitResultBtn(true);
+            });
+
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Pause, () =>
+            {
+                Debug.Log($"Pause UI");
+                InitResultBtn(false);
+                resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
+                ShowResultUI(BattleSceneState.Pause);
+            });
+        }
+
         public void InitAbility(Helmet helmet, Pants pants, BattleStatus status)
         {
             if (helmet.suffix != null && helmet.suffix.isIncantAbility)

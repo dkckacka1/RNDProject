@@ -14,9 +14,15 @@ namespace RPG.UnUsed
 {
     public class TestScene1 : MonoBehaviour
     {
-        public void Test()
+        public GetItemText txt;
+
+        public int gain;
+        public float time;
+
+
+        private void Start()
         {
-            Debug.Log("Test");
+            txt.GainText(gain, time, () => { Debug.Log("Complete"); });
         }
     }
 }

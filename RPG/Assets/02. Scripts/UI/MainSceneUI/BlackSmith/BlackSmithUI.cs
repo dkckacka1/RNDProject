@@ -13,8 +13,6 @@ namespace RPG.Main.UI
         [SerializeField] ItemPopupUI popupUI;
         [SerializeField] ItemChoiceUI choiceUI;
 
-        [SerializeField] float scaleAnimDuration = 1f;
-
         [SerializeField] TextMeshProUGUI remainIncantText;
         [SerializeField] TextMeshProUGUI remainReinfoceText;
         [SerializeField] TextMeshProUGUI remainGachaText;
@@ -25,9 +23,6 @@ namespace RPG.Main.UI
             choiceUI.ChoiceWeapon(popupUI);
             popupUI.InitIncant();
             InitRemainText();
-
-            transform.localScale = Vector3.zero;
-            transform.DOScale(Vector3.one, scaleAnimDuration).SetEase(Ease.InOutBounce);
         }
 
         public void InitRemainText()

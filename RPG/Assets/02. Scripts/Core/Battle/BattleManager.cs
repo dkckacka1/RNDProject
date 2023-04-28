@@ -76,15 +76,15 @@ namespace RPG.Battle.Core
         private StageData stageData;
 
         // Looting
+        public int gainEnergy = 0;
+        public int gainGacha = 0;
+        public int gainReinforce = 0;
+        public int gainIncant = 0;
+        
         private int currentStageGainEnergy = 0;
         private int currentStageGainGacha = 0;
         private int currentStageGainReinforce = 0;
         private int currentStageGainIncant = 0;
-
-        private int gainEnergy = 0;
-        private int gainGacha = 0;
-        private int gainReinforce = 0;
-        private int gainIncant = 0;
 
         private readonly Dictionary<BattleSceneState, UnityEvent> battleEventDic = new Dictionary<BattleSceneState, UnityEvent>();
         private delegate void voidFunc();
@@ -120,13 +120,19 @@ namespace RPG.Battle.Core
             }
 
             currentStageFloor = GameManager.Instance.choiceStageID;
-            ReadyNextBattle();
+            Ready();
         }
 
+        public void SetBattleState(BattleSceneState state)
+        {
+            this.currentBattleState = state;
+            Publish(currentBattleState);
+        }
+        #region 전투 상태
 
-        #region 전투 준비
 
-        private void ReadyNextBattle()
+
+        private void Ready()
         {
             BattleUI.InitResultBtn(false);
             BattleUI.ShowFloor(currentStageFloor);
@@ -139,6 +145,43 @@ namespace RPG.Battle.Core
             }, battleReadyTime));
         }
 
+        private void Win()
+        {
+            if (isTest)
+            {
+                return;
+            }
+
+            // 승리 연출
+            SetBattleState(BattleSceneState.Win);
+            currentStageFloor++;
+            livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
+            livePlayer.animator.ResetTrigger("Idle");
+            livePlayer.animator.SetTrigger("Move");
+            livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { Ready(); });
+            UpdateUserinfo();
+        }
+
+        private void Defeat()
+        {
+            if (isTest)
+            {
+                return;
+            }
+
+            // 패배 연출
+            SetBattleState(BattleSceneState.Defeat);
+        }
+
+        private void Battle()
+        {
+            SetBattleState(BattleSceneState.Battle);
+        }
+
+        private void Pause()
+        {
+            SetBattleState(BattleSceneState.Pause);
+        }
 
         #endregion
 
@@ -225,50 +268,11 @@ namespace RPG.Battle.Core
         }
         #region BattleSceneStateEvent
 
-        private void Win()
-        {
-            if (isTest)
-            {
-                return;
-            }
 
-            // 승리 연출
-            SetBattleState(BattleSceneState.Win);
-            currentStageFloor++;
-            BattleUI.InitResultBtn(false);
-            livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
-            livePlayer.animator.ResetTrigger("Idle");
-            livePlayer.animator.SetTrigger("Move");
-            livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { ReadyNextBattle(); });
-            UpdateUserinfo();
-        }
 
-        private void Defeat()
-        {
-            if (isTest)
-            {
-                return;
-            }
 
-            // 패배 연출
-            currentBattleState = BattleSceneState.Defeat;
-            BattleUI.InitResultBtn(false);
-            SetBattleState(BattleSceneState.Defeat);
-            BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
-            BattleUI.ShowResultUI(BattleSceneState.Defeat);
-        }
 
-        private void Battle()
-        {
-            BattleUI.InitResultBtn(true);
-            SetBattleState(BattleSceneState.Battle);
-        }
 
-        private void Pause()
-        {
-            BattleUI.InitResultBtn(false);
-            SetBattleState(BattleSceneState.Pause);
-        }
 
         #endregion
         private void UpdateUserinfo()
@@ -312,11 +316,7 @@ namespace RPG.Battle.Core
         }
 
 
-        public void SetBattleState(BattleSceneState state)
-        {
-            this.currentBattleState = state;
-            Publish(currentBattleState);
-        }
+
 
         #region LoadStage
 
@@ -464,11 +464,9 @@ namespace RPG.Battle.Core
 
         #region ButtonPlugin
 
-        public void ShowResultUI()
+        public void SetPause()
         {
             Pause();
-            BattleUI.resultUI.InitUI(currentStageFloor, gainEnergy, gainGacha, gainReinforce, gainIncant);
-            BattleUI.ShowResultUI(BattleSceneState.Pause);
         }
 
         public void ToMainScene()
@@ -488,67 +486,6 @@ namespace RPG.Battle.Core
             Battle();
             BattleUI.ReleaseResultUI();
         }
-        #endregion
-
-        private void OnGUI()
-        {
-        }
-
-        #region 사용되지 않는 함수 모음
-
-        /// <summary>
-        /// 이 함수는 오래된 함수입니다. 사용되지 않습니다.
-        /// </summary>
-        /// <param name="transform"></param>
-        /// <returns></returns>
-        public EnemyController ReturnMinimumdistanceEnemy(Transform transform)
-        {
-            if (liveEnemies.Count == 0)
-            {
-                print("적들은 존재하지 않습니다.");
-                return null;
-            }
-
-            EnemyController minimumDistanceEnemy = liveEnemies[0];
-
-            foreach (EnemyController enemy in liveEnemies)
-            {
-                float distacne = Vector3.Distance(transform.position, minimumDistanceEnemy.transform.position);
-                float newDistance = Vector3.Distance(transform.position, enemy.transform.position);
-
-                if (newDistance < distacne)
-                {
-                    minimumDistanceEnemy = enemy;
-                }
-            }
-
-            return minimumDistanceEnemy;
-        }
-
-
-        /// <summary>
-        /// 사용되지 않는 함수 입니다.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="controllerMyself"></param>
-        public void MoveToNextPhase<T>(T controllerMyself) where T : Controller
-        {
-            //if (typeof(T) == typeof(PlayerController))
-            //{
-            //    foreach (var item in livePlayers)
-            //    {
-            //        item.target = ReturnNearDistanceController<EnemyController>(item.transform);
-            //    }
-            //}
-            //else if (typeof(T) == typeof(EnemyController))
-            //{
-            //    foreach (var item in liveEnemys)
-            //    {
-            //        item.target = ReturnNearDistanceController<PlayerController>(item.transform);
-            //    }
-            //}
-        }
-
         #endregion
     }
 

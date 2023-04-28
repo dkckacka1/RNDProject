@@ -22,15 +22,6 @@ namespace RPG.Battle.UI
         [SerializeField] Button reStartBtn;
         [SerializeField] TextMeshProUGUI btnText;
 
-
-        [SerializeField] float scaleSpeedTime;
-
-        private void OnEnable()
-        {
-            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
-            this.gameObject.transform.DOScale(1, scaleSpeedTime).SetEase(Ease.OutBack);
-        }
-
         public void InitUI(int floor, int gainEnergy, int gainGacha, int gainReinfoce, int gainIncant)
         {
             UpdateUI(floor, gainEnergy, gainGacha, gainReinfoce, gainIncant);
