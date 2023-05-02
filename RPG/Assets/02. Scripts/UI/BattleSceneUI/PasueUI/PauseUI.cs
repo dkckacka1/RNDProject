@@ -1,4 +1,5 @@
 using RPG.Battle.Core;
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace RPG.Battle.UI
 
         public void StopBattle()
         {
-
+            SceneLoader.LoadMainScene();
         }
     }
 }

@@ -12,28 +12,24 @@ namespace RPG.Battle.UI
     public class BattleResultWindow : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI floorText;
-        [SerializeField] TextMeshProUGUI gainEnergyText;
-        [SerializeField] TextMeshProUGUI gainGachaText;
-        [SerializeField] TextMeshProUGUI gainReinforceText;
-        [SerializeField] TextMeshProUGUI gainIncantText;
+        [SerializeField] GetItemText energyTxt;
+        [SerializeField] GetItemText gachaTxt;
+        [SerializeField] GetItemText reinforceTxt;
+        [SerializeField] GetItemText incantTxt;
 
         [Header("ChangeBattleState")]
         [SerializeField] TextMeshProUGUI titleText;
         [SerializeField] Button reStartBtn;
         [SerializeField] TextMeshProUGUI btnText;
 
-        public void InitUI(int floor, int gainEnergy, int gainGacha, int gainReinfoce, int gainIncant)
+        public void InitUI(int floor)
         {
-            UpdateUI(floor, gainEnergy, gainGacha, gainReinfoce, gainIncant);
+            UpdateUI(floor);
         }
 
-        public void UpdateUI(int floor, int gainEnergy, int gainGacha, int gainReinfoce, int gainIncant)
+        public void UpdateUI(int floor)
         {
             floorText.text = $"⑷營 類 熱 : \t{floor}類";
-            gainEnergyText.text = gainEnergy.ToString();
-            gainGachaText.text = gainGacha.ToString();
-            gainReinforceText.text = gainReinfoce.ToString();
-            gainIncantText.text = gainIncant.ToString();
         }
 
         public void ShowDefeatUI()
@@ -65,6 +61,47 @@ namespace RPG.Battle.UI
             reStartBtn.onClick.RemoveAllListeners();
             reStartBtn.onClick.AddListener(() => { BattleManager.Instance.ReturnBattle(); });
         }
+
+        public void UpdateEnergy()
+        {
+            if (BattleManager.Instance.gainEnergy == 0)
+            {
+                return;
+            }
+
+            energyTxt.GainText(BattleManager.Instance.gainEnergy, 0.5f, () => { Debug.Log("energyTxt end"); });
+        }
+
+        public void UpdateGacha()
+        {
+            if (BattleManager.Instance.gainGacha == 0)
+            {
+                return;
+            }
+
+            gachaTxt.GainText(BattleManager.Instance.gainGacha, 0.5f, () => { Debug.Log("gachaTxt end"); });
+        }
+
+        public void UpdateIncant()
+        {
+            if (BattleManager.Instance.gainIncant == 0)
+            {
+                return;
+            }
+
+            incantTxt.GainText(BattleManager.Instance.gainIncant, 0.5f, () => { Debug.Log("incantTxt end"); });
+        }
+
+        public void UpdateReinforce()
+        {
+            if (BattleManager.Instance.gainReinforce == 0)
+            {
+                return;
+            }
+
+            reinforceTxt.GainText(BattleManager.Instance.gainReinforce, 0.5f, () => { Debug.Log("reinforceTxt end"); });
+        }
+
     }
 
 }

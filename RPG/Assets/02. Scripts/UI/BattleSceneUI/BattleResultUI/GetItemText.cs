@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using DG.Tweening;
 
 namespace RPG.Battle.UI
 {
@@ -33,7 +34,6 @@ namespace RPG.Battle.UI
         IEnumerator GainCoroutine(int gain, UnityAction action)
         {
             float currentTime = 0;
-            int count = 1;
 
             while (true)
             {

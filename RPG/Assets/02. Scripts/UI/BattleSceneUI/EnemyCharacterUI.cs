@@ -24,7 +24,10 @@ public class EnemyCharacterUI : CharacterUI
 
     public override void ReleaseUI()
     {
-        battleStatusUI.gameObject.SetActive(false);
+        if (battleStatusUI != null)
+        {
+            battleStatusUI.gameObject.SetActive(false);
+        }
     }
 
     private void LateUpdate()

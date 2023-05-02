@@ -64,7 +64,7 @@ namespace RPG.Battle.UI
             {
                 Debug.Log($"Defeat UI");
                 InitResultBtn(false);
-                resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
+                resultUI.InitUI(BattleManager.Instance.currentStageFloor);
                 ShowResultUI(BattleSceneState.Defeat);
             });
 
