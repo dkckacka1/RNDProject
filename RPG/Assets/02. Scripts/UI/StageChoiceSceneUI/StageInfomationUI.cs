@@ -30,13 +30,13 @@ namespace RPG.Stage.UI
 
             foreach (var enemy in data.enemyDatas)
             {
-                if (stageEnemy.ContainsKey(enemy.enemyID))
+                if (stageEnemy.ContainsKey(enemy))
                 {
-                    stageEnemy[enemy.enemyID]++;
+                    stageEnemy[enemy]++;
                 }
                 else
                 {
-                    stageEnemy.Add(enemy.enemyID, 1);
+                    stageEnemy.Add(enemy, 1);
                 }
             }
 

@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 273321823}
   - component: {fileID: 273321826}
   - component: {fileID: 273321825}
+  - component: {fileID: 273321824}
   m_Layer: 5
   m_Name: BackPackImage
   m_TagString: Untagged
@@ -733,6 +734,22 @@ RectTransform:
   m_AnchoredPosition: {x: 806, y: 480}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &273321824
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273321822}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e7f30433fde11cc47b8d17114347a500, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e7f30433fde11cc47b8d17114347a500, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &273321825
 MonoBehaviour:
   m_ObjectHideFlags: 0

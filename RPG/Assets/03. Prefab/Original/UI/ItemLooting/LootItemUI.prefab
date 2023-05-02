@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -469, y: -232}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779879815347689431
 MonoBehaviour:
@@ -126,10 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {fileID: 0}
   rootImage: {fileID: 779879814285900820}
-  rootspeed: 0.01
   minDistance: 30
   bouncePointX: 80
   bouncePointY: 10
+  jumpTime: 1
   moveTime: 1
   lootings:
   - type: 0

@@ -177,10 +177,6 @@ namespace RPG.Main.UI
             InitReinforce();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
         }
-        public void Exit(Canvas canvas)
-        {
-            canvas.gameObject.SetActive(false);
-        }
 
         public void ChoiceItem(Equipment item)
         {

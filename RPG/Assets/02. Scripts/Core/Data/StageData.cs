@@ -9,7 +9,7 @@ namespace RPG.Battle.Core
     public class StageData : Data
     {
         public Vector3 playerSpawnPosition = new Vector3(8.0f, 0f);
-        public EnemySpawnStruct[] enemyDatas;
+        public int[] enemyDatas;
         public int ConsumEnergy;
     }
 }

@@ -40,60 +40,22 @@ namespace RPG.Main.UI
         }
 
         #region ButtonPlugin
-        public void SetActiveFalseUI()
+
+        public void ShowUI(Canvas canvas)
         {
-            statusCanvas.gameObject.SetActive(false);
+            canvas.gameObject.SetActive(true);
         }
 
-        public void ShowStatusUI()
+        public void ReleaseUI(Canvas canvas)
         {
-            statusCanvas.gameObject.SetActive(true);
+            canvas.gameObject.SetActive(false);
         }
 
-        public void IncantItem()
-        {
-            if(GameManager.Instance.UserInfo.itemIncantTicket <= 0)
-            {
-                return;
-            }
-
-            GameManager.Instance.UserInfo.itemIncantTicket--;
-            
-            GameManager.Instance.Player.SetEquipment();
-            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
-            UpdateUI();
-        }
-
-        public void ReinforceItem()
-        {
-            if(GameManager.Instance.UserInfo.itemReinforceTicket <= 0)
-            {
-                return;
-            }
-
-            GameManager.Instance.Player.SetEquipment();
-            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
-            UpdateUI();
-        }
-
-        public void GachaItem()
-        {
-            if (GameManager.Instance.UserInfo.itemGachaTicket <= 0)
-            {
-                return;
-            }
-
-            GameManager.Instance.UserInfo.itemGachaTicket--;
-            
-            GameManager.Instance.Player.SetEquipment();
-            GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
-            UpdateUI();
-        }
-       
         public void LoadStageChoiceScene()
         {
             SceneLoader.LoadStageChoiceScene();
         }
+
         #endregion
 
         public void UpdateTicketCount()
@@ -102,11 +64,6 @@ namespace RPG.Main.UI
             this.reinforceText.text = $"{GameManager.Instance.UserInfo.itemReinforceTicket}";
             this.incantText.text = $"{GameManager.Instance.UserInfo.itemIncantTicket}";
             this.EnergyText.text = $"{GameManager.Instance.UserInfo.energy}";
-        }
-
-        public void ShowBlackSmithUI(Canvas blackSmithCanvas)
-        {
-            blackSmithCanvas.gameObject.SetActive(true);
         }
 
         // HACK : TEST
@@ -125,15 +82,11 @@ namespace RPG.Main.UI
                 UpdateUI();
             }
 
-            if (GUI.Button(new Rect(10, 190, 80, 80), "강화권 추가"))
+            if (GUI.Button(new Rect(10, 190, 80, 80), "쿠폰 추가"))
             {
                 GameManager.Instance.UserInfo.itemReinforceTicket += 100;
-                UpdateUI();
-            }
-
-            if (GUI.Button(new Rect(10, 280, 80, 80), "인챈트 추가"))
-            {
                 GameManager.Instance.UserInfo.itemIncantTicket += 100;
+                GameManager.Instance.UserInfo.itemGachaTicket += 100;
                 UpdateUI();
             }
         }

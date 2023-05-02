@@ -17,10 +17,5 @@ namespace RPG.Main.UI.StatusUI
             transform.localScale = Vector3.zero;
             transform.DOScale(Vector3.one, scaleAnimDuration).SetEase(Ease.InOutBounce);
         }
-
-        public void Exit(Canvas canvas)
-        {
-            canvas.gameObject.SetActive(false);
-        }
     }
 }

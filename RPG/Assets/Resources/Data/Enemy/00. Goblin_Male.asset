@@ -27,8 +27,9 @@ MonoBehaviour:
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 5
+  dropEnergy: 100
   dropitems:
   - itemType: 1
     percent: 40
   weaponApparenceID: 2
+  handleType: 0

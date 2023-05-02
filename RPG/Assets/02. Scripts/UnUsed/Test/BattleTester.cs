@@ -112,7 +112,7 @@ namespace RPG.Test
                     for (int i = 0; i < data.enemyDatas.Length; i++)
                     {
                         EnemyData enemyData;
-                        if (GameManager.Instance.enemyDataDic.TryGetValue(data.enemyDatas[i].enemyID, out enemyData))
+                        if (GameManager.Instance.enemyDataDic.TryGetValue(data.enemyDatas[i], out enemyData))
                         {
                             EnemyController enemy = BattleManager.ObjectPool.GetEnemyController(enemyData, fomation.positions[i]);
                             enemy.name = $"{enemyData.name} {i}";

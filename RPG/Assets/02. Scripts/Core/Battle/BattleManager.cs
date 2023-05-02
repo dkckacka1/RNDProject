@@ -354,7 +354,7 @@ namespace RPG.Battle.Core
             for (int i = 0; i < stage.enemyDatas.Length; i++)
             {
                 EnemyData enemyData;
-                if (GameManager.Instance.enemyDataDic.TryGetValue(stage.enemyDatas[i].enemyID, out enemyData))
+                if (GameManager.Instance.enemyDataDic.TryGetValue(stage.enemyDatas[i], out enemyData))
                 {
                     Vector3 enemyPosition = new Vector3(EnemyCreatePositionXOffset, fomation.positions[i].y, fomation.positions[i].z);
                     EnemyController enemy = ObjectPool.GetEnemyController(enemyData, enemyPosition);

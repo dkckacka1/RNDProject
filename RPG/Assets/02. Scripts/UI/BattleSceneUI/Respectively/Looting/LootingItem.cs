@@ -13,10 +13,10 @@ namespace RPG.Battle.UI
         
 
         [SerializeField] Image rootImage;
-        [SerializeField] float rootspeed;
         [SerializeField] float minDistance;
         [SerializeField] float bouncePointX;
         [SerializeField] float bouncePointY;
+        [SerializeField] float jumpTime;
         [SerializeField] float moveTime;
         [SerializeField] List<LootingImage> lootings;
 
@@ -31,7 +31,7 @@ namespace RPG.Battle.UI
             rate = 0;
 
             Vector3 jumpPosition = new Vector3(transform.position.x + Random.Range(-bouncePointX, bouncePointX), transform.position.y);
-            transform.DOJump(jumpPosition, jumpPower, 3, moveTime).OnComplete(() => { canMove = true; });
+            transform.DOJump(jumpPosition, jumpPower, 3, jumpTime).OnComplete(() => { canMove = true; });
         }
 
         private void Update()
@@ -40,12 +40,12 @@ namespace RPG.Battle.UI
             {
                 if (targetPos == null) return;
 
-                //transform.position = Vector3.Lerp(transform.position, targetPos.position, rootspeed);
-                MoveLerp(this.transform, transform.position, targetPos.position, 2f);
+                MoveLerp(this.transform, transform.position, targetPos.position, moveTime);
                 if (Vector3.Distance(transform.position, targetPos.position) < minDistance)
                 {
                     canMove = false;
                     BattleManager.ObjectPool.ReturnLootingItem(this);
+                    targetPos.GetComponent<Animation>().Play();
                 } 
             }
         }
@@ -75,7 +75,7 @@ namespace RPG.Battle.UI
             if (i < 1.0f)
             {
                 i += Time.deltaTime * rate;
-                transform.position = Vector3.Lerp(startPos, endPos, i);
+                transform.position = Vector3.Slerp(startPos, endPos, i);
             }
         }
     }
