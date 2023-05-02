@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 namespace RPG.Core
 {
     public static class GameSLManager 
@@ -75,6 +76,7 @@ namespace RPG.Core
         public static void SaveToJSON(UserInfo userinfo, string path)
         {
             var json = JsonUtility.ToJson(userinfo, true);
+            
             File.WriteAllText(path, json);
         }
 
