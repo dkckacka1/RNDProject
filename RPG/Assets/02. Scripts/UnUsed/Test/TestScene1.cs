@@ -10,6 +10,7 @@ using RPG.Core;
 using RPG.Main.UI;
 using RPG.Battle.UI;
 using RPG.Battle.Control;
+using Newtonsoft.Json;
 
 
 
@@ -22,7 +23,22 @@ namespace RPG.UnUsed
 
         private void Start()
         {
-            Debug.Log(userinfo);
+            var armor = GameManager.Instance.equipmentDataDic[200];
+            ArmorData data = armor as ArmorData;
+            var json = JsonConvert.SerializeObject(data);
+            Debug.Log(json);
+        }
+    }
+
+    public class Test
+    {
+        public string ExcelTester()
+        {
+
+
+
+
+            return "";
         }
     }
 }
