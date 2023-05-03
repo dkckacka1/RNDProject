@@ -9556,6 +9556,7 @@ GameObject:
   - component: {fileID: 6077453156315204455}
   - component: {fileID: 6077453156314531335}
   - component: {fileID: 2098187685}
+  - component: {fileID: 4754517904836015778}
   m_Layer: 0
   m_Name: 08. FireballExplosion
   m_TagString: Untagged
@@ -9939,7 +9940,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -9992,7 +9993,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -14434,7 +14435,20 @@ MonoBehaviour:
   abilityTime: 1
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 0.5, z: 0}
-  explosionRange: 5
+  explosionRange: 3
+--- !u!135 &4754517904836015778
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077453156321197943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6077453156321248611
 GameObject:
   m_ObjectHideFlags: 0

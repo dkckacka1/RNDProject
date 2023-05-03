@@ -915,7 +915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077453156321452331, guid: 164ebd46be828ae4b950f485637b104d, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6077453156321452331, guid: 164ebd46be828ae4b950f485637b104d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -959,84 +959,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164ebd46be828ae4b950f485637b104d, type: 3}
---- !u!1001 &6405046119238997017
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6085925431258243943, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_Name
-      value: FireballMissileFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6085925431258438149, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: abilityID
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: abilityDesc
-      value: "\uBD88\uB369\uC774\uAC00 \uB0A0\uAC00\uC544\uC11C \uD3ED\uBC1C\uD569\uB2C8\uB2E4."
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: abilityName
-      value: "\uBD88\uB369\uC774 \uC791\uB82C"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: abilityTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937766977854047830, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}
-      propertyPath: abilityPositionOffset.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f2c1c965c5c525441ba69c315e93fec2, type: 3}

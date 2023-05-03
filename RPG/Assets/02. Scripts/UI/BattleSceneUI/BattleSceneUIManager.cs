@@ -56,13 +56,11 @@ namespace RPG.Battle.UI
 
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Win, () =>
             {
-                Debug.Log($"Win UI");
                 InitResultBtn(false);
             });
 
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Defeat, () =>
             {
-                Debug.Log($"Defeat UI");
                 InitResultBtn(false);
                 resultUI.InitUI(BattleManager.Instance.currentStageFloor);
                 ShowResultUI(BattleSceneState.Defeat);
@@ -70,13 +68,11 @@ namespace RPG.Battle.UI
 
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Battle, () =>
             {
-                Debug.Log($"Battle UI");
                 InitResultBtn(true);
             });
 
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Pause, () =>
             {
-                Debug.Log($"Pause UI");
                 InitResultBtn(false);
                 pauseUI.Init();
                 //resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);

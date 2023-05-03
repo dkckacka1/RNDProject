@@ -36,7 +36,7 @@ namespace RPG.Battle.Ability
                 if (enemyStatus != null)
                 {
                     hitAction.Invoke(enemyStatus);
-                    if (hitEffectID > 0)
+                    if (hitEffectID >= 0)
                     {
                         BattleManager.ObjectPool.GetAbility(hitEffectID, transform, chainAction);
                     }

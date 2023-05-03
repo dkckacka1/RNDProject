@@ -4744,6 +4744,7 @@ GameObject:
   - component: {fileID: 6085925431240508711}
   - component: {fileID: 6085925431248072431}
   - component: {fileID: 8937766977854047830}
+  - component: {fileID: 3191528557460999766}
   m_Layer: 0
   m_Name: 07. FireballMissileFire
   m_TagString: Untagged
@@ -9560,6 +9561,19 @@ MonoBehaviour:
   speed: 10
   isPiercing: 0
   hitEffectID: 8
+--- !u!135 &3191528557460999766
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085925431258243943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6085925431258250613
 GameObject:
   m_ObjectHideFlags: 0

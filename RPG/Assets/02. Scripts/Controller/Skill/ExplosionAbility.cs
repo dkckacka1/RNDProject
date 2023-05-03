@@ -9,16 +9,39 @@ namespace RPG.Battle.Ability
     public class ExplosionAbility : Ability
     {
         public float explosionRange = 1f; // 폭발 반경
+        List<Controller> inExplosionController = new List<Controller>();
 
 
         protected override void OnEnable()
         {
             base.OnEnable();
             var list = CheckInsideExplosionController();
-            foreach (var controller in list)
+
+            if (hitAction != null)
             {
-                hitAction.Invoke(controller.battleStatus);
+                foreach (var controller in list)
+                {
+                    hitAction.Invoke(controller.battleStatus);
+                }
             }
+
+            if (chainAction != null)
+            {
+                foreach (var controller in list)
+                {
+                    chainAction.Invoke(controller.battleStatus);
+                }
+            }
+
+            foreach (var controller in inExplosionController)
+            {
+                Debug.Log(controller.name);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            inExplosionController.Add(other.GetComponent<EnemyController>());
         }
 
         // 반경 내의 컨트롤러 리스트 리턴
