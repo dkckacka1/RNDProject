@@ -4732,7 +4732,7 @@ GameObject:
   - component: {fileID: 73985856970388072}
   - component: {fileID: 73985856981936842}
   m_Layer: 0
-  m_Name: 02
+  m_Name: 02. FearExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4771,6 +4771,7 @@ MonoBehaviour:
   abilityName: "\uACF5\uD3EC \uD3ED\uBC1C"
   abilityDesc: "\uACF5\uD3EC \uD3ED\uBC1C"
   abilityTime: 2
+  particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 1, z: 0}
   explosionRange: 4
 --- !u!199 &73985856956918138

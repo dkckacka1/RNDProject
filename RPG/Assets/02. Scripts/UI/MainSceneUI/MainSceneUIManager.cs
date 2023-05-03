@@ -69,19 +69,6 @@ namespace RPG.Main.UI
         // HACK : TEST
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 80, 80), "게임 저장"))
-            {
-                //GameSLManager.SaveToPlayerPrefs(GameManager.Instance.UserInfo);
-                GameSLManager.SaveToJSON(GameManager.Instance.UserInfo,Application.dataPath + @"\Userinfo.json");
-            }
-
-            if (GUI.Button(new Rect(10, 100, 80, 80), "게임 불러오기"))
-            {
-                GameManager.Instance.UserInfo = GameSLManager.LoadFromJson(Application.dataPath + @"\Userinfo.json");
-                GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
-                UpdateUI();
-            }
-
             if (GUI.Button(new Rect(10, 190, 80, 80), "쿠폰 추가"))
             {
                 GameManager.Instance.UserInfo.itemReinforceTicket += 100;

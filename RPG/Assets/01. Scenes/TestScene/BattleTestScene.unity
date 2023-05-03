@@ -5273,8 +5273,8 @@ MonoBehaviour:
   lootingItem: {fileID: 779879815347689431, guid: 5d87c57dceb5d2f42b69018decc4f020, type: 3}
   playerParent: {fileID: 1421559899}
   enemyParent: {fileID: 764800174}
-  battleTextParent: {fileID: 0}
-  LootingItemParent: {fileID: 0}
+  battleTextParent: {fileID: 804859774}
+  LootingItemParent: {fileID: 29346995}
   abilityParent: {fileID: 1201959062}
 --- !u!1 &956600056
 GameObject:
@@ -6114,7 +6114,7 @@ MonoBehaviour:
   stageDataID: 99
   enemyDataID: 0
   equipmentDataID: 199
-  incantDataID: 205
+  incantDataID: 104
   inputField: {fileID: 0}
 --- !u!1 &1124091255
 GameObject:

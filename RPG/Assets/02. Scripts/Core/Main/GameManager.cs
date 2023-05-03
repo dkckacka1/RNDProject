@@ -97,17 +97,24 @@ namespace RPG.Core
 
             Application.targetFrameRate = 60;
 
+            if (isTest)
+            {
+                DataLoad();
+            }
+
+            if (isTest)
+            {
+                this.userInfo = CreateUserInfo();
+                this.player.SetPlayerStatusFromUserinfo(userInfo);
+            }
+        }
+
+        public void DataLoad()
+        {
             LoadEquipmentData();
             LoadEnemyData();
             LoadStageData();
             LoadSkill();
-
-            // TEST
-            this.userInfo = CreateUserInfo();
-            this.player.SetPlayerStatusFromUserinfo(userInfo);
-
-            // TEST
-            //SceneManager.LoadScene("BattleScene");
         }
 
         #region Method_LoadData

@@ -4735,12 +4735,12 @@ GameObject:
   - component: {fileID: 8098511431999297189}
   - component: {fileID: 8098511432001107005}
   m_Layer: 0
-  m_Name: 04
+  m_Name: 04. LightningFloorBlueTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8098511431985212959
 Transform:
   m_ObjectHideFlags: 0

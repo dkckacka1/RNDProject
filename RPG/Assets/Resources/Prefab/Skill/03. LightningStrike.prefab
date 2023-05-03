@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2113319627718923729}
   - component: {fileID: 2113319627719389671}
   m_Layer: 0
-  m_Name: 03
+  m_Name: 03. LightningStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

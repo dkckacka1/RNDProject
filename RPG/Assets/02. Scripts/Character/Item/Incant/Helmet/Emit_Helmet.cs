@@ -22,13 +22,11 @@ namespace RPG.Character.Equipment
 
         private void chainAction(BattleStatus target)
         {
-            Debug.Log("Chain");
             target.TakeDamage(20);
         }
 
         private void hitAction(BattleStatus target)
         {
-            Debug.Log("hit Effect Ãâ·Â");
             target.TakeDamage(30);
         }
     }

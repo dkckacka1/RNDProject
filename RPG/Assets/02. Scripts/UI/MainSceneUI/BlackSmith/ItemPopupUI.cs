@@ -22,8 +22,11 @@ namespace RPG.Main.UI
         [Header("EquipmentData")]
         [SerializeField] Image equipmentImage;
         [SerializeField] TextMeshProUGUI equipmentDescText;
-        [SerializeField] TextMeshProUGUI equipmentStatusText;
-        [SerializeField] ScrollRect descScrollRect;
+        [SerializeField] TextMeshProUGUI weaponEquipmentStatusText;
+        [SerializeField] TextMeshProUGUI armorEquipmentStatusText;
+        [SerializeField] TextMeshProUGUI helmetEquipmentStatusText;
+        [SerializeField] TextMeshProUGUI pantsEquipmentStatusText;
+        [SerializeField] VerticalLayoutGroup layout;
 
         [Header("SuffixIncant")]
         [SerializeField] GameObject suffixIncantDescObject;
@@ -42,12 +45,10 @@ namespace RPG.Main.UI
         [Header("Effecter")]
         [SerializeField] UIEffecter reinforceEffecter;
 
-        private VerticalLayoutGroup[] groups;
         CharacterAppearance appearance;
 
         private void Awake()
         {
-            groups = GetComponentsInChildren<VerticalLayoutGroup>();
             appearance = FindObjectOfType<CharacterAppearance>();
         }
 
@@ -65,7 +66,7 @@ namespace RPG.Main.UI
             reinforceExcuteBtn.gameObject.SetActive(false);
             gachaExcuteBtn.gameObject.SetActive(true);
 
-            
+
         }
 
         public void InitIncant()
@@ -194,24 +195,28 @@ namespace RPG.Main.UI
                 $"{MyUtility.returnSideText("접두 인챈트 : ", item.ToStringIncant(IncantType.prefix))}\n" +
                 $"{MyUtility.returnSideText("접미 인챈트 : ", item.ToStringIncant(IncantType.suffix))}";
 
+            weaponEquipmentStatusText.transform.parent.gameObject.SetActive(false);
+            armorEquipmentStatusText.transform.parent.gameObject.SetActive(false);
+            pantsEquipmentStatusText.transform.parent.gameObject.SetActive(false);
+            helmetEquipmentStatusText.transform.parent.gameObject.SetActive(false);
+            prefixAbilityDescObject.SetActive(false);
+            suffixAbilityDescObject.SetActive(false);
+
             switch (item.equipmentType)
             {
                 case EquipmentItemType.Weapon:
-                    ShowWeaponText(item as Weapon);
+                    ShowWeaponText(weaponEquipmentStatusText, item as Weapon);
                     break;
                 case EquipmentItemType.Armor:
-                    ShowArmorText(item as Armor);
+                    ShowArmorText(armorEquipmentStatusText, item as Armor);
                     break;
                 case EquipmentItemType.Pants:
-                    ShowPantsText(item as Pants);
+                    ShowPantsText(pantsEquipmentStatusText, item as Pants);
                     break;
                 case EquipmentItemType.Helmet:
-                    ShowHelmetText(item as Helmet);
+                    ShowHelmetText(helmetEquipmentStatusText, item as Helmet);
                     break;
             }
-
-            equipmentStatusText.gameObject.SetActive(false);
-            equipmentStatusText.gameObject.SetActive(true);
 
             if (item.prefix != null)
             {
@@ -233,8 +238,7 @@ namespace RPG.Main.UI
                 suffixIncantDescObject.SetActive(false);
             }
 
-            descScrollRect.gameObject.SetActive(false);
-            descScrollRect.gameObject.SetActive(true);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)layout.transform);
         }
 
         private void ShowIncant(Incant incant)
@@ -270,8 +274,7 @@ namespace RPG.Main.UI
                         }
                     }
 
-                    prefixIncantDescObject.SetActive(false);
-                    prefixIncantDescObject.SetActive(true);
+                    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)prefixIncantDescObject.transform);
                     break;
                 case IncantType.suffix:
                     {
@@ -302,44 +305,55 @@ namespace RPG.Main.UI
                         }
                     }
 
-                    suffixIncantDescObject.SetActive(false);
-                    suffixIncantDescObject.SetActive(true);
+                    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)suffixIncantDescObject.transform);
                     break;
             }
         }
 
-        private void ShowWeaponText(Weapon weapon)
+        private void ShowWeaponText(TextMeshProUGUI equipmentStatusText, Weapon weapon)
         {
-            equipmentStatusText.text = $"{MyUtility.returnSideText("공격력 : ",weapon.AttackDamage.ToString())}\n" +
+            equipmentStatusText.text = $"" +
+                $"{MyUtility.returnSideText("공격력 : ", weapon.AttackDamage.ToString())}\n" +
                 $"{MyUtility.returnSideText("공격속도 : ", $"초당 {weapon.AttackSpeed}회 타격")}\n" +
                 $"{MyUtility.returnSideText("공격범위 : ", weapon.AttackRange.ToString())}\n" +
                 $"{MyUtility.returnSideText("이동속도 : ", weapon.MovementSpeed.ToString())}\n" +
                 $"{MyUtility.returnSideText("치명타 확률 : ", $"{weapon.CriticalChance * 100}%")}\n" +
                 $"{MyUtility.returnSideText("치명타 데미지 : ", $"공격력의 {weapon.CriticalDamage * 100}%")}\n" +
                 $"{MyUtility.returnSideText("적중률 : ", $"{weapon.AttackChance * 100}%")}";
+
+            equipmentStatusText.transform.parent.gameObject.SetActive(true);
         }
 
-        private void ShowArmorText(Armor armor)
+        private void ShowArmorText(TextMeshProUGUI equipmentStatusText, Armor armor)
         {
-            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", armor.HpPoint.ToString())}\n" +
+            equipmentStatusText.text = $"" +
+                $"{MyUtility.returnSideText("체력 : ", armor.HpPoint.ToString())}\n" +
                 $"{MyUtility.returnSideText("방어력 : ", $"{armor.DefencePoint}회 타격")}\n" +
                 $"{MyUtility.returnSideText("이동속도 : ", armor.MovementSpeed.ToString())}\n" +
                 $"{MyUtility.returnSideText("회피율 : ", $"{armor.EvasionPoint}%")}";
+
+            equipmentStatusText.transform.parent.gameObject.SetActive(true);
         }
 
-        private void ShowHelmetText(Helmet helmet)
+        private void ShowHelmetText(TextMeshProUGUI equipmentStatusText, Helmet helmet)
         {
-            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", helmet.HpPoint.ToString())}\n" +
+            equipmentStatusText.text = $"" +
+                $"{MyUtility.returnSideText("체력 : ", helmet.HpPoint.ToString())}\n" +
                 $"{MyUtility.returnSideText("방어력 : ", $"{helmet.DefencePoint}")}\n" +
                 $"{MyUtility.returnSideText("치명타 데미지 감소율 : ", $"{helmet.DecreseCriticalDamage * 100}%")}\n" +
                 $"{MyUtility.returnSideText("치명타 회피율 : ", $"{helmet.EvasionCritical * 100}%")}";
+
+            equipmentStatusText.transform.parent.gameObject.SetActive(true);
         }
 
-        private void ShowPantsText(Pants pants)
+        private void ShowPantsText(TextMeshProUGUI equipmentStatusText, Pants pants)
         {
-            equipmentStatusText.text = $"{MyUtility.returnSideText("체력 : ", pants.HpPoint.ToString())}\n" +
+            equipmentStatusText.text = $"" +
+                $"{MyUtility.returnSideText("체력 : ", pants.HpPoint.ToString())}\n" +
                 $"{MyUtility.returnSideText("방어력 : ", $"{pants.DefencePoint}")}\n" +
                 $"{MyUtility.returnSideText("이동속도 : ", $"{pants.MovementSpeed}")}";
+
+            equipmentStatusText.transform.parent.gameObject.SetActive(true);
         }
     }
 }

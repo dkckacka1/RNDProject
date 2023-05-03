@@ -32,16 +32,6 @@ namespace RPG.Battle.Ability
                     chainAction.Invoke(controller.battleStatus);
                 }
             }
-
-            foreach (var controller in inExplosionController)
-            {
-                Debug.Log(controller.name);
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            inExplosionController.Add(other.GetComponent<EnemyController>());
         }
 
         // 반경 내의 컨트롤러 리스트 리턴
