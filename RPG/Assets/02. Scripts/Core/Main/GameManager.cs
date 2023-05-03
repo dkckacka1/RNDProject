@@ -125,6 +125,7 @@ namespace RPG.Core
             ResourcesLoader.LoadIncant("Data/Incant", ref incantDic);
         }
 
+
         private void LoadEnemyData()
         {
             ResourcesLoader.LoadEnemyData("Data/Enemy", ref enemyDataDic);

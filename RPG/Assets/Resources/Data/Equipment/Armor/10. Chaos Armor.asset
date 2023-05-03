@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 132b7214b83981a449bd58df93d6595e, type: 3}
-  m_Name: 00. LeatherArmor
+  m_Name: 10. Chaos Armor
   m_EditorClassIdentifier: 
-  ID: 200
-  EquipmentName: "\uAC00\uC8FD \uAC11\uC637"
+  ID: 210
+  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
   equipmentType: 1
   equipmentTier: 0
-  equipmentSprite: {fileID: 21300000, guid: 110fdc86d6e25cc488c04af258701ee4, type: 3}
-  description: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uAC11\uC637\uC774\uB2E4."
-  defencePoint: 10
-  hpPoint: 100
-  movementSpeed: 0.5
-  evasionPoint: 0.2
+  equipmentSprite: {fileID: 21300000, guid: 51b493ea512811143a997ba25fd97807, type: 3}
+  description: 
+  defencePoint: 20
+  hpPoint: 250
+  movementSpeed: 0.25
+  evasionPoint: 0
