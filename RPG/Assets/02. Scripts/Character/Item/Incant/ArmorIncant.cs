@@ -12,6 +12,10 @@ namespace RPG.Character.Equipment
         public float movementSpeed;
         public float evasionPoint;
 
+        protected ArmorIncant(IncantData data) : base(data)
+        {
+        }
+
         public virtual void PerSecEvent(BattleStatus status)
         {
             Debug.Log("PerSecEvent is Nothing");

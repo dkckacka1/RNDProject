@@ -8,6 +8,10 @@ namespace RPG.Character.Equipment
 {
     public class Stone_Weapon : WeaponIncant
     {
+        public Stone_Weapon(IncantData data) : base(data)
+        {
+        }
+
         public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
             var ability = BattleManager.ObjectPool.GetAbility(1);

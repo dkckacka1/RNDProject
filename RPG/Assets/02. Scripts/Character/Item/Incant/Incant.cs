@@ -23,6 +23,18 @@ namespace RPG.Character.Equipment
         public bool isIncantAbility;
         public string abilityDesc;
         public Sprite abilityIcon;
+
+        public Incant(IncantData data)
+        {
+            incantID = data.ID;
+            incantType = data.incantType;
+            itemType = data.itemType;
+            incantTier = data.incantTier;
+            incantName = data.incantName;
+            isIncantAbility = data.isIncantAbility;
+            abilityDesc = data.abilityDesc;
+            abilityIcon = data.abilityIcon;
+        }
         public abstract string GetAddDesc();
         public abstract string GetMinusDesc();
     }

@@ -10,7 +10,7 @@ namespace RPG.Character.Equipment
 {
     public class Lighting_Pants : PantsIncant
     {
-        public Lighting_Pants()
+        public Lighting_Pants(IncantData data) : base(data)
         {
             skillCoolTime = 2f;
         }

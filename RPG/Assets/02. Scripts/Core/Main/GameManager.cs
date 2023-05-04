@@ -107,6 +107,7 @@ namespace RPG.Core
             {
                 this.userInfo = CreateUserInfo();
                 this.player.SetPlayerStatusFromUserinfo(userInfo);
+                this.configureData = new ConfigureData();
             }
         }
 

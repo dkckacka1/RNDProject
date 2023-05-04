@@ -12,6 +12,11 @@ namespace RPG.Character.Equipment
         public float movementSpeed;
 
         public float skillCoolTime;
+
+        protected PantsIncant(IncantData data) : base(data)
+        {
+        }
+
         public virtual void MoveEvent(BattleStatus player)
         {
             Debug.Log("MoveEvent is Nothing");

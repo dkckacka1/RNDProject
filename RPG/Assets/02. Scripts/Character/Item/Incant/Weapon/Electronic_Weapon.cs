@@ -10,6 +10,10 @@ namespace RPG.Character.Equipment
 {
     public class Electronic_Weapon : WeaponIncant
     {
+        public Electronic_Weapon(IncantData data) : base(data)
+        {
+        }
+
         public override void AttackEvent(BattleStatus player, BattleStatus enemy)
         {
             var nearlyTarget = BattleManager.Instance.ReturnNearDistanceController<EnemyController>(player.transform);

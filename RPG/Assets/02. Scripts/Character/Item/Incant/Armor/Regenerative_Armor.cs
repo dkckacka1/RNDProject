@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public class Regenerative_Armor : ArmorIncant
     {
+        public Regenerative_Armor(IncantData data) : base(data)
+        {
+        }
+
         public override void PerSecEvent(BattleStatus status)
         {
             status.Heal(1);

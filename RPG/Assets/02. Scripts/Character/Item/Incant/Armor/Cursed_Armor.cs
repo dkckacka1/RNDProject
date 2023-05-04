@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public class Cursed_Armor : ArmorIncant
     {
+        public Cursed_Armor(IncantData data) : base(data)
+        {
+        }
+
         public override void TakeDamageEvent(BattleStatus mine, BattleStatus whoHitMe)
         {
             whoHitMe.TakeDebuff(DebuffType.Curse, 5f);

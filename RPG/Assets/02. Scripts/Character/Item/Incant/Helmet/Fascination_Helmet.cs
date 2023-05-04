@@ -11,7 +11,7 @@ namespace RPG.Character.Equipment
 {
     public class Fascination_Helmet : HelmetIncant
     {
-        public Fascination_Helmet()
+        public Fascination_Helmet(IncantData data) : base(data)
         {
             skillCoolTime = 10f;
         }

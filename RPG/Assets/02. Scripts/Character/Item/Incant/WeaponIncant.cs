@@ -14,6 +14,10 @@ public abstract class WeaponIncant : Incant
     public float criticalDamage;
     public float attackChance;
 
+    protected WeaponIncant(IncantData data) : base(data)
+    {
+    }
+
     public virtual void AttackEvent(BattleStatus player, BattleStatus enemy)
     {
         Debug.Log("AttackEvent is Nothing");

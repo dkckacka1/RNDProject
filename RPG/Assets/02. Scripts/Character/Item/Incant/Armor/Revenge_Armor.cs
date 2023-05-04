@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
+        public Revenge_Armor(IncantData data) : base(data)
+        {
+        }
+
         public override void TakeDamageEvent(BattleStatus mine, BattleStatus whoHitMe)
         {
             mine.StartCoroutine(Revenge(mine, 2f));

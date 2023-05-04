@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Sharpness_Weapon : WeaponIncant
     {
-        public Sharpness_Weapon()
+        public Sharpness_Weapon(IncantData data) : base(data)
         {
             attackDamage = 10;
         }

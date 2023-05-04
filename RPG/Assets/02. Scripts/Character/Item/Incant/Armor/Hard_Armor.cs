@@ -6,7 +6,7 @@ namespace RPG.Character.Equipment
 {
     public class Hard_Armor : ArmorIncant
     {
-        public Hard_Armor()
+        public Hard_Armor(IncantData data) : base(data)
         {
             defencePoint = 3;
             hpPoint = 100;

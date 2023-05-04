@@ -1,3 +1,4 @@
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,6 +60,8 @@ namespace RPG.Main.Audio
 
             musicVolume = value;
             musicSource.volume = musicVolume / 100;
+
+            GameManager.Instance.configureData.musicVolume = musicVolume;
         }
 
         public void ChangeSoundVolume(float value)
@@ -67,6 +70,8 @@ namespace RPG.Main.Audio
 
             soundVolume = value;
             soundSource.volume = soundVolume / 100;
+
+            GameManager.Instance.configureData.soundVolume = soundVolume;
         }
     }
 }

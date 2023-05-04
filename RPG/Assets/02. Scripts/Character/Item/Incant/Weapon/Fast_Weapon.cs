@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Fast_Weapon : WeaponIncant
     {
-        public Fast_Weapon()
+        public Fast_Weapon(IncantData data) : base(data)
         {
             attackSpeed = 1;
             attackDamage = -1;

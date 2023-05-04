@@ -7,6 +7,10 @@ namespace RPG.Character.Equipment
 {
     public class Bloody_Helmet : HelmetIncant
     {
+        public Bloody_Helmet(IncantData data) : base(data)
+        {
+        }
+
         public override void criticalAttackEvent(BattleStatus player, BattleStatus enemy)
         {
             enemy.TakeDebuff(DebuffType.Bloody, 10f);

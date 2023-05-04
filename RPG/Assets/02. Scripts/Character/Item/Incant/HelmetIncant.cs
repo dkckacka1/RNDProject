@@ -14,6 +14,10 @@ namespace RPG.Character.Equipment
 
         public float skillCoolTime;
 
+        protected HelmetIncant(IncantData data) : base(data)
+        {
+        }
+
         public virtual void criticalAttackEvent(BattleStatus player, BattleStatus enemy)
         {
             Debug.Log("criticalAttackEvent is Nothing");

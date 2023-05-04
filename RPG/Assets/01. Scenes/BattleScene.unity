@@ -359,6 +359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2bdb9a1e391a446a90158eaf0b21c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 996606882}
+  musicVolumeValueTxt: {fileID: 1789682125}
+  soundSlider: {fileID: 1185201076}
+  soundVolumeValueTxt: {fileID: 1548103087}
 --- !u!111 &100766639
 Animation:
   m_ObjectHideFlags: 0
@@ -4150,12 +4154,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1528971771}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0.17
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 100766638}
+        m_TargetAssemblyTypeName: RPG.Battle.UI.PauseUI, Assembly-CSharp
+        m_MethodName: ChangeMusicVolum
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &999366614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 491958, guid: 9e2131326fc97464987f58ebcb08832a, type: 3}
@@ -4880,12 +4896,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1398960072}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0.17
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 100766638}
+        m_TargetAssemblyTypeName: RPG.Battle.UI.PauseUI, Assembly-CSharp
+        m_MethodName: ChangeSoundVolum
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1192664680
 GameObject:
   m_ObjectHideFlags: 0
@@ -6187,8 +6215,8 @@ RectTransform:
   m_Father: {fileID: 1581946623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.17, y: 0}
-  m_AnchorMax: {x: 0.17, y: 1}
+  m_AnchorMin: {x: 0.0017, y: 0}
+  m_AnchorMax: {x: 0.0017, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 58.91, y: 43.5}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6929,8 +6957,8 @@ RectTransform:
   m_Father: {fileID: 967308021}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.17, y: 0}
-  m_AnchorMax: {x: 0.17, y: 1}
+  m_AnchorMin: {x: 0.0017, y: 0}
+  m_AnchorMax: {x: 0.0017, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 58.91, y: 43.5}
   m_Pivot: {x: 0.5, y: 0.5}

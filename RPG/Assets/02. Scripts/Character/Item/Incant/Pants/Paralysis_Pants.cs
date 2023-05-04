@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Paralysis_Pants : PantsIncant
     {
-        public Paralysis_Pants()
+        public Paralysis_Pants(IncantData data) : base(data)
         {
             skillCoolTime = 40f;
         }
