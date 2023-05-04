@@ -23,6 +23,10 @@ namespace RPG.Main.UI
 
         private void OnDisable()
         {
+            if (GameManager.Instance == null)
+            {
+                return;
+            }
             GameSLManager.SaveConfigureData(GameManager.Instance.configureData);
         }
 

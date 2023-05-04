@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 07. Winged Helm
   m_EditorClassIdentifier: 
   ID: 307
-  EquipmentName: "\uCCA0 \uD22C\uAD6C"
+  EquipmentName: "\uC719\uB4DC \uD5EC\uB984"
   equipmentType: 3
-  equipmentTier: 1
+  equipmentTier: 2
   equipmentSprite: {fileID: 21300000, guid: 0bcce98e6ef1c4141af9da9f4faa098a, type: 3}
   description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uD22C\uAD6C\uC785\uB2C8\uB2E4."
   defencePoint: 8

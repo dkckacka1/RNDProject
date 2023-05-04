@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 05. Chain Mail
   m_EditorClassIdentifier: 
   ID: 205
-  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
+  EquipmentName: "\uCCB4\uC778 \uBA54\uC77C"
   equipmentType: 1
-  equipmentTier: 0
+  equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: 67dcafa813e29cc4fad5f9c17f5af15d, type: 3}
   description: 
   defencePoint: 20

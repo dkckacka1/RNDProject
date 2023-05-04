@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 4
   apperenceNum: 4
-  enemyName: "\uACE0\uBE14\uB9B0 \uC804\uC0AC"
+  enemyName: "\uACE0\uBE14\uB9B0 \uC8FC\uC220\uC0AC"
   maxHp: 1000
   attackDamage: 1
   attackRange: 8
@@ -32,3 +32,4 @@ MonoBehaviour:
   - itemType: 1
     percent: 100
   weaponApparenceID: 2
+  handleType: 0

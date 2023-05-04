@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 401
   EquipmentName: "\uCCA0 \uBC14\uC9C0"
   equipmentType: 2
-  equipmentTier: 1
+  equipmentTier: 0
   equipmentSprite: {fileID: 21300000, guid: bb52c85f8efdacc4286953c88c147268, type: 3}
   description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uBC14\uC9C0\uC785\uB2C8\uB2E4.\t"
   defencePoint: 5

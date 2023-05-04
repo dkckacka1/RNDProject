@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 04. Scale Mail
   m_EditorClassIdentifier: 
   ID: 204
-  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
+  EquipmentName: "\uC2A4\uCF00\uC77C \uBA54\uC77C"
   equipmentType: 1
-  equipmentTier: 0
+  equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: 70951a5c6bc1d4e488b866d9f156897f, type: 3}
   description: 
   defencePoint: 20

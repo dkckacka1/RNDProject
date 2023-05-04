@@ -78,6 +78,9 @@ namespace RPG.Core
 
         // Skill
         public Dictionary<int, Ability> abilityPrefabDic = new Dictionary<int, Ability>();
+
+        // Audio
+        public Dictionary<string, AudioClip> audioDic = new Dictionary<string, AudioClip>();
         #endregion
 
         [Header("TEST")]
@@ -101,10 +104,7 @@ namespace RPG.Core
             if (isTest)
             {
                 DataLoad();
-            }
 
-            if (isTest)
-            {
                 this.userInfo = CreateUserInfo();
                 this.player.SetPlayerStatusFromUserinfo(userInfo);
                 this.configureData = new ConfigureData();
@@ -113,36 +113,13 @@ namespace RPG.Core
 
         public void DataLoad()
         {
-            LoadEquipmentData();
-            LoadEnemyData();
-            LoadStageData();
-            LoadSkill();
+            ResourcesLoader.LoadEquipmentData(ref equipmentDataDic);
+            ResourcesLoader.LoadIncant(ref incantDic);
+            ResourcesLoader.LoadEnemyData(ref enemyDataDic);
+            ResourcesLoader.LoadStageData(ref stageDataDic);
+            ResourcesLoader.LoadSkillPrefab(ref abilityPrefabDic);
+            ResourcesLoader.LoadAudioData(ref audioDic);
         }
-
-        #region Method_LoadData
-
-        private void LoadEquipmentData()
-        {
-            ResourcesLoader.LoadEquipmentData("Data/Equipment", ref equipmentDataDic);
-            ResourcesLoader.LoadIncant("Data/Incant", ref incantDic);
-        }
-
-
-        private void LoadEnemyData()
-        {
-            ResourcesLoader.LoadEnemyData("Data/Enemy", ref enemyDataDic);
-        }
-
-        private void LoadStageData()
-        {
-            ResourcesLoader.LoadStageData("Data/Stage", ref stageDataDic);
-        }
-
-        private void LoadSkill()
-        {
-            ResourcesLoader.LoadSkillPrefab("Prefab/Skill", ref abilityPrefabDic);
-        }
-        #endregion
 
         #region UserInfo
         public UserInfo CreateUserInfo()
@@ -175,11 +152,6 @@ namespace RPG.Core
             userInfo.pantsSuffixIncantID = -1;
 
             return userInfo;
-        }
-
-        public UserInfo LoadUserInfo(string path)
-        {
-            return null;
         }
         #endregion
 

@@ -19,7 +19,15 @@ namespace RPG.Start.UI
             GameManager.Instance.DataLoad();
 
             // 유저 데이터 로드
-            GameManager.Instance.UserInfo = GameSLManager.LoadFromJson(Application.dataPath + @"\Userinfo.json");
+            if (GameSLManager.isSaveFileExist())
+            {
+                GameManager.Instance.UserInfo = GameSLManager.LoadFromJson();
+            }
+            else
+            {
+                GameManager.Instance.UserInfo = GameManager.Instance.CreateUserInfo();
+            }
+
             GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
 
             // 유저 설정값 로드

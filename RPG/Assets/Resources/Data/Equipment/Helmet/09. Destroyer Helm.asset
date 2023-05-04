@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 09. Destroyer Helm
   m_EditorClassIdentifier: 
   ID: 309
-  EquipmentName: "\uCCA0 \uD22C\uAD6C"
+  EquipmentName: "\uB514\uC2A4\uD2B8\uB85C\uC774\uC5B4 \uD5EC\uB984"
   equipmentType: 3
-  equipmentTier: 1
+  equipmentTier: 3
   equipmentSprite: {fileID: 21300000, guid: 6f130a0adbdefc44aa47f7b42e47870e, type: 3}
   description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uD22C\uAD6C\uC785\uB2C8\uB2E4."
   defencePoint: 8

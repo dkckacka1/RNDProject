@@ -35,6 +35,9 @@ namespace RPG.Main.UI.StatusUI
             ShowAttackStatus(GameManager.Instance.Player);
             ShowDefenceStatus(GameManager.Instance.Player);
             ShowPlayerAbility(GameManager.Instance.Player);
+            Debug.Log(abilityPropertyObject.transform.parent.name);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)abilityPropertyObject.transform);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)abilityPropertyObject.transform.parent.transform);
         }
 
         private void ShowAttackStatus(PlayerStatus status)

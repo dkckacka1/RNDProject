@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 08. Gothic Plate
   m_EditorClassIdentifier: 
   ID: 208
-  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
+  EquipmentName: "\uACE0\uB515 \uAC11\uC637"
   equipmentType: 1
-  equipmentTier: 0
+  equipmentTier: 2
   equipmentSprite: {fileID: 21300000, guid: 51b493ea512811143a997ba25fd97807, type: 3}
   description: 
   defencePoint: 20

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 07. Plate Mail
   m_EditorClassIdentifier: 
   ID: 207
-  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
+  EquipmentName: "\uD50C\uB808\uC774\uD2B8 \uBA54\uC77C"
   equipmentType: 1
-  equipmentTier: 0
+  equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: 3c365a009f0bc0b41a67a49a31e5dfb4, type: 3}
   description: 
   defencePoint: 20

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 06. Basinet
   m_EditorClassIdentifier: 
   ID: 306
-  EquipmentName: "\uCCA0 \uD22C\uAD6C"
+  EquipmentName: "\uCCA0\uBAA8"
   equipmentType: 3
   equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: 9363768e4a3e9814881c9b534109a8f1, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 05. Great Helm
   m_EditorClassIdentifier: 
   ID: 305
-  EquipmentName: "\uCCA0 \uD22C\uAD6C"
+  EquipmentName: "\uADF8\uB808\uC774\uD2B8 \uD5EC\uB984"
   equipmentType: 3
   equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: abd5418fdd42a654082e13974be9be7e, type: 3}

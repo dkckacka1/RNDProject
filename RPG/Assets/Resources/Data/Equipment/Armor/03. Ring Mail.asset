@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 03. Ring Mail
   m_EditorClassIdentifier: 
   ID: 203
-  EquipmentName: "\uD004\uD2F0\uB4DC \uAC11\uC637"
+  EquipmentName: "\uB9C1 \uBA54\uC77C"
   equipmentType: 1
   equipmentTier: 0
   equipmentSprite: {fileID: 21300000, guid: 51b493ea512811143a997ba25fd97807, type: 3}

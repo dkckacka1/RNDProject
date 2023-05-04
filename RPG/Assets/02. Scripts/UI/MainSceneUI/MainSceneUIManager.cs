@@ -25,17 +25,7 @@ namespace RPG.Main.UI
 
         private void Start()
         {
-            Init();
-            UpdateUI();
-        }
-
-        public void Init()
-        {
             appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponApparenceID, GameManager.Instance.Player.currentWeapon.handleType);
-        }
-
-        public void UpdateUI()
-        {
             UpdateTicketCount();
         }
 
@@ -74,7 +64,7 @@ namespace RPG.Main.UI
                 GameManager.Instance.UserInfo.itemReinforceTicket += 100;
                 GameManager.Instance.UserInfo.itemIncantTicket += 100;
                 GameManager.Instance.UserInfo.itemGachaTicket += 100;
-                UpdateUI();
+                UpdateTicketCount();
             }
         }
     }

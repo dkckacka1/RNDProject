@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 02. GuardianPants
   m_EditorClassIdentifier: 
   ID: 402
-  EquipmentName: "\uCCA0 \uBC14\uC9C0"
+  EquipmentName: "\uC218\uD638\uC790 \uBC14\uC9C0"
   equipmentType: 2
   equipmentTier: 1
   equipmentSprite: {fileID: 21300000, guid: 375052499a0bdeb4ca968a3852d52874, type: 3}
