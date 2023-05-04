@@ -33,6 +33,7 @@ namespace RPG.Core
         // Info
         private UserInfo userInfo;
         [SerializeField] PlayerStatus player;
+        public ConfigureData configureData;
         public int choiceStageID;
 
         // Encapsule

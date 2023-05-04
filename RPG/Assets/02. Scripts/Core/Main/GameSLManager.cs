@@ -95,5 +95,22 @@ namespace RPG.Core
 
             return user;
         }
+
+        public static void SaveConfigureData(ConfigureData data)
+        {
+            PlayerPrefs.SetFloat("MusicVolume", data.musicVolume);
+            PlayerPrefs.SetFloat("SoundVolume", data.soundVolume);
+        }
+
+        public static ConfigureData LoadConfigureData()
+        {
+            ConfigureData configure = new ConfigureData();
+
+
+            configure.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 100f);
+            configure.soundVolume = PlayerPrefs.GetFloat("SoundVolume", 100f);
+
+            return configure;
+        }
     }
 }

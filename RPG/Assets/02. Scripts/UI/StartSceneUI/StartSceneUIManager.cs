@@ -1,4 +1,5 @@
 using RPG.Core;
+using RPG.Main.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,13 @@ namespace RPG.Start.UI
             // 유저 데이터 로드
             GameManager.Instance.UserInfo = GameSLManager.LoadFromJson(Application.dataPath + @"\Userinfo.json");
             GameManager.Instance.Player.SetPlayerStatusFromUserinfo(GameManager.Instance.UserInfo);
+
+            // 유저 설정값 로드
+            GameManager.Instance.configureData = GameSLManager.LoadConfigureData();
+
+            // 유저 설정값 세팅
+            AudioManager.Instance.ChangeMusicVolume(GameManager.Instance.configureData.musicVolume);
+            AudioManager.Instance.ChangeSoundVolume(GameManager.Instance.configureData.soundVolume);
 
             yield return null;
             SceneLoader.LoadMainScene();
