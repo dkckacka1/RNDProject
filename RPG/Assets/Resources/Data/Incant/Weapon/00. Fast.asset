@@ -9,16 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: fca9309b3c30ef744adec0728ed1ce59, type: 3}
   m_Name: 00. Fast
   m_EditorClassIdentifier: 
   ID: 0
   className: Fast
   incantType: 1
   itemType: 0
+  incantTier: 0
   incantName: "\uC2E0\uC18D "
-  addDesc: "\uACF5\uACA9\uC18D\uB3C4 +1"
-  minusDesc: "\uACF5\uACA9\uB825 -1"
   isIncantAbility: 0
   abilityDesc: 
   abilityIcon: {fileID: 0}
+  attackDamage: -10
+  attackSpeed: 1
+  attackRange: 0
+  movementSpeed: 0
+  criticalChance: 0
+  criticalDamage: 0
+  attackChance: 0

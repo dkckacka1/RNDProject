@@ -9,7 +9,7 @@ namespace RPG.Character.Equipment
 {
     public class Emit_Helmet : HelmetIncant
     {
-        public Emit_Helmet(IncantData data) : base(data)
+        public Emit_Helmet(HelmetIncantData data) : base(data)
         {
             skillCoolTime = 1f;
         }

@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Cursed_Armor : ArmorIncant
     {
-        public Cursed_Armor(IncantData data) : base(data)
+        public Cursed_Armor(ArmorIncantData data) : base(data)
         {
         }
 

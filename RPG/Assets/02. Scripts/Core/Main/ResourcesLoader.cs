@@ -20,7 +20,7 @@ namespace RPG.Core
 
         public static void LoadEquipmentData(ref Dictionary<int, EquipmentData> dic)
         {
-            var list = Resources.LoadAll<EquipmentData>(string.Join("/",dataPath, equipmentPath));
+            var list = Resources.LoadAll<EquipmentData>(string.Join("/", dataPath, equipmentPath));
             foreach (var data in list)
             {
                 dic.Add(data.ID, data);
@@ -49,7 +49,7 @@ namespace RPG.Core
         public static void LoadEnemyData(string path, ref Dictionary<int, EnemyData> dic)
         {
             var enemies = Resources.LoadAll<EnemyData>(path);
-            foreach(var enemy in enemies)
+            foreach (var enemy in enemies)
             {
                 //Debug.Log(enemy.enemyName + "Loaded");
                 dic.Add(enemy.ID, enemy);
@@ -78,25 +78,49 @@ namespace RPG.Core
         {
             var list = Resources.LoadAll<IncantData>(string.Join("/", dataPath, incantPath));
 
-            foreach (var incant in list)
+            foreach (var incantData in list)
             {
-                // 클래스이름 만들기
-                string class_name = $"RPG.Character.Equipment.{incant.className}_{incant.itemType}";
-                // 클래스 이름을 통한 타입 만들기
-                Type incantType = Type.GetType(class_name);
+                if (incantData.isIncantAbility == false)
+                    // 스킬이 없다면 그냥 생성
+                {
+                    Incant instance = null;
+                    switch (incantData.itemType)
+                    {
+                        case EquipmentItemType.Weapon:
+                            instance = new WeaponIncant(incantData as WeaponIncantData);
+                            break;
+                        case EquipmentItemType.Armor:
+                            instance = new ArmorIncant(incantData as ArmorIncantData);
+                            break;
+                        case EquipmentItemType.Pants:
+                            instance = new PantsIncant(incantData as PantsIncantData);
+                            break;
+                        case EquipmentItemType.Helmet:
+                            instance = new HelmetIncant(incantData as HelmetIncantData);
+                            break;
+                    }
 
-                // 매개변수가 있는 생성자를 호출해야함
-                // Activator.CreateInstance의 오버로딩 함수를 호출시켜야하기에 objects 변수 만들기
-                object[] objects = { incant };
+                    dic.Add(incantData.ID, instance);
+                }
+                else
+                {
+                    // 클래스이름 만들기
+                    string class_name = $"RPG.Character.Equipment.{incantData.className}_{incantData.itemType}";
+                    // 클래스 이름을 통한 타입 만들기
+                    Type incantType = Type.GetType(class_name);
 
-                var incantInstance = Activator.CreateInstance(incantType, objects) as Incant;
+                    // 매개변수가 있는 생성자를 호출해야함
+                    // Activator.CreateInstance의 오버로딩 함수를 호출시켜야하기에 objects 변수 만들기
+                    object[] objects = { incantData };
 
+                    var incantInstance = Activator.CreateInstance(incantType, objects) as Incant;
 
-                dic.Add(incantInstance.incantID, incantInstance);
+                    dic.Add(incantInstance.incantID, incantInstance);
+                }
             }
         }
 
-        public static void LoadIncant(string path ,ref Dictionary<int, Incant> dic)
+        public static void LoadIncant(string path, ref Dictionary<int, Incant> dic)
         {
             var list = Resources.LoadAll<IncantData>(path);
 

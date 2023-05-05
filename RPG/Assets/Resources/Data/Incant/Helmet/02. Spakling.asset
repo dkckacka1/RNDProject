@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 54249603f92f3df4fbafee5d872a5c46, type: 3}
   m_Name: 02. Spakling
   m_EditorClassIdentifier: 
   ID: 202
   className: Spakling
   incantType: 0
   itemType: 3
+  incantTier: 0
   incantName: "\uBC18\uC9DD\uC774\uB294 "
-  addDesc: "\uD68C\uD53C\uC728 + 20%"
-  minusDesc: "\uBC29\uC5B4\uB825 -2"
   isIncantAbility: 0
   abilityDesc: 
   abilityIcon: {fileID: 0}
+  hpPoint: 0
+  defencePoint: 1
+  decreseCriticalDamage: 0.8
+  evasionCritical: 0

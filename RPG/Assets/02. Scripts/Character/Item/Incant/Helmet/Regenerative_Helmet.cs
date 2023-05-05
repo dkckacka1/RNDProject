@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Regenerative_Helmet : HelmetIncant
     {
-        public Regenerative_Helmet(IncantData data) : base(data)
+        public Regenerative_Helmet(HelmetIncantData data) : base(data)
         {
             skillCoolTime = 20f;
         }

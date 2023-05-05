@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Regenerative_Armor : ArmorIncant
     {
-        public Regenerative_Armor(IncantData data) : base(data)
+        public Regenerative_Armor(ArmorIncantData data) : base(data)
         {
         }
 

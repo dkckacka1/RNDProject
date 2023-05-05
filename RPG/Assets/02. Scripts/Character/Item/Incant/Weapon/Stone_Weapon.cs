@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Stone_Weapon : WeaponIncant
     {
-        public Stone_Weapon(IncantData data) : base(data)
+        public Stone_Weapon(WeaponIncantData data) : base(data)
         {
         }
 

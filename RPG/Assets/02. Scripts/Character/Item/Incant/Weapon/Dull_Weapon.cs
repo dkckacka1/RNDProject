@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Dull_Weapon : WeaponIncant
     {
-        public Dull_Weapon(IncantData data) : base(data)
+        public Dull_Weapon(WeaponIncantData data) : base(data)
         {
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public abstract class HelmetIncant : Incant
+    public class HelmetIncant : Incant
     {
         public int hpPoint;
         public int defencePoint;
@@ -14,8 +14,12 @@ namespace RPG.Character.Equipment
 
         public float skillCoolTime;
 
-        protected HelmetIncant(IncantData data) : base(data)
+        public HelmetIncant(HelmetIncantData data) : base(data)
         {
+            hpPoint = data.hpPoint;
+            defencePoint = data.defencePoint;
+            decreseCriticalDamage = data.decreseCriticalDamage;
+            evasionCritical = data.evasionCritical;
         }
 
         public virtual void criticalAttackEvent(BattleStatus player, BattleStatus enemy)

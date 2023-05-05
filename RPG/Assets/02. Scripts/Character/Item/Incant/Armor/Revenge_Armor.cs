@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Revenge_Armor : ArmorIncant
     {
-        public Revenge_Armor(IncantData data) : base(data)
+        public Revenge_Armor(ArmorIncantData data) : base(data)
         {
         }
 

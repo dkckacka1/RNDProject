@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public abstract class PantsIncant : Incant
+    public class PantsIncant : Incant
     {
         public int hpPoint;
         public int defencePoint;
@@ -13,9 +13,13 @@ namespace RPG.Character.Equipment
 
         public float skillCoolTime;
 
-        protected PantsIncant(IncantData data) : base(data)
+        public PantsIncant(PantsIncantData data) : base(data)
         {
-        }
+            hpPoint = data.hpPoint;
+            defencePoint = data.defencePoint;
+            movementSpeed = data.movementSpeed;
+
+    }
 
         public virtual void MoveEvent(BattleStatus player)
         {

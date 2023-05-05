@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b60990a35d9b0742a4c35973255b72a, type: 3}
   m_Name: Stage 2
   m_EditorClassIdentifier: 
-  ID: 80
+  ID: 2
   playerSpawnPosition: {x: 20, y: 0, z: 0}
   enemyDatas: 0000000000000000
   ConsumEnergy: 10

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: a3777657bc4020d43a36522b62ba1ed7, type: 3}
   m_Name: 02. Fear
   m_EditorClassIdentifier: 
   ID: 302
@@ -22,3 +22,6 @@ MonoBehaviour:
   abilityDesc: "\uC8FC\uBCC0\uC758 \uC801\uC744 4\uCD08 \uB3D9\uC548 \uACF5\uD3EC\uC5D0
     \uC9C8\uB9AC\uAC8C \uD569\uB2C8\uB2E4."
   abilityIcon: {fileID: 21300000, guid: 1afbd7446b6a88e4babbd5acfd121c7f, type: 3}
+  hpPoint: 0
+  defencePoint: 0
+  movementSpeed: 0

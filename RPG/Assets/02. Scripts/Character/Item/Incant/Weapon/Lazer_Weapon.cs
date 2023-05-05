@@ -8,7 +8,7 @@ namespace RPG.Character.Equipment
 {
     public class Lazer_Weapon : WeaponIncant
     {
-        public Lazer_Weapon(IncantData data) : base(data)
+        public Lazer_Weapon(WeaponIncantData data) : base(data)
         {
         }
 

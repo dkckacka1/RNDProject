@@ -10,7 +10,7 @@ namespace RPG.Character.Equipment
 {
     public class Electronic_Weapon : WeaponIncant
     {
-        public Electronic_Weapon(IncantData data) : base(data)
+        public Electronic_Weapon(WeaponIncantData data) : base(data)
         {
         }
 

@@ -7,7 +7,7 @@ namespace RPG.Character.Equipment
 {
     public class Bloody_Helmet : HelmetIncant
     {
-        public Bloody_Helmet(IncantData data) : base(data)
+        public Bloody_Helmet(HelmetIncantData data) : base(data)
         {
         }
 

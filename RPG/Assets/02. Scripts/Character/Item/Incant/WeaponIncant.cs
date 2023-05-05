@@ -4,7 +4,7 @@ using UnityEngine;
 using RPG.Character.Equipment;
 using RPG.Character.Status;
 
-public abstract class WeaponIncant : Incant
+public class WeaponIncant : Incant
 {
     public int attackDamage;
     public float attackSpeed;
@@ -14,8 +14,15 @@ public abstract class WeaponIncant : Incant
     public float criticalDamage;
     public float attackChance;
 
-    protected WeaponIncant(IncantData data) : base(data)
+    public WeaponIncant(WeaponIncantData data) : base(data)
     {
+        attackDamage = data.attackDamage;
+        attackSpeed = data.attackSpeed;
+        attackRange = data.attackRange;
+        movementSpeed = data.movementSpeed;
+        criticalChance = data.criticalChance;
+        criticalDamage = data.criticalDamage;
+        attackChance = data.movementSpeed;
     }
 
     public virtual void AttackEvent(BattleStatus player, BattleStatus enemy)

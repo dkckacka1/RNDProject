@@ -9,16 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: a3777657bc4020d43a36522b62ba1ed7, type: 3}
   m_Name: 00. Heavy
   m_EditorClassIdentifier: 
   ID: 300
   className: Heavy
   incantType: 0
   itemType: 2
+  incantTier: 0
   incantName: "\uBB34\uAC70\uC6B4 "
-  addDesc: "\uBC29\uC5B4\uB825 +4"
-  minusDesc: "\uC774\uB3D9\uC18D\uB3C4 -3"
   isIncantAbility: 0
   abilityDesc: 
   abilityIcon: {fileID: 0}
+  hpPoint: 100
+  defencePoint: 1
+  movementSpeed: -1

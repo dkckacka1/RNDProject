@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 54249603f92f3df4fbafee5d872a5c46, type: 3}
   m_Name: 00. Balanced
   m_EditorClassIdentifier: 
   ID: 200
   className: Balanced
   incantType: 0
   itemType: 3
+  incantTier: 0
   incantName: "\uADE0\uD615\uC758 "
-  addDesc: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uAC10\uC18C 20%"
-  minusDesc: 
   isIncantAbility: 0
   abilityDesc: 
   abilityIcon: {fileID: 0}
+  hpPoint: 0
+  defencePoint: 0
+  decreseCriticalDamage: 0.3
+  evasionCritical: 0.3

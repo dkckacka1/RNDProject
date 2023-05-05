@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767797a950aa9a849b449b0761d873a7, type: 3}
+  m_Script: {fileID: 11500000, guid: e03b3191d1591764cba5b7a38806c1b0, type: 3}
   m_Name: 01. Regenerative
   m_EditorClassIdentifier: 
   ID: 101
@@ -21,3 +21,7 @@ MonoBehaviour:
   isIncantAbility: 1
   abilityDesc: "\uB9E4 \uCD08\uB9C8\uB2E4 \uCCB4\uB825\uC774 1\uD68C\uBCF5\uB429\uB2C8\uB2E4."
   abilityIcon: {fileID: 21300000, guid: 9368da30495f648499d95d0250db71f2, type: 3}
+  hpPoint: 0
+  defencePoint: 0
+  movementSpeed: 0
+  evasionPoint: 0

@@ -5,15 +5,19 @@ using UnityEngine;
 
 namespace RPG.Character.Equipment
 {
-    public abstract class ArmorIncant : Incant
+    public class ArmorIncant : Incant
     {
         public int hpPoint;
         public int defencePoint;
         public float movementSpeed;
         public float evasionPoint;
 
-        protected ArmorIncant(IncantData data) : base(data)
+        public ArmorIncant(ArmorIncantData data) : base(data)
         {
+            hpPoint = data.hpPoint;
+            defencePoint = data.defencePoint;
+            movementSpeed = data.movementSpeed;
+            evasionPoint = data.evasionPoint;
         }
 
         public virtual void PerSecEvent(BattleStatus status)
