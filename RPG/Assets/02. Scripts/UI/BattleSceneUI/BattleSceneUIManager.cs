@@ -15,7 +15,8 @@ namespace RPG.Battle.UI
 {
     public class BattleSceneUIManager : MonoBehaviour
     {
-        public Canvas battleCanvas;
+        [Header("Canvas")]
+        public Canvas battleCanvas; 
 
         [Header("BattleUI")]
         [SerializeField] TextMeshProUGUI floorText;
@@ -37,6 +38,8 @@ namespace RPG.Battle.UI
         [Header("AbilityButton")]
         public AbilityButton helmetAbility;
         public AbilityButton PantsAbility;
+
+        public Animation endingAnimation;
 
         private void Awake()
         {
@@ -75,8 +78,11 @@ namespace RPG.Battle.UI
             {
                 InitResultBtn(false);
                 pauseUI.Init();
-                //resultUI.InitUI(BattleManager.Instance.currentStageFloor, BattleManager.Instance.gainEnergy, BattleManager.Instance.gainGacha, BattleManager.Instance.gainReinforce, BattleManager.Instance.gainIncant);
-                //ShowResultUI(BattleSceneState.Pause);
+            });
+
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Ending, () =>
+            {
+                endingAnimation.Play();
             });
         }
 

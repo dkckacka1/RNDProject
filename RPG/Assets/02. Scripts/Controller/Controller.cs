@@ -56,7 +56,9 @@ namespace RPG.Battle.Control
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Ready, Ready);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Battle, Battle);
             BattleManager.Instance.SubscribeEvent(BattleSceneState.Pause, Pause);
+            BattleManager.Instance.SubscribeEvent(BattleSceneState.Ending, Ending);
         }
+
 
         private void OnDisable()
         {
@@ -72,6 +74,7 @@ namespace RPG.Battle.Control
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ready, Ready);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Battle, Battle);
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Pause, Pause);
+            BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ending, Ending);
         }
 
         private void Start()
@@ -171,6 +174,11 @@ namespace RPG.Battle.Control
             battleStatus.StopAllDebuff();
             movement.ResetNav();
         }
+
+        protected virtual void Ending()
+        {
+        }
+
 
         #endregion
 

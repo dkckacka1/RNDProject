@@ -8,7 +8,8 @@ public enum BattleSceneState
     Battle,
     Pause,
     Defeat,
-    Win
+    Win,
+    Ending
 }
 
 // 컨트롤러의 현재 상태

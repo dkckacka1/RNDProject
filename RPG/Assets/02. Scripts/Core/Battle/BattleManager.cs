@@ -152,13 +152,22 @@ namespace RPG.Battle.Core
                 return;
             }
 
-            // 승리 연출
-            SetBattleState(BattleSceneState.Win);
-            currentStageFloor++;
-            livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
-            livePlayer.animator.ResetTrigger("Idle");
-            livePlayer.animator.SetTrigger("Move");
-            livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { Ready(); });
+            if (GameManager.Instance.stageDataDic.ContainsKey(currentStageFloor + 1))
+                // 다음층이 있다면 준비
+            {
+                SetBattleState(BattleSceneState.Win);
+                currentStageFloor++;
+                livePlayer.transform.LookAt(livePlayer.transform.position + Vector3.left);
+                livePlayer.animator.ResetTrigger("Idle");
+                livePlayer.animator.SetTrigger("Move");
+                livePlayer.transform.DOMoveX(EnemyCreatePositionXOffset, battleReadyTime).OnComplete(() => { Ready(); });
+            }
+            else
+                // 다음 층이 없다면 엔딩
+            {
+                SetBattleState(BattleSceneState.Ending);
+            }
+
             UpdateUserinfo();
         }
 

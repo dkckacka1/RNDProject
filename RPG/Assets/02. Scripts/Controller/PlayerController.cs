@@ -72,5 +72,12 @@ namespace RPG.Battle.Control
 
             return (controller != null);
         }
+
+        protected override void Ending()
+        {
+            base.Ending();
+            battleStatus.RemoveAllDebuff();
+            animator.SetTrigger("Win");
+        }
     }
 }
