@@ -6,6 +6,7 @@ using TMPro;
 using RPG.Core;
 using RPG.Character.Status;
 using RPG.Character.Equipment;
+using UnityEngine.EventSystems;
 
 namespace RPG.Main.UI
 {

@@ -19,6 +19,6 @@ MonoBehaviour:
   equipmentSprite: {fileID: 21300000, guid: 3c365a009f0bc0b41a67a49a31e5dfb4, type: 3}
   description: "\uCCA0\uB85C \uB9CC\uB4E0 \uBB34\uAC70\uC6B4 \uAC11\uC637\uC785\uB2C8\uB2E4."
   defencePoint: 20
-  hpPoint: 250
-  movementSpeed: 0.25
+  hpPoint: 120
+  movementSpeed: 0
   evasionPoint: 0

@@ -46,9 +46,11 @@ namespace RPG.Main.UI
         [SerializeField] UIEffecter reinforceEffecter;
 
         CharacterAppearance appearance;
+        Animation animation;
 
         private void Awake()
         {
+            animation = GetComponent<Animation>();
             appearance = FindObjectOfType<CharacterAppearance>();
         }
 
@@ -151,6 +153,12 @@ namespace RPG.Main.UI
                 return;
             }
 
+            if (animation.isPlaying)
+            {
+                ShowItem(choiceItem);
+                animation.Stop();
+            }
+
             choiceItem.ChangeData(data);
             if (choiceItem.equipmentType == EquipmentItemType.Weapon)
             {
@@ -158,9 +166,16 @@ namespace RPG.Main.UI
             }
 
             GameManager.Instance.Player.SetEquipment();
-            ShowItem(choiceItem);
             InitGacha();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
+
+
+            animation.Play();
+        }
+
+        public void ShowItemAnim()
+        {
+            ShowItem(choiceItem);
         }
 
         public void Reinforce()
@@ -328,7 +343,7 @@ namespace RPG.Main.UI
         {
             equipmentStatusText.text = $"" +
                 $"{MyUtility.returnSideText("체력 : ", armor.HpPoint.ToString())}\n" +
-                $"{MyUtility.returnSideText("방어력 : ", $"{armor.DefencePoint}회 타격")}\n" +
+                $"{MyUtility.returnSideText("방어력 : ", $"{armor.DefencePoint}")}\n" +
                 $"{MyUtility.returnSideText("이동속도 : ", armor.MovementSpeed.ToString())}\n" +
                 $"{MyUtility.returnSideText("회피율 : ", $"{armor.EvasionPoint}%")}";
 

@@ -17,8 +17,8 @@ MonoBehaviour:
   equipmentType: 3
   equipmentTier: 0
   equipmentSprite: {fileID: 21300000, guid: 23e2d8d69d68ebb419417ad86af93546, type: 3}
-  description: "\uCCA0\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uD22C\uAD6C\uC785\uB2C8\uB2E4."
-  defencePoint: 8
-  hpPoint: 50
-  decreseCriticalDamage: 0.1
+  description: 
+  defencePoint: 15
+  hpPoint: 10
+  decreseCriticalDamage: 0.2
   evasionCritical: 0

@@ -20,4 +20,4 @@ MonoBehaviour:
   description: "\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E0 \uD3C9\uBC94\uD55C \uBC14\uC9C0\uC785\uB2C8\uB2E4."
   defencePoint: 3
   hpPoint: 50
-  movementSpeed: 0.25
+  movementSpeed: 0.5

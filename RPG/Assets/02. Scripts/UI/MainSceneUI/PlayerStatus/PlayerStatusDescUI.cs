@@ -66,9 +66,10 @@ namespace RPG.Main.UI.StatusUI
         {
             if (!status.hasAbility())
             {
+                abilityPropertyObject.SetActive(false);
                 return;
             }
-
+            
             Weapon weapon = status.currentWeapon;
             if (weapon.hasPrefixAbilitySkill())
             {
@@ -153,6 +154,7 @@ namespace RPG.Main.UI.StatusUI
                 pantsSuffixAbilityDescUI.gameObject.SetActive(false);
             }
 
+            abilityPropertyObject.SetActive(true);
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)abilityPropertyObject.transform);
         }
     }

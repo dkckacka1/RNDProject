@@ -18,7 +18,7 @@ MonoBehaviour:
   equipmentTier: 3
   equipmentSprite: {fileID: 21300000, guid: 51b493ea512811143a997ba25fd97807, type: 3}
   description: 
-  defencePoint: 20
-  hpPoint: 250
-  movementSpeed: 0.25
-  evasionPoint: 0
+  defencePoint: 80
+  hpPoint: 1000
+  movementSpeed: 0.5
+  evasionPoint: 0.2
