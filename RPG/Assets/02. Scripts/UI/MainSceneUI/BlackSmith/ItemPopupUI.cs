@@ -141,7 +141,7 @@ namespace RPG.Main.UI.BlackSmith
             GameManager.Instance.Player.SetEquipment();
             InitIncant();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
-            AudioManager.Instance.SoundOneShot("IncantSound");
+            AudioManager.Instance.PlaySoundOneShot("IncantSound");
         }
 
         public void Gacha()
@@ -172,7 +172,7 @@ namespace RPG.Main.UI.BlackSmith
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
 
 
-            AudioManager.Instance.SoundOneShot("GachaSound");
+            AudioManager.Instance.PlaySoundOneShot("GachaSound");
             animation.Play();
         }
         public void Reinforce()
@@ -189,7 +189,7 @@ namespace RPG.Main.UI.BlackSmith
             ShowItem(choiceItem);
             InitReinforce();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
-            AudioManager.Instance.SoundOneShot("ReinforceSound");
+            AudioManager.Instance.PlaySoundOneShot("ReinforceSound");
         }
 
         public void ShowItemAnim()

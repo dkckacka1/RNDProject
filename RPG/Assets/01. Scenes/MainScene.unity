@@ -4930,12 +4930,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671977017}
-        m_TargetAssemblyTypeName: RPG.Main.UI.ItemChoiceUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemChoiceUI, Assembly-CSharp
         m_MethodName: ChoiceArmor
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 635800400}
-          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.ItemPopupUI, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemPopupUI, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7650,12 +7650,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671977017}
-        m_TargetAssemblyTypeName: RPG.Main.UI.ItemChoiceUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemChoiceUI, Assembly-CSharp
         m_MethodName: ChoiceHelmet
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 635800400}
-          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.ItemPopupUI, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemPopupUI, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11090,12 +11090,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671977017}
-        m_TargetAssemblyTypeName: RPG.Main.UI.ItemChoiceUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemChoiceUI, Assembly-CSharp
         m_MethodName: ChoiceWeapon
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 635800400}
-          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.ItemPopupUI, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemPopupUI, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -22179,12 +22179,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671977017}
-        m_TargetAssemblyTypeName: RPG.Main.UI.ItemChoiceUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemChoiceUI, Assembly-CSharp
         m_MethodName: ChoicePants
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 635800400}
-          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.ItemPopupUI, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: RPG.Main.UI.BlackSmith.ItemPopupUI, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

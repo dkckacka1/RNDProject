@@ -40,11 +40,12 @@ namespace RPG.Main.Audio
             }
         }
 
-        public void PlayMusic(string musicName)
+        public void PlayMusic(string musicName, bool isLooping)
         {
             if (GameManager.Instance.audioDic.TryGetValue(musicName, out AudioClip audioClip))
             {
                 musicSource.clip = audioClip;
+                musicSource.loop = isLooping;
                 musicSource.Play();
             }
             else
@@ -66,7 +67,7 @@ namespace RPG.Main.Audio
             }
         }
 
-        public void SoundOneShot(string soundName)
+        public void PlaySoundOneShot(string soundName)
         {
             if (GameManager.Instance.audioDic.TryGetValue(soundName, out AudioClip audioClip))
             {
@@ -74,7 +75,7 @@ namespace RPG.Main.Audio
             }
             else
             {
-                Debug.Log("soundName is NULL");
+                Debug.Log(soundName + " is NULL");
             }
         }
 

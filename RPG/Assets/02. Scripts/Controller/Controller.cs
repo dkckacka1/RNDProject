@@ -9,7 +9,7 @@ using RPG.Battle.Behaviour;
 using RPG.Battle.AI;
 using RPG.Battle.UI;
 using RPG.Character.Status;
-
+using RPG.Main.Audio;
 
 namespace RPG.Battle.Control
 {
@@ -252,6 +252,9 @@ namespace RPG.Battle.Control
 
         public void AttackEvent()
         {
+            if (target.battleStatus.isDead) return;
+
+            AudioManager.Instance.PlaySoundOneShot("AttackSound");
             attack.TargetTakeDamage();
         }
     }

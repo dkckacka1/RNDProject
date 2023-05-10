@@ -29,7 +29,7 @@ namespace RPG.Main.UI
         {
             appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponApparenceID, GameManager.Instance.Player.currentWeapon.handleType);
             UpdateTicketCount();
-            AudioManager.Instance.PlayMusic("MainBackGroundMusic");
+            AudioManager.Instance.PlayMusic("MainBackGroundMusic", true);
             GameSLManager.SaveToJSON(GameManager.Instance.UserInfo, Application.dataPath + @"\Userinfo.json");
         }
 

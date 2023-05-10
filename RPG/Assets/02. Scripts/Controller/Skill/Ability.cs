@@ -67,7 +67,7 @@ namespace RPG.Battle.Ability
         {
             if (AbilitySoundName != string.Empty)
             {
-                AudioManager.Instance.SoundOneShot(AbilitySoundName);
+                AudioManager.Instance.PlaySoundOneShot(AbilitySoundName);
             }
         }
     }

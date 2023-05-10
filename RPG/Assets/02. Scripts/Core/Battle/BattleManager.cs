@@ -121,7 +121,7 @@ namespace RPG.Battle.Core
             }
 
             currentStageFloor = GameManager.Instance.choiceStageID;
-            AudioManager.Instance.PlayMusic("BattleBackGroundMusic");
+            AudioManager.Instance.PlayMusic("BattleBackGroundMusic",true);
             Ready();
         }
 
@@ -168,7 +168,7 @@ namespace RPG.Battle.Core
                 // 다음 층이 없다면 엔딩
             {
                 SetBattleState(BattleSceneState.Ending);
-                AudioManager.Instance.PlayMusic("EndingBackGroundMusic");
+                AudioManager.Instance.PlayMusic("EndingBackGroundMusic", true);
             }
 
             UpdateUserinfo();
@@ -181,6 +181,7 @@ namespace RPG.Battle.Core
                 return;
             }
 
+            AudioManager.Instance.PlayMusic("DefeatMusicBackGround", false);
             // 패배 연출
             SetBattleState(BattleSceneState.Defeat);
         }
