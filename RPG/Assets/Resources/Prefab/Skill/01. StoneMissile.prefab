@@ -54,6 +54,7 @@ MonoBehaviour:
   abilityName: StoneFire
   abilityDesc: "\uB3CC\uB369\uC774 \uC791\uB82C"
   abilityTime: 4
+  AbilitySoundName: StoneMissile
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 0.9, z: 0.5}
   speed: 10

@@ -7,6 +7,7 @@ using RPG.Core;
 using RPG.Character.Status;
 using RPG.Character.Equipment;
 using UnityEngine.EventSystems;
+using RPG.Main.Audio;
 
 namespace RPG.Main.UI
 {
@@ -28,6 +29,8 @@ namespace RPG.Main.UI
         {
             appearance.EquipWeapon(GameManager.Instance.Player.currentWeapon.weaponApparenceID, GameManager.Instance.Player.currentWeapon.handleType);
             UpdateTicketCount();
+            AudioManager.Instance.PlayMusic("MainBackGroundMusic");
+            GameSLManager.SaveToJSON(GameManager.Instance.UserInfo, Application.dataPath + @"\Userinfo.json");
         }
 
         #region ButtonPlugin

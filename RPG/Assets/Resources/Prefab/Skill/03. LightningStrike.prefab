@@ -52,6 +52,7 @@ MonoBehaviour:
   abilityName: "\uBC88\uAC1C \uCDA9\uACA9"
   abilityDesc: "\uBC88\uAC1C \uCDA9\uACA9"
   abilityTime: 1
+  AbilitySoundName: LightningStrike
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 0, z: 0}
   chainDelay: 0.1

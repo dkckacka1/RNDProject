@@ -9737,6 +9737,7 @@ MonoBehaviour:
   abilityName: 
   abilityDesc: 
   abilityTime: 1
+  AbilitySoundName: LightningBlast
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 1, z: 0}
   explosionRange: 1

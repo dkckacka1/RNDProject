@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ namespace RPG.Core
         public static void SaveToJSON(UserInfo userinfo, string path)
         {
             var json = JsonUtility.ToJson(userinfo, true);
-            
+
             File.WriteAllText(path, json);
         }
 
@@ -21,9 +19,9 @@ namespace RPG.Core
         {
             var json = JsonUtility.ToJson(userinfo, true);
 
-            File.WriteAllText(string.Join("/",Application.dataPath, saveFileName), json);
+            File.WriteAllText(string.Join("/", Application.dataPath, saveFileName), json);
         }
-        
+
         public static bool isSaveFileExist(string path = null)
         {
             if (path == null)

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using RPG.Battle.Core;
 using RPG.Character.Status;
+using RPG.Main.Audio;
 
 namespace RPG.Battle.Ability
 {
@@ -15,6 +16,7 @@ namespace RPG.Battle.Ability
         [TextArea()]
         public string abilityDesc;
         public float abilityTime;
+        public string AbilitySoundName;
 
         [HideInInspector] public ParticleSystem particle;
         protected UnityAction<BattleStatus> hitAction;
@@ -27,6 +29,7 @@ namespace RPG.Battle.Ability
 
         protected virtual void OnEnable()
         {
+            PlaySound();
             StartCoroutine(ReleaseTimer());
         }
 
@@ -58,6 +61,14 @@ namespace RPG.Battle.Ability
         {
             yield return new WaitForSeconds(abilityTime);
             ReleaseAbility();
+        }
+
+        public void PlaySound()
+        {
+            if (AbilitySoundName != string.Empty)
+            {
+                AudioManager.Instance.SoundOneShot(AbilitySoundName);
+            }
         }
     }
 }

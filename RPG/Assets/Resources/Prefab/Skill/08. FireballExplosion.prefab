@@ -14432,6 +14432,7 @@ MonoBehaviour:
   abilityName: "\uD3ED\uBC1C"
   abilityDesc: "\uD3ED\uBC1C\uD569\uB2C8\uB2E4."
   abilityTime: 1
+  AbilitySoundName: FireballExplosion
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 0.5, z: 0}
   explosionRange: 3

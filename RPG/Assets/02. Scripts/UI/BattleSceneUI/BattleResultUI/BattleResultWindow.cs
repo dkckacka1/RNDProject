@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
 using RPG.Battle.Core;
 using RPG.Core;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Battle.UI
 {
@@ -38,7 +35,7 @@ namespace RPG.Battle.UI
             titleText.text = "전투 결과";
             btnText.text = $"현재 층\n재도전 (-{consumeEnergy})";
             reStartBtn.onClick.RemoveAllListeners();
-            reStartBtn.onClick.AddListener(()=> 
+            reStartBtn.onClick.AddListener(() =>
             {
                 GameManager.Instance.UserInfo.energy -= consumeEnergy;
                 BattleManager.Instance.ReStartBattle();

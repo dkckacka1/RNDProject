@@ -42,22 +42,40 @@ namespace RPG.Main.Audio
 
         public void PlayMusic(string musicName)
         {
-            AudioClip music = GameManager.Instance.audioDic[musicName];
-            musicSource.clip = music;
-            musicSource.Play();
+            if (GameManager.Instance.audioDic.TryGetValue(musicName, out AudioClip audioClip))
+            {
+                musicSource.clip = audioClip;
+                musicSource.Play();
+            }
+            else
+            {
+                Debug.Log("musicName is NULL");
+            }
         }
 
         public void PlaySound(string soundName)
         {
-            AudioClip sound = GameManager.Instance.audioDic[soundName];
-            soundSource.clip = sound;
-            soundSource.Play();
+            if (GameManager.Instance.audioDic.TryGetValue(soundName, out AudioClip audioClip))
+            {
+                soundSource.clip = audioClip;
+                soundSource.Play();
+            }
+            else
+            {
+                Debug.Log("soundName is NULL");
+            }
         }
 
         public void SoundOneShot(string soundName)
         {
-            AudioClip sound = GameManager.Instance.audioDic[soundName];
-            soundSource.PlayOneShot(sound);
+            if (GameManager.Instance.audioDic.TryGetValue(soundName, out AudioClip audioClip))
+            {
+                soundSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                Debug.Log("soundName is NULL");
+            }
         }
 
         public void ChangeMusicVolume(float value)

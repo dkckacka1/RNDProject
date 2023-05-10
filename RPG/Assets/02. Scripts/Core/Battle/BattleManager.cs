@@ -9,6 +9,7 @@ using RPG.Battle.Control;
 using RPG.Character.Status;
 using RPG.Battle.UI;
 using DG.Tweening;
+using RPG.Main.Audio;
 
 namespace RPG.Battle.Core
 {
@@ -120,6 +121,7 @@ namespace RPG.Battle.Core
             }
 
             currentStageFloor = GameManager.Instance.choiceStageID;
+            AudioManager.Instance.PlayMusic("BattleBackGroundMusic");
             Ready();
         }
 
@@ -166,6 +168,7 @@ namespace RPG.Battle.Core
                 // 다음 층이 없다면 엔딩
             {
                 SetBattleState(BattleSceneState.Ending);
+                AudioManager.Instance.PlayMusic("EndingBackGroundMusic");
             }
 
             UpdateUserinfo();
@@ -197,9 +200,7 @@ namespace RPG.Battle.Core
 
         private StageData LoadStageData()
         {
-            StageData stage;
-
-            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageFloor, out stage))
+            if (GameManager.Instance.stageDataDic.TryGetValue(currentStageFloor, out StageData stage))
             {
                 return stage;
             }

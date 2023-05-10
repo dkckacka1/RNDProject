@@ -4774,6 +4774,7 @@ MonoBehaviour:
   abilityName: "\uC804\uB958 \uD750\uB984"
   abilityDesc: "\uC804\uB958\uB97C \uD750\uB974\uAC8C \uD569\uB2C8\uB2E4."
   abilityTime: 100
+  AbilitySoundName: LightningFloorBlueTrail
   particle: {fileID: 0}
   abilityPositionOffset: {x: 0, y: 1, z: 0}
   chainDelay: 0.1

@@ -6,6 +6,7 @@ using TMPro;
 using RPG.Character.Equipment;
 using RPG.Core;
 using UnityEngine.Events;
+using RPG.Main.Audio;
 
 namespace RPG.Main.UI.BlackSmith
 {
@@ -140,6 +141,7 @@ namespace RPG.Main.UI.BlackSmith
             GameManager.Instance.Player.SetEquipment();
             InitIncant();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
+            AudioManager.Instance.SoundOneShot("IncantSound");
         }
 
         public void Gacha()
@@ -170,14 +172,9 @@ namespace RPG.Main.UI.BlackSmith
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
 
 
+            AudioManager.Instance.SoundOneShot("GachaSound");
             animation.Play();
         }
-
-        public void ShowItemAnim()
-        {
-            ShowItem(choiceItem);
-        }
-
         public void Reinforce()
         {
             GameManager.Instance.UserInfo.itemReinforceTicket--;
@@ -192,7 +189,14 @@ namespace RPG.Main.UI.BlackSmith
             ShowItem(choiceItem);
             InitReinforce();
             GameManager.Instance.UserInfo.UpdateUserinfoFromStatus(GameManager.Instance.Player);
+            AudioManager.Instance.SoundOneShot("ReinforceSound");
         }
+
+        public void ShowItemAnim()
+        {
+            ShowItem(choiceItem);
+        }
+
 
         public void ChoiceItem(Equipment item)
         {
