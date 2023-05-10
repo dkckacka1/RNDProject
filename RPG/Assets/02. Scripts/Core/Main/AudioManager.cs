@@ -42,16 +42,22 @@ namespace RPG.Main.Audio
 
         public void PlayMusic(string musicName)
         {
-
+            AudioClip music = GameManager.Instance.audioDic[musicName];
+            musicSource.clip = music;
+            musicSource.Play();
         }
 
         public void PlaySound(string soundName)
         {
-
+            AudioClip sound = GameManager.Instance.audioDic[soundName];
+            soundSource.clip = sound;
+            soundSource.Play();
         }
 
         public void SoundOneShot(string soundName)
         {
+            AudioClip sound = GameManager.Instance.audioDic[soundName];
+            soundSource.PlayOneShot(sound);
         }
 
         public void ChangeMusicVolume(float value)

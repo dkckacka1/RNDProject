@@ -4,7 +4,7 @@ using UnityEngine;
 using RPG.Core;
 using UnityEngine.UI;
 
-namespace RPG.Main.UI
+namespace RPG.Main.UI.BlackSmith
 {
     public class UIEffecter_Reinforce : UIEffecter
     {

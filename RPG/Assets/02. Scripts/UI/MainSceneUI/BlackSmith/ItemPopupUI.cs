@@ -7,7 +7,7 @@ using RPG.Character.Equipment;
 using RPG.Core;
 using UnityEngine.Events;
 
-namespace RPG.Main.UI
+namespace RPG.Main.UI.BlackSmith
 {
     public class ItemPopupUI : MonoBehaviour
     {

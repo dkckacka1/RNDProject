@@ -6,7 +6,7 @@ using TMPro;
 using RPG.Core;
 using RPG.Character.Equipment;
 
-namespace RPG.Main.UI
+namespace RPG.Main.UI.BlackSmith
 {
     public class BlackSmithUI : MonoBehaviour
     {

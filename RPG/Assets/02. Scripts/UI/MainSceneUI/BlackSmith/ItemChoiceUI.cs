@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Main.UI
+namespace RPG.Main.UI.BlackSmith
 {
     public class ItemChoiceUI : MonoBehaviour
     {
