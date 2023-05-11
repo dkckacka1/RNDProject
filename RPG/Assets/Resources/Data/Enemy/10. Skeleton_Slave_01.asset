@@ -15,21 +15,25 @@ MonoBehaviour:
   ID: 10
   apperenceNum: 10
   enemyName: "\uD574\uACE8 \uB178\uC608"
-  maxHp: 100
-  attackDamage: 10
+  maxHp: 50
+  attackDamage: 80
   attackRange: 2
   attackSpeed: 1
   criticalChance: 0
-  criticalDamage: 0
+  criticalDamage: 0.5
   attackChance: 0.9
-  defencePoint: 1
+  defencePoint: -5
   evasionPoint: 0
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 10
+  dropEnergy: 35
   dropitems:
   - itemType: 1
-    percent: 100
+    percent: 40
+  - itemType: 2
+    percent: 40
+  - itemType: 3
+    percent: 40
   weaponApparenceID: 2
   handleType: 0

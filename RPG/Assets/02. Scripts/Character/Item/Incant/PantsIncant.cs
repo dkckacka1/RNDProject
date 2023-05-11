@@ -36,17 +36,38 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint > 0)
             {
-                returnStr += $"체력(+{hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력(+{hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력(+{hpPoint})");
+                }
             }
 
             if (defencePoint > 0)
             {
-                returnStr += $"방어력(+{defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력(+{defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력(+{defencePoint})");
+                }
             }
 
             if (movementSpeed > 0)
             {
-                returnStr += $"이동속도(+{movementSpeed})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"이동속도(+{movementSpeed})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"이동속도(+{movementSpeed})");
+                }
             }
 
             return returnStr;
@@ -57,17 +78,38 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint < 0)
             {
-                returnStr += $"체력({hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력({hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력({hpPoint})");
+                }
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력({defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력({defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력({defencePoint})");
+                }
             }
 
             if (movementSpeed < 0)
             {
-                returnStr += $"이동속도({movementSpeed})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"이동속도({movementSpeed})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"이동속도({movementSpeed})");
+                }
             }
 
             return returnStr;

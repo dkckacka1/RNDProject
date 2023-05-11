@@ -15,21 +15,25 @@ MonoBehaviour:
   ID: 5
   apperenceNum: 5
   enemyName: "\uACE0\uBE14\uB9B0 \uC804\uD22C\uB300\uC7A5"
-  maxHp: 100
-  attackDamage: 10
+  maxHp: 350
+  attackDamage: 25
   attackRange: 2
-  attackSpeed: 1
-  criticalChance: 0
-  criticalDamage: 0
-  attackChance: 0.9
-  defencePoint: 1
+  attackSpeed: 2
+  criticalChance: 0.3
+  criticalDamage: 0.5
+  attackChance: 1
+  defencePoint: 3
   evasionPoint: 0
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 10
+  dropEnergy: 50
   dropitems:
   - itemType: 1
-    percent: 100
+    percent: 50
+  - itemType: 1
+    percent: 50
+  - itemType: 1
+    percent: 50
   weaponApparenceID: 2
   handleType: 0

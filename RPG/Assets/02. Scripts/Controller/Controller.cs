@@ -77,9 +77,6 @@ namespace RPG.Battle.Control
             BattleManager.Instance.UnsubscribeEvent(BattleSceneState.Ending, Ending);
         }
 
-        private void Start()
-        {
-        }
 
         private void Update()
         {

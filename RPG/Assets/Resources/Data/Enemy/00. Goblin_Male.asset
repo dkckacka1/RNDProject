@@ -20,16 +20,18 @@ MonoBehaviour:
   attackRange: 1
   attackSpeed: 1
   criticalChance: 0
-  criticalDamage: 0
+  criticalDamage: 0.5
   attackChance: 0.9
   defencePoint: 1
   evasionPoint: 0
   decreseCriticalDamage: 0
   evasionCritical: 0
   movementSpeed: 2
-  dropEnergy: 100
+  dropEnergy: 10
   dropitems:
+  - itemType: 2
+    percent: 100
   - itemType: 1
-    percent: 40
+    percent: 25
   weaponApparenceID: 2
   handleType: 0

@@ -35,37 +35,86 @@ public class WeaponIncant : Incant
         string returnStr = "";
         if (attackDamage > 0)
         {
-            returnStr += $"공격력(+{attackDamage})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격력(+{attackDamage})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격력(+{attackDamage})");
+            }
         }
 
         if (attackSpeed > 0)
         {
-            returnStr += $"공격속도(+{attackSpeed})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격속도(+{attackSpeed})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격속도(+{attackSpeed})");
+            }
         }
 
         if (attackRange > 0)
         {
-            returnStr += $"공격범위(+{attackRange})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격범위(+{attackRange})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격범위(+{attackRange})");
+            }
         }
 
         if (movementSpeed > 0)
         {
-            returnStr += $"이동속도(+{movementSpeed})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"이동속도(+{movementSpeed})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"이동속도(+{movementSpeed})");
+            }
         }
 
         if (criticalChance > 0)
         {
-            returnStr += $"치명타 적중률(+{criticalChance * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"치명타 적중률(+{criticalChance * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"치명타 적중률(+{criticalChance * 100}%)");
+            }
         }
 
         if (criticalDamage > 0)
         {
-            returnStr += $"치명타 데미지(+{criticalDamage * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"치명타 데미지(+{criticalDamage * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"치명타 데미지(+{criticalDamage * 100}%)");
+            }
         }
 
         if (attackChance > 0)
         {
-            returnStr += $"적중률(+{attackChance * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"적중률(+{attackChance * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"적중률(+{attackChance * 100}%)");
+            }
         }
 
         return returnStr;
@@ -76,37 +125,86 @@ public class WeaponIncant : Incant
         string returnStr = "";
         if (attackDamage < 0)
         {
-            returnStr += $"공격력({attackDamage})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격력({attackDamage})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격력({attackDamage})");
+            }
         }
 
         if (attackSpeed < 0)
         {
-            returnStr += $"공격속도({attackSpeed})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격속도({attackSpeed})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격속도({attackSpeed})");
+            }
         }
 
         if (attackRange < 0)
         {
-            returnStr += $"공격범위({attackRange})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"공격범위({attackRange})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"공격범위({attackRange})");
+            }
         }
 
         if (movementSpeed < 0)
         {
-            returnStr += $"이동속도({movementSpeed})";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"이동속도({movementSpeed})";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"이동속도({movementSpeed})");
+            }
         }
 
         if (criticalChance < 0)
         {
-            returnStr += $"치명타 적중률({criticalChance * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"치명타 적중률({criticalChance * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"치명타 적중률({criticalChance * 100}%)");
+            }
         }
 
         if (criticalDamage < 0)
         {
-            returnStr += $"치명타 데미지({criticalDamage * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"치명타 데미지({criticalDamage * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"치명타 데미지({criticalDamage * 100}%)");
+            }
         }
 
         if (attackChance < 0)
         {
-            returnStr += $"적중률({attackChance * 100}%)";
+            if (returnStr == string.Empty)
+            {
+                returnStr = $"적중률({attackChance * 100}%)";
+            }
+            else
+            {
+                returnStr = string.Join("\n", returnStr, $"적중률({attackChance * 100}%)");
+            }
         }
 
         return returnStr;
