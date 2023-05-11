@@ -32,28 +32,55 @@ namespace RPG.Character.Equipment
 
         public override string GetAddDesc()
         {
-            string returnStr = "";
+            string returnStr = string.Empty;
 
             if (hpPoint > 0)
             {
-                returnStr += $"체력(+{hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력(+{hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력(+{hpPoint})");
+                }
             }
 
             if (defencePoint > 0)
             {
-                returnStr += $"방어력(+{defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력(+{defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력(+{defencePoint})");
+                }
             }
 
             if (movementSpeed > 0)
             {
-                returnStr += $"이동 속도(+{movementSpeed})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"이동 속도(+{movementSpeed})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"이동 속도(+{movementSpeed})");
+                }
             }
 
             if (evasionPoint > 0)
             {
-                returnStr += $"회피율(+{evasionPoint * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"회피율(+{evasionPoint * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"회피율(+{evasionPoint * 100}%)");
+                }
             }
-
 
             return returnStr;
         }
@@ -64,22 +91,50 @@ namespace RPG.Character.Equipment
 
             if (hpPoint < 0)
             {
-                returnStr += $"체력({hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력(-{hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력(-{hpPoint})");
+                }
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력({defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력(-{defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력(-{defencePoint})");
+                }
             }
 
             if (movementSpeed < 0)
             {
-                returnStr += $"이동 속도({movementSpeed})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"이동 속도(-{movementSpeed})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"이동 속도(-{movementSpeed})");
+                }
             }
 
             if (evasionPoint < 0)
             {
-                returnStr += $"회피율({evasionPoint * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"회피율(-{evasionPoint * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"회피율(-{evasionPoint * 100}%)");
+                }
             }
 
 

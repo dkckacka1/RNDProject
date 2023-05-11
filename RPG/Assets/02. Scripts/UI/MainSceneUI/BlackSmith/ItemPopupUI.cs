@@ -29,19 +29,15 @@ namespace RPG.Main.UI.BlackSmith
         [SerializeField] TextMeshProUGUI pantsEquipmentStatusText;
         [SerializeField] VerticalLayoutGroup layout;
 
-        [Header("SuffixIncant")]
-        [SerializeField] GameObject suffixIncantDescObject;
-        [SerializeField] TextMeshProUGUI suffixIncantDescText;
-        [SerializeField] GameObject suffixAbilityDescObject;
-        [SerializeField] Image suffixAbilityImage;
-        [SerializeField] TextMeshProUGUI suffixAbilityDescText;
-
         [Header("PrefixIncant")]
-        [SerializeField] GameObject prefixIncantDescObject;
-        [SerializeField] TextMeshProUGUI prefixIncantDescText;
-        [SerializeField] GameObject prefixAbilityDescObject;
-        [SerializeField] Image prefixAbilityImage;
-        [SerializeField] TextMeshProUGUI prefixAbilityDescText;
+        [SerializeField] IncantDescUI prefixDescUI;
+        [SerializeField] IncantAbilityUI prefixAbilityUI;
+
+        [Header("SuffixIncant")]
+        [SerializeField] IncantDescUI suffixDescUI;
+        [SerializeField] IncantAbilityUI suffixAbilityUI;
+
+
 
         [Header("Effecter")]
         [SerializeField] UIEffecter reinforceEffecter;
@@ -217,9 +213,7 @@ namespace RPG.Main.UI.BlackSmith
             weaponEquipmentStatusText.transform.parent.gameObject.SetActive(false);
             armorEquipmentStatusText.transform.parent.gameObject.SetActive(false);
             pantsEquipmentStatusText.transform.parent.gameObject.SetActive(false);
-            helmetEquipmentStatusText.transform.parent.gameObject.SetActive(false);
-            prefixAbilityDescObject.SetActive(false);
-            suffixAbilityDescObject.SetActive(false);
+            helmetEquipmentStatusText.transform.parent.gameObject.SetActive(false); 
 
             switch (item.equipmentType)
             {
@@ -237,96 +231,12 @@ namespace RPG.Main.UI.BlackSmith
                     break;
             }
 
-            if (item.prefix != null)
-            {
-                prefixIncantDescObject.SetActive(true);
-                ShowIncant(item.prefix);
-            }
-            else
-            {
-                prefixIncantDescObject.SetActive(false);
-            }
-
-            if (item.suffix != null)
-            {
-                suffixIncantDescObject.SetActive(true);
-                ShowIncant(item.suffix);
-            }
-            else
-            {
-                suffixIncantDescObject.SetActive(false);
-            }
+            prefixDescUI.ShowIncant(choiceItem.prefix);
+            prefixAbilityUI.ShowIncant(choiceItem.prefix);
+            suffixDescUI.ShowIncant(choiceItem.suffix);
+            suffixAbilityUI.ShowIncant(choiceItem.suffix);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)layout.transform);
-        }
-
-        private void ShowIncant(Incant incant)
-        {
-            switch (incant.incantType)
-            {
-                case IncantType.prefix:
-                    {
-                        prefixIncantDescText.text = $"" +
-                            $"{MyUtility.returnSideText("인챈트 이름 : ", incant.incantName)}";
-
-                        string str = incant.GetAddDesc();
-                        if (str != "")
-                        {
-                            prefixIncantDescText.text += $"\n{MyUtility.returnSideText("증가 옵션 : ", str)}";
-                        }
-
-                        str = incant.GetMinusDesc();
-                        if (str != "")
-                        {
-                            prefixIncantDescText.text += $"\n{MyUtility.returnSideText("감소 옵션 : ", str)}";
-                        }
-
-                        if (incant.isIncantAbility)
-                        {
-                            prefixAbilityDescObject.SetActive(true);
-                            prefixAbilityImage.sprite = incant.abilityIcon;
-                            prefixAbilityDescText.text = $"{incant.abilityDesc}";
-                        }
-                        else
-                        {
-                            prefixAbilityDescObject.SetActive(false);
-                        }
-                    }
-
-                    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)prefixIncantDescObject.transform);
-                    break;
-                case IncantType.suffix:
-                    {
-                        suffixIncantDescText.text = $"" +
-                            $"{MyUtility.returnSideText("인챈트 이름 : ", incant.incantName)}";
-
-                        string str = incant.GetAddDesc();
-                        if (str != "")
-                        {
-                            suffixIncantDescText.text += $"\n{MyUtility.returnSideText("증가 옵션 : ", str)}";
-                        }
-
-                        str = incant.GetMinusDesc();
-                        if (str != "")
-                        {
-                            suffixIncantDescText.text += $"\n{MyUtility.returnSideText("감소 옵션 : ", str)}";
-                        }
-
-                        if (incant.isIncantAbility)
-                        {
-                            suffixAbilityDescObject.SetActive(true);
-                            suffixAbilityImage.sprite = incant.abilityIcon;
-                            suffixAbilityDescText.text = $"{incant.abilityDesc}";
-                        }
-                        else
-                        {
-                            suffixAbilityDescObject.SetActive(false);
-                        }
-                    }
-
-                    LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)suffixIncantDescObject.transform);
-                    break;
-            }
         }
 
         private void ShowWeaponText(TextMeshProUGUI equipmentStatusText, Weapon weapon)

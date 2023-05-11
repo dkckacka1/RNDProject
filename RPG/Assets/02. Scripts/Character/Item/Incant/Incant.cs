@@ -35,6 +35,8 @@ namespace RPG.Character.Equipment
             abilityDesc = data.abilityDesc;
             abilityIcon = data.abilityIcon;
         }
+
+
         public abstract string GetAddDesc();
         public abstract string GetMinusDesc();
     }

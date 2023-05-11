@@ -37,22 +37,50 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint > 0)
             {
-                returnStr += $"체력(+{hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력(+{hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력(+{hpPoint})");
+                }
             }
 
             if (defencePoint > 0)
             {
-                returnStr += $"방어력(+{defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력(+{defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력(+{defencePoint})");
+                }
             }
 
             if (decreseCriticalDamage > 0)
             {
-                returnStr += $"치명타데미지감소(+{decreseCriticalDamage * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"치명타데미지감소(+{decreseCriticalDamage * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"치명타데미지감소(+{decreseCriticalDamage * 100}%)");
+                }
             }
 
             if (evasionCritical > 0)
             {
-                returnStr += $"치명타회피율(+{evasionCritical * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"치명타회피율(+{evasionCritical * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"치명타회피율(+{evasionCritical * 100}%)");
+                }
             }
 
             return returnStr;
@@ -63,22 +91,50 @@ namespace RPG.Character.Equipment
             string returnStr = "";
             if (hpPoint < 0)
             {
-                returnStr += $"체력({hpPoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"체력(-{hpPoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"체력(-{hpPoint})");
+                }
             }
 
             if (defencePoint < 0)
             {
-                returnStr += $"방어력({defencePoint})";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"방어력(-{defencePoint})";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"방어력(-{defencePoint})");
+                }
             }
 
             if (decreseCriticalDamage < 0)
             {
-                returnStr += $"치명타데미지감소({decreseCriticalDamage * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"치명타데미지감소(-{decreseCriticalDamage * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"치명타데미지감소(-{decreseCriticalDamage * 100}%)");
+                }
             }
 
             if (evasionCritical < 0)
             {
-                returnStr += $"치명타회피율({evasionCritical * 100}%)";
+                if (returnStr == string.Empty)
+                {
+                    returnStr = $"치명타회피율(-{evasionCritical * 100}%)";
+                }
+                else
+                {
+                    returnStr = string.Join("\n", returnStr, $"치명타회피율(-{evasionCritical * 100}%)");
+                }
             }
 
             return returnStr;
