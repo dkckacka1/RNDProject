@@ -51,6 +51,14 @@ namespace RPG.Main.UI.BlackSmith
             appearance = FindObjectOfType<CharacterAppearance>();
         }
 
+        private void OnEnable()
+        {
+            animation.Rewind();
+            animation.Play();
+            animation.Sample();
+            animation.Stop();
+        }
+
         public void InitGacha()
         {
             TodoText.fontSize = 18.5f;
@@ -207,8 +215,8 @@ namespace RPG.Main.UI.BlackSmith
                 $"{MyUtility.returnSideText("장비 이름 : ", $"{((item.reinforceCount > 0) ? $"+{item.reinforceCount} " : "")}{item.itemName}")}\n" +
                 $"{MyUtility.returnSideText("장비 유형 : ", item.ToStringEquipmentType())}\n" +
                 $"{MyUtility.returnSideText("장비 등급 : ", item.ToStringTier())}\n" +
-                $"{MyUtility.returnSideText("접두 인챈트 : ", item.ToStringIncant(IncantType.prefix))}\n" +
-                $"{MyUtility.returnSideText("접미 인챈트 : ", item.ToStringIncant(IncantType.suffix))}";
+                $"{MyUtility.returnSideText("접두 인챈트 : ", (item.prefix != null ? item.prefix.incantName : "없음"))}\n" +
+                $"{MyUtility.returnSideText("접미 인챈트 : ", (item.suffix != null ? item.suffix.incantName : "없음"))}";
 
             weaponEquipmentStatusText.transform.parent.gameObject.SetActive(false);
             armorEquipmentStatusText.transform.parent.gameObject.SetActive(false);

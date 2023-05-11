@@ -10,6 +10,7 @@ namespace RPG.Main.UI.BlackSmith
     public class IncantDescUI : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI nameTxt;
+        [SerializeField] TextMeshProUGUI tierTxt;
         [SerializeField] TextMeshProUGUI addDescTxt;
         [SerializeField] TextMeshProUGUI minusDescTxt;
 
@@ -22,6 +23,26 @@ namespace RPG.Main.UI.BlackSmith
             }
 
             nameTxt.text = incant.incantName;
+
+            string tierStr = "";
+
+            switch (incant.incantTier)
+            {
+                case TierType.Normal:
+                    tierStr = "노말";
+                    break;
+                case TierType.Rare:
+                    tierStr = "레어";
+                    break;
+                case TierType.Unique:
+                    tierStr = "유니크";
+                    break;
+                case TierType.Legendary:
+                    tierStr = "전설";
+                    break;
+            }
+
+            tierTxt.text = tierStr;
 
             string addDesc = incant.GetAddDesc();
 
@@ -51,10 +72,8 @@ namespace RPG.Main.UI.BlackSmith
             {
                 LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform.GetChild(i));
             }
-
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform);
-
             this.gameObject.SetActive(true);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform);
         }
     }
 }

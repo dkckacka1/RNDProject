@@ -226,33 +226,6 @@ namespace RPG.Character.Equipment
 
             return "";
         }
-
-        public string ToStringIncant(IncantType type)
-        {
-            switch (type)
-            {
-                case IncantType.prefix:
-                    {
-                        if (prefix == null)
-                        {
-                            return "없음";
-                        }
-
-                        return prefix.incantName + $"({prefix.incantTier})";
-                    }
-                case IncantType.suffix:
-                    {
-                        if (suffix == null)
-                        {
-                            return "없음";
-                        }
-
-                        return suffix.incantName + $"({suffix.incantTier})";
-                    }
-            }
-
-            return "";
-        }
     }
 
 }

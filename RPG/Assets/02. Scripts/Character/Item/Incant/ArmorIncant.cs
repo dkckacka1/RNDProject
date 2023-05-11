@@ -93,11 +93,11 @@ namespace RPG.Character.Equipment
             {
                 if (returnStr == string.Empty)
                 {
-                    returnStr = $"체력(-{hpPoint})";
+                    returnStr = $"체력({hpPoint})";
                 }
                 else
                 {
-                    returnStr = string.Join("\n", returnStr, $"체력(-{hpPoint})");
+                    returnStr = string.Join("\n", returnStr, $"체력({hpPoint})");
                 }
             }
 
@@ -105,11 +105,11 @@ namespace RPG.Character.Equipment
             {
                 if (returnStr == string.Empty)
                 {
-                    returnStr = $"방어력(-{defencePoint})";
+                    returnStr = $"방어력({defencePoint})";
                 }
                 else
                 {
-                    returnStr = string.Join("\n", returnStr, $"방어력(-{defencePoint})");
+                    returnStr = string.Join("\n", returnStr, $"방어력({defencePoint})");
                 }
             }
 
@@ -117,11 +117,11 @@ namespace RPG.Character.Equipment
             {
                 if (returnStr == string.Empty)
                 {
-                    returnStr = $"이동 속도(-{movementSpeed})";
+                    returnStr = $"이동 속도({movementSpeed})";
                 }
                 else
                 {
-                    returnStr = string.Join("\n", returnStr, $"이동 속도(-{movementSpeed})");
+                    returnStr = string.Join("\n", returnStr, $"이동 속도({movementSpeed})");
                 }
             }
 
@@ -129,11 +129,11 @@ namespace RPG.Character.Equipment
             {
                 if (returnStr == string.Empty)
                 {
-                    returnStr = $"회피율(-{evasionPoint * 100}%)";
+                    returnStr = $"회피율({evasionPoint * 100}%)";
                 }
                 else
                 {
-                    returnStr = string.Join("\n", returnStr, $"회피율(-{evasionPoint * 100}%)");
+                    returnStr = string.Join("\n", returnStr, $"회피율({evasionPoint * 100}%)");
                 }
             }
 
