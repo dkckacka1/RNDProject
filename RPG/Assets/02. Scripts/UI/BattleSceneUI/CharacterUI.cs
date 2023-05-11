@@ -36,6 +36,7 @@ namespace RPG.Battle.UI
             {
                 hpBar.gameObject.SetActive(true);
                 hpBar.InitHpSlider(status.status.MaxHp);
+                debuffUI.ResetAllDebuff();
             }
         }
 

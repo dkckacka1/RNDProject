@@ -20,7 +20,7 @@ MonoBehaviour:
   attackRange: 1.5
   attackSpeed: 1
   criticalChance: 0
-  criticalDamage: 0
+  criticalDamage: 0.5
   attackChance: 0.9
   defencePoint: 1
   evasionPoint: 0
