@@ -1,4 +1,6 @@
+
 using System.IO;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,25 +12,40 @@ namespace ThirdParty.ExcelReader
 {
     public class ExcelReader : MonoBehaviour
     {
+        string xlsxPath = @"C:\Users\G\Documents\KHW\RNDProject\R&D Project\Assets\ThirdParty\ExcelReader\data.xlsx";
+        string jsonPath = @"C:\Users\G\Documents\KHW\RNDProject\R&D Project\Assets\ThirdParty\ExcelReader\Test.json";
+
         private void Start()
         {
-            string FileName = @"E:\workspace\Git\RNDProject\RNDProject\R&D Project\Assets\Resources\Test.xlsx";
-            using (var stream = File.Open(FileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    var result = reader.AsDataSet();
-
-                    for (int i = 0; i < result.Tables.Count; i++)
+                    using(var writer = new JsonTextWriter(File.CreateText(jsonPath)))
                     {
-                        for (int j = 0; j < result.Tables[i].Rows.Count; j++)
+                        writer.Formatting = Formatting.Indented;
+                        writer.WriteStartArray();
+                        reader.Read();
+                        do
                         {
-                            string data1 = result.Tables[i].Rows[j][0].ToString();
-                            string data2 = result.Tables[i].Rows[j][1].ToString();
-                            Debug.Log($"{data1} : {data2}");
+                            while (reader.Read())
+                            {
+                                writer.WriteStartObject();
+
+                                writer.WritePropertyName("id");
+                                writer.WriteValue(int.Parse(reader.GetValue(0).ToString()));
+
+                                writer.WritePropertyName("name");
+                                writer.WriteValue(reader.GetString(1));
+
+                                writer.WriteEndObject();
+                            }
                         }
+                        while (reader.NextResult());
+
+                        writer.WriteEndArray();
+
                     }
-                    
                 }
             }
         }
