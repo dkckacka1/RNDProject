@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace Assets.Unity.Scriptable
 {
-    [CreateAssetMenu]
     public class DerivedObject : BaseObject
     {
         public string name;
