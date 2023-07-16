@@ -4,43 +4,63 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
+using UnityEngine.Events;
 
 public class Login : MonoBehaviour
 {
-    public Text loginResultText;
+    public InputField emailField;
+    public InputField passwordField;
 
-    public string email;
-    public string password;
+    public Text resultText;
 
     FirebaseApp firebaseApp;
     FirebaseAuth auth;
-    FirebaseUser user;
+
 
     private void Awake()
     {
         CheckVaildFirebase();
     }
 
+    Queue<UnityAction> messageQueue = new Queue<UnityAction>();    // 메시지 큐
+    private void Update()
+    {
+        // 업데이트 마다 큐 체크
+        if (messageQueue.Count > 0)
+        {
+            messageQueue.Dequeue().Invoke();
+        }
+    }
+
     public void CreateUser()
     {
-        System.Threading.Tasks.Task tt = auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => 
+        auth.CreateUserWithEmailAndPasswordAsync(emailField.text, passwordField.text).ContinueWith(task =>
+            // 이메일, 패스워드를 통한 계정 생성
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-                return;
+                messageQueue.Enqueue(FaildSignIn);
             }
-            if (task.IsFaulted)
+            else if (task.IsFaulted)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                return;
+                messageQueue.Enqueue(FaildSignIn);
             }
-
-            Firebase.Auth.AuthResult result = task.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})",
-                result.User.DisplayName, result.User.UserId);
+            else
+                // 작업 성공 시 성공 메시지 출력
+            {
+                messageQueue.Enqueue(SuccessSignIn);
+            }
         });
+    }
 
+    public void FaildSignIn()
+    {
+        resultText.text = "계정 생성 실패";
+    }
+
+    public void SuccessSignIn()
+    {
+        resultText.text = "계정 생성 성공";
     }
 
     public void CheckVaildFirebase()
@@ -51,7 +71,8 @@ public class Login : MonoBehaviour
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 firebaseApp = FirebaseApp.DefaultInstance;
-                auth = FirebaseAuth.GetAuth(firebaseApp);
+                // 파이어베이스 인증을 사용하기 위한 세팅
+                auth = FirebaseAuth.DefaultInstance;
                 Debug.Log("파이어베이스 SDK를 사용가능합니다.");
             }
             else
