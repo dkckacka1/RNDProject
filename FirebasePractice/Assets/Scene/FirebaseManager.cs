@@ -1,5 +1,6 @@
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class FirebaseManager : MonoBehaviour
     public FirebaseApp firebaseApp;
     public FirebaseAuth firebaseAuth;
     public FirebaseUser firebaseUser;
+    public FirebaseDatabase firebaseDatabase;
     public Queue<UnityAction> messageQueue = new Queue<UnityAction>();    // 메시지 큐
 
     public static FirebaseManager Instance;
@@ -52,6 +54,10 @@ public class FirebaseManager : MonoBehaviour
                 firebaseApp = FirebaseApp.DefaultInstance;
                 // 파이어베이스 인증을 사용하기 위한 게이트웨이 설정
                 firebaseAuth = FirebaseAuth.DefaultInstance;
+                // 파이어베이스 데이터베이스를 사용하기 위한 게이트웨이 설정
+                firebaseDatabase = FirebaseDatabase.DefaultInstance;
+
+
                 Debug.Log("파이어베이스 SDK를 사용가능합니다.");
             }
             else
