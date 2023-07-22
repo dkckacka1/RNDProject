@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2457267499
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7af2b73ee7873062ac7008f844bb380c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c12678a98877549a3fe7bb52917258ad
+HashAppended: 0
+ClassTypes:
+- Class: 329
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- "Assets/Bundle/BundleResources/\uB85C\uBE44 \uB85C\uB529.mp4"
+Dependencies: []

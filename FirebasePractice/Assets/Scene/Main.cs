@@ -20,7 +20,6 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start »£√‚ : " + this.gameObject.name);
         if (FirebaseManager.Instance != null)
         {
             ShowCurrentUser(Auth);
