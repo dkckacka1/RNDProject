@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace AI.Behaviour
 {
+    // 예상 회피 행동
+    // 부모 클래스가 Flee라는걸 제외하고는 Pursue와 동일하다.
     public class Evade : Flee
     {
         public float maxPrediction;
@@ -20,7 +22,7 @@ namespace AI.Behaviour
 
         private void OnDestroy()
         {
-            Destroy(targetAux);
+            Destroy(target);
         }
 
         public override Steering GetSteering()
@@ -35,6 +37,7 @@ namespace AI.Behaviour
                 prediction = distance / speed;
             target.transform.position = targetAux.transform.position;
             target.transform.position += targetAgent.velocity * prediction;
+            Debug.DrawLine(this.transform.position, target.transform.position, Color.red);
             return base.GetSteering();
         }
     }

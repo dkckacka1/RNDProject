@@ -13,7 +13,7 @@ namespace AI.Behaviour
         public Steering()
         {
             angular = 0.0f;             // 회전값
-            linear = new Vector3();     // 어디로 이동할지
+            linear = new Vector3();     // 가속도와 연관이 있다. 값이 크면 가야할 거리도 넓기에 그만큼 속도가 증가한다.
         }
     }
 }
