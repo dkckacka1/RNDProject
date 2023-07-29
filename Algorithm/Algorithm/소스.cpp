@@ -1,41 +1,56 @@
 #include <string>
 #include <vector>
+#include <unordered_set>
+#include <map>
 #include <iostream>
 
 using namespace std;
 
-long DP[60000];
-long recursion(long n);
-int solution(int n);
+void Compair(map<int, int> c, unordered_set<int> b, int* count)
+{
+    if (c.size() == b.size())
+    {
+        (*count)++;
+    }
+}
 
+int solution(vector<int> topping) {
+    int answer = -1;
+    int fairCount = 0;
+
+    map<int, int> c;
+    unordered_set<int> b;
+
+    for (int el : topping)
+    {
+        if (c.find(el) == c.end())
+        {
+            c.insert({ el, 1 });
+        }
+        else
+        {
+            c[el]++;
+        }
+    }
+
+    for (int to : topping)
+    {
+        b.insert(to);
+        c[to]--;
+        if (c[to] == 0)
+        {
+            c.erase(to);
+        }
+
+        Compair(c, b, &fairCount);
+    }
+
+    return fairCount;
+}
 
 int main()
 {
-
-    for (int i = 100; i >= 0; i--)
-    {
-        cout << solution(i) << endl;
-    }
-
+    cout << solution({ 1,2,3,1,4}) << endl;
+    //cout << solution({ 1,2,1,3,1,4,1,2 }) << endl;
     return 0;
-}
-
-int solution(int n) 
-{
-    int answer = 0;
-    DP[0] = 1;
-    DP[1] = 2;
-    return recursion(n - 1);
-}
-
-long recursion(long n)
-{
-    if (n == -1) return 0;
-
-    if (DP[n] == 0)
-    {
-        DP[n] = recursion(n - 1) + recursion(n - 2);
-    }
-
-    return DP[n] % 10000000007;
 }

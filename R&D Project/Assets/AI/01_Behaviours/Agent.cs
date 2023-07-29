@@ -9,6 +9,8 @@ namespace AI.Behaviour
     {
         public float maxSpeed;          // 최대 속도
         public float maxAccel;          // 최대 가속도
+        public float maxRotation;       // 최대 회전 속도
+        public float maxAngularAccel;   // 최대 회전 가속도
         public float orientation;       // 프레임 당 회전해야하는 수치
         public float rotation;          // 회전해야하는 양
         public Vector3 velocity;        // 이동 벡터
@@ -69,6 +71,24 @@ namespace AI.Behaviour
 
             // 프레임 당 행위 계산을 실시하기위한 초기화
             steering = new Steering();
+        }
+
+        // 두 방향 값을 뺀 후 실제 회전 방향을 찾는다.
+        public float MapToRange(float rotation)
+        {
+            // 회전값이 360을 넘어가지 않도록 합니다.
+            rotation %= 360.0f;
+
+            if (Mathf.Abs(rotation) > 180.0f)
+                // 회전값이 -180 ~ 180 으로 유지될 수 있도록합니다.
+            {
+                if (rotation < 0.0f)
+                    rotation += 360.0f;
+                else 
+                    rotation -= 360.0f;
+            }
+
+            return rotation;
         }
 
 

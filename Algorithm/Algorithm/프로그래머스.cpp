@@ -3163,3 +3163,65 @@ void recursion(vector<vector<int>> arr, vector<int>& answer)
 }
 
 #endif // 쿼드압축_후_개수_세기
+#ifdef 숫자_변환하기
+#include <string>
+#include <vector>
+#include <iostream>
+#include <queue>
+#include <set>
+#include<algorithm>
+
+using namespace std;
+
+int solution(int x, int y, int n)
+{
+	if (x == y) return 0;
+	queue<int> q;
+	set<int> s;
+	int count = 0;
+	q.push(x);
+	while (true)
+	{
+		while (q.empty() != true)
+		{
+			int value = q.front();
+			q.pop();
+
+			int valueOne = value + n;
+			int valueTwo = value * 2;
+			int valueThree = value * 3;
+
+			if (valueOne == y || valueTwo == y || valueThree == y)
+			{
+				++count;
+				return count;
+			}
+
+			s.insert(valueOne);
+			s.insert(valueTwo);
+			s.insert(valueThree);
+
+		}
+
+		if (*min_element(s.begin(), s.end()) > y)
+			return -1;
+
+		for (auto iter = s.begin(); iter != s.end(); iter++)
+		{
+			q.push(*iter);
+		}
+		s.clear();
+
+		++count;
+	}
+
+	return count;
+}
+
+int main()
+{
+	cout << solution(10, 40, 4) << endl;
+	system("pause");
+	return 0;
+}
+#endif // 숫자_변환하기
