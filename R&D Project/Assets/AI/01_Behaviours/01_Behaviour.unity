@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &475129160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965217081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.26, y: 3, z: 28.09}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -536,10 +536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac93efc31264d9b4ab9412c0e299200a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 15
+  maxSpeed: 5
   maxAccel: 15
-  maxRotation: 30
-  maxAngularAccel: 15
+  maxRotation: 900
+  maxAngularAccel: 360
   orientation: 0
   rotation: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -552,12 +552,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 965217081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73871f814560152469258ecd062c8b97, type: 3}
+  m_Script: {fileID: 11500000, guid: 63590ea56a0354648923734dad955198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 475129159}
-  targetRadius: 80
-  slowRadius: 30
+  targetRadius: 60
+  slowRadius: 20
+  radius: 10
+  offset: 25
+  rate: 60
 --- !u!1 &1007698490
 GameObject:
   m_ObjectHideFlags: 0

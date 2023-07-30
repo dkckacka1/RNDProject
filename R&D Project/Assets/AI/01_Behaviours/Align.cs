@@ -16,7 +16,6 @@ namespace AI.Behaviour
             // 알아보기 쉽게 디버그용 라인을 그립니다.
             DrawDebugLine(slowRadius * 2, Color.red);
             DrawDebugLine(targetRadius * 2, Color.blue);
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 20);
 
             Steering steering = new Steering();
             // 대상을 바라보기 위한 회전값을 설정합니다.
@@ -61,19 +60,27 @@ namespace AI.Behaviour
         }
 
         // 회전각을 통한 바라보는 방향을 구합니다.
-        private Vector3 DirFromAngle(float angle)
+        protected Vector3 DirFromAngle(float angle)
         {
             angle += transform.eulerAngles.y;
             return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
         }
 
         // 회전각을 보기좋게 디버그 라인으로 만듭니다.
-        public void DrawDebugLine(float angle, Color color)
+        protected void DrawDebugLine(float angle, Color color, float Distance = 10)
         {
             Vector3 leftBoundary = DirFromAngle(-angle / 2);
             Vector3 rightBoundary = DirFromAngle(angle / 2);
-            Debug.DrawLine(transform.position, transform.position + leftBoundary * 10, color);
-            Debug.DrawLine(transform.position, transform.position + rightBoundary * 10, color);
+            Debug.DrawLine(transform.position, transform.position + leftBoundary * Distance, color);
+            Debug.DrawLine(transform.position, transform.position + rightBoundary * Distance, color);
+        }
+
+        protected void DrawDebugLine(Vector3 targetVector3, float angle, Color color, float Distance = 10)
+        {
+            Vector3 leftBoundary = DirFromAngle(-angle / 2);
+            Vector3 rightBoundary = DirFromAngle(angle / 2);
+            Debug.DrawLine(targetVector3, targetVector3 + leftBoundary * Distance, color);
+            Debug.DrawLine(targetVector3, targetVector3 + rightBoundary * Distance, color);
         }
     }
 }

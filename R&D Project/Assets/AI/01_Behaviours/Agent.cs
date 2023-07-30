@@ -73,24 +73,6 @@ namespace AI.Behaviour
             steering = new Steering();
         }
 
-        // 두 방향 값을 뺀 후 실제 회전 방향을 찾는다.
-        public float MapToRange(float rotation)
-        {
-            // 회전값이 360을 넘어가지 않도록 합니다.
-            rotation %= 360.0f;
-
-            if (Mathf.Abs(rotation) > 180.0f)
-                // 회전값이 -180 ~ 180 으로 유지될 수 있도록합니다.
-            {
-                if (rotation < 0.0f)
-                    rotation += 360.0f;
-                else 
-                    rotation -= 360.0f;
-            }
-
-            return rotation;
-        }
-
 
         // 행위를 세팅합니다.
         // AgentBehaviour 클래스가 매 프레임마다 행위를 갱신합니다.
