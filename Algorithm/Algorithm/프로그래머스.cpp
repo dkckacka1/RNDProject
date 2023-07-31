@@ -3225,3 +3225,89 @@ int main()
 	return 0;
 }
 #endif // 숫자_변환하기
+#ifdef 롤케이크_자르기
+#include <string>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
+#include <iostream>
+
+using namespace std;
+
+int solution(vector<int> topping)
+{
+	int answer = 0, cake;
+	unordered_map <int, int> base;
+	unordered_set <int> cmp;
+	for (auto t : topping)
+	{
+		base[t]++;
+	}
+	cake = base.size();
+	for (auto t : topping)
+	{
+		cmp.insert(t);
+		base[t]--;
+
+		if (base[t] == 0)
+		{
+			cake--;
+		}
+		if (cake == cmp.size())
+		{
+			answer++;
+		}
+	}
+	return answer;
+}
+
+int main()
+{
+	//cout << solution({ 1,2,3,1,4 }) << endl;
+	cout << solution({ 1,2,1,3,1,4,1,2 }) << endl;
+	return 0;
+}
+#endif // 롤케이크_자르기
+#ifdef 이xN_타일링
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+long recursion(long n);
+int solution(int n);
+long DP[60000];
+
+int solution(int n)
+{
+	int answer = 0;
+	DP[0] = 1;
+	DP[1] = 2;
+	return recursion(n - 1);
+}
+
+long recursion(long n)
+{
+	if (n == -1) return 0;
+
+	if (DP[n] == 0)
+	{
+		DP[n] = (recursion(n - 1) + recursion(n - 2)) % 1000000007;
+	}
+
+	return DP[n];
+}
+
+int main()
+{
+
+	for (int i = 500; i >= 0; i--)
+	{
+		cout << i << " : " << solution(i) << endl;
+	}
+
+	return 0;
+}
+
+#endif // 2xN_타일링

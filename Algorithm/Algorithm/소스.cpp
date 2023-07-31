@@ -1,56 +1,48 @@
 #include <string>
 #include <vector>
-#include <unordered_set>
-#include <map>
 #include <iostream>
 
 using namespace std;
 
-void Compair(map<int, int> c, unordered_set<int> b, int* count)
+vector<vector<int>> solution(int n) 
 {
-    if (c.size() == b.size())
+    vector<vector<int>> answer;
+
+    for (int i = 0; i < n - 1; i++)
     {
-        (*count)++;
+        answer.push_back({ 1,2 });
     }
-}
-
-int solution(vector<int> topping) {
-    int answer = -1;
-    int fairCount = 0;
-
-    map<int, int> c;
-    unordered_set<int> b;
-
-    for (int el : topping)
+    answer.push_back({ 1,3 });
+    for (int i = 0; i < n - 1; i++)
     {
-        if (c.find(el) == c.end())
-        {
-            c.insert({ el, 1 });
-        }
-        else
-        {
-            c[el]++;
-        }
+        answer.push_back({ 2,3 });
     }
 
-    for (int to : topping)
-    {
-        b.insert(to);
-        c[to]--;
-        if (c[to] == 0)
-        {
-            c.erase(to);
-        }
-
-        Compair(c, b, &fairCount);
-    }
-
-    return fairCount;
+    return answer;
 }
 
 int main()
 {
-    cout << solution({ 1,2,3,1,4}) << endl;
-    //cout << solution({ 1,2,1,3,1,4,1,2 }) << endl;
+    auto answer = solution(1);
+
+    for (auto v1 : answer)
+    {
+        for (auto i : v1)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
+    }
+
     return 0;
 }
+
+/*
+
+1,2
+1,2
+1,3
+2,3
+2,3
+
+*/
