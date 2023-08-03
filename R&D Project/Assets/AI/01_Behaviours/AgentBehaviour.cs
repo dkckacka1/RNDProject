@@ -9,6 +9,7 @@ namespace AI.Behaviour
     {
         public GameObject target;   // 에이전트가 주시하고 있는 대상
         protected Agent agent; // 행위를 조작할 에이전트
+        public float weight = 1.0f; // 행위 가중치
 
 
         public virtual void Awake()
@@ -19,7 +20,7 @@ namespace AI.Behaviour
         public virtual void Update()
         {
             // 현재 에이전트의 행위를 수행합니다.
-            agent.SetSteering(GetSteering());
+            agent.SetSteering(GetSteering(), weight);
         }
 
         // 기본적으로는 아무것도 수행하지 않는다.

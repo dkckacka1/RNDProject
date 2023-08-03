@@ -76,9 +76,11 @@ namespace AI.Behaviour
 
         // 행위를 세팅합니다.
         // AgentBehaviour 클래스가 매 프레임마다 행위를 갱신합니다.
-        public void SetSteering(Steering steering)
+        public void SetSteering(Steering steering, float weight)
         {
-            this.steering = steering;
+            // 현재 가중치만큼 속도와 회전 양을 결정합니다.
+            this.steering.linear += (weight * steering.linear);
+            this.steering.angular += (weight * steering.angular);
         }
     }
 }
