@@ -10,7 +10,7 @@ namespace AI.Behaviour
         public GameObject target;   // 에이전트가 주시하고 있는 대상
         protected Agent agent; // 행위를 조작할 에이전트
         public float weight = 1.0f; // 행위 가중치
-
+        public int priority = 1;    // 우선순위
 
         public virtual void Awake()
         {
@@ -20,7 +20,8 @@ namespace AI.Behaviour
         public virtual void Update()
         {
             // 현재 에이전트의 행위를 수행합니다.
-            agent.SetSteering(GetSteering(), weight);
+            // 에이전트에 행위에 대한 우선순위도 부여합니다.
+            agent.SetSteering(GetSteering(), priority);
         }
 
         // 기본적으로는 아무것도 수행하지 않는다.

@@ -35,7 +35,7 @@ namespace Rito
         [SerializeField] private Button _amountInputCancelButton; // Cancel
 
         // 확인 버튼 눌렀을 때 동작할 이벤트
-        private event Action OnConfirmationOK;
+        private event System.Action OnConfirmationOK;
         private event Action<int> OnAmountInputOK;
 
         // 수량 입력 제한 개수
@@ -86,7 +86,7 @@ namespace Rito
         ***********************************************************************/
         #region .
         /// <summary> 확인/취소 팝업 띄우기 </summary>
-        public void OpenConfirmationPopup(Action okCallback, string itemName)
+        public void OpenConfirmationPopup(System.Action okCallback, string itemName)
         {
             ShowPanel();
             ShowConfirmationPopup(itemName);
@@ -193,7 +193,7 @@ namespace Rito
         }
         private void HideAmountInputPopup() => _amountInputPopupObject.SetActive(false);
 
-        private void SetConfirmationOKEvent(Action handler) => OnConfirmationOK = handler;
+        private void SetConfirmationOKEvent(System.Action handler) => OnConfirmationOK = handler;
         private void SetAmountInputOKEvent(Action<int> handler) => OnAmountInputOK = handler;
 
 
